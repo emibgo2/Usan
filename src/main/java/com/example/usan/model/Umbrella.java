@@ -37,7 +37,17 @@ public class Umbrella {
     @JoinColumn(name = "userId")
     private User user;
 
-
+    @Override
+    public String toString() {
+        return "Umbrella{" +
+                "id=" + id +
+                ", create_date=" + create_date +
+                ", rent_date=" + rent_date +
+                ", over_date=" + over_date +
+                ", end_date=" + end_date +
+                ", user=" + user +
+                '}';
+    }
 
 
 }
