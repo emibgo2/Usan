@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @Data
@@ -39,6 +40,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OrderBy("id desc")
+    private List<Umbrella> umbrellas;
     @CreationTimestamp
     private Timestamp createDate;
 
