@@ -33,7 +33,7 @@ public class Umbrella {
     @UpdateTimestamp
     private Timestamp end_date; // 반납한 날짜
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "userId")
     private User user;
 

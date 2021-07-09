@@ -10,8 +10,8 @@ pageEncoding="UTF-8" %>
     <input type="hidden" id="id" value="${umbrella.id}">
     <input type="hidden" id="userName" value="${sessionScope.principal.username}">
     <input type="hidden" id="userEmail" value="${sessionScope.principal.email}">
-    <input type="hidden" id="userPhoneNumber" value="${sessionScope.principal.phoneNumber}">
-    <input type="hidden" id="userNickname" value="${sessionScope.principal.nickName}">
+    <input type="hidden" id="phoneNumber" value="${sessionScope.principal.phoneNumber}">
+    <input type="hidden" id="nickName" value="${sessionScope.principal.nickName}">
     <h1>현재 유저 ID: ${sessionScope.principal.id}</h1>
     <h1>현재 유저 ID: ${sessionScope.principal.nickName}</h1>
 

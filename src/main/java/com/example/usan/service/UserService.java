@@ -32,30 +32,24 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User login(User user) {
-
         User principal =userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         System.out.println("login User: "+principal);
         return principal;
-
     }
 
     @Transactional
     public void mappingUmbrella( int id ,  User user) {
-        System.out.println(user);
-        List<Umbrella> test = new ArrayList<>();
-
-        System.out.println("tttttt:"+test);
-
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
-        System.out.println("umbrella Information : "+umbrella);
-        System.out.println("????");
-        test.add(umbrella);
-        System.out.println("!!!!");
-        System.out.println("testList : "+test.get(0));
-        user.setUmbrellas(test);
-        userRepository.save(user);
+        if (user.getFirstUmbrella() != null) {
+            if (user.getSecondUmbrella() != null) {
+                System.out.println("두개다 꽉찼습니다");
+            } else user.setSecondUmbrella(umbrella);
+        } else {
+            user.setFirstUmbrella(umbrella);
+
+        }
 
     }
 }

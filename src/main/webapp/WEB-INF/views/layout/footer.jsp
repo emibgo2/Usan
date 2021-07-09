@@ -3,7 +3,7 @@
 <br>
 <div class="jumbotron text-center" style="margin-bottom:0">
     <p>Create by Cos</p>
-    <p>010-1234</p>
+    <p>010-4321</p>
     <p>인천</p>
 </div>
 
