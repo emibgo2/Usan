@@ -36,6 +36,7 @@ let index={
     },
     login: function () {
         let data={
+            userId: $("#userId").val(),
             username:$("#username").val(),
             nickName: $("#nickName").val(),
             password: $("#password").val(),
@@ -57,6 +58,7 @@ let index={
                 location.href = "/";
             }
         }).fail(function (error) {
+
             alert(JSON.stringify(error));
         });
     }

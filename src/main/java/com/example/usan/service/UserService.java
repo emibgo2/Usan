@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,22 +43,19 @@ public class UserService {
     }
 
     @Transactional
-    public void mappingUmbrella( int id ,  User user) {
-        System.out.println(user);
-        List<Umbrella> test = new ArrayList<>();
-
-        System.out.println("tttttt:"+test);
-
+    public void mappingUmbrella( int id ,  User requestUser) {
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
-        umbrella.setUser(user);
+        User user= userRepository.findById(requestUser.getId()).orElseGet(() -> {
+            return new User();
+        });
+
+        user.setUmbrella_Id1(umbrella.getId());
+        umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now()));
+        umbrella.setUser_id(requestUser.getId());
         System.out.println("umbrella Information : "+umbrella);
-        System.out.println("????");
-        test.add(umbrella);
-        System.out.println("!!!!");
-        System.out.println("testList : "+test.get(0));
-        user.setUmbrellas(test);
+        System.out.println("User     Information : "+user);
 
     }
 }

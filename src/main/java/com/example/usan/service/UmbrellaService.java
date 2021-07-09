@@ -34,10 +34,7 @@ public class UmbrellaService {
     @Transactional
     public void mappingUser(int id, User user) {
 
-        Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
-            return new Umbrella();
-        });
-        umbrella.setUser(user);
+
 
     }
 }

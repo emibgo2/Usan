@@ -41,10 +41,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties({"user"})
-    @OrderBy("id desc")
-    private List<Umbrella> umbrellas;
+    @Column(nullable = true)
+    private int umbrella_Id1;
 
     @CreationTimestamp
     private Timestamp createDate;
@@ -59,7 +57,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", role=" + role +
-                ", umbrellas=" + umbrellas +
+                ", umbrellas=" + umbrella_Id1 +
                 ", createDate=" + createDate +
                 '}';
     }

@@ -35,7 +35,7 @@ let index={
         let id = $("#id").val();
 
         let data={
-            userId:$("#userId").val(),
+            id:$("#userId").val(),
             username:$("#userName").val(),
             password:$("#userPassword").val(),
             email:$("#userEmail").val(),

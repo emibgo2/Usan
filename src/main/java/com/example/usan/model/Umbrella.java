@@ -33,9 +33,8 @@ public class Umbrella {
     @UpdateTimestamp
     private Timestamp end_date; // 반납한 날짜
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @Column()
+    private int user_id;
 
     @Override
     public String toString() {
@@ -45,7 +44,7 @@ public class Umbrella {
                 ", rent_date=" + rent_date +
                 ", over_date=" + over_date +
                 ", end_date=" + end_date +
-                ", user=" + user +
+                ", user=" + user_id +
                 '}';
     }
 
