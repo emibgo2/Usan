@@ -49,13 +49,13 @@ public class UserService {
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
+        umbrella.setUser(user);
         System.out.println("umbrella Information : "+umbrella);
         System.out.println("????");
         test.add(umbrella);
         System.out.println("!!!!");
         System.out.println("testList : "+test.get(0));
         user.setUmbrellas(test);
-        userRepository.save(user);
 
     }
 }

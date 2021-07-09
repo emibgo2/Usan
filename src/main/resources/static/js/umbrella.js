@@ -39,12 +39,12 @@ let index={
             username:$("#userName").val(),
             password:$("#userPassword").val(),
             email:$("#userEmail").val(),
-            userPhoneNumber:$("#userPhoneNumber").val(),
-            userNickname: $("#userNickname").val(),
+            phoneNumber:$("#phoneNumber").val(),
+            nickName: $("#nickName").val(),
         };
         $.ajax({
             type: "PUT",
-            url:"/umb/mapping"+id,
+            url:"/umb/mapping/"+id,
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데

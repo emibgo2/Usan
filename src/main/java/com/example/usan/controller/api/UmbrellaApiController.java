@@ -31,7 +31,6 @@ public class UmbrellaApiController {
     public ResponseDto<Integer> umb_rent( @RequestBody User user,@PathVariable int id) {
 
         userService.mappingUmbrella(id,user);
-        umbrellaService.mappingUser(id,user);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 }

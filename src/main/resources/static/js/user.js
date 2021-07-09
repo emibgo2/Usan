@@ -53,7 +53,6 @@ let index={
             if (resp.status === 500) {
                 alert("로그인 실패하였습니다 \n아이디가 중복되었습니다.");
             } else {
-                alert(data.nickName)
                 // console.log(resp)
                 location.href = "/";
             }
