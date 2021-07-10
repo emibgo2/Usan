@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class UmbrellaService {
     @Autowired
@@ -23,12 +25,10 @@ public class UmbrellaService {
     }
 
     @Transactional(readOnly = true)
-    public Umbrella umb_upload() {
-        Umbrella umbrella = umbrellaRepository.findById(1).orElseGet(() -> {
-            return new Umbrella();
-        });
+    public List<Umbrella> umb_upload() {
+        List<Umbrella> umbrellas = umbrellaRepository.findAll();
 
-        return umbrella;
+        return umbrellas;
     }
 
     @Transactional
