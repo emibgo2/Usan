@@ -3,9 +3,7 @@ let index={
         $("#btn-umbrella-save").on("click",()=>{
             this.save();
         });
-        $("#btn-umbrella-rent").on("click",()=>{
-            this.rent();
-        });
+
 
     },
     save: function () {
@@ -52,6 +50,8 @@ let index={
         }).done(function (resp) {
             if (resp.status === 500) {
                 alert("우산 등록이 실패하였습니다 \n아이디가 중복되었습니다.");
+            }else if (resp.data === 3) {
+                alert("우산이 꽉 찼습니다 반납후 이용해주세요")
             } else {
                 alert("우산 등록이 완료되었습니다.");
                 // console.log(resp)

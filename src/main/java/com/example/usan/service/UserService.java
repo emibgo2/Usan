@@ -43,7 +43,7 @@ public class UserService {
     }
 
     @Transactional
-    public void mappingUmbrella( int id ,  User requestUser) {
+    public int mappingUmbrella( int id ,  User requestUser) {
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
@@ -51,11 +51,24 @@ public class UserService {
             return new User();
         });
 
-        user.setUmbrella_Id1(umbrella.getId());
-        umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now()));
-        umbrella.setUser_id(requestUser.getId());
+        if (user.getUmbrella_Id1() == 0) {
+            user.setUmbrella_Id1(umbrella.getId());
+            umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now()));
+            umbrella.setUser_id(requestUser.getId());
+            umbrella.setUse_count(umbrella.getUse_count()+1);
+        } else if (user.getUmbrella_Id1() != 0 && user.getUmbrella_Id2() == 0) {
+            user.setUmbrella_Id2(umbrella.getId());
+            umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now()));
+            umbrella.setUser_id(requestUser.getId());
+            umbrella.setUse_count(umbrella.getUse_count()+1);
+        }
+        else return 3;
+
+
         System.out.println("umbrella Information : "+umbrella);
         System.out.println("User     Information : "+user);
-
+        return 1;
     }
+
+
 }

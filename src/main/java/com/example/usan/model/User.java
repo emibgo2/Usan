@@ -44,6 +44,9 @@ public class User {
     @Column(nullable = true)
     private int umbrella_Id1;
 
+    @Column(nullable = true)
+    private int umbrella_Id2;
+
     @CreationTimestamp
     private Timestamp createDate;
 

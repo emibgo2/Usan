@@ -27,14 +27,16 @@ public class Umbrella {
     @UpdateTimestamp
     private Timestamp rent_date; // 대여한 날짜
 
-    @UpdateTimestamp
     private Timestamp over_date; // 연체된 날짜
 
-    @UpdateTimestamp
+
     private Timestamp end_date; // 반납한 날짜
 
     @Column()
     private int user_id;
+
+    @Column
+    private int use_count;
 
     @Override
     public String toString() {

@@ -16,10 +16,11 @@ pageEncoding="UTF-8" %>
     <h1>현재 유저 ID: ${sessionScope.principal.nickName}</h1>
 
         <c:forEach var="umbrellas" items="${umbrella}">
-        <button class="btn btn-primary" onclick="rent(${umbrellas.id}), index.rent()"> ${umbrellas.id}번 우산</button>
+            <c:if test="${umbrellas.user_id == 0}">
+        <button class="btn btn-primary" onClick="index.rent(${umbrellas.id})"> ${umbrellas.id}번 우산</button>
+            </c:if>
         </c:forEach>
 
-    <button id="btn-umbrella-rent" class="btn btn-primary">우산 대여:</button>
     </form>
 </div>
 
