@@ -33,4 +33,8 @@ public class UmbrellaApiController {
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id,user));
     }
+    @PutMapping("/umb/return/{id}")
+    public ResponseDto<Integer> umb_return( @RequestBody User user,@PathVariable int id) {
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.returnUmbrella(id,user));
+    }
 }

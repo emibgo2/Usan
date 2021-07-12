@@ -18,9 +18,14 @@ public class UmbrellaController {
         return "umbrella/umb_joinForm";
     }
 
-    @GetMapping("/umb/mappingFrom")
+    @GetMapping("/umb/mappingForm")
     public String mappingUmbrella(Model model) {
         model.addAttribute("umbrella",umbrellaService.umb_upload());
         return "umbrella/umb_mappingForm";
+    }
+    @GetMapping("/umb/returnForm")
+    public String returnUmbrella(Model model) {
+        model.addAttribute("umbrella",umbrellaService.umb_upload());
+        return "umbrella/umb_returnForm";
     }
 }

@@ -71,4 +71,22 @@ public class UserService {
     }
 
 
+    @Transactional
+    public int returnUmbrella(int id, User requestUser) {
+        Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
+            return new Umbrella();
+        });
+        User user= userRepository.findById(requestUser.getId()).orElseGet(() -> {
+            return new User();
+        });
+        if (user.getUmbrella_Id1() == umbrella.getId()) {
+            user.setUmbrella_Id1(0);
+            umbrella.setUser_id(0);
+        } else if (user.getUmbrella_Id2() == umbrella.getId()) {
+            user.setUmbrella_Id2(0);
+            umbrella.setUser_id(0);
+        }else return 3;
+
+        return 1;
+    }
 }

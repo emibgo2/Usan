@@ -36,8 +36,9 @@
             <c:otherwise>
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/umb/mappingFrom">우산 대여하기</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/umb/mappingForm">우산 대여하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/joinForm">우산 등록하기</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/umb/returnForm">우산 반납하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"> 안녕하세요 ${sessionScope.principal.username} 님</a></li>
 
                 </ul>
