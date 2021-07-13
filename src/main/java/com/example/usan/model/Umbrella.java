@@ -24,7 +24,6 @@ public class Umbrella {
     @CreationTimestamp
     private Timestamp create_date; // 우산 등록일
 
-    @UpdateTimestamp
     private Timestamp rent_date; // 대여한 날짜
 
     private Timestamp over_date; // 연체된 날짜

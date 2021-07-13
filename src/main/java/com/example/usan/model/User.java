@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -42,9 +43,11 @@ public class User {
     private RoleType role;
 
     @Column(nullable = true)
+    @ColumnDefault("-1")
     private int umbrella_Id1;
 
     @Column(nullable = true)
+    @ColumnDefault("-1")
     private int umbrella_Id2;
 
     @CreationTimestamp
