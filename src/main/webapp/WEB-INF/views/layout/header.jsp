@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="principal"></sec:authentication>
+</sec:authorize>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +42,7 @@
                     <li class="nav-item"><a class="nav-link" href="/umb/mappingForm">우산 대여하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/joinForm">우산 등록하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/returnForm">우산 반납하기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"> 안녕하세요 ${sessionScope.principal.username} 님</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"> 안녕하세요 ${principal.user.id} 님</a></li>
 
                 </ul>
             </c:otherwise>

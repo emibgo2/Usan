@@ -5,19 +5,19 @@ pageEncoding="UTF-8" %>
 
 <div class="container">
     <form >
-    <input type="hidden" id="userId" value="${sessionScope.principal.id}">
-    <input type="hidden" id="userPassword" value="${sessionScope.principal.password}">
-    <input type="hidden" id="userName" value="${sessionScope.principal.username}">
-    <input type="hidden" id="userEmail" value="${sessionScope.principal.email}">
-    <input type="hidden" id="userPhoneNumber" value="${sessionScope.principal.phoneNumber}">
-    <input type="hidden" id="userNickname" value="${sessionScope.principal.nickName}">
-    <h1>현재 유저 ID: ${sessionScope.principal.id}</h1>
+    <input type="hidden" id="userId" value="${principal.user.id}">
+    <input type="hidden" id="userPassword" value="${principal.user.password}">
+    <input type="hidden" id="userName" value="${principal.user.username}">
+    <input type="hidden" id="userEmail" value="${principal.user.email}">
+    <input type="hidden" id="userPhoneNumber" value="${principal.user.phoneNumber}">
+    <input type="hidden" id="userNickname" value="${principal.user.nickName}">
+    <h1>현재 유저 ID: ${principal.user.id}</h1>
 
-    <h1>현재 유저 ID: ${sessionScope.principal.nickName}</h1>
+    <h1>현재 유저 ID: ${principal.user.nickName}</h1>
 
         <c:forEach var="umbrellas" items="${umbrella}">
             <c:if test="${umbrellas.user_id == 0}">
-        <button class="btn btn-primary" onClick="index.rent(${umbrellas.id})"> ${umbrellas.id}번 우산</button>
+            <button class="btn btn-primary" onClick="index.rent(${umbrellas.id})"> ${umbrellas.id}번 우산</button>
             </c:if>
         </c:forEach>
 
