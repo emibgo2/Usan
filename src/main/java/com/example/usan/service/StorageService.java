@@ -61,7 +61,9 @@ public class StorageService {
         });
         List<Umbrella> test = storage.getUmbrellaList();
         test.add(umbrella);
+
         storage.setUmbrellaList(test);
+        storage.setUmb_count(test.size());
         umbrella.setStorage(storage);
         System.out.println(storage);
         System.out.println(umbrella);

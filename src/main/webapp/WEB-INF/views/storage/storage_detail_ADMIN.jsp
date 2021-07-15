@@ -15,27 +15,36 @@ pageEncoding="UTF-8" %>
     <h1>현재 유저 ID: ${principal.user.id}</h1>
 
     <h1>현재 유저 ID: ${principal.user.nickName}</h1>
+        <input type="hidden" id="id" value="${storage.id}">
 
         <br>
         ${storage}
         <h2>${storage.id}번 보관소가 갖고 있는 우산:
         <c:forEach var="umbrella" items="${storage.umbrellaList}">
-            <c:if test="${umbrella.user_id == 0}">
-         <button class="btn btn-success"  onClick="index.rent(${umbrella.id})"> ${umbrella.id}번 우산</button>
-            </c:if>
+         <button class="btn btn-success"> ${umbrella.id}번 우산</button>
         </c:forEach>
         </h2>
-
         <c:forEach var="umbrellas" items="${umbrella}">
+
             <c:choose>
             <c:when test="${(umbrellas.user_id == 0 && umbrellas.storage.id != storage.id) && umbrellas.storage.id==null}">
-            <button class="btn btn-primary"  onClick="index.rent(${umbrellas.id})"> ${umbrellas}번 우산</button>
+            <button class="btn btn-primary"  onClick="ins.test(${storage.id},${umbrellas.id})"> ${umbrellas.id}번 우산</button>
             </c:when>
             </c:choose>
         </c:forEach>
 
     </form>
 </div>
+<script>
+    let ins={
+    test:function(storageId,umbrella){
+        if (confirm(storageId+"번 보관소에다가"+umbrella+"번 우산을 지정하시겠습니까?")) {
+            index.storage_mapping(umbrella)
+        } else {
 
+        }
+    }
+    }
+</script>
 <script src="/js/umbrella.js"></script>
 <%@include file="../layout/footer.jsp"%>

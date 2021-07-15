@@ -15,7 +15,7 @@ pageEncoding="UTF-8" %>
 
     <h1>현재 유저 ID: ${principal.user.nickName}</h1>
         <c:forEach var="storages" items="${storage}">
-            <button class="btn btn-success" type="button" onclick="location.href='/storage/${storages.id}'"> ${storages.id}번 보관소</button>
+            <button class="btn btn-success" type="button" onclick="location.href='/storage/admin/${storages.id}'"> ${storages.id}번 보관소</button>
         </c:forEach>
         <br>
 

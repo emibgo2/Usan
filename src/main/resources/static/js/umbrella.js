@@ -33,7 +33,7 @@ let index={
     },
     rent: function (umbrellaId) {
         let id = $("#id").val();
-
+        alert(umbrellaId)
         let data={
             id:$("#userId").val(),
             username:$("#userName").val(),

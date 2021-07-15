@@ -26,7 +26,6 @@ public class Storage {
     private int umb_breakdown_count;
 
     @OneToMany(mappedBy = "storage", fetch = FetchType.EAGER, cascade =CascadeType.REFRESH)
-    @OrderBy("id desc")
     private List<Umbrella> umbrellaList;
 
     @Override
