@@ -30,18 +30,19 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
         <c:choose>
-        <c:when test="${empty principal}">
+            <c:when test="${empty principal}">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/auth/loginForm">로그인</a></li>
                     <li class="nav-item"><a class="nav-link" href="/auth/joinForm">회원가입</a></li>
                 </ul>
-        </c:when>
+            </c:when>
             <c:otherwise>
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/mappingForm">우산 대여하기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/umb/joinForm">우산 등록하기</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/storage/mappingForm">우산 등록하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/returnForm">우산 반납하기</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/storage/joinForm">보관소 등록하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"> 안녕하세요 ${principal.user.id} 님</a></li>
 
                 </ul>
@@ -51,3 +52,4 @@
 </nav>
 <br>
 
+</body>

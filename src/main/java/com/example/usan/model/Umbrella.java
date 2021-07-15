@@ -37,8 +37,20 @@ public class Umbrella {
     @Column
     private int use_count;
 
+    @ManyToOne
+    @JoinColumn(name = "storageId")
+    private Storage storage;
+
+//    추후 작업
+//    @Column
+//    private int 우산일련번호;
+//
+//    @Column
+//    private String 우산_RFID_코드_값;
+
     @Override
     public String toString() {
+
         return "Umbrella{" +
                 "id=" + id +
                 ", create_date=" + create_date +

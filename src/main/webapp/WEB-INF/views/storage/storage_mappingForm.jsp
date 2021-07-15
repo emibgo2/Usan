@@ -15,15 +15,9 @@ pageEncoding="UTF-8" %>
 
     <h1>현재 유저 ID: ${principal.user.nickName}</h1>
         <c:forEach var="storages" items="${storage}">
-            <a href="/storage/${storages.id}">   <button class="btn btn-success" > ${storages.id}번 보관소</button></a>
+            <button class="btn btn-success" type="button" onclick="location.href='/storage/${storages.id}'"> ${storages.id}번 보관소</button>
         </c:forEach>
         <br>
-        <c:forEach var="umbrellas" items="${umbrella}">
-
-            <c:if test="${umbrellas.user_id == 0}">
-            <button class="btn btn-primary" onClick="index.rent(${umbrellas.id})"> ${umbrellas.id}번 우산</button>
-            </c:if>
-        </c:forEach>
 
     </form>
 </div>
