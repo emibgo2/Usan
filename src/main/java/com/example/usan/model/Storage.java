@@ -1,11 +1,14 @@
 package com.example.usan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 // ORM -> Java Object -> 테이블로 매핑해주는 기술
@@ -25,7 +28,11 @@ public class Storage {
     @Column
     private int umb_breakdown_count;
 
+    @CreationTimestamp
+    private Timestamp create_date; // 우산 등록일
+
     @OneToMany(mappedBy = "storage", fetch = FetchType.EAGER, cascade =CascadeType.REFRESH)
+    @JsonIgnoreProperties({"storage"})
     private List<Umbrella> umbrellaList;
 
     @Override

@@ -11,7 +11,8 @@ pageEncoding="UTF-8" %>
     <input type="hidden" id="userEmail" value="${principal.user.email}">
     <input type="hidden" id="userPhoneNumber" value="${principal.user.phoneNumber}">
     <input type="hidden" id="userNickname" value="${principal.user.nickName}">
-        <h2>storage_detail 페이지 입니다 번호:${storage.id}</h2>
+    <h1>storage_detail 페이지 입니다</h1>
+    <h1>보관소 번호:${storage.id}</h1>
     <h1>현재 유저 ID: ${principal.user.id}</h1>
 
     <h1>현재 유저 ID: ${principal.user.nickName}</h1>

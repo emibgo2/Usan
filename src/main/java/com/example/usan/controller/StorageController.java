@@ -27,19 +27,20 @@ public class StorageController {
     public String joinUmbrella() {
         return "storage/storage_joinForm";
     }
+
     @GetMapping("/storage/mappingForm")
     public String selectStorage(Model model) {
         model.addAttribute("storage", storageService.sto_upload());
         return "storage/storage_mappingForm";
     }
     @GetMapping("/storage/{id}")
-    public String findById2(@PathVariable int id, Model model) {
+    public String findById(@PathVariable int id, Model model) {
         model.addAttribute("storage", storageService.sto_detail(id));
         model.addAttribute("umbrella", umbrellaService.umb_upload());
         return "storage/storage_detail";
     }
     @GetMapping("/storage/admin/{id}")
-    public String findById(@PathVariable int id, Model model) {
+    public String findById_ADMIN(@PathVariable int id, Model model) {
         model.addAttribute("storage", storageService.sto_detail(id));
         model.addAttribute("umbrella", umbrellaService.umb_upload());
         return "storage/storage_detail_ADMIN";

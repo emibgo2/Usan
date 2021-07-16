@@ -17,21 +17,7 @@ public class UmbrellaController {
     @Autowired
     private StorageService storageService;
 
-    @GetMapping("/umb/joinForm")
-    public String joinUmbrella(Model model) {
-        model.addAttribute("storage", storageService.sto_upload());
-        return "umbrella/umb_joinForm";
-    }
 
-    @GetMapping("/umb/mappingForm")
-    public String mappingUmbrella(Model model) {
-        model.addAttribute("umbrella",umbrellaService.umb_upload());
-        model.addAttribute("storage", storageService.sto_upload());
-        return "umbrella/umb_mappingForm";
-    }
-    @GetMapping("/umb/returnForm")
-    public String returnUmbrella(Model model) {
-        model.addAttribute("umbrella",umbrellaService.umb_upload());
-        return "umbrella/umb_returnForm";
-    }
+
+
 }
