@@ -6,7 +6,9 @@ pageEncoding="UTF-8" %>
 <div class="container">
     <form >
         <div class="form-group">
-
+            <script>
+                $.ajax({ type: "GET", url: "/umb/joinForm", success: (data) => { console.log(data); } });
+            </script>
             <c:forEach var="storages" items="${storage}">
                 <button class="btn btn-success" type="button" onclick="location.href='http://localhost:8080/storage/${storages.id}'"> ${storages.id}번 보관소</button>
             </c:forEach>
@@ -19,4 +21,5 @@ pageEncoding="UTF-8" %>
 </div>
 
 <script src="/js/umbrella.js"></script>
+
 <%@include file="../layout/footer.jsp"%>

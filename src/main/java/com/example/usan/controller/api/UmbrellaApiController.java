@@ -49,8 +49,13 @@ public class UmbrellaApiController {
         return umbrellas;
     }
 
-    @GetMapping("/umb/joinForm")
-    public List<Storage> joinUmbrella() {
+    @RequestMapping(value = "/string",method = RequestMethod.GET)
+    public String getUmbList2() {
+        return "index";
+    }
+
+    @RequestMapping(value = "/umb/joinForm",method = RequestMethod.GET)
+    public @ResponseBody List<Storage> joinUmbrella() {
         List<Storage> storages = storageService.sto_upload();
         return storages;
     }
