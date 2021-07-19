@@ -20,7 +20,7 @@ let index={
         }
         $.ajax({
             type: "POST",
-            url: "/umb/joinProc",
+            url: "/umb/post/joinProc",
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데
@@ -50,7 +50,7 @@ let index={
         };
         $.ajax({
             type: "PUT",
-            url:`/umb/mapping/${umbrellaId}`,
+            url:`/umb/put/mapping/${umbrellaId}`,
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             async:false,
@@ -83,7 +83,7 @@ let index={
         };
         $.ajax({
             type: "PUT",
-            url:`/umb/return/${umbrellaId}`,
+            url:`/umb/put/return/${umbrellaId}`,
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             async:false,
@@ -110,7 +110,7 @@ let index={
         }
         $.ajax({
             type: "POST",
-            url: "/storage/joinProc",
+            url: "/storage/post/joinProc",
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데
@@ -135,7 +135,7 @@ let index={
         alert(data.umbrellaId);
         $.ajax({
             type: "POST",
-            url: `/storage/${id}/umb/${umbrellaId}/mapping`,
+            url: `/storage/post/${id}/umb/${umbrellaId}/mapping`,
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             async:false,

@@ -30,6 +30,13 @@ public class UmbrellaApiController {
     @Autowired
     private UmbrellaService umbrellaService;
 
+    @GetMapping("/umb/get/list")
+    public  List<Umbrella> returnUmbrella() {
+        List<Umbrella>umbrellas= umbrellaService.umb_upload();
+
+        return umbrellas;
+    }
+
     @GetMapping("/umb/get/umbrellaList/storageList")
     public StorageDto<Integer, List<Umbrella>,List<Storage>> mappingUmbrella(Model model) {
         List<Umbrella>umbrellas= umbrellaService.umb_upload();
@@ -41,32 +48,25 @@ public class UmbrellaApiController {
         return new StorageDto<>(HttpStatus.OK.value(),1,umbrellas,storages);
     }
 
-    @GetMapping("/umb/get/list")
-    public  List<Umbrella> returnUmbrella() {
-        List<Umbrella>umbrellas= umbrellaService.umb_upload();
-
-        return umbrellas;
-    }
-
     @RequestMapping(value = "/string",method = RequestMethod.GET)
     public List<Storage> getUmbList2(Model model) {
         List<Storage> storages = storageService.sto_upload();
         return storages;
     }
 
-    @PostMapping("/umb/joinProc")
+    @PostMapping("/umb/post/joinProc")
     public ResponseDto<Integer> umb_save(@RequestBody Umbrella umbrella) {
         System.out.println("UmbrellaApiController: save 호출");
         umbrellaService.umbrella_save(umbrella);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    @PutMapping("/umb/mapping/{id}")
+    @PutMapping("/umb/put/mapping/{id}")
     public ResponseDto<Integer> umb_rent( @RequestBody User user,@PathVariable int id) {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id,user));
     }
 
-    @PutMapping("/umb/return/{id}")
+    @PutMapping("/umb/put/return/{id}")
     public ResponseDto<Integer> umb_return( @RequestBody User user,@PathVariable int id) {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.returnUmbrella(id,user));
     }
