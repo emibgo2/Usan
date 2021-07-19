@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
     @GetMapping({"", "/"})
     public String index(@AuthenticationPrincipal PrincipalDetail principal) { // 컨트롤러에서 세션 접근
-
         return "index";
     }
 

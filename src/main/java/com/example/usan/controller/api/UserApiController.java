@@ -20,7 +20,7 @@ public class UserApiController {
 
 
 
-    @PostMapping("/auth/joinProc")
+    @PostMapping("/auth/post/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user) {
         System.out.println("save 호출");
         userService.joinMember(user);

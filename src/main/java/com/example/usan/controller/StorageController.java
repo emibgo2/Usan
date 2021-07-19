@@ -1,6 +1,7 @@
 package com.example.usan.controller;
 
 import com.example.usan.config.auth.PrincipalDetail;
+import com.example.usan.model.Storage;
 import com.example.usan.model.User;
 import com.example.usan.repository.UmbrellaRepository;
 import com.example.usan.repository.UserRepository;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Controller
 public class StorageController {
@@ -30,9 +33,15 @@ public class StorageController {
 
     @GetMapping("/storage/mappingForm")
     public String selectStorage(Model model) {
-        model.addAttribute("storage", storageService.sto_upload());
+        List<Storage> storages = storageService.sto_upload();
+        for (int i = 0; i < storages.size(); i++) {
+            storages.get(i).setUmbrellaList(null);
+        }
+
+        model.addAttribute("storage", storages);
         return "storage/storage_mappingForm";
     }
+
     @GetMapping("/storage/{id}")
     public String findById(@PathVariable int id, Model model) {
         model.addAttribute("storage", storageService.sto_detail(id));

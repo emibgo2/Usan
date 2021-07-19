@@ -1,5 +1,6 @@
 package com.example.usan.controller.api;
 
+import com.example.usan.controller.UmbrellaController;
 import com.example.usan.dto.ResponseDto;
 import com.example.usan.dto.StorageDto;
 import com.example.usan.model.Storage;
@@ -29,7 +30,7 @@ public class UmbrellaApiController {
     @Autowired
     private UmbrellaService umbrellaService;
 
-    @GetMapping("/umb/mappingForm")
+    @GetMapping("/umb/get/umbrellaList/storageList")
     public StorageDto<Integer, List<Umbrella>,List<Storage>> mappingUmbrella(Model model) {
         List<Umbrella>umbrellas= umbrellaService.umb_upload();
         List<Storage> storages = storageService.sto_upload();
@@ -37,25 +38,18 @@ public class UmbrellaApiController {
         for (int i = 0; i < umbrellas.size(); i++) {
             umbrellas.get(i).setStorage(null);
         }
-
         return new StorageDto<>(HttpStatus.OK.value(),1,umbrellas,storages);
     }
-    @GetMapping("/umb/returnForm")
+
+    @GetMapping("/umb/get/list")
     public  List<Umbrella> returnUmbrella() {
         List<Umbrella>umbrellas= umbrellaService.umb_upload();
-        for (int i = 0; i < umbrellas.size(); i++) {
-            umbrellas.get(i).setStorage(null);
-        }
+
         return umbrellas;
     }
 
     @RequestMapping(value = "/string",method = RequestMethod.GET)
-    public String getUmbList2() {
-        return "index";
-    }
-
-    @RequestMapping(value = "/umb/joinForm",method = RequestMethod.GET)
-    public @ResponseBody List<Storage> joinUmbrella() {
+    public List<Storage> getUmbList2(Model model) {
         List<Storage> storages = storageService.sto_upload();
         return storages;
     }
@@ -71,6 +65,7 @@ public class UmbrellaApiController {
     public ResponseDto<Integer> umb_rent( @RequestBody User user,@PathVariable int id) {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id,user));
     }
+
     @PutMapping("/umb/return/{id}")
     public ResponseDto<Integer> umb_return( @RequestBody User user,@PathVariable int id) {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.returnUmbrella(id,user));
