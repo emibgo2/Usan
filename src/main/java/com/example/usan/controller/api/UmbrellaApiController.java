@@ -31,24 +31,24 @@ public class UmbrellaApiController {
     private UmbrellaService umbrellaService;
 
     @GetMapping("/umb/get/list")
-    public  List<Umbrella> returnUmbrella() {
-        List<Umbrella>umbrellas= umbrellaService.umb_upload();
+    public List<Umbrella> returnUmbrella() {
+        List<Umbrella> umbrellas = umbrellaService.umb_upload();
 
         return umbrellas;
     }
 
     @GetMapping("/umb/get/umbrellaList/storageList")
-    public StorageDto<Integer, List<Umbrella>,List<Storage>> mappingUmbrella(Model model) {
-        List<Umbrella>umbrellas= umbrellaService.umb_upload();
+    public StorageDto<Integer, List<Umbrella>, List<Storage>> mappingUmbrella(Model model) {
+        List<Umbrella> umbrellas = umbrellaService.umb_upload();
         List<Storage> storages = storageService.sto_upload();
 
         for (int i = 0; i < umbrellas.size(); i++) {
             umbrellas.get(i).setStorage(null);
         }
-        return new StorageDto<>(HttpStatus.OK.value(),1,umbrellas,storages);
+        return new StorageDto<>(HttpStatus.OK.value(), 1, umbrellas, storages);
     }
 
-    @RequestMapping(value = "/string",method = RequestMethod.GET)
+    @RequestMapping(value = "/string", method = RequestMethod.GET)
     public List<Storage> getUmbList2(Model model) {
         List<Storage> storages = storageService.sto_upload();
         return storages;
@@ -61,14 +61,14 @@ public class UmbrellaApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    @PutMapping("/umb/put/mapping/{id}")
-    public ResponseDto<Integer> umb_rent( @RequestBody User user,@PathVariable int id) {
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id,user));
+    @PutMapping("/umb/put/mapping/{id}/{rentPeriod}")
+    public ResponseDto<Integer> umb_rent(@RequestBody User user, @PathVariable int id, @PathVariable int rentPeriod) {
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id, user,rentPeriod));
     }
 
     @PutMapping("/umb/put/return/{id}")
-    public ResponseDto<Integer> umb_return( @RequestBody User user,@PathVariable int id) {
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.returnUmbrella(id,user));
+    public ResponseDto<Integer> umb_return(@RequestBody User user, @PathVariable int id) {
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.returnUmbrella(id, user));
     }
 }
 

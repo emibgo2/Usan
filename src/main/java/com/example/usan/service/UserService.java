@@ -5,6 +5,7 @@ import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
 import com.example.usan.repository.UmbrellaRepository;
 import com.example.usan.repository.UserRepository;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class UserService {
 
 
     @Transactional
-    public int mappingUmbrella( int id ,  User requestUser) {
+    public int mappingUmbrella( int id ,  User requestUser, int rentPeriod) {
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
@@ -52,11 +53,13 @@ public class UserService {
         if (user.getUmbrella_Id1() == 0) {
             user.setUmbrella_Id1(umbrella.getId());
             umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now()));
+            umbrella.setEnd_date(Timestamp.valueOf(LocalDateTime.now().plusDays(rentPeriod)));
             umbrella.setUser_id(requestUser.getId());
             umbrella.setUse_count(umbrella.getUse_count()+1);
         } else if (user.getUmbrella_Id1() != 0 && user.getUmbrella_Id2() == 0) {
             user.setUmbrella_Id2(umbrella.getId());
             umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now()));
+            umbrella.setEnd_date(Timestamp.valueOf(LocalDateTime.now().plusDays(rentPeriod)));
             umbrella.setUser_id(requestUser.getId());
             umbrella.setUse_count(umbrella.getUse_count()+1);
         }

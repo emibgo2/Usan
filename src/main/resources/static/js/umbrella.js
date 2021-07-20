@@ -37,7 +37,7 @@ let index={
             alert(JSON.stringify(error));
         });
     },
-    rent: function (umbrellaId) {
+    rent: function (umbrellaId,rent_period) {
         let id = $("#id").val();
         alert(umbrellaId)
         let data={
@@ -50,7 +50,7 @@ let index={
         };
         $.ajax({
             type: "PUT",
-            url:`/umb/put/mapping/${umbrellaId}`,
+            url:`/umb/put/mapping/${umbrellaId}/${rent_period}`,
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             async:false,

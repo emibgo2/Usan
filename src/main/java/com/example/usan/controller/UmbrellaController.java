@@ -45,6 +45,7 @@ public class UmbrellaController {
         model.addAttribute("storage", storageService.sto_upload());
         return "umbrella/umb_mappingForm";
     }
+
     @GetMapping("/umb/returnForm")
     public String returnUmbrella(Model model) {
         List<Umbrella>umbrellas= umbrellaService.umb_upload();

@@ -21,7 +21,6 @@
                 });
                 var bb =document.getElementById('string');
                 bb.innerText = a;
-
             }
 
         });
@@ -31,8 +30,8 @@
 <body>
 <h1>Hello world!</h1>
 <span>우산 번호</span>
-<h1>근데 아까 지원이 응애는 댓는데</h1>
-빠빠
+<h1>d</h1>
+dd
 <H1 id="string" ></H1>
 
 </body>
