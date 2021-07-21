@@ -30,13 +30,7 @@ pageEncoding="UTF-8" %>
         </c:forEach>
         </h2>
 
-        <c:forEach var="umbrellas" items="${umbrella}">
-            <c:choose>
-            <c:when test="${(umbrellas.user_id == 0 && umbrellas.storage.id != storage.id) && umbrellas.storage.id==null}">
-            <button class="btn btn-primary"  onClick="inse.test(${umbrellas})"> ${umbrellas}번 우산</button>
-            </c:when>
-            </c:choose>
-        </c:forEach>
+
 
 
     </form>

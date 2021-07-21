@@ -52,7 +52,6 @@ public class StorageService {
 
     @Transactional
     public void umb_save(int id ,int umbrellaId) {
-        System.out.println("거의다 옴");
         Storage storage= storageRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("실패 : Id를 찾을 수 없습니다");
         });

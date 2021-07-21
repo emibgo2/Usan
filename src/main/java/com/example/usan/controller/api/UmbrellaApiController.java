@@ -37,6 +37,13 @@ public class UmbrellaApiController {
         return umbrellas;
     }
 
+    @GetMapping("/umb/get/lateDate/day/{umbrellaId}")
+    public int getLateDate(@PathVariable int umbrellaId){
+        int LateDate = umbrellaService.get_Late_Date(umbrellaId);
+        return LateDate;
+    }
+
+
     @GetMapping("/umb/get/umbrellaList/storageList")
     public StorageDto<Integer, List<Umbrella>, List<Storage>> mappingUmbrella(Model model) {
         List<Umbrella> umbrellas = umbrellaService.umb_upload();

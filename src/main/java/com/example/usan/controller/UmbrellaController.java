@@ -51,6 +51,7 @@ public class UmbrellaController {
         List<Umbrella>umbrellas= umbrellaService.umb_upload();
         for (int i = 0; i < umbrellas.size(); i++) {
             umbrellas.get(i).setStorage(null);
+            umbrellas.get(i).setOver_date(umbrellaService.get_Late_Date(i+1));
         }
         model.addAttribute("umbrella",umbrellas);
         return "umbrella/umb_returnForm";

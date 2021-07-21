@@ -1,14 +1,10 @@
 package com.example.usan.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -28,10 +24,11 @@ public class Umbrella {
 
     private Timestamp rent_date; // 대여한 날짜
 
-    private Timestamp over_date; // 연체된 날짜
+    private int over_date; // 연체된 일 수
 
+    private Timestamp rent_end_date; // 반납을 해야 하는 날짜
 
-    private Timestamp end_date; // 반납한 날짜
+    private Timestamp return_date; // 반납한 날짜
 
     @Column()
     private int user_id;
@@ -58,7 +55,7 @@ public class Umbrella {
                 ", create_date=" + create_date +
                 ", rent_date=" + rent_date +
                 ", over_date=" + over_date +
-                ", end_date=" + end_date +
+                ", return_date=" + return_date +
                 ", user=" + user_id +
                 '}';
     }

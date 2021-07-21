@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -29,6 +31,21 @@ public class UmbrellaService {
         List<Umbrella> umbrellas = umbrellaRepository.findAll();
 
         return umbrellas;
+    }
+
+
+    @Transactional(readOnly = true)
+    public int get_Late_Date(int id ){
+        Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
+            return new Umbrella();
+        });
+        System.out.println(umbrella);
+        LocalDate a = umbrella.getRent_date().toLocalDateTime().toLocalDate();
+        LocalDate b = umbrella.getRent_end_date().toLocalDateTime().toLocalDate();
+
+        Period period = Period.between(b,a);
+
+        return period.getDays();
     }
 
     @Transactional

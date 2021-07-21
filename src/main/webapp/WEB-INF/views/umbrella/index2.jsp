@@ -3,6 +3,27 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script type="text/javascript"> // F12 버튼 방지
+    document.onmousedown=disableclick;
+    status="Right click is not available.";
+    function disableclick(event){
+        if (event.button==2) {
+            alert(status);
+            return false;
+        }
+    }
+    // 개발자 도구(F12) 방지
+    $(function(){
+        $(document).bind('keydown',function(e){
+            if ( e.keyCode == 123 /* F12 */) {
+                e.preventDefault();
+                e.returnValue = false;
+            }
+        });
+    });
+    </script>
+
+
     <meta charset="UTF-8">
     <title>Kingname Spring boot</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

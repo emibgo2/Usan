@@ -8,12 +8,7 @@ let index={
         });
 
     },
-    get: function () {
-        let data={
-            storage
-        }
 
-    },
     save: function () {
         let data={
             umbrellaId:$("#umb_id").val(),
