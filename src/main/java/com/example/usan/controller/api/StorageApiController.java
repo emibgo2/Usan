@@ -29,14 +29,13 @@ public class StorageApiController {
 
     @PostMapping("/storage/post/joinProc")
     public ResponseDto<Integer> storage_save(@RequestBody Storage storage) {
-        System.out.println("storageApiController: save 호출");
+
         storageService.storage_save(storage);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
     @PostMapping("/storage/post/{id}/umb/{umb_id}/mapping")
     public ResponseDto<Integer> storage_umb_mapping(@PathVariable int id ,@PathVariable int umb_id) {
-        System.out.println("storageApiController: mapping 호출");
-        System.out.println("aaaaaa :::"+ umb_id);
+
         storageService.umb_save(id,umb_id);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }

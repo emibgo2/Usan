@@ -64,7 +64,5 @@ public class StorageService {
         storage.setUmbrellaList(test);
         storage.setUmb_count(test.size());
         umbrella.setStorage(storage);
-        System.out.println(storage);
-        System.out.println(umbrella);
     }
 }

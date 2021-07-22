@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class BoardController {
 
@@ -19,9 +22,10 @@ public class BoardController {
 
     // 컨트롤러에서 세션을 어떻게 찾는지?
     @GetMapping({"/board"})
-    public String index(Model model ,@PageableDefault(size =3,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
+    public String index(Model model ,@PageableDefault(size =3,sort = "id",direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response) {
         // /WEB-INF/views/joinForm.jsp
-        model.addAttribute("boards", boardService.글목록(pageable));
+
+        model.addAttribute("boards", boardService.boardList(pageable));
         return "board/boardList";
         //BoardController는 REST Controller가 아닌 그냥 Controller이기 때문에
         // 리턴할때 viewResolver가 작동 위에 boards를 라는 이름으로 글목록()을 들고갑니다.
@@ -30,14 +34,15 @@ public class BoardController {
 
     @GetMapping("/board/{id}")
     public String findById(@PathVariable int id, Model model) {
-        model.addAttribute("board", boardService.글상세보기(id));
-        boardService.조회수증가(id);
+        model.addAttribute("board", boardService.boardDetail(id));
+        boardService.viewCount(id);
+
         return "board/detail";
     }
 
     @GetMapping("/board/{id}/updateForm")
     public String updateForm(@PathVariable int id, Model model ){
-        model.addAttribute("board", boardService.글상세보기(id));
+        model.addAttribute("board", boardService.boardDetail(id));
         return "board/updateForm";
     }
 

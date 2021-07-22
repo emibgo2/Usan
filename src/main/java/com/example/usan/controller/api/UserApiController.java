@@ -22,7 +22,6 @@ public class UserApiController {
 
     @PostMapping("/auth/post/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user) {
-        System.out.println("save 호출");
         userService.joinMember(user);
         return new ResponseDto<Integer> (HttpStatus.OK.value(),1);
     }

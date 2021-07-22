@@ -32,20 +32,14 @@ let index={
             alert(JSON.stringify(error));
         });
     },
-    rent: function (umbrellaId,rent_period) {
+    rent: function (umbrellaId,rental_period) {
         let id = $("#id").val();
-        alert(umbrellaId)
         let data={
             id:$("#userId").val(),
-            username:$("#userName").val(),
-            password:$("#userPassword").val(),
-            email:$("#userEmail").val(),
-            phoneNumber:$("#phoneNumber").val(),
-            nickName: $("#nickName").val(),
         };
         $.ajax({
             type: "PUT",
-            url:`/umb/put/mapping/${umbrellaId}/${rent_period}`,
+            url:`/umb/put/mapping/${umbrellaId}/${rental_period}`,
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             async:false,
@@ -62,7 +56,7 @@ let index={
                 location.href = "/";
             }
         }).fail(function (error) {
-            alert(id+"ee???"+JSON.stringify(error));
+            alert(id+"<- ID / Error ->"+JSON.stringify(error));
         });
     },
     return: function (umbrellaId) {
@@ -70,11 +64,7 @@ let index={
 
         let data={
             id:$("#userId").val(),
-            username:$("#userName").val(),
-            password:$("#userPassword").val(),
-            email:$("#userEmail").val(),
-            phoneNumber:$("#phoneNumber").val(),
-            nickName: $("#nickName").val(),
+
         };
         $.ajax({
             type: "PUT",
@@ -96,7 +86,7 @@ let index={
             }
         }).fail(function (error) {
 
-            alert(id+"ee???"+JSON.stringify(error));
+            alert(id+"<- ID / Error ->"+JSON.stringify(error));
         });
     },
     storage_save: function () {

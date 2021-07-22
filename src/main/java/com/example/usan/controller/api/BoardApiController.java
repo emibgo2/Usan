@@ -7,12 +7,14 @@ import com.example.usan.dto.ReplySaveRequestDto;
 import com.example.usan.dto.ResponseDto;
 import com.example.usan.model.Board;
 import com.example.usan.service.BoardService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 public class BoardApiController {
 
     @Autowired
@@ -20,36 +22,34 @@ public class BoardApiController {
 
     @PostMapping("/api/board")
     public ResponseDto<Integer> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principal) {
-        boardService.글쓰기(board, principal.getUser());
+        boardService.writeBoard(board, principal.getUser());
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
     @DeleteMapping("/api/board/{id}")
     public ResponseDto<Integer> deleteById(@PathVariable int id) {
-        boardService.글삭제하기(id);
+        boardService.boardDelete(id);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 
     }
 
     @PutMapping("/api/board/{id}")
     public ResponseDto<Integer> update(@PathVariable int id, @RequestBody Board board) {
-        boardService.글수정하기(id, board);
+        boardService.boardModify(id, board);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
     @PutMapping("/api/board/{boardId}/like")
     public ResponseDto<Integer> likeUpdate(@PathVariable int boardId, @RequestBody Board board) {
-        System.out.println("11111111111111");
-        boardService.좋아요히트(boardId, board);
+        boardService.likeHit(boardId, board);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
     @PostMapping("/api/board/{boardId}/like")
     public ResponseDto<Integer> likeListUpdate(@PathVariable int boardId,@RequestBody LikeSaveRequestDto likeSaveRequestDto) {
-        boardService.좋아요히트(boardId, likeSaveRequestDto);
-        System.out.println("222222222222222222");
+        boardService.likeHit(boardId, likeSaveRequestDto);
 
-        System.out.println(likeSaveRequestDto);
+        log.info(likeSaveRequestDto.toString());
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
@@ -57,13 +57,13 @@ public class BoardApiController {
     @PostMapping("/api/board/{boardId}/reply")
     public ResponseDto<Integer> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto) {
 
-        boardService.댓글쓰기(replySaveRequestDto);
+        boardService.writeReply(replySaveRequestDto);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
     @DeleteMapping("/api/board/{boardId}/reply/{replyId}")
     public ResponseDto<Integer> replyDelete(@PathVariable int replyId) {
-        boardService.댓글삭제(replyId);
+        boardService.replyDelete(replyId);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 }

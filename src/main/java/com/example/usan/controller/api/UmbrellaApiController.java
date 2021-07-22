@@ -62,7 +62,6 @@ public class UmbrellaApiController {
 
     @PostMapping("/umb/post/joinProc")
     public ResponseDto<Integer> umb_save(@RequestBody Umbrella umbrella) {
-        System.out.println("UmbrellaApiController: save 호출");
         umbrellaService.umbrella_save(umbrella);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }

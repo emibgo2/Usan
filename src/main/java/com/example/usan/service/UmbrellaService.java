@@ -17,8 +17,6 @@ public class UmbrellaService {
     @Autowired
     private UmbrellaRepository umbrellaRepository;
 
-    @Autowired
-    private UserRepository userRepository;
 
     @Transactional
     public void umbrella_save(Umbrella umbrella) {
@@ -39,7 +37,7 @@ public class UmbrellaService {
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
-        System.out.println(umbrella);
+
         LocalDate a = umbrella.getRent_date().toLocalDateTime().toLocalDate();
         LocalDate b = umbrella.getRent_end_date().toLocalDateTime().toLocalDate();
 
@@ -48,10 +46,4 @@ public class UmbrellaService {
         return period.getDays();
     }
 
-    @Transactional
-    public void mappingUser(int id, User user) {
-
-
-
-    }
 }

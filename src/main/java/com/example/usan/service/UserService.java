@@ -5,6 +5,7 @@ import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
 import com.example.usan.repository.UmbrellaRepository;
 import com.example.usan.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 
 @Service
+@Slf4j
 public class UserService {
 
 
@@ -43,9 +45,11 @@ public class UserService {
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
+        log.info("BeforeUser -> "+requestUser);
         User user= userRepository.findById(requestUser.getId()).orElseGet(() -> {
             return new User();
         });
+
 
         if (user.getUmbrella_Id1() == 0) {
             user.setUmbrella_Id1(umbrella.getId());
@@ -62,9 +66,8 @@ public class UserService {
         }
         else return 3;
 
-
-        System.out.println("umbrella Information : "+umbrella);
-        System.out.println("User     Information : "+user);
+        log.info("umbrella Information : "+umbrella);
+        log.info("User     Information : "+user);
         return 1;
     }
 
@@ -77,7 +80,8 @@ public class UserService {
         User user= userRepository.findById(requestUser.getId()).orElseGet(() -> {
             return new User();
         });
-        System.out.println(umbrella);
+        log.info("Return User -> "+requestUser);
+
         if (user.getUmbrella_Id1() == umbrella.getId()) {
             user.setUmbrella_Id1(0);
             umbrella.setUser_id(0);
@@ -88,6 +92,8 @@ public class UserService {
             umbrella.setReturn_date(Timestamp.valueOf(LocalDateTime.now()) );
 
         }else return 3;
+        log.info("Return umbrella Information : "+umbrella);
+        log.info("Return User     Information : "+user);
 
         return 1;
     }
