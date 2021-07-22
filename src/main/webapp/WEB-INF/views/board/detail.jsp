@@ -13,8 +13,10 @@
     <div>
         글 번호:<span id="id"><i>${board.id} </i></span>
            작성자 :<span><i>${board.user.nickName} </i></span>
+
     </div>
-        <h3>${board.title}</h3>
+    <span>조회수: ${board.count}</span>
+    <h3>${board.title}</h3>
     <hr>
         <div>
             ${board.content}

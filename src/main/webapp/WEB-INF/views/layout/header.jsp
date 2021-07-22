@@ -15,12 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- HTML 혹은 JSP는 인터프린터로 읽기 때문에 script를 마지막에 넣는게 좋음-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $.ajax({
-        type: "GET",
-        url: "/umb/list",
-        success: (data) => { console.log(data); $('.string')} });
-    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
@@ -51,6 +46,10 @@
                     <li class="nav-item"><a class="nav-link" href="/umb/returnForm">우산 반납하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/storage/mappingForm">보관소에 우산 등록하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/storage/joinForm">보관소 등록하기</a></li>
+                 <c:if test="${principal.user.role.name() =='USER' }">
+<%--                     ADMIN으로 바꾸어야함 테스트 편의를 위해서 USER--%>
+                    <li class="nav-item"><a class="nav-link" href="/board">공지사항</a></li>
+                 </c:if>
                     <li class="nav-item"><a class="nav-link" href="#"> 안녕하세요 ${principal.user.id} 님</a></li>
 
                 </ul>

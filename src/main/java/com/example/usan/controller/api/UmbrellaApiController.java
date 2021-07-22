@@ -48,7 +48,6 @@ public class UmbrellaApiController {
     public StorageDto<Integer, List<Umbrella>, List<Storage>> mappingUmbrella(Model model) {
         List<Umbrella> umbrellas = umbrellaService.umb_upload();
         List<Storage> storages = storageService.sto_upload();
-
         for (int i = 0; i < umbrellas.size(); i++) {
             umbrellas.get(i).setStorage(null);
         }
