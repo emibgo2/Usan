@@ -24,7 +24,10 @@ public class UserApiController {
     public ResponseDto<Integer> save(@RequestBody User user) {
         userService.joinMember(user);
         return new ResponseDto<Integer> (HttpStatus.OK.value(),1);
+        // 회원가입 메소드
     }
+
+
 //   기존 로그인 방식
 //    @PostMapping("/api/user/login")
 //    public ResponseDto<Integer> login(@RequestBody User user, HttpSession session) {

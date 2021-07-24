@@ -36,6 +36,7 @@ public class UserService {
         user.setPassword(encPassword);
         user.setRole(RoleType.USER);
         userRepository.save(user);
+        // User의 정보와 비밀번호를 해쉬한 값을 DB에 저장
     }
 
 
@@ -49,12 +50,11 @@ public class UserService {
         User user= userRepository.findById(requestUser.getId()).orElseGet(() -> {
             return new User();
         });
-
-
         if (user.getUmbrella_Id1() == 0) {
             user.setUmbrella_Id1(umbrella.getId());
-            umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now()));
+            umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now())); // 빌린 당시의 날을 저장
             umbrella.setRent_end_date(Timestamp.valueOf(LocalDateTime.now().plusDays(rentPeriod)));
+            // 반납 날짜 =빌린 당시의 날(Rent_date) + 사용자가 지정한 대여 일 수(rentPeriod)
             umbrella.setUser_id(requestUser.getId());
             umbrella.setUse_count(umbrella.getUse_count()+1);
         } else if (user.getUmbrella_Id1() != 0 && user.getUmbrella_Id2() == 0) {
@@ -64,11 +64,18 @@ public class UserService {
             umbrella.setUser_id(requestUser.getId());
             umbrella.setUse_count(umbrella.getUse_count()+1);
         }
+        // User의 Umbrella_Id 값이 0 이면 빌린 우산이 없다는 뜻
+        // Umbrella_Id1값이 0이면 User의 Umbrella_Id1에 저장
+        // Umbrella_Id1값이 0이고 Umbrella_Id2값이 0이면 User의 Umbrella_Id2에 저장
+
         else return 3;
+        // 둘다 0이 아니라면 대여 최대 가능 댓수인 2를 넘어가기 때문에
+        // 안내문을 출력하기위해서 1을 return
 
         log.info("umbrella Information : "+umbrella);
         log.info("User     Information : "+user);
         return 1;
+        // 대여가 가능하고 정삭적으로 진행되었다면 1을 return
     }
 
 
@@ -94,7 +101,7 @@ public class UserService {
         }else return 3;
         log.info("Return umbrella Information : "+umbrella);
         log.info("Return User     Information : "+user);
-
+        // 반납 또한 대여와 동일한 방식으로 진행
         return 1;
     }
 }

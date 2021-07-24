@@ -24,7 +24,7 @@ public class StorageService {
     public List<Storage> sto_upload(){
         List<Storage> storages = storageRepository.findAll();
         return storages;
-
+        // DB내에 모든 Sotrage를 return
     }
     @Transactional(readOnly = true)
     public Storage sto_detail(int id){
@@ -32,22 +32,23 @@ public class StorageService {
                 .orElseThrow(() -> {
                     return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
                 });
-
+        // 해당 id값에 해당하는 Storage를 Return
     }
     @Transactional
     public void storage_save(Storage storage) {
         storage.setId(storage.getId());
         storageRepository.save(storage);
+        // Storage를 DB에 저장
     }
 
     @Transactional
     public List<Umbrella> umb_List(int id) {
-
         Storage storage= storageRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("실패 : Id를 찾을 수 없습니다");
         });
         List<Umbrella> storage_umbrellas = storage.getUmbrellaList();
         return storage_umbrellas;
+        // 해당 id값에 해당하는 Sotrage에서 지정되어 있는 Umbrella들을 return ( 해당 Storage내의 Umbrella )
     }
 
     @Transactional
@@ -60,9 +61,10 @@ public class StorageService {
         });
         List<Umbrella> test = storage.getUmbrellaList();
         test.add(umbrella);
-
         storage.setUmbrellaList(test);
         storage.setUmb_count(test.size());
         umbrella.setStorage(storage);
+        // 위에 id값에 해당하는 Sotrage와 umbrellaId에 해당하는 Umbrella를 가져와
+        // 서로가 해당 하는 필드에 서로를 저장 ( 맵핑 )
     }
 }

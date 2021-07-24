@@ -25,18 +25,19 @@ public class StorageApiController {
     public List<Storage> joinUmbrella() {
         List<Storage> storages = storageService.sto_upload();
         return storages;
+        // DB 내의 모든 Storage를 추합하여 전송
     }
 
     @PostMapping("/storage/post/joinProc")
     public ResponseDto<Integer> storage_save(@RequestBody Storage storage) {
-
         storageService.storage_save(storage);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+        // DB에 Storage를 저장
     }
     @PostMapping("/storage/post/{id}/umb/{umb_id}/mapping")
     public ResponseDto<Integer> storage_umb_mapping(@PathVariable int id ,@PathVariable int umb_id) {
-
         storageService.umb_save(id,umb_id);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+        // DB에 id에 해당하는 Storage와 umb_id에 해당하는 Umbrella를 맵핑
     }
 }

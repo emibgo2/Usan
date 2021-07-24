@@ -14,21 +14,22 @@ import java.util.List;
 
 @Service
 public class UmbrellaService {
+
     @Autowired
     private UmbrellaRepository umbrellaRepository;
-
 
     @Transactional
     public void umbrella_save(Umbrella umbrella) {
         umbrella.setId(umbrella.getId());
         umbrellaRepository.save(umbrella);
+        // Umbrella를 DB에 저장
     }
 
     @Transactional(readOnly = true)
     public List<Umbrella> umb_upload() {
         List<Umbrella> umbrellas = umbrellaRepository.findAll();
-
         return umbrellas;
+        // DB내의 모든 Umbrella들을 return
     }
 
 
@@ -37,13 +38,12 @@ public class UmbrellaService {
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
-
         LocalDate a = umbrella.getRent_date().toLocalDateTime().toLocalDate();
         LocalDate b = umbrella.getRent_end_date().toLocalDateTime().toLocalDate();
-
         Period period = Period.between(b,a);
-
         return period.getDays();
+        // id 값에 해당하는 Umbrella의 대여한 날짜 ( Rent Date ) 와 반납 예정 날짜( Rent End Date )를
+        // 비교, 계산하여 남은 일 수를 return ( 양수면 이미 지남 )
     }
 
 }
