@@ -27,6 +27,7 @@ pageEncoding="UTF-8" %>
         </div>
     </form>
     <button id="btn-save" class="btn btn-primary">회원가입</button>
+    <button id="btn-ADMIN-save" class="btn btn-primary">관리자 회원가입</button>
 </div>
 
 <script src="/js/user.js"></script>

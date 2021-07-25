@@ -46,11 +46,11 @@
                     <li class="nav-item"><a class="nav-link" href="/umb/returnForm">우산 반납하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/storage/mappingForm">보관소에 우산 등록하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/storage/joinForm">보관소 등록하기</a></li>
-                 <c:if test="${principal.user.role.name() =='USER' }">
-<%--                     ADMIN으로 바꾸어야함 테스트 편의를 위해서 USER--%>
-                    <li class="nav-item"><a class="nav-link" href="/board">공지사항</a></li>
+                 <c:if test="${principal.user.role.name() =='ADMIN' }">
+
+                    <li class="nav-item"><a class="nav-link" href="/board">공지사항 작성</a></li>
                  </c:if>
-                    <li class="nav-item"><a class="nav-link" href="#"> 안녕하세요 ${principal.user.id} 님</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"> 안녕하세요 ${principal.user.nickName} 님 (${principal.user.role})</a></li>
 
                 </ul>
             </c:otherwise>

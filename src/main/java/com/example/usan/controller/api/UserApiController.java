@@ -22,9 +22,16 @@ public class UserApiController {
 
     @PostMapping("/auth/post/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user) {
-        userService.joinMember(user);
+        userService.joinMember(user,1);
         return new ResponseDto<Integer> (HttpStatus.OK.value(),1);
-        // 회원가입 메소드
+        // 유저 회원가입 메소드
+    }
+    // Role Type 1: User, Role Type 2:ADMIN
+    @PostMapping("/auth/post/admin/joinProc")
+    public ResponseDto<Integer> admin_Save(@RequestBody User user) {
+        userService.joinMember(user,2);
+        return new ResponseDto<Integer> (HttpStatus.OK.value(),1);
+        // 관리자 회원가입 메소드
     }
 
 

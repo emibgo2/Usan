@@ -30,11 +30,13 @@ public class UserService {
     private BCryptPasswordEncoder encoder;
 
     @Transactional
-    public void joinMember(User user) {
+    public void joinMember(User user,int roleType) {
         String rawPassword = user.getPassword(); // 원문
         String encPassword = encoder.encode(rawPassword);
         user.setPassword(encPassword);
-        user.setRole(RoleType.USER);
+        if (roleType == 1) user.setRole(RoleType.USER);
+        else if (roleType == 2) user.setRole(RoleType.ADMIN);
+
         userRepository.save(user);
         // User의 정보와 비밀번호를 해쉬한 값을 DB에 저장
     }

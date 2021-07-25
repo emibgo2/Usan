@@ -5,7 +5,7 @@ pageEncoding="UTF-8" %>
 
 <div class="container">
     <div class="form-group">
-    <c:if test="${principal.user.role.name() =='USER' }">
+    <c:if test="${principal.user.role.name() =='ADMIN' }">
 
         <a href="/board/saveForm"> <button class="btn btn-primary">작성</button></a>
     </c:if>
