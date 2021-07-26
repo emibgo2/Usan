@@ -56,6 +56,26 @@ public class UmbrellaController {
         model.addAttribute("umbrella",umbrellas);
         return "umbrella/umb_returnForm";
     }
+    @GetMapping("/umb/fault/report")
+    public String fault_ReportUmbrella(Model model) {
+        List<Umbrella>umbrellas= umbrellaService.umb_upload();
+        for (int i = 0; i < umbrellas.size(); i++) {
+            umbrellas.get(i).setStorage(null);
+            umbrellas.get(i).setOver_date(umbrellaService.get_Late_Date(i+1));
+        }
+        model.addAttribute("umbrella",umbrellas);
+        return "umbrella/umb_Fault_Report";
+    }
+    @GetMapping("/umb/fault/list")
+    public String fault_ListUmbrella(Model model) {
+        List<Umbrella>umbrellas= umbrellaService.umb_upload();
+        for (int i = 0; i < umbrellas.size(); i++) {
+            umbrellas.get(i).setStorage(null);
+            umbrellas.get(i).setOver_date(umbrellaService.get_Late_Date(i+1));
+        }
+        model.addAttribute("umbrella",umbrellas);
+        return "umbrella/umb_Fault_List";
+    }
 }
 
 

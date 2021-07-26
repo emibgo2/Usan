@@ -18,15 +18,21 @@ pageEncoding="UTF-8" %>
         <h1>umbrella_Id2:${principal.user.umbrella_Id2 }</h1>
         ${umbrella}
         <c:forEach var="umbrellas" items="${umbrella}">
-        <c:if test="${umbrellas.user_id == principal.user.id  && umbrellas.rent_date !=null && umbrellas.failure_status==null}">
+        <c:if test="${umbrellas.user_id == principal.user.id  && umbrellas.rent_date !=null}">
         <div>
-            <button class="btn btn-primary" onClick="index.return(${umbrellas.id})"> ${umbrellas.id}번 우산 반납</button>
+            <c:if test="${umbrellas.failure_status==null}">
+            <button class="btn btn-primary" onClick="ins.test(${umbrellas.id})"> ${umbrellas.id}번 우산 고장 신고</button>
+            </c:if>
             <h5>빌린날: ${umbrellas.rent_date}</h5>
             <h5>반납 날짜: ${umbrellas.rent_end_date}</h5>
-            <c:if test="${umbrellas.over_date <=0}">
+            <c:if test="${umbrellas.failure_status!=null}">
+                <button class="btn btn-secondary">${umbrellas.id}번 우산 고장 접수 완료</button>
+
+            </c:if>
+            <c:if test="${umbrellas.over_date <=0 && umbrellas.failure_status==null}">
             <h5>연체: 반납일 까지 ${umbrellas.over_date*umbrellas.over_date}일 남았습니다</h5>
             </c:if>
-            <c:if test="${umbrellas.over_date >=0}">
+            <c:if test="${umbrellas.over_date >=0 && umbrellas.failure_status==null}">
                 <h5>연체: 반납일로 부터 ${umbrellas.over_date}일 지났습니다</h5>
             </c:if>
         </div>
@@ -36,5 +42,16 @@ pageEncoding="UTF-8" %>
 
     </form>
 </div>
+<script>
+    let ins={
+        test:function(umbrellaId){
+            if (confirm(umbrellaId+"번 우산을 고장신고하시겠습니까?")) {
+                index.fault_ReportUmbrella(umbrellaId)
+            } else {
+
+            }
+        }
+    }
+</script>
 <script src="/js/umbrella.js"></script>
 <%@include file="../layout/footer.jsp"%>

@@ -42,14 +42,15 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/mappingForm">우산 대여하기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/umb/joinForm">우산 등록하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/returnForm">우산 반납하기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/storage/mappingForm">보관소에 우산 등록하기</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/umb/fault/report">우산 고장신고</a></li>
+                    <c:if test="${principal.user.role.name() =='ADMIN' }">
                     <li class="nav-item"><a class="nav-link" href="/storage/joinForm">보관소 등록하기</a></li>
-                 <c:if test="${principal.user.role.name() =='ADMIN' }">
-
+                     <li class="nav-item"><a class="nav-link" href="/umb/joinForm">우산 등록하기</a></li>
+                     <li class="nav-item"><a class="nav-link" href="/storage/mappingForm">보관소에 우산 등록하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/board">공지사항 작성</a></li>
-                 </c:if>
+                        <li class="nav-item"><a class="nav-link" href="/umb/fault/list">우산 고장목록</a></li>
+                    </c:if>
                     <li class="nav-item"><a class="nav-link" href="#"> 안녕하세요 ${principal.user.nickName} 님 (${principal.user.role})</a></li>
 
                 </ul>

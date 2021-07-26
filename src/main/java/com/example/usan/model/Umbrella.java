@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -29,6 +31,9 @@ public class Umbrella {
     private Timestamp rent_end_date; // 반납을 해야 하는 날짜
 
     private Timestamp return_date; // 반납한 날짜
+
+    @Column
+    private Boolean failure_status; // 고장 여부
 
     @Column()
     private int user_id;

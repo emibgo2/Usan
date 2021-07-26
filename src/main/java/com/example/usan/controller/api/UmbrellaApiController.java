@@ -71,6 +71,13 @@ public class UmbrellaApiController {
         // Umbrella를 DB 내에 저장
     }
 
+    @PutMapping("/umb/{id}/fault")
+    public ResponseDto<Integer> umb_faultReport(@PathVariable int id) {
+        umbrellaService.umbrella_Fault_Report(id);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+        // 프론트에서 날아온 User와 umbrellaId (id), 대여 기간(rentPeriod)를 추합하여 DB에 저장
+    }
+
     @PutMapping("/umb/put/mapping/{id}/{rentPeriod}")
     public ResponseDto<Integer> umb_rent(@RequestBody User user, @PathVariable int id, @PathVariable int rentPeriod) {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id, user,rentPeriod));
@@ -82,6 +89,7 @@ public class UmbrellaApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.returnUmbrella(id, user));
         // 프론트에서 날아온 User와 id를 갖고 반납처리하는 메소드
     }
+
 }
 
 

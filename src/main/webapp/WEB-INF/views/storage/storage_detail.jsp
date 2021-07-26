@@ -24,7 +24,7 @@ pageEncoding="UTF-8" %>
         </div>
         <h2>${storage.id}번 보관소가 갖고 있는 우산:
         <c:forEach var="umbrella" items="${storage.umbrellaList}">
-            <c:if test="${umbrella.user_id == 0}">
+            <c:if test="${umbrella.user_id == 0 && umbrella.failure_status==null}">
          <button class="btn btn-success"  onClick="inse.test(${umbrella.id})"> ${umbrella.id}번 우산</button>
             </c:if>
         </c:forEach>

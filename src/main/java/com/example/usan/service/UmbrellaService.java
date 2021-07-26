@@ -25,13 +25,22 @@ public class UmbrellaService {
         // Umbrella를 DB에 저장
     }
 
+    @Transactional
+    public void umbrella_Fault_Report(int umbrellaId) {
+        Umbrella umbrella = umbrellaRepository.findById(umbrellaId).orElseGet(() -> {
+            return new Umbrella();
+        });
+        umbrella.setFailure_status(true); // 고장
+
+    }
+
+
     @Transactional(readOnly = true)
     public List<Umbrella> umb_upload() {
         List<Umbrella> umbrellas = umbrellaRepository.findAll();
         return umbrellas;
         // DB내의 모든 Umbrella들을 return
     }
-
 
     @Transactional(readOnly = true)
     public int get_Late_Date(int id ){
