@@ -44,6 +44,8 @@
                     <li class="nav-item"><a class="nav-link" href="/umb/mappingForm">우산 대여하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/returnForm">우산 반납하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/fault/report">우산 고장신고</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/inquiry">문의 하기</a></li>
+
                     <c:if test="${principal.user.role.name() =='ADMIN' }">
                     <li class="nav-item"><a class="nav-link" href="/storage/joinForm">보관소 등록하기</a></li>
                      <li class="nav-item"><a class="nav-link" href="/umb/joinForm">우산 등록하기</a></li>
