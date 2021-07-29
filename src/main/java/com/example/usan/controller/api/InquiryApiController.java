@@ -39,5 +39,11 @@ public class InquiryApiController {
         inquiryService.inquiryModify(id, inquiry); // 해당 ID의 Inquiry를 내용을 수정하여 다시 저장
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
+    @PutMapping("/api/inquiry/{id}/answer")
+    public ResponseDto<Integer> answer(@PathVariable int id, @RequestBody Inquiry inquiry) {
+        System.out.println("???");
+        inquiryService.inquiryAnswer(id, inquiry); // 해당 ID의 Inquiry를 내용을 수정하여 다시 저장
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
 
 }

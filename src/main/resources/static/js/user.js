@@ -83,7 +83,6 @@ let index={
             } else {
                 alert("사용가능한 아이디입니다.");
                 // console.log(resp)
-                location.href = "/";
             }
         }).fail(function (error) {
             alert(JSON.stringify(error));

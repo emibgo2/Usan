@@ -25,6 +25,7 @@
 <%--            type="button" id="btn-like-save"--%>
         </div>
     <hr>
+
     <c:if test="${principal.user.role.name() =='ADMIN' }">
         <div class="container">
             <form >
@@ -40,12 +41,27 @@
 
 
             </form>
-            <button id="btn-save" class="btn btn-primary">글쓰기 완료</button>
+            <button id="btn-answer-save" class="btn btn-primary">글쓰기 완료</button>
         </div>
     </c:if>
     <c:if test="${inquiry.answer==null}">
         <h2>아직 답변이 오지 않았습니다. 최대한 빠른 시일 내에 답변 드리겠습니다.</h2>
     </c:if>
+
+    <div>
+        <input type="hidden" id="inquiryId" value="${inquiry.id}">
+    </div>
+    <br><br>
+    <h3>답변: ${inquiry.answerTitle}</h3>
+    <hr>
+    <div>
+        ${inquiry.answerContent}
+    </div>
+    <hr>
+    <div>
+        <%--            type="button" id="btn-like-save"--%>
+    </div>
+    <hr>
 </div>
 
 <script src="/js/inquiry.js"></script>

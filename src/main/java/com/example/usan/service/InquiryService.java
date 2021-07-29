@@ -4,6 +4,7 @@ package com.example.usan.service;
 import com.example.usan.model.Inquiry;
 import com.example.usan.model.User;
 import com.example.usan.repository.InquiryRepository;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -59,5 +60,17 @@ public class InquiryService {
         // 해당 id 값의 Inquiry를 새로운 Title, Content를 집어넣어 DB값을 수정
     }
 
+    @Transactional
+    public void inquiryAnswer(int id, Inquiry requestInquiry) {
 
+        Inquiry Inquiry = inquiryRepository.findById(id)
+                .orElseThrow(() -> {
+                    return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
+                });
+        Inquiry.setAnswerTitle(requestInquiry.getTitle());
+        Inquiry.setAnswerContent(requestInquiry.getContent());
+        Inquiry.setAnswer(true);
+        // 해당 함수로 종료시(Service가 종료될 때) 트랜잭션이 종료됩니다. 이때 더티체킹 - 자동 업데이트가 됨. DB Flush
+        // 해당 id 값의 Inquiry를 새로운 Title, Content를 집어넣어 DB값을 수정
+    }
 }
