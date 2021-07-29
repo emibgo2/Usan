@@ -7,7 +7,9 @@ pageEncoding="UTF-8" %>
     <form >
         <div class="form-group">
             <label for="username">Username</label>
+
             <input type="text" class="form-control" placeholder="Enter username" id="username">
+            <button id="btn-id-check" class="btn btn-danger">중복 확인</button>
         </div>
         <div class="form-group">
             <label for="nickName">Nick Name</label>
