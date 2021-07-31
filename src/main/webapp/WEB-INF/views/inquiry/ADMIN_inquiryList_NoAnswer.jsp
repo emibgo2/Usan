@@ -7,18 +7,19 @@
 </c:if>
 <div class="container">
     <div class="form-group">
-        <a href="/inquiry/saveForm"> <button class="btn btn-primary">작성</button></a>
-        <a href="/inquiry/saveForm"> <button class="btn btn-primary">작성</button></a>
+        <a href="/inquiry/admin/answer"> <button class="btn btn-primary">답변한 문의</button></a>
+
     </div>
 
     <c:forEach var = "inquiry" items = "${inquirys.content}">
-
-        <div class="card" >
-            <div class="card-body">
-                <h4 class="card-title">${inquiry.title}</h4>
-                <a href="/inquiry/${inquiry.id}" class="btn btn-primary">상세 보기</a>
+        <c:if test="${inquiry.answer==false}">
+            <div class="card" >
+                <div class="card-body">
+                    <h4 class="card-title">${inquiry.title}</h4>
+                    <a href="/inquiry/${inquiry.id}" class="btn btn-primary">상세 보기</a>
+                </div>
             </div>
-        </div>
+        </c:if>
 
     </c:forEach>
 

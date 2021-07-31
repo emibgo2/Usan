@@ -6,7 +6,12 @@
 
 <div class="container">
     <div class="form-group">
-            <a href="/inquiry/saveForm"> <button class="btn btn-primary">작성</button></a>
+        <a href="/inquiry/saveForm"> <button class="btn btn-primary">작성</button></a>
+        <c:if test="${principal.user.role.name() =='ADMIN' }">
+        <a href="/inquiry/admin/noanswer"> <button class="btn btn-primary">답변 안한 문의</button></a>
+        <a href="/inquiry/admin/answer"> <button class="btn btn-primary">답변한 문의</button></a>
+        </c:if>
+
     </div>
 
     <c:forEach var = "inquiry" items = "${inquirys.content}">
@@ -17,6 +22,7 @@
                 <a href="/inquiry/${inquiry.id}" class="btn btn-primary">상세 보기</a>
             </div>
         </div>
+
         </c:if>
     </c:forEach>
 

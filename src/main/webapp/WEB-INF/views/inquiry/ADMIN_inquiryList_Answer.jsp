@@ -3,23 +3,23 @@
           pageEncoding="UTF-8" %>
 
 <%@include file="../layout/header.jsp"%>
-=
+
 <div class="container">
     <div class="form-group">
-        <a href="/inquiry/saveForm"> <button class="btn btn-primary">작성</button></a>
-        <a href="/inquiry/saveForm"> <button class="btn btn-primary">작성</button></a>
+        <a href="/inquiry/admin/noanswer"> <button class="btn btn-primary">답변안한 문의</button></a>
     </div>
 
     <c:forEach var = "inquiry" items = "${inquirys.content}">
-        <c:if test="${inquiry.answer==true}}">
-        <div class="card" >
-            <div class="card-body">
-                <h4 class="card-title">${inquiry.title}</h4>
-                <a href="/inquiry/${inquiry.id}" class="btn btn-primary">상세 보기</a>
+        <c:if test="${inquiry.answer==true}">
+            <div class="card" >
+                <div class="card-body">
+                    <h4 class="card-title">${inquiry.title}</h4>
+                    <a href="/inquiry/${inquiry.id}" class="btn btn-primary">상세 보기</a>
+                </div>
             </div>
-        </div>
         </c:if>
     </c:forEach>
+
 
     <br>
     <ul class="pagination justify-content-center">

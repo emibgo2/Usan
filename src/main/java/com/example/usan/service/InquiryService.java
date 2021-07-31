@@ -2,19 +2,29 @@ package com.example.usan.service;
 
 
 import com.example.usan.model.Inquiry;
+import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
 import com.example.usan.repository.InquiryRepository;
+import com.example.usan.repository.UserRepository;
 import lombok.val;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 
 // 스프링이 컴포넌트 스캔을 통해서 Bean에 등록을 해줌. loC, 메모리에 띄워줌
 @Service
 public class InquiryService {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private InquiryRepository inquiryRepository;
@@ -49,7 +59,7 @@ public class InquiryService {
     // 해당 id 값의 Inquiry를 DB에서 삭제
 
     @Transactional
-    public void inquiryModify(int id, Inquiry requestInquiry) {
+    public void inquiryModify(int id, Inquiry requestInquiry, int userId) {
         Inquiry Inquiry = inquiryRepository.findById(id)
                 .orElseThrow(() -> {
                     return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
@@ -61,14 +71,19 @@ public class InquiryService {
     }
 
     @Transactional
-    public void inquiryAnswer(int id, Inquiry requestInquiry) {
-
+    public void inquiryAnswer(int id, Inquiry requestInquiry,int userId) {
+        User user= userRepository.findById(userId).orElseGet(() -> {
+            return new User();
+        });
+        System.out.println(user);
         Inquiry Inquiry = inquiryRepository.findById(id)
                 .orElseThrow(() -> {
                     return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
                 });
         Inquiry.setAnswerTitle(requestInquiry.getTitle());
         Inquiry.setAnswerContent(requestInquiry.getContent());
+        Inquiry.setAdmin(user);
+        Inquiry.setAnswerDate(Timestamp.valueOf(LocalDateTime.now()));
         Inquiry.setAnswer(true);
         // 해당 함수로 종료시(Service가 종료될 때) 트랜잭션이 종료됩니다. 이때 더티체킹 - 자동 업데이트가 됨. DB Flush
         // 해당 id 값의 Inquiry를 새로운 Title, Content를 집어넣어 DB값을 수정

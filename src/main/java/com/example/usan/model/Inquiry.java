@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -51,8 +52,8 @@ public class Inquiry {
 
     private Timestamp answerDate;
 
-    @Column
-    private Boolean answer;
+    @ColumnDefault(value = "false")
+    private boolean answer;
 
 }
 

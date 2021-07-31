@@ -80,18 +80,19 @@ let index= {
     },
     answer: function () {
         let id = $("#inquiryId").val();
+        let userId = $("#userId").val();
         let data={
             title:$("#title").val(),
             content:$("#content").val(),
+
         };
-        alert("id" + id);
-        alert("data" + data);
+
         // ajax 호출시 default가 비동기 호출
         // ajax 통신을 이용해서 3개의 데이터를 json으로 변경하여 insert 요청
         // ajax가 통신을 성공하고 json을 리턴해주면 서버가 자동으로 자바 오브젝트로 변환
         $.ajax({
             type: "put",
-            url: `/api/inquiry/${id}/answer`,
+            url: `/api/inquiry/${id}/answer/${userId}`,
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데

@@ -50,6 +50,7 @@
 
     <div>
         <input type="hidden" id="inquiryId" value="${inquiry.id}">
+        <input type="hidden" id="userId" value="${principal.user.id}">
     </div>
     <br><br>
     <h3>답변: ${inquiry.answerTitle}</h3>

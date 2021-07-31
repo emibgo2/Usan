@@ -30,12 +30,22 @@ public class InquiryController {
         // 리턴할때 viewResolver가 작동 위에 inquirys를 라는 이름으로 글목록()을 들고갑니다.
         //
     }
-    @GetMapping({"/inquiry/admin"})
-    public String index_ADMIN(Model model ,@PageableDefault(size =3,sort = "id",direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response) {
+    @GetMapping({"/inquiry/admin/answer"})
+    public String index_ADMIN_Answer(Model model ,@PageableDefault(size =3,sort = "id",direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response) {
         // /WEB-INF/views/joinForm.jsp
 
         model.addAttribute("inquirys", inquiryService.inquiryList(pageable));
-        return "inquiry/ADMIN_inquiryList";
+        return "inquiry/ADMIN_inquiryList_Answer";
+        //InquiryController는 REST Controller가 아닌 그냥 Controller이기 때문에
+        // 리턴할때 viewResolver가 작동 위에 inquirys를 라는 이름으로 글목록()을 들고갑니다.
+        //
+    }
+    @GetMapping({"/inquiry/admin/noanswer"})
+    public String index_ADMIN_NoAnswer(Model model ,@PageableDefault(size =3,sort = "id",direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response) {
+        // /WEB-INF/views/joinForm.jsp
+
+        model.addAttribute("inquirys", inquiryService.inquiryList(pageable));
+        return "inquiry/ADMIN_inquiryList_NoAnswer";
         //InquiryController는 REST Controller가 아닌 그냥 Controller이기 때문에
         // 리턴할때 viewResolver가 작동 위에 inquirys를 라는 이름으로 글목록()을 들고갑니다.
         //
