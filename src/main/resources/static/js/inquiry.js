@@ -24,7 +24,7 @@ let index= {
         // ajax가 통신을 성공하고 json을 리턴해주면 서버가 자동으로 자바 오브젝트로 변환
         $.ajax({
             type: "POST",
-            url: "/api/inquiry",
+            url: "/inquiry/post/save",
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데
@@ -42,7 +42,7 @@ let index= {
         let id = $("#id").text();
         $.ajax({
             type: "DELETE",
-            url: "/api/inquiry/"+id,
+            url: "/inquiry/delete/"+id,
             dataType: "json",
             contentType: "application/json; charset=utf-8"
         }).done(function (resp) {
@@ -65,7 +65,7 @@ let index= {
         // ajax가 통신을 성공하고 json을 리턴해주면 서버가 자동으로 자바 오브젝트로 변환
         $.ajax({
             type: "PUT",
-            url: "/api/inquiry/"+id,
+            url: "/inquiry/put/"+id,
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데
@@ -92,7 +92,7 @@ let index= {
         // ajax가 통신을 성공하고 json을 리턴해주면 서버가 자동으로 자바 오브젝트로 변환
         $.ajax({
             type: "put",
-            url: `/api/inquiry/${id}/answer/${userId}`,
+            url: `/inquiry/put/${id}/answer/${userId}`,
             data: JSON.stringify(data), // http body 데이터
             contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데

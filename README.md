@@ -29,3 +29,13 @@ URL|METHOD|Description|Params
 URL|METHOD|Description|Params
 :---:|:---:|:---:|:---:|
 |/auth/post/joinProc|POST|DB에 사용자 정보를 등록합니다|User:'username','nickName','password'<br> 'phoneNumber', email
+
+## Inquiry API 명세서
+URL|METHOD|Description|Params
+:---:|:---:|:---:|:---:|
+|/inquiry/post/save|POST|문의 글을 작성, DB에 저장합니다
+|/inquiry/delete/{id}|DELETE|문의 글을 DB에서 삭제 합니다|id:'inquriyId'
+|/inquiry/put/{id}|PUT| DB에 있는 특정 id에 해당하는 <br>문의 글을 수정합니다.|id:'inquiryId'
+|/inquiry/put/{id}/answer/{userId}|PUT| 관리자(ADMIN)이 작성한 답변 글을<br> inquiry 모델에 저장합니다.|id:'inquiryId',userId:'userId(ADMIN)'
+
+
