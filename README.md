@@ -33,9 +33,15 @@ URL|METHOD|Description|Params
 ## Inquiry API 명세서
 URL|METHOD|Description|Params
 :---:|:---:|:---:|:---:|
+|/inquiry/get/all/list|GET| DB에 있는 모든 문의글을 가져옵니다|
+|/inquiry/get/{id}|GET| 특정 id에 해당하는 문의글을<br> DB에서 가져옵니다|id:'inquiryId'
+|/inquiry/get/noanswer/list|GET| DB에서 답변이 완료되지 않은 <br>모든 글을 가져옵니다|
+|/inquiry/get/answer/list|GET| DB에서 답변이 완료된 <br>모든 글을 가져옵니다|
 |/inquiry/post/save|POST|문의 글을 작성, DB에 저장합니다
 |/inquiry/delete/{id}|DELETE|문의 글을 DB에서 삭제 합니다|id:'inquriyId'
 |/inquiry/put/{id}|PUT| DB에 있는 특정 id에 해당하는 <br>문의 글을 수정합니다.|id:'inquiryId'
 |/inquiry/put/{id}/answer/{userId}|PUT| 관리자(ADMIN)이 작성한 답변 글을<br> inquiry 모델에 저장합니다.|id:'inquiryId',userId:'userId(ADMIN)'
+
+
 
 

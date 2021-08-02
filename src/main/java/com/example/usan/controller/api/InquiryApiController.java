@@ -2,22 +2,46 @@ package com.example.usan.controller.api;
 
 
 import com.example.usan.config.auth.PrincipalDetail;
-import com.example.usan.dto.LikeSaveRequestDto;
-import com.example.usan.dto.ReplySaveRequestDto;
 import com.example.usan.dto.ResponseDto;
 import com.example.usan.model.Inquiry;
 import com.example.usan.service.InquiryService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class InquiryApiController {
 
     @Autowired
     private InquiryService inquiryService;
+
+
+    @GetMapping("/inquiry/get/all/list")
+    public List<Inquiry> allList() {
+        // 모든 문의 글 가져오기
+        return inquiryService.inquiryList();
+    }
+
+    @GetMapping("/inquiry/get/{id}")
+    public Inquiry inquiryId(@PathVariable int id) {
+        // 특정 id에 해당하는 문의글 들고오기
+        return inquiryService.inquiryDetail(id);
+    }
+
+    @GetMapping("/inquiry/get/noanswer/list")
+    public List<Inquiry> noAnswerInquiryList() {
+        // 답변이 되지 않은 문의글들 모두 가져오기
+        return inquiryService.inquiryNoAnswerList();
+    }
+
+    @GetMapping("/inquiry/get/answer/list")
+    public List<Inquiry> answerInquiryList() {
+        // 답변이 완료된 문의글을 모두 가져오기
+        return inquiryService.inquiryAnswerList();
+    }
 
     @PostMapping("/inquiry/post/save")
     public ResponseDto<Integer> save(@RequestBody Inquiry inquiry, @AuthenticationPrincipal PrincipalDetail principal) {
