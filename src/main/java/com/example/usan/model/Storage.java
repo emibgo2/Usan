@@ -18,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder // 빌더 패턴!
 public class Storage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

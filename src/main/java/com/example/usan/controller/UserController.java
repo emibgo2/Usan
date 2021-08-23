@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.annotation.PostConstruct;
+
 @Controller
 public class UserController {
     @GetMapping({"", "/"})
@@ -19,4 +21,6 @@ public class UserController {
 
     @GetMapping("/auth/loginForm")
     public String loginForm() { return "user/loginForm"; }
+
+
 }

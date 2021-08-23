@@ -5,18 +5,18 @@
 
 <div class="container">
     <form >
-        <input type="hidden" id="id" value="${board.id}">
+        <input type="hidden" id="id" value="${inquiry.id}">
         <div class="form-group">
-            <input value="${board.title}" type="text" class="form-control" placeholder="Enter title" id="title">
+            <input value="${inquiry.title}" type="text" class="form-control" placeholder="Enter title" id="title">
         </div>
 
         <div class="form-group">
-            <textarea class="form-control summernote" rows="5" id="content">${board.content}</textarea>
+            <textarea class="form-control summernote" rows="5" id="content">${inquiry.content}</textarea>
         </div>
 
 
     </form>
-    <button id="btn-update" class="btn btn-primary">글수정 완료</button>
+    <button id="btn-inquiry-update" class="btn btn-primary">글수정 완료</button>
 </div>
 <script>
     $('.summernote').summernote({

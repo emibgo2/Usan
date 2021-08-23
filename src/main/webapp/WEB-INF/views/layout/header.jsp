@@ -42,8 +42,8 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/umb/mappingForm">우산 대여하기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/umb/returnForm">우산 반납하기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/umb/fault/report">우산 고장신고</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/umb/returnForm/${principal.user.id}">우산 반납하기</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/umb/fault/report/${principal.user.id}">우산 고장신고</a></li>
                     <li class="nav-item"><a class="nav-link" href="/inquiry">문의 하기</a></li>
 
                     <c:if test="${principal.user.role.name() =='ADMIN' }">

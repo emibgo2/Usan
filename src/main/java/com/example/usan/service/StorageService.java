@@ -36,7 +36,6 @@ public class StorageService {
     }
     @Transactional
     public void storage_save(Storage storage) {
-        storage.setId(storage.getId());
         storageRepository.save(storage);
         // Storage를 DB에 저장
     }

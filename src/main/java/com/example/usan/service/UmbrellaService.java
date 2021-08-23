@@ -20,16 +20,13 @@ public class UmbrellaService {
 
     @Transactional
     public void umbrella_save(Umbrella umbrella) {
-        umbrella.setId(umbrella.getId());
         umbrellaRepository.save(umbrella);
         // Umbrella를 DB에 저장
     }
 
     @Transactional
     public void umbrella_Fault_Report(int umbrellaId) {
-        Umbrella umbrella = umbrellaRepository.findById(umbrellaId).orElseGet(() -> {
-            return new Umbrella();
-        });
+        Umbrella umbrella = getUmbrella(umbrellaId);
         umbrella.setFailure_status(true); // 고장
 
     }
@@ -44,15 +41,19 @@ public class UmbrellaService {
 
     @Transactional(readOnly = true)
     public int get_Late_Date(int id ){
-        Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
-            return new Umbrella();
-        });
+        Umbrella umbrella = getUmbrella(id);
         LocalDate a = umbrella.getRent_date().toLocalDateTime().toLocalDate();
         LocalDate b = umbrella.getRent_end_date().toLocalDateTime().toLocalDate();
         Period period = Period.between(b,a);
         return period.getDays();
         // id 값에 해당하는 Umbrella의 대여한 날짜 ( Rent Date ) 와 반납 예정 날짜( Rent End Date )를
         // 비교, 계산하여 남은 일 수를 return ( 양수면 이미 지남 )
+    }
+
+    public Umbrella getUmbrella(int id) {
+        return umbrellaRepository.findById(id).orElseGet(() -> {
+                return new Umbrella();
+            });
     }
 
 }

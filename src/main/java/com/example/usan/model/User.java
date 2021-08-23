@@ -20,6 +20,16 @@ import java.util.List;
 @Entity
 public class User {
 
+    public User(String username, String nickName, String password, String email, String phoneNumber, RoleType role, Timestamp createDate) {
+        this.username = username;
+        this.nickName = nickName;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.createDate = createDate;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -50,6 +60,7 @@ public class User {
 
     @CreationTimestamp
     private Timestamp createDate;
+
 
     @Override
     public String toString() {
