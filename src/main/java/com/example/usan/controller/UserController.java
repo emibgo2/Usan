@@ -20,7 +20,7 @@ public class UserController {
     public String joinUser() { return "user/joinForm"; }
 
     @GetMapping("/auth/loginForm")
-    public String loginForm() { return "user/loginForm"; }
+    public String loginForm() { return "thymeleaf/login"; }
 
 
 }

@@ -62,6 +62,16 @@ public class User {
     private Timestamp createDate;
 
 
+
+    public User(String username, String nickName, String password, String email, String phoneNumber, RoleType role) {
+        this.username = username;
+        this.nickName = nickName;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +

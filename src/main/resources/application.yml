@@ -7,17 +7,19 @@ server:
       force: true
   port: 8888
 
+
 spring:
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+    view-names: thymeleaf/*
+    check-template-location: true
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-    thymeleaf:
-      prefix: classpath:templates/
-      suffix: .html
-      cache: false
-      view-names: thymeleaf/*
-      check-template-location: true
+
 
 
 
@@ -30,7 +32,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
