@@ -33,9 +33,10 @@ public class InquiryService {
         // Inquiry의 내용과 작성한 User의 정보를 DB에 저장
     }
     @Transactional(readOnly = true)
-    public List<Inquiry> inquiryList() {
-        return inquiryRepository.findAll();
+    public Page<Inquiry> inquiryList(Pageable pageable) {
+        return inquiryRepository.findAll(pageable);
     }
+
     @Transactional(readOnly = true)
     public List<Inquiry> inquiryNoAnswerList() {
         return inquiryRepository.findByAnswerIsFalse();

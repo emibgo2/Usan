@@ -12,6 +12,14 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+    thymeleaf:
+      prefix: classpath:templates/
+      suffix: .html
+      cache: false
+      view-names: thymeleaf/*
+      check-template-location: true
+
+
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
