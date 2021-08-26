@@ -25,8 +25,8 @@
 
         </c:if>
     </c:forEach>
-
     <br>
+
     <ul class="pagination justify-content-center">
 
         <c:choose>

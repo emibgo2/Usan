@@ -55,6 +55,7 @@ public class StorageController {
         model.addAttribute("umbrella", umbrellaService.umb_upload());
         return "storage/storage_detail";
     }
+
     @GetMapping("/admin/{id}")
     public String findById_ADMIN(@PathVariable int id, Model model) {
         model.addAttribute("storage", storageService.sto_detail(id));

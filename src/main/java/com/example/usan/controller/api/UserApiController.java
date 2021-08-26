@@ -49,6 +49,7 @@ public class UserApiController {
 
     @PostConstruct
     public void init() {
+
         User adminCheck = userRepository.findByUsername("admin").orElseGet(() -> {
             return new User();
         });

@@ -28,15 +28,17 @@ public class BoardController {
 
         model.addAttribute("boards", boardService.boardList(pageable));
         return "board/boardList";
-        //BoardController는 REST Controller가 아닌 그냥 Controller이기 때문에
+        // BoardController는 REST Controller가 아닌 그냥 Controller이기 때문에
         // 리턴할때 viewResolver가 작동 위에 boards를 라는 이름으로 글목록()을 들고갑니다.
-        //
+
     }
 
     @GetMapping("/home")
     public String home() {
         return "thymeleaf/home";
     }
+
+
 
     @GetMapping("/{id}")
     public String findById(@PathVariable int id, Model model) {

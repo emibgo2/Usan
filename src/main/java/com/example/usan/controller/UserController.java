@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 public class UserController {
     @GetMapping({"", "/"})
     public String index(@AuthenticationPrincipal PrincipalDetail principal) { // 컨트롤러에서 세션 접근
-        return "index";
+        return "thymeleaf/home";
     }
 
     @GetMapping("/auth/joinForm")
