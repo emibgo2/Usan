@@ -105,7 +105,6 @@ public class UmbrellaApiController {
                 Umbrella createUmbrella = new Umbrella();
                 umbrellaService.umbrella_save(createUmbrella);
                 log.info("기본 우산 생성");
-                Thread.sleep(100);
             } else log.info(" 이미 {}번 우산이 있습니다.",i);
 
         }

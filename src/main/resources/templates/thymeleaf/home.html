@@ -3,7 +3,9 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+
+<html  xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
 		<title>USAN</title>
 		<meta charset="utf-8" />
@@ -16,19 +18,20 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<div class="logo"><a href="home.html" >USAN</a></div>
+				<div class="logo"><a href="/" >USAN</a></div>
 				<a href="#menu">Menu</a>
 			</header>
 
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="home.html">Home</a></li>
-					<li><a href="generic.html">이용 안내</a></li>
-					<li><a href="elements.html">문의하기</a></li>
-					<li><a href="#">공지사항</a></li>
-					<li><a href="#">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="이용안내주소">이용 안내</a></li>
+					<li><a href="/inquiry">문의하기</a></li>
+					<li><a href="/board">공지사항</a></li>
+					<li  sec:authorize="isAuthenticated()" ><a href="/logout">로그아웃</a></li>
+					<li  sec:authorize="!isAuthenticated()" ><a href="/auth/loginForm">로그인</a></li>
+					<li  sec:authorize="!isAuthenticated()" ><a href="/auth/joinForm">회원가입</a></li>
 				</ul>
 			</nav>
 
@@ -37,10 +40,16 @@
 				<div class="inner">
 					<header>
 						<h1>우산대여</h1>
+						<p sec:authorize="isAuthenticated()">
+						<span  sec:authentication="principal.user.nickName"></span>님 안녕하세요
+						</p>
+
 						<p>우산을 쉽고 빠르게 대여하세요.</p>
 						<p>들고 다니기 귀찮았던 우산, 이제는 우산대여를 통해 손을 가볍게!</p>
 					</header>
-					<a href="#main" class="button big scrolly">로그인</a>
+					<a sec:authorize="!isAuthenticated()" href="/auth/loginForm" class="button big scrolly">로그인</a>
+					<a sec:authorize="isAuthenticated()" href="/logout" class="button big scrolly">로그아웃</a>
+
 				</div>
 			</section>
 
@@ -61,11 +70,11 @@
 										<p>* 대여시간으로부터 24시간 경과 후 추가요금 발생</p>
 										<p class="lent-text2-p">자세한 내용은 이용 안내 페이지 참고</p>
 									</div>
-								<a href="#" class="button">대여하기</a>
+								<a href="/umb/mappingForm" class="button">대여하기</a>
 							</div>
 							<div class="col col1 first">
 								<div class="image round fit">
-									<a href="generic.html" class="link"><img th:src="@{../htmlTemplates/images/우산.jpg}" src="images/우산.jpg" alt="" /></a>
+									<img th:src="@{../htmlTemplates/images/우산.jpg}" src="images/우산.jpg" alt="" />
 								</div>
 							</div>
 						</div>
@@ -79,7 +88,7 @@
 								<div class="flex flex-2">
 									<div class="col col1">
 										<div class="image round fit">
-											<a href="generic.html" class="link"><img th:src="@{../htmlTemplates/images/pic01.jpg}" src="images/pic01.jpg" alt="" /></a>
+											<img th:src="@{../htmlTemplates/images/pic01.jpg}" src="images/pic01.jpg" alt="" />
 										</div>
 									</div>
 									<div class="col col2">
@@ -110,7 +119,7 @@
 								</div>
 								<div class="col col1 first">
 									<div class="image round fit">
-										<a href="generic.html" class="link"><img th:src="@{../htmlTemplates/images/pic02.jpg} "src="images/pic02.jpg" alt="" /></a>
+										<img th:src="@{../htmlTemplates/images/pic02.jpg} "src="images/pic02.jpg" alt="" />
 									</div>
 								</div>
 							</div>
@@ -131,7 +140,6 @@
 						</div>
 					</div>
 				</section>
-
 			</div>
 
 		<!-- Footer -->

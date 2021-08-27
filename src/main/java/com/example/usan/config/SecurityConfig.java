@@ -55,8 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
         http
                 .csrf().disable() // csrf 토큰 비활성화
                 .authorizeRequests()
-                    .antMatchers("/**","/auth/**","/js/**","/css/**","/image/**")
+                    .antMatchers("/","/htmlTemplates/**","/auth/**","/js/**","/css/**","/image/**")
                     .permitAll()
+                    .mvcMatchers("**/admin").hasRole("ADMIN") // 뒤에 admin이 안붇는
                     .anyRequest()
                     .authenticated()
                 .and()

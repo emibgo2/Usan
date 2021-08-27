@@ -29,7 +29,7 @@ public class StorageController {
     private StorageService storageService;
     private UmbrellaService umbrellaService;
 
-    @GetMapping("/joinForm")
+    @GetMapping("/joinForm/admin")
     public String joinUmbrella(@AuthenticationPrincipal PrincipalDetail principal) {
 
         if (RoleType.ADMIN== principal.getUser().getRole()) {
@@ -38,7 +38,7 @@ public class StorageController {
         else return "앙대요";
     }
 
-    @GetMapping("/mappingForm")
+    @GetMapping("/mappingForm/admin")
     public String selectStorage(Model model) {
         List<Storage> storages = storageService.sto_upload();
         for (int i = 0; i < storages.size(); i++) {

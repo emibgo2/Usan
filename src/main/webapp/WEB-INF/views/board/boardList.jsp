@@ -7,7 +7,7 @@
     <div class="form-group">
         <c:if test="${principal.user.role.name() =='ADMIN' }">
 
-            <a href="/board/saveForm"> <button class="btn btn-primary">작성</button></a>
+            <a href="/board/saveForm/admin"> <button class="btn btn-primary">작성</button></a>
         </c:if>
     </div>
 

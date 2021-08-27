@@ -33,7 +33,7 @@ public class UmbrellaController {
 
 
     // Test를 위해 String Boot 내에서 View 까지 담당하는 코드 API 코드 따로 있음
-    @GetMapping("/joinForm")
+    @GetMapping("/joinForm/admin")
     public String joinUmbrella(Model model) {
         List<Storage> storages = storageService.sto_upload();
         for (int i = 0; i < storages.size(); i++) {
@@ -78,7 +78,7 @@ public class UmbrellaController {
         return "umbrella/umb_Fault_Report";
     }
 
-    @GetMapping("/fault/list")
+    @GetMapping("/fault/list/admin")
     public String fault_ListUmbrella(Model model) {
         List<Umbrella> umbrellas = umbrellaService.umb_upload();
         for (int i = 0; i < umbrellas.size(); i++) {
