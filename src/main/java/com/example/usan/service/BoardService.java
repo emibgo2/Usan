@@ -11,7 +11,9 @@ import com.example.usan.repository.ReplyRepository;
 import com.example.usan.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +44,8 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public Page<Board> boardList(Pageable pageable) {
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1); // page는 index 처럼 0부터 시작
+        pageable= PageRequest.of(page,10, Sort.by("id").descending());
         return boardRepository.findAll(pageable);
     }
     // DB내의 Board들을 갖고와서 @PageableDefault 내에서 지정하는 size 만큼 짤라서 return

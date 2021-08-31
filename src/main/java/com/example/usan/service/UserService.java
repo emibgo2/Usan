@@ -1,6 +1,7 @@
 package com.example.usan.service;
 
 import com.example.usan.model.RoleType;
+import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
 import com.example.usan.repository.UmbrellaRepository;
@@ -66,7 +67,14 @@ public class UserService {
 
     }
 
-
+    @Transactional(readOnly = true)
+    public User userDetail(int id){
+        return userRepository.findById(id)
+                .orElseGet(() -> {
+                    return new User("admin", "관리자", "1", "emibgo@naver.com", "01029293999", RoleType.ADMIN, Timestamp.valueOf(LocalDateTime.now()));
+                });
+        // 해당 id값에 해당하는 Storage를 Return
+    }
 
     @Transactional
     public int mappingUmbrella( int id ,  User requestUser, int rentPeriod) {

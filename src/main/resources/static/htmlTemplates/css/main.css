@@ -1557,10 +1557,11 @@
 	}
 
 /* Basic */
-
+	/*
 	@-ms-viewport {
 		width: device-width;
 	}
+	*/
 
 	body {
 		-ms-overflow-style: scrollbar;
@@ -1597,7 +1598,7 @@
 	}
 
 	body, input, select, textarea {
-		font-family: "Scope One", serif;
+		
 		font-size: 13pt;
 		font-weight: 300;
 		line-height: 1.65;
@@ -2284,7 +2285,7 @@
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.75em;
+		height: 2.25em;
 	}
 
 	textarea {
@@ -2619,6 +2620,7 @@
 			cursor: default;
 			list-style: none;
 			padding-left: 0;
+			float: right;
 		}
 
 			ul.actions li {
@@ -2808,7 +2810,35 @@
 			display: flex;
 		}
 
+/* search */
+
+	.input_group {
+		display: inline-block;
+
+	}
+
 /* Table */
+
+	.board {
+		border-top: 2px solid #000;
+	}
+
+	.board_last {
+		border-bottom: 1px solid #000;
+	}
+
+	.board_num {
+		text-align: center;
+		color: #000;
+		padding-left: 2px;
+		padding-right: 2px;
+	}
+
+	.board_writer {
+		text-align: center;
+		color: #000;
+		padding-left: 2px;
+	}
 
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
@@ -2824,6 +2854,7 @@
 			border: solid 1px;
 			border-left: 0;
 			border-right: 0;
+			border-bottom: 1px solid #ddd;
 		}
 
 		table td {
@@ -2833,12 +2864,12 @@
 		table th {
 			font-size: 0.9em;
 			font-weight: 700;
-			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+			padding: 0.75em 0.75em;
+			text-align: center;
 		}
 
 		table thead {
-			border-bottom: solid 2px;
+			border-bottom: 2px solid #999999
 		}
 
 		table tfoot {
@@ -2870,14 +2901,15 @@
 			table.alt tfoot {
 				border-top: 0;
 			}
-
+	
 	table tbody tr {
 		border-color: rgba(0, 0, 0, 0.1);
 	}
-
+		/*
 		table tbody tr:nth-child(2n + 1) {
 			background-color: rgba(0, 0, 0, 0.075);
 		}
+		*/
 
 	table th {
 		color: #000;
@@ -2893,6 +2925,32 @@
 
 	table.alt tbody tr td {
 		border-color: rgba(0, 0, 0, 0.1);
+	}
+
+/* table button */
+
+ .board_page {
+	 text-align: center;
+	}
+
+	.board_page a {
+		display: inline-block;
+		width: 1.5em;
+		height: 1.5em;
+		box-sizing: border-box;
+		vertical-align: middle;
+		line-height: 100%;
+		border: 1px solid #ddd;
+		padding-top: 0.2em;
+	}
+
+	.board_page a.bt {
+		letter-spacing: -1px;
+		margin-left: -6px;
+	}
+
+	.board_page a.num {
+		margin-left: -5px;
 	}
 
 /* lent-text */
@@ -2924,6 +2982,14 @@
 		}
 
 /* Wrapper */
+
+	.submit {
+		width: 100px;
+	}
+
+	.reset {
+		width: 100px;
+	}
 
 	.wrapper {
 		padding: 6em 0 4em 0;
@@ -3137,6 +3203,7 @@
 				color: #bfbfbf;
 			}
 
+			/*
 			.wrapper.style1 table tbody tr {
 				border-color: rgba(0, 0, 0, 0.15);
 			}
@@ -3144,6 +3211,7 @@
 				.wrapper.style1 table tbody tr:nth-child(2n + 1) {
 					background-color: rgba(0, 0, 0, 0.075);
 				}
+			*/
 
 			.wrapper.style1 table th {
 				color: #000;
@@ -3151,6 +3219,7 @@
 
 			.wrapper.style1 table thead {
 				border-bottom-color: rgba(0, 0, 0, 0.15);
+				padding: 0.75em 0.75em;
 			}
 
 			.wrapper.style1 table tfoot {
@@ -3573,7 +3642,7 @@
 			box-shadow: none;
 			overflow: hidden;
 			position: absolute;
-			top: 1.5em;
+
 		}
 
 			#header.alt h1 {

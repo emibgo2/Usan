@@ -96,6 +96,7 @@ public class UmbrellaApiController {
 
     @PostConstruct
     public void init() throws InterruptedException {
+
         // 우산이 없을시 기본 우산 4개 생성
         for (int i = 1; i <= 4; i++) {
             Umbrella umbrellaCheck = umbrellaRepository.findById(i).orElseGet(() -> {
@@ -103,6 +104,8 @@ public class UmbrellaApiController {
             });
             if (umbrellaCheck.getCreate_date() == null) {
                 Umbrella createUmbrella = new Umbrella();
+                createUmbrella.setStorage(storageService.sto_detail(1));
+                System.out.println("createUmbrella = " + createUmbrella);
                 umbrellaService.umbrella_save(createUmbrella);
                 log.info("기본 우산 생성");
             } else log.info(" 이미 {}번 우산이 있습니다.",i);

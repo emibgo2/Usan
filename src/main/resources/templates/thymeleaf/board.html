@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html th:replace="thymeleaf/layout :: layout(~{::title},~{::#main})" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+
+
+    <title>USAN-공지사항</title>
+
+
+
+	<body class="subpage">
+
+
+		<!-- Main -->
+		<div id="main">
+			<section class="wrapper style1">
+				<div class="inner">
+					<header class="align-center">
+						<h1>공지사항</h1>
+					</header>
+          <div class="section">
+            <div class="input_group">
+              <input type="text" name="query" id="query" value="" placeholder="검색어를 입력하세요.">
+                <button type="board_submit">검색</button>
+            </div>
+            <div class="table-wrapper">
+              <table class="board">
+                <colgroup>
+                  <col style="width:10%;">
+                  <col style="width:74%;">
+                  <col style="width:16%;">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="board_num">번호</th>
+                    <th class="board_title">제목</th>
+                    <th class="board_writer">작성일</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr th:each="board:${list}">
+                    <td class="board_num" th:text="${board.id}">글번호</td>
+                    <td class="board_title"> <a href="#" th:href="@{|/board/${board.id}|}" th:text="${board.title}">글 제목</a></td>
+                    <td class="board_writer"  th:text="${#temporals.format(board.createDate.toLocalDateTime(), 'yyyy.MM.dd')}">작성일</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="board_page" aria-label="Page navigation example" style="text-align: center;">
+                <!--표에 사용될 변수값 초기화 -->
+                <ul class="pagination"
+                    th:with="start=${T(Math).floor(list.number/10)*10 + 1},
+                    last=(${start + 9 < list.totalPages ? start + 9 : list.totalPages})">
+                  <th:block th:with="
+                firstAddr=@{/board(page=1)},
+                prevAddr=@{/board(page=${list.number})},
+                nextAddr=@{/board(page=${list.number + 2})},
+                lastAddr=@{/board(page=${list.totalPages})}">
+
+                    <li>
+                      <a th:href="${firstAddr}" aria-label="First">
+                        <span aria-hidden="true" class="bt first" ><<</span>
+                      </a>
+                    </li>
+                    <!-- 이전 페이지로 가기 버튼 -->
+                    <li th:class="${list.first} ? 'disabled'">
+                      <a th:href="${list.first} ? '#' :${prevAddr}"
+                         aria-label="Previous"
+                         class="bt prev">
+                        <span aria-hidden="true">&lt;</span>
+                      </a>
+                    </li>
+                    <!--1,2,3,4,.. 등 페이지-->
+                    <li th:each="page: ${#numbers.sequence(start, last)}"
+                        th:class="${page == list.number + 1} ? 'active'">
+                      <a th:text="${page}" th:href="@{/board(page=${page})}" class="num"></a>
+                    </li>
+                    <!--다음 페이지로 -->
+                    <li th:class="${list.last} ? 'disabled'">
+                      <a th:href="${list.last} ? '#' : ${nextAddr}"
+                         class="bt next"
+                         aria-label="Next">
+                        <span aria-hidden="true">&gt;</span>
+                      </a>
+                    </li>
+                    <!--맨 마지막 페이지로 이동 -->
+                    <li>
+                      <a th:href="${lastAddr}" aria-label="Last" class="bt last">
+                        <span aria-hidden="true">>></span>
+                      </a>
+                    </li>
+                  </th:block>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+			</section>
+    </div>
+
+
+	</body>
+</html>

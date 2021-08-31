@@ -19,6 +19,7 @@ import java.util.List;
 @Builder // 빌더 패턴!
 public class Board {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

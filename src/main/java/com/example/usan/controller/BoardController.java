@@ -1,8 +1,13 @@
 package com.example.usan.controller;
 
 
+import com.example.usan.model.Board;
+import com.example.usan.repository.BoardRepository;
 import com.example.usan.service.BoardService;
+import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -14,24 +19,75 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 
+@Slf4j
 @Controller
 @RequestMapping("/board")
 @AllArgsConstructor
 public class BoardController {
 
     private BoardService boardService;
+    private BoardRepository boardRepository;
+    private UserService userService;
+
 
     // 컨트롤러에서 세션을 어떻게 찾는지?
     @GetMapping
-    public String index(Model model, @PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response) {
+    public String index(Model model, @PageableDefault(size = 10, sort = "id") Pageable pageable, HttpServletResponse response) {
         // /WEB-INF/views/joinForm.jsp
+        for (int i = 1; i <= 100; i++) {
+            Board boardCheck = boardRepository.findById(i).orElseGet(() -> {
+                return new Board();
+            });
+            if (boardCheck.getCreateDate() == null) {
+                String count = String.valueOf(i);
+                Board createBoard = new Board();
+                createBoard.setUser(userService.userDetail(1));
+                createBoard.setTitle(count + "번째 글입니다.");
+                createBoard.setContent(count + "번째 글의 내용입니다.");
+                boardRepository.save(createBoard);
+                log.info("기본 공지글 생성");
+            } else {
+                log.info(" 이미 공지글이 있습니다.");
+                break;
+            }
 
-        model.addAttribute("boards", boardService.boardList(pageable));
+        }
+
+        model.addAttribute("list", boardService.boardList(pageable));
+
+        return "thymeleaf/board";
+        // BoardController는 REST Controller가 아닌 그냥 Controller이기 때문에
+        // 리턴할때 viewResolver가 작동 위에 boards를 라는 이름으로 글목록()을 들고갑니다.
+
+    }
+
+    // 컨트롤러에서 세션을 어떻게 찾는지?
+    @GetMapping("test")
+    public String indext(Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response) {
+        // /WEB-INF/views/joinForm.jsp
+        for (int i = 1; i <= 20; i++) {
+            Board boardCheck = boardRepository.findById(i).orElseGet(() -> {
+                return new Board();
+            });
+            if (boardCheck.getCreateDate() == null) {
+                String count = String.valueOf(i);
+                Board createBoard = new Board();
+                createBoard.setUser(userService.userDetail(1));
+                createBoard.setTitle(count + "번째 글입니다.");
+                createBoard.setContent(count + "번째 글의 내용입니다.");
+                boardRepository.save(createBoard);
+                log.info("기본 공지글 생성");
+            } else log.info(" 이미 {}번 공지글이 있습니다.",i);
+
+        }
+
+        model.addAttribute("list", boardService.boardList(pageable));
         return "board/boardList";
         // BoardController는 REST Controller가 아닌 그냥 Controller이기 때문에
         // 리턴할때 viewResolver가 작동 위에 boards를 라는 이름으로 글목록()을 들고갑니다.
 
     }
+
 
     @GetMapping("/home")
     public String home() {
