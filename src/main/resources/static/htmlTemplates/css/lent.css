@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gowun Dodum', sans-serif;
+    background: #dbdada;
+    height: 100vh;
+    overflow: hidden;
+    background: white;
+}
+
+/*
+.container_lent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: white;
+  border-radius: 10px;
+
+  width: 100%;
+  min-height: 100vh;
+}
+*/
+
+.container_lent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(126, 125, 125, 0.7);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: white;
+}
+
+
+.lent {
+    text-align: center;
+    padding: 0;
+}
+
+.lent h1 {
+    font-size: 3em;
+    margin-top: 45px;
+    margin-bottom: 10px;
+}
+
+.lent h3 {
+    font-size: 2em;
+    margin-top: 15px;
+    color: #3498db;;
+}
+
+.lent_form {
+    padding: 0 20px;
+    box-sizing: border-box;
+
+}
+
+.lent_choice {
+    padding: 0 20px;
+    font-size: 1.2rem;
+    border-top: 2px solid silver;
+    border-bottom: 2px solid silver;
+}
+
+.lent_location {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+.lent_location label {
+    padding-right: 50px;
+    font-weight: bold;
+}
+
+
+.lent_location select#location {
+    border-top-width: 1px;
+}
+
+.lent_date {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+.lent_date label {
+    padding-right: 75px;
+    font-weight: bold;
+}
+
+.lent_date input {
+    border-width: 1px;
+    width: 40px;
+}
+
+.lent_btn {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 60px;
+}
+
+.btn_submit {
+    margin-right: 10px;
+    width: 90px;
+    height: 35px;
+    background: white;
+    color: #3498db;
+    font-weight: 900;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 1rem;
+    border-radius: 20px;
+}
+
+.btn_reset {
+    margin-left: 10px;
+    width: 90px;
+    height: 35px;
+    background: white;
+    color: #3498db;
+    font-weight: 900;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 1rem;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 500px) {
+    .container_lent {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background: white;
+    }
+
+    .lent_choice {
+        padding: 15px 20px;
+        font-size: 1.2rem;
+        border-top: 2px solid silver;
+        border-bottom: 2px solid silver;
+        margin: 40px 0;
+    }
+
+    .lent_btn {
+        display: flex;
+        justify-content: center;
+        margin: 70px 0 40px;
+    }
+
+    .btn_submit {
+        margin-right: 10px;
+        width: 90px;
+        height: 35px;
+        background: white;
+        color: #3498db;
+        font-weight: 900;
+        font-family: 'Gowun Dodum', sans-serif;
+        font-size: 0.9rem;
+        border-radius: 20px;
+    }
+    
+    .btn_reset {
+        margin-left: 10px;
+        width: 90px;
+        height: 35px;
+        background: white;
+        color: #3498db;
+        font-weight: 900;
+        font-family: 'Gowun Dodum', sans-serif;
+        font-size: 0.9rem;
+        border-radius: 20px;
+    }
+}

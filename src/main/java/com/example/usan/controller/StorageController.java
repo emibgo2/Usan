@@ -56,6 +56,16 @@ public class StorageController {
         return "storage/storage_detail";
     }
 
+    /**
+     * d테스트용 메소드 위에 GetMapping과 변경할 예정
+     */
+    @GetMapping("/test")
+    public String viewTest() {
+        return "thymeleaf/lent";
+
+    }
+
+
     @GetMapping("/admin/{id}")
     public String findById_ADMIN(@PathVariable int id, Model model) {
         model.addAttribute("storage", storageService.sto_detail(id));

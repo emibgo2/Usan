@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          th:href="@{../htmlTemplates/css/lent.css}"
+          href="assets/css/lent.css" />
+    <title>USAN</title>
+</head>
+<body>
+<div class="container_lent" id="main">
+    <div class="lent">
+        <h1>대여하기</h1>
+        <h3>사용자 ID : <span sec:authentication="principal.user.username" ></span></h3>
+    </div>
+    <form class="lent_form">
+        <div class="lent_choice">
+            <div class="lent_location">
+                <label for="location">보관소 위치 선택</label>
+                <select id="location">
+                    <option value="Pyeongtaek_uni" selected>평택대점</option>
+                    <option value="Pyeongtaek_station">평택역점</option>
+                </select>
+            </div>
+            <div class="lent_date">
+                <label>대여기간 선택</label>
+                <input type="number" min="1" max="30" value="1">일
+            </div>
+        </div>
+        <div class="lent_btn">
+            <button type="submit" class="btn_submit">대여하기</button>
+            <button type="reset" class="btn_reset">취소하기</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
