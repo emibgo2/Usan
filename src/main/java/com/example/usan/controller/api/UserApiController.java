@@ -54,7 +54,8 @@ public class UserApiController {
             return new User();
         });
         if (adminCheck.getUsername() == null) {
-            User admin = new User( "admin", "관리자", "1", "emibgo@naver.com", "01029293999", RoleType.ADMIN, Timestamp.valueOf(LocalDateTime.now()));
+            User admin = new User("admin", "관리자", "1", "emibgo@naver.com", "01029293999", RoleType.ADMIN, Timestamp.valueOf(LocalDateTime.now()));
+            admin.setCash(100000);
             userService.joinMember(admin, 2);
             log.info("관리자 아이디 생성");
         } else log.info("이미 관리자 아이디가 있습니다.");
@@ -62,8 +63,9 @@ public class UserApiController {
             return new User();
         });
         if (userCheck.getUsername() == null) {
-            User admin = new User( "user", "사용자", "1", "emibgo@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
-            userService.joinMember(admin, 1);
+            User user = new User("user", "사용자", "1", "emibgo@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
+            user.setCash(100000);
+            userService.joinMember(user, 1);
             log.info("사용자 아이디 생성");
         }else log.info("이미 사용자 아이디가 있습니다.");
 

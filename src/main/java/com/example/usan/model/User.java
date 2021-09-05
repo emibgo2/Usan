@@ -49,6 +49,9 @@ public class User {
     @Column(nullable = false, length = 20)
     private String phoneNumber;
 
+    @Column
+    private int cash;
+
     @Enumerated(EnumType.STRING)
     private RoleType role;
 

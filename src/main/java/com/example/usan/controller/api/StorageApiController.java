@@ -52,12 +52,14 @@ public class StorageApiController {
 
     @PostConstruct
     public void init() {
+        String[] location ={"Pyeongtaek_uni","Pyeongtaek_station"};
         for (int i = 1; i<=2; i++) {
             Storage storageCheck = storageRepository.findById(i).orElseGet(() -> {
                 return new Storage();
             });
             if (storageCheck.getCreate_date() == null) {
                 Storage storage = new Storage();
+                storage.setLocation(location[i-1]);
                 storage.setCreate_date(Timestamp.valueOf(LocalDateTime.now()));
                 storageService.storage_save(storage);
                 log.info(" 기본 보관소 생성 ");

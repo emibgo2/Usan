@@ -24,6 +24,9 @@ public class Storage {
     private int id;
 
     @Column
+    private String location ; // 지점, 위치 ex) 평택대점
+
+    @Column
     private int umb_count; // 잔여 우산
 
     @Column
@@ -36,15 +39,6 @@ public class Storage {
     @JsonIgnoreProperties({"storage"})
     private List<Umbrella> umbrellaList;
 
-    @Override
-    public String toString() {
-        return "Storage{" +
-                "id=" + id +
-                ", umb_count=" + umb_count +
-                ", umb_breakdown_count=" + umb_breakdown_count +
-                ", umbrellaList=" + umbrellaList +
-                '}';
-    }
 //    보관소 위치 ( 추후 방식 회의 예정 )
 
 //    @Column

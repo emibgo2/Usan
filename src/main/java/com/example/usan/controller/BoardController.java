@@ -7,7 +7,6 @@ import com.example.usan.service.BoardService;
 import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -55,7 +54,7 @@ public class BoardController {
 
         model.addAttribute("list", boardService.boardList(pageable));
 
-        return "thymeleaf/board";
+        return "thymeleaf/board/board";
         // BoardController는 REST Controller가 아닌 그냥 Controller이기 때문에
         // 리턴할때 viewResolver가 작동 위에 boards를 라는 이름으로 글목록()을 들고갑니다.
 

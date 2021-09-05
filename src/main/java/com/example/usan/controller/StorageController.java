@@ -3,14 +3,9 @@ package com.example.usan.controller;
 import com.example.usan.config.auth.PrincipalDetail;
 import com.example.usan.model.RoleType;
 import com.example.usan.model.Storage;
-import com.example.usan.model.User;
-import com.example.usan.repository.UmbrellaRepository;
-import com.example.usan.repository.UserRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
-import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,14 +51,7 @@ public class StorageController {
         return "storage/storage_detail";
     }
 
-    /**
-     * d테스트용 메소드 위에 GetMapping과 변경할 예정
-     */
-    @GetMapping("/test")
-    public String viewTest() {
-        return "thymeleaf/lent";
 
-    }
 
 
     @GetMapping("/admin/{id}")

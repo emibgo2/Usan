@@ -7,14 +7,12 @@ import com.example.usan.repository.UserRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/umb")
@@ -49,6 +47,14 @@ public class UmbrellaController {
         model.addAttribute("umbrella", umbrellaService.umb_upload());
         model.addAttribute("storage", storageService.sto_upload());
         return "umbrella/umb_mappingForm";
+    }
+
+    /**
+     * d테스트용 메소드 위에 GetMapping과 변경할 예정
+     */
+    @GetMapping("/rent")
+    public String viewTest() {
+        return "thymeleaf/umbrella/rent";
     }
 
     @GetMapping("/returnForm/{userId}")
