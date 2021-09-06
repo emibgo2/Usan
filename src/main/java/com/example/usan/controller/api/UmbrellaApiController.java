@@ -34,6 +34,13 @@ public class UmbrellaApiController {
     private UmbrellaService umbrellaService;
     private UmbrellaRepository umbrellaRepository;
 
+    @PostMapping("/test")
+    public void test(@RequestParam("userNickname") String storageLocation,@RequestParam("location") String userNickname) {
+        System.out.println("storageLocation = " + storageLocation);
+        System.out.println("userNickname = " + userNickname);
+        // DB안에 있는 Umbrella를 추합하여 전송
+    }
+
     @GetMapping("/list")
     public List<Umbrella> returnUmbrella() {
         List<Umbrella> umbrellas = umbrellaService.umb_upload();

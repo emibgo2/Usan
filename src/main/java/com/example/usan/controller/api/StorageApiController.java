@@ -52,7 +52,7 @@ public class StorageApiController {
 
     @PostConstruct
     public void init() {
-        String[] location ={"Pyeongtaek_uni","Pyeongtaek_station"};
+        String[] location ={"평택대점","평택역점"};
         for (int i = 1; i<=2; i++) {
             Storage storageCheck = storageRepository.findById(i).orElseGet(() -> {
                 return new Storage();
@@ -61,6 +61,7 @@ public class StorageApiController {
                 Storage storage = new Storage();
                 storage.setLocation(location[i-1]);
                 storage.setCreate_date(Timestamp.valueOf(LocalDateTime.now()));
+                if (i==1) storage.setUmb_count(4);
                 storageService.storage_save(storage);
                 log.info(" 기본 보관소 생성 ");
             }else log.info(" 이미 보관소가 존재합니다.");

@@ -18,12 +18,15 @@
     <form class="lent_form">
         <div class="lent_choice">
             <div class="lent_location">
-                <label for="location">보관소 위치 선택</label>
-                <select id="location">
-                    <option value="Pyeongtaek_uni" selected>평택대점</option>
-                    <option value="Pyeongtaek_station">평택역점</option>
+                <label for="locations">보관소 위치 선택</label>
+<!--                <h5 th:if="${storage[0].umb_count ==0}"> 보유 우산이 없습니다.</h5>-->
+
+                <select id="locations" >
+                    <option th:each="storage : ${storages}" th:value="${storage.location}" th:utext="${storage.location}">평택대점 <p th:if="${storage.umb_count==0}"> 보유 우산이 없습니다.</p></option>
                 </select>
             </div>
+                <h5 th:each="storage : ${storages}" th:if="${storage.umb_count==0}" th:text="|${storage.location}점은 현재 보유 우산이 없습니다.|" >현재우산현황</h5>
+<!--            <h5 th:if="${storage[1].umb_count ==0 }"> 보유 우산이 없습니다.</h5>-->
             <div class="lent_date">
                 <label>대여기간 선택</label>
                 <input type="number" min="1" max="30" value="1">일

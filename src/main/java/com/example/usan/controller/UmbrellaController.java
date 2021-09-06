@@ -53,7 +53,9 @@ public class UmbrellaController {
      * d테스트용 메소드 위에 GetMapping과 변경할 예정
      */
     @GetMapping("/rent")
-    public String viewTest() {
+    public String viewTest(Model model) {
+        model.addAttribute("umbrella", umbrellaService.umb_upload());
+        model.addAttribute("storages", storageService.sto_upload());
         return "thymeleaf/umbrella/rent";
     }
 
