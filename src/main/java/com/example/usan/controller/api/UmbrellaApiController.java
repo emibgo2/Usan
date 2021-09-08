@@ -1,6 +1,6 @@
 package com.example.usan.controller.api;
 
-import com.example.usan.controller.UmbrellaController;
+import com.example.usan.config.auth.PrincipalDetail;
 import com.example.usan.dto.ResponseDto;
 import com.example.usan.dto.StorageDto;
 import com.example.usan.model.Storage;
@@ -10,17 +10,14 @@ import com.example.usan.repository.UmbrellaRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
 import com.example.usan.service.UserService;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
-import java.sql.Time;
 import java.util.List;
 
 @Slf4j
@@ -34,12 +31,6 @@ public class UmbrellaApiController {
     private UmbrellaService umbrellaService;
     private UmbrellaRepository umbrellaRepository;
 
-    @PostMapping("/test")
-    public void test(@RequestParam("userNickname") String storageLocation,@RequestParam("location") String userNickname) {
-        System.out.println("storageLocation = " + storageLocation);
-        System.out.println("userNickname = " + userNickname);
-        // DB안에 있는 Umbrella를 추합하여 전송
-    }
 
     @GetMapping("/list")
     public List<Umbrella> returnUmbrella() {
@@ -75,6 +66,17 @@ public class UmbrellaApiController {
         // DB내의 모든 Storage를 return ( Storage안의 Umbrella도 return )
     }
 
+    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
+    public ResponseDto<Integer> test(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
+        System.out.println("UmbrellaApiController.test");
+        System.out.println("location = " + location);
+        System.out.println("days = " + days);
+        System.out.println("principal = " + principal.getUser());
+        // DB안에 있는 Umbrella를 추합하여 전송
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+
+    }
+
     @PostMapping("/joinProc")
     public ResponseDto<Integer> umb_save(@RequestBody Umbrella umbrella) {
         umbrellaService.umbrella_save(umbrella);
@@ -100,6 +102,8 @@ public class UmbrellaApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.returnUmbrella(id, user));
         // 프론트에서 날아온 User와 id를 갖고 반납처리하는 메소드
     }
+
+
 
     @PostConstruct
     public void init() throws InterruptedException {

@@ -9,7 +9,9 @@ import com.example.usan.service.UmbrellaService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,10 @@ public class UmbrellaController {
     private StorageService storageService;
     private UserRepository userRepository;
 
+    @GetMapping
+    public String home() {
+        return "thymeleaf/umbrella/test";
+    }
 
     @GetMapping(value = "/home")
     public static String getUmbList(Model model) {
@@ -42,22 +48,24 @@ public class UmbrellaController {
         return "umbrella/umb_joinForm";
     }
 
-    @GetMapping("/mappingForm")
-    public String mappingUmbrella(Model model) {
-        model.addAttribute("umbrella", umbrellaService.umb_upload());
-        model.addAttribute("storage", storageService.sto_upload());
-        return "umbrella/umb_mappingForm";
-    }
+//     이전 버전 rent View
+//    @GetMapping("/mappingForm")
+//    public String mappingUmbrella(Model model) {
+//        model.addAttribute("umbrella", umbrellaService.umb_upload());
+//        model.addAttribute("storage", storageService.sto_upload());
+//        return "umbrella/umb_mappingForm";
+//    }
 
     /**
      * d테스트용 메소드 위에 GetMapping과 변경할 예정
      */
     @GetMapping("/rent")
     public String viewTest(Model model) {
-        model.addAttribute("umbrella", umbrellaService.umb_upload());
+        System.out.println("??");
         model.addAttribute("storages", storageService.sto_upload());
         return "thymeleaf/umbrella/rent";
     }
+
 
     @GetMapping("/returnForm/{userId}")
     public String returnUmbrella(@PathVariable int userId, Model model) {

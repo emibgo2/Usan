@@ -1,17 +1,13 @@
 package com.example.usan.controller.api;
 
-import com.example.usan.controller.BoardController;
 import com.example.usan.dto.ResponseDto;
 import com.example.usan.model.Storage;
-import com.example.usan.model.Umbrella;
 import com.example.usan.repository.StorageRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -52,8 +48,8 @@ public class StorageApiController {
 
     @PostConstruct
     public void init() {
-        String[] location ={"평택대점","평택역점"};
-        for (int i = 1; i<=2; i++) {
+        String[] location ={"평택대","평택역"};
+        for ( int i = 1; i<=2; i++) {
             Storage storageCheck = storageRepository.findById(i).orElseGet(() -> {
                 return new Storage();
             });

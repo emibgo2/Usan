@@ -26,13 +26,13 @@
         <div class="lent_choice">
             <div class="lent_location">
                 <label for="locations">보관소 위치 선택</label>
-<!--                <h5 th:if="${storage[0].umb_count ==0}"> 보유 우산이 없습니다.</h5>-->
-                 <select id="locations" >
+                <!--                <h5 th:if="${storage[0].umb_count ==0}"> 보유 우산이 없습니다.</h5>-->
+                <select id="locations" >
                     <option th:each="storage : ${storages}" th:value="${storage.location}" th:utext="${storage.location}">LOCATION</option>
                 </select>
             </div>
-                <h5 th:each="storage : ${storages}" th:if="${storage.umb_count==0}" th:text="| 현재 ${storage.location}의 보유우산은 ${storage.umb_count}개 입니다 |" >현재우산현황</h5>
-<!--            <h5 th:if="${storage[1].umb_count ==0 }"> 보유 우산이 없습니다.</h5>-->
+            <h5 th:each="storage : ${storages}" th:if="${storage.umb_count==0}" th:text="| 현재 ${storage.location}의 보유우산은 ${storage.umb_count}개 입니다 |" >현재우산현황</h5>
+            <!--            <h5 th:if="${storage[1].umb_count ==0 }"> 보유 우산이 없습니다.</h5>-->
             <div class="lent_date" >
                 <label>대여기간 선택</label>
                 <input id="days" type="number" min="1" max="30" value="1">일
@@ -47,8 +47,8 @@
 </body>
 <script>
     let instance={
-         test:function(){
-             const days = document.getElementById('days').value
+        test:function(){
+            const days = document.getElementById('days').value
             const location = document.getElementById('locations').value
             if (confirm(location+"지점에서 "+days+"일 동안 대여하시겠습니까?")) {
                 index.rent(location,days)
