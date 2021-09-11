@@ -1,5 +1,8 @@
 package com.example.usan.controller;
 
+import com.example.usan.config.auth.PrincipalDetail;
+import com.example.usan.controller.api.UmbrellaApiController;
+import com.example.usan.controller.api.UserApiController;
 import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
@@ -7,14 +10,17 @@ import com.example.usan.repository.UserRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.DefaultSessionAttributeStore;
+import org.springframework.web.bind.support.SessionAttributeStore;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+import java.util.*;
 
 @Controller
 @RequestMapping("/umb")
@@ -25,8 +31,46 @@ public class UmbrellaController {
     private StorageService storageService;
     private UserRepository userRepository;
 
+
+    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
+    public String rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal, HttpServletRequest request) {
+        System.out.println("UmbrellaApiController.test");
+        System.out.println("location = " + location);
+        System.out.println("days = " + days);
+        System.out.println("principal = " + principal.getUser());
+        test(request);
+
+        // DB안에 있는 Umbrella를 추합하여 전송
+        return "redirect:/시발뭐 어쩌라고";
+
+    }
+
+    public void test( HttpServletRequest request) {
+
+
+        Random random = new Random();
+        int i = random.nextInt(UmbrellaApiController.myUUID.size());
+        Integer remove = UmbrellaApiController.myUUID.remove(i);
+
+
+        // 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
+        HttpSession session = request.getSession();
+        // 세션에 로그인 회원 정보 보관
+        session.setAttribute("payNumber", remove);
+        System.out.println(remove);
+
+    }
+
     @GetMapping
-    public String home() {
+    public String home(HttpSession session, Model model) {
+        Integer payNumber = (Integer) session.getAttribute("payNumber");
+
+        SessionAttributeStore store = new DefaultSessionAttributeStore();
+        Enumeration<String> attributeNames = session.getAttributeNames();
+        System.out.println("attributeNames = " );
+
+        System.out.println("payNumber: !!!"+payNumber);
+        model.addAttribute("payNum", payNumber);
         return "thymeleaf/umbrella/test";
     }
 
@@ -107,6 +151,5 @@ public class UmbrellaController {
 
 
 }
-
 
 

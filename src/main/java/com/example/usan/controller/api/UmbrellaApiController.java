@@ -15,10 +15,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @RestController
@@ -30,6 +37,7 @@ public class UmbrellaApiController {
     private UserService userService;
     private UmbrellaService umbrellaService;
     private UmbrellaRepository umbrellaRepository;
+    public static List<Integer> myUUID = Collections.synchronizedList(new ArrayList<>());
 
 
     @GetMapping("/list")
@@ -66,16 +74,7 @@ public class UmbrellaApiController {
         // DB내의 모든 Storage를 return ( Storage안의 Umbrella도 return )
     }
 
-    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
-    public ResponseDto<Integer> test(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
-        System.out.println("UmbrellaApiController.test");
-        System.out.println("location = " + location);
-        System.out.println("days = " + days);
-        System.out.println("principal = " + principal.getUser());
-        // DB안에 있는 Umbrella를 추합하여 전송
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 
-    }
 
     @PostMapping("/joinProc")
     public ResponseDto<Integer> umb_save(@RequestBody Umbrella umbrella) {
@@ -105,9 +104,12 @@ public class UmbrellaApiController {
 
 
 
+
     @PostConstruct
     public void init() throws InterruptedException {
-
+        for (int i = 1000; i < 10000; i++) {
+            myUUID.add(i);
+        }
         // 우산이 없을시 기본 우산 4개 생성
         for (int i = 1; i <= 4; i++) {
             Umbrella umbrellaCheck = umbrellaRepository.findById(i).orElseGet(() -> {
@@ -126,5 +128,3 @@ public class UmbrellaApiController {
     }
 
 }
-
-
