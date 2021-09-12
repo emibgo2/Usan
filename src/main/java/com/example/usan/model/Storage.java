@@ -21,7 +21,7 @@ public class Storage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column
     private String location ; // 지점, 위치 ex) 평택대점

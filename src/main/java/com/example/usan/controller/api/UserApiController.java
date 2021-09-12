@@ -56,6 +56,7 @@ public class UserApiController {
         if (adminCheck.getUsername() == null) {
             User admin = new User("admin", "관리자", "1", "emibgo@naver.com", "01029293999", RoleType.ADMIN, Timestamp.valueOf(LocalDateTime.now()));
             admin.setCash(100000);
+
             userService.joinMember(admin, 2);
             log.info("관리자 아이디 생성");
         } else log.info("이미 관리자 아이디가 있습니다.");

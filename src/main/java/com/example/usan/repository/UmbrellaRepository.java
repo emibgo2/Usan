@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-public interface UmbrellaRepository extends JpaRepository<Umbrella, Integer> {
+public interface UmbrellaRepository extends JpaRepository<Umbrella, Long> {
     Optional<Umbrella> findById(int id);
 
 

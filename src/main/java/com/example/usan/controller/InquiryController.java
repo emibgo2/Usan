@@ -46,13 +46,13 @@ public class InquiryController {
 
     }
     @GetMapping("/{id}")
-    public String findById(@PathVariable int id, Model model) {
+    public String findById(@PathVariable Long id, Model model) {
         model.addAttribute("inquiry", inquiryService.inquiryDetail(id));
         return "inquiry/detail";
     }
 
     @GetMapping("/{id}/updateForm")
-    public String updateForm(@PathVariable int id, Model model ){
+    public String updateForm(@PathVariable Long id, Model model ){
         model.addAttribute("inquiry", inquiryService.inquiryDetail(id));
         return "inquiry/updateForm";
     }

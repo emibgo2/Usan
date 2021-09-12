@@ -25,7 +25,7 @@ public class UmbrellaService {
     }
 
     @Transactional
-    public void umbrella_Fault_Report(int umbrellaId) {
+    public void umbrella_Fault_Report(Long umbrellaId) {
         Umbrella umbrella = getUmbrella(umbrellaId);
         umbrella.setFailure_status(true); // 고장
 
@@ -40,7 +40,7 @@ public class UmbrellaService {
     }
 
     @Transactional(readOnly = true)
-    public int get_Late_Date(int id ){
+    public int get_Late_Date(Long id ){
         Umbrella umbrella = getUmbrella(id);
         LocalDate a = umbrella.getRent_date().toLocalDateTime().toLocalDate();
         LocalDate b = umbrella.getRent_end_date().toLocalDateTime().toLocalDate();
@@ -50,7 +50,7 @@ public class UmbrellaService {
         // 비교, 계산하여 남은 일 수를 return ( 양수면 이미 지남 )
     }
 
-    public Umbrella getUmbrella(int id) {
+    public Umbrella getUmbrella(Long id) {
         return umbrellaRepository.findById(id).orElseGet(() -> {
                 return new Umbrella();
             });

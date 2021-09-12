@@ -9,7 +9,9 @@ import com.example.usan.model.User;
 import com.example.usan.repository.UserRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
+import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 import java.util.*;
 
+@Slf4j
 @Controller
 @RequestMapping("/umb")
 @AllArgsConstructor
@@ -32,26 +35,25 @@ public class UmbrellaController {
     private UserRepository userRepository;
 
 
-    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
-    public String rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal, HttpServletRequest request) {
-        System.out.println("UmbrellaApiController.test");
-        System.out.println("location = " + location);
-        System.out.println("days = " + days);
-        System.out.println("principal = " + principal.getUser());
-        test(request);
-
-        // DB안에 있는 Umbrella를 추합하여 전송
-        return "redirect:/시발뭐 어쩌라고";
-
-    }
+//    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
+//    public String rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
+//        System.out.println("UmbrellaApiController.test");
+//        System.out.println("location = " + location);
+//        System.out.println("days = " + days);
+//        Random random = new Random();
+//        int i = random.nextInt(UmbrellaApiController.myUUID.size());
+//        Integer remove = UmbrellaApiController.myUUID.remove(i);
+//        log.info(userService.userPayNumber(principal.getUser().getId(), remove));
+//        System.out.println("principal!?? "+principal.getUser());
+//        // DB안에 있는 Umbrella를 추합하여 전송
+//        return "redirect:/umb/rent";
+//    }
 
     public void test( HttpServletRequest request) {
-
 
         Random random = new Random();
         int i = random.nextInt(UmbrellaApiController.myUUID.size());
         Integer remove = UmbrellaApiController.myUUID.remove(i);
-
 
         // 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
         HttpSession session = request.getSession();
@@ -61,17 +63,9 @@ public class UmbrellaController {
 
     }
 
-    @GetMapping
-    public String home(HttpSession session, Model model) {
-        Integer payNumber = (Integer) session.getAttribute("payNumber");
-
-        SessionAttributeStore store = new DefaultSessionAttributeStore();
-        Enumeration<String> attributeNames = session.getAttributeNames();
-        System.out.println("attributeNames = " );
-
-        System.out.println("payNumber: !!!"+payNumber);
-        model.addAttribute("payNum", payNumber);
-        return "thymeleaf/umbrella/test";
+    @GetMapping("/pay/complete")
+    public String home() {
+        return "thymeleaf/umbrella/payComplete";
     }
 
     @GetMapping(value = "/home")
@@ -112,13 +106,13 @@ public class UmbrellaController {
 
 
     @GetMapping("/returnForm/{userId}")
-    public String returnUmbrella(@PathVariable int userId, Model model) {
+    public String returnUmbrella(@PathVariable Long userId, Model model) {
         List<Umbrella> umbrellas = getUserUmbrellas(userId);
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_returnForm";
     }
 
-    private List<Umbrella> getUserUmbrellas(int userId) {
+    private List<Umbrella> getUserUmbrellas(Long userId) {
         User user = userRepository.findById(userId).orElseGet(() -> {
             return new User();
         });
@@ -132,7 +126,7 @@ public class UmbrellaController {
     }
 
     @GetMapping("/fault/report/{userId}")
-    public String fault_ReportUmbrella(@PathVariable int userId, Model model) {
+    public String fault_ReportUmbrella(@PathVariable Long userId, Model model) {
         List<Umbrella> umbrellas = getUserUmbrellas( userId);
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_Fault_Report";
@@ -143,7 +137,7 @@ public class UmbrellaController {
         List<Umbrella> umbrellas = umbrellaService.umb_upload();
         for (int i = 0; i < umbrellas.size(); i++) {
             umbrellas.get(i).setStorage(null);
-            umbrellas.get(i).setOver_date(umbrellaService.get_Late_Date(i + 1));
+            umbrellas.get(i).setOver_date(umbrellaService.get_Late_Date(i + 1L));
         }
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_Fault_List";

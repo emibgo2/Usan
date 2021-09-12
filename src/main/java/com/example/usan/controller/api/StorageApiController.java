@@ -1,6 +1,7 @@
 package com.example.usan.controller.api;
 
 import com.example.usan.dto.ResponseDto;
+import com.example.usan.model.Board;
 import com.example.usan.model.Storage;
 import com.example.usan.repository.StorageRepository;
 import com.example.usan.service.StorageService;
@@ -40,7 +41,7 @@ public class StorageApiController {
     }
 
     @PostMapping("/{id}/umb/{umb_id}/mapping")
-    public ResponseDto<Integer> storage_umb_mapping(@PathVariable int id, @PathVariable int umb_id) {
+    public ResponseDto<Integer> storage_umb_mapping(@PathVariable Long id, @PathVariable Long umb_id) {
         storageService.umb_save(id, umb_id);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
         // DB에 id에 해당하는 Storage와 umb_id에 해당하는 Umbrella를 맵핑
@@ -50,7 +51,8 @@ public class StorageApiController {
     public void init() {
         String[] location ={"평택대","평택역"};
         for ( int i = 1; i<=2; i++) {
-            Storage storageCheck = storageRepository.findById(i).orElseGet(() -> {
+            Long id = new Long(i);
+            Storage storageCheck = storageRepository.findById(id).orElseGet(() -> {
                 return new Storage();
             });
             if (storageCheck.getCreate_date() == null) {

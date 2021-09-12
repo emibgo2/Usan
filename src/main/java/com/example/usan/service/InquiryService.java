@@ -52,7 +52,7 @@ public class InquiryService {
     // DB내의 Inquiry들을 갖고와서 @PageableDefault 내에서 지정하는 size 만큼 짤라서 return
 
     @Transactional(readOnly = true)
-    public Inquiry inquiryDetail(int id) {
+    public Inquiry inquiryDetail(Long id) {
         return inquiryRepository.findById(id)
                 .orElseThrow(() -> {
                     return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
@@ -61,13 +61,13 @@ public class InquiryService {
     }
 
     @Transactional
-    public void inquiryDelete(int id) {
+    public void inquiryDelete(Long id) {
         inquiryRepository.deleteById(id);
     }
     // 해당 id 값의 Inquiry를 DB에서 삭제
 
     @Transactional
-    public void inquiryModify(int id, Inquiry requestInquiry, int userId) {
+    public void inquiryModify(Long id, Inquiry requestInquiry, Long userId) {
         Inquiry Inquiry = inquiryRepository.findById(id)
                 .orElseThrow(() -> {
                     return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
@@ -79,7 +79,7 @@ public class InquiryService {
     }
 
     @Transactional
-    public void inquiryAnswer(int id, Inquiry requestInquiry,int userId) {
+    public void inquiryAnswer(Long id, Inquiry requestInquiry,Long userId) {
         User user= userRepository.findById(userId).orElseGet(() -> {
             return new User();
         });

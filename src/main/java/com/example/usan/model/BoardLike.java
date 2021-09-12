@@ -16,7 +16,7 @@ public class BoardLike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "boardId")
     private Board board;

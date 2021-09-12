@@ -34,13 +34,14 @@ public class BoardController {
     public String index(Model model, @PageableDefault(size = 10, sort = "id") Pageable pageable, HttpServletResponse response) {
         // /WEB-INF/views/joinForm.jsp
         for (int i = 1; i <= 100; i++) {
-            Board boardCheck = boardRepository.findById(i).orElseGet(() -> {
+            Long id = new Long(i);
+            Board boardCheck = boardRepository.findById(id).orElseGet(() -> {
                 return new Board();
             });
             if (boardCheck.getCreateDate() == null) {
-                String count = String.valueOf(i);
+                String count = String.valueOf(id);
                 Board createBoard = new Board();
-                createBoard.setUser(userService.userDetail(1));
+                createBoard.setUser(userService.boardUser(1L));
                 createBoard.setTitle(count + "번째 글입니다.");
                 createBoard.setContent(count + "번째 글의 내용입니다.");
                 boardRepository.save(createBoard);
@@ -65,13 +66,14 @@ public class BoardController {
     public String indext(Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response) {
         // /WEB-INF/views/joinForm.jsp
         for (int i = 1; i <= 20; i++) {
-            Board boardCheck = boardRepository.findById(i).orElseGet(() -> {
+            Long id = new Long(i);
+            Board boardCheck = boardRepository.findById(id).orElseGet(() -> {
                 return new Board();
             });
             if (boardCheck.getCreateDate() == null) {
                 String count = String.valueOf(i);
                 Board createBoard = new Board();
-                createBoard.setUser(userService.userDetail(1));
+                createBoard.setUser(userService.boardUser(1L));
                 createBoard.setTitle(count + "번째 글입니다.");
                 createBoard.setContent(count + "번째 글의 내용입니다.");
                 boardRepository.save(createBoard);
@@ -96,7 +98,7 @@ public class BoardController {
 
 
     @GetMapping("/{id}")
-    public String findById(@PathVariable int id, Model model) {
+    public String findById(@PathVariable Long id, Model model) {
         model.addAttribute("board", boardService.boardDetail(id));
         boardService.viewCount(id);
 
@@ -104,7 +106,7 @@ public class BoardController {
     }
 
     @GetMapping("/{id}/updateForm")
-    public String updateForm(@PathVariable int id, Model model) {
+    public String updateForm(@PathVariable Long id, Model model) {
         model.addAttribute("board", boardService.boardDetail(id));
         return "board/updateForm";
     }

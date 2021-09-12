@@ -48,6 +48,21 @@ public class UserService {
     }
 
     @Transactional
+    public User userPayNumber(Long userId, int payNumber) {
+        try {
+            User user = userRepository.findById(userId).orElseGet(() -> {
+                return new User();
+            });
+            user.setPayNumber(payNumber);
+            log.info("Pay Number 배급이 성공하였습니다.");
+            return user;
+        } catch (Exception e) {
+            log.info("Pay Number 배급이 실패하였습니다");
+        }
+        return new User();
+    }
+
+    @Transactional
     public int joinMember(User user,int roleType) {
         int checkResult = checkMemberId(user);
         if (checkResult == 1) {
@@ -68,7 +83,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User userDetail(int id){
+    public User boardUser(Long id){
         return userRepository.findById(id)
                 .orElseGet(() -> {
                     return new User("admin", "관리자", "1", "emibgo@naver.com", "01029293999", RoleType.ADMIN, Timestamp.valueOf(LocalDateTime.now()));
@@ -77,7 +92,7 @@ public class UserService {
     }
 
     @Transactional
-    public int mappingUmbrella( int id ,  User requestUser, int rentPeriod) {
+    public int mappingUmbrella( Long id ,  User requestUser, int rentPeriod) {
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
@@ -115,7 +130,7 @@ public class UserService {
 
 
     @Transactional
-    public int returnUmbrella(int id, User requestUser) {
+    public int returnUmbrella(Long id, User requestUser) {
         Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
             return new Umbrella();
         });
@@ -124,13 +139,13 @@ public class UserService {
         });
         log.info("Return User -> "+requestUser);
 
-        if (user.getUmbrella_Id1() == umbrella.getId()) {
-            user.setUmbrella_Id1(0);
-            umbrella.setUser_id(0);
+        if (user.getUmbrella_Id1() == umbrella.getId().intValue()) {
+            user.setUmbrella_Id1(0L);
+            umbrella.setUser_id(0L);
             umbrella.setReturn_date(Timestamp.valueOf(LocalDateTime.now()) );
-        } else if (user.getUmbrella_Id2() == umbrella.getId()) {
-            user.setUmbrella_Id2(0);
-            umbrella.setUser_id(0);
+        } else if (user.getUmbrella_Id2() == umbrella.getId().intValue()) {
+            user.setUmbrella_Id2(0L);
+            umbrella.setUser_id(0L);
             umbrella.setReturn_date(Timestamp.valueOf(LocalDateTime.now()) );
 
         }else return 3;

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -32,7 +33,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(nullable = false, length = 30, unique = true)
     private String username; // ID
@@ -43,7 +44,7 @@ public class User {
     @Column(nullable = false, length = 100)
     private String password;
 
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false, length = 50)
     private String email;
 
     @Column(nullable = false, length = 20)
@@ -52,18 +53,20 @@ public class User {
     @Column
     private int cash;
 
+    @Column
+    private int payNumber;
+
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
     @Column(nullable = true)
-    private int umbrella_Id1;
+    private Long umbrella_Id1;
 
     @Column(nullable = true)
-    private int umbrella_Id2;
+    private Long umbrella_Id2;
 
     @CreationTimestamp
     private Timestamp createDate;
-
 
 
     public User(String username, String nickName, String password, String email, String phoneNumber, RoleType role) {
@@ -84,8 +87,11 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", cash=" + cash +
+                ", payNumber=" + payNumber +
                 ", role=" + role +
-                ", umbrellas=" + umbrella_Id1 +
+                ", umbrella_Id1=" + umbrella_Id1 +
+                ", umbrella_Id2=" + umbrella_Id2 +
                 ", createDate=" + createDate +
                 '}';
     }

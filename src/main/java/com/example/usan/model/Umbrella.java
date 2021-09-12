@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 public class Umbrella {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @CreationTimestamp
     private Timestamp create_date; // 우산 등록일
@@ -36,7 +36,7 @@ public class Umbrella {
     private Boolean failure_status; // 고장 여부
 
     @Column()
-    private int user_id;
+    private Long user_id;
 
     @Column
     private int use_count;

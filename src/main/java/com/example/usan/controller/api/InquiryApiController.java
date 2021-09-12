@@ -32,20 +32,20 @@ public class InquiryApiController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseDto<Integer> deleteById(@PathVariable int id) {
+    public ResponseDto<Integer> deleteById(@PathVariable Long id) {
         inquiryService.inquiryDelete(id); // 해당 ID의 Inquiry를 DB에서 삭제
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 
     }
 
     @PatchMapping("/{id}")
-    public ResponseDto<Integer> update(@PathVariable int id, @RequestBody Inquiry inquiry, @RequestBody int userId) throws IOException, ServletException {
+    public ResponseDto<Integer> update(@PathVariable Long id, @RequestBody Inquiry inquiry, @RequestBody Long userId) throws IOException, ServletException {
         System.out.println("ㅅㅂ 오긴오냐?");
         inquiryService.inquiryModify(id, inquiry,userId); // 해당 ID의 Inquiry를 내용을 수정하여 다시 저장
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
     @PutMapping("/{id}/answer/{userId}")
-    public ResponseDto<Integer> answer(@PathVariable int id, @RequestBody Inquiry inquiry,@PathVariable int userId) {
+    public ResponseDto<Integer> answer(@PathVariable Long id, @RequestBody Inquiry inquiry,@PathVariable Long userId) {
         System.out.println("???");
         inquiryService.inquiryAnswer(id, inquiry,userId); // 해당 ID의 Inquiry를 내용을 수정하여 다시 저장
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
