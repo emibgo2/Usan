@@ -31,12 +31,14 @@
                     <option th:each="storage : ${storages}" th:value="${storage.location}" th:utext="${storage.location}">LOCATION</option>
                 </select>
             </div>
-            <h5 th:each="storage : ${storages}" th:if="${storage.umb_count==0}" th:text="| 현재 ${storage.location}의 보유우산은 ${storage.umb_count}개 입니다 |" >현재우산현황</h5>
+            <p id="lent_condition"></p>
+            <!-- <h5 th:each="storage : ${storages}" th:if="${storage.umb_count==0}" th:text="| 현재 ${storage.location}의 보유우산은 ${storage.umb_count}개 입니다 |" >현재우산현황</h5> -->
             <!--            <h5 th:if="${storage[1].umb_count ==0 }"> 보유 우산이 없습니다.</h5>-->
             <div class="lent_date" >
                 <label>대여기간 선택</label>
                 <input id="days" type="number" min="1" max="30" value="1">일
             </div>
+            <p id="lent_date_result"></p>
         </div>
         <div class="lent_btn">
             <button type="button" id="btn-umb-rent" class="btn_submit" onclick="instance.test(days)" >대여하기</button>
@@ -57,5 +59,40 @@
             }
         }
     }
+
+    let rent_location = document.getElementById("location");
+    let rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
+
+    let result_rent_location = document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
+
+    const b = document.getElementById('location')
+    document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
+    b.addEventListener('change',changeLocation)
+
+    function changeLocation() {
+        rent_location = document.getElementById("location");
+        rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
+        document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
+        console.log( document.getElementById("location").options[document.getElementById("location").selectedIndex]);
+    }
+
+
+    // 밑에는 금액변동부분
+    var price = document.getElementById('days').value * 700; //맨 처음 선언 해주는 700원의 값 설정
+
+
+    let a = document.getElementById('days')
+    document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //초기 값
+    a.addEventListener('input', rental)
+
+
+    function rental() {
+        console.log(document.getElementById('days').value * 700);
+        price = document.getElementById('days').value * 700
+        document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //변해주는값
+    }
+
+
+
 </script>
 </html>

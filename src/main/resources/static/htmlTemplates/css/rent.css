@@ -137,6 +137,12 @@ body {
     border-radius: 20px;
 }
 
+.lent_condition {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 0 40px 0;
+}
+
 @media screen and (max-width: 500px) {
     .container_lent {
         width: 100%;
