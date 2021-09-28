@@ -57,5 +57,60 @@
             }
         }
     }
+    /*
+const rent_location = document.getElementById("location");
+const rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
+
+let result_rent_location = document.getElementById("lent_condition");
+result_rent_location.innerText = `현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`;
+  console.log(result_rent_location);
+  console.log(rent_location_select);
+  var price = document.getElementById('days').value * 700;
+ // console.log(price);
+
+  let result_rent_price = document.getElementById("lent_date_result");
+  result_rent_price.innerText = `대여비용은 ${price}원입니다.`;
+
+
+//function increase() {
+  //const price = document.getElementById("days").value
+  //console.log(price)
+  //console.log()
+// }
+//increase()
+*/
+
+    let rent_location = document.getElementById("location");
+    let rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
+
+    let result_rent_location = document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
+
+    const b = document.getElementById('location')
+    document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
+    b.addEventListener('change',changeLocation)
+
+    function changeLocation() {
+        rent_location = document.getElementById("location");
+        rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
+        document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
+        console.log( document.getElementById("location").options[document.getElementById("location").selectedIndex]);
+    }
+
+
+    // 밑에는 금액변동부분
+    var price = document.getElementById('days').value * 700; //맨 처음 선언 해주는 700원의 값 설정
+
+
+    let a = document.getElementById('days')
+    document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //초기 값
+    a.addEventListener('input', rental)
+
+
+    function rental() {
+        console.log(document.getElementById('days').value * 700);
+        price = document.getElementById('days').value * 700
+        document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //변해주는값
+    }
+
 </script>
 </html>
