@@ -61,7 +61,7 @@
     const b = document.getElementById('location')
 
 
-        document.getElementById("lent_condition").innerHTML = `우산 갯수 ☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
+        document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
 
     b.addEventListener('change',changeLocation)
     function changeLocation() {
@@ -69,15 +69,29 @@
         rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
         alert(storage[rent_location.selectedIndex].umb_count)
         if (storage[rent_location.selectedIndex].umb_count === 0) {
-            let a =document.getElementById("lent_condition").innerHTML = `우산 갯수 ☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
+            let a =document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
             document.getElementById("lent_condition").style.color="#FF0000";
         } else {
-            document.getElementById("lent_condition").innerHTML = `우산 갯수 ☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
+            document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
             document.getElementById("lent_condition").style.color="#000000";
         }
 
 
         console.log( document.getElementById("location").options[document.getElementById("location").selectedIndex]);
+    }
+
+    var price = document.getElementById('days').value * 700; //맨 처음 선언 해주는 700원의 값 설정
+
+
+    let a = document.getElementById('days')
+    document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //초기 값
+    a.addEventListener('input', rental)
+
+
+    function rental() {
+        console.log(document.getElementById('days').value * 700);
+        price = document.getElementById('days').value * 700
+        document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //변해주는값
     }
 
 
