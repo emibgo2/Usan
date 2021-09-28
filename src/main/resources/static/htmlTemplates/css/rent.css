@@ -137,7 +137,13 @@ body {
     border-radius: 20px;
 }
 
-.lent_condition {
+#lent_condition {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 0 40px 0;
+}
+
+#lent_date_result {
     font-size: 1rem;
     font-weight: bold;
     margin: 0 0 40px 0;
@@ -168,29 +174,5 @@ body {
         display: flex;
         justify-content: center;
         margin: 70px 0 40px;
-    }
-
-    .btn_submit {
-        margin-right: 10px;
-        width: 90px;
-        height: 35px;
-        background: white;
-        color: #3498db;
-        font-weight: 900;
-        font-family: 'Gowun Dodum', sans-serif;
-        font-size: 0.9rem;
-        border-radius: 20px;
-    }
-    
-    .btn_reset {
-        margin-left: 10px;
-        width: 90px;
-        height: 35px;
-        background: white;
-        color: #3498db;
-        font-weight: 900;
-        font-family: 'Gowun Dodum', sans-serif;
-        font-size: 0.9rem;
-        border-radius: 20px;
     }
 }

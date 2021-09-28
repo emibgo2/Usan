@@ -20,8 +20,8 @@ spring:
       prefix: /WEB-INF/views/
       suffix: .jsp
 
-
-
+## Git Ignore Test
+  ## Git Ignore Test## Git Ignore Test## Git Ignore Test## Git Ignore Test## Git Ignore Test
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

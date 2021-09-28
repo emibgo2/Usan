@@ -20,6 +20,20 @@ public class UserController {
         return "thymeleaf/home";
     }
 
+    @GetMapping("/agree")
+    public String agreeForm() {
+        return "thymeleaf/umbrella/agree";
+    }
+
+    @GetMapping("/rent/finish")
+    public String rentFinishForm() {
+        return "thymeleaf/umbrella/rent_finish";
+    }
+    @GetMapping("/joinForm")
+    public String joinForm() {
+        return "thymeleaf/umbrella/Join_Form";
+    }
+
     @GetMapping("/chaerin")
     public String test (Model model) {
         model.addAttribute("storages", storageService.sto_upload());

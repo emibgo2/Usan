@@ -55,12 +55,11 @@ let index={
                 alert("우산이 꽉 찼습니다 반납후 이용해주세요");
             } else  {
                 alert("우산 등록이 완료되었습니다.");
-                alert(resp.data);
                 // console.log(resp)
-                location.href="/umb/pay/complete";
+                location.href="/umb/rent/success";
             }
         }).fail(function (error) {
-            alert("Error ->"+JSON.stringify(error));
+            alert(id+"<- ID / Error ->"+JSON.stringify(error));
         });
     },
 
