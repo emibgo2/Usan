@@ -1,0 +1,52 @@
+body{
+    background-color:white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_area_double button{
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width:414px) {
+    .test {
+        width : 100% !important;
+        text-align: center;
+        top: -20% ;
+        text-align: center;
+        font-size: 80%;
+    }
+    .test span{
+        width: max-content;
+        text-align: center;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .test button{
+        background-color:#3498db;
+        color: white;
+        border-radius: 4px;
+        width: 35% !important;
+        height: 35% !important;
+        font-size: 85% !important;
+        font-weight: bold
+    }
+    .test p1{
+        font-size: 110% !important;
+    }
+    .test p2{
+        font-size: 120% !important;
+        font-weight: bold;
+    }
+    .test img{
+        width: 35% !important;
+        margin-bottom: 5%;
+
+    }
+
+}
