@@ -56,7 +56,7 @@ let index={
             } else  {
                 alert("우산 등록이 완료되었습니다.");
                 // console.log(resp)
-                location.href="/umb";
+                location.href="/umb/rent/success";
             }
         }).fail(function (error) {
             alert(id+"<- ID / Error ->"+JSON.stringify(error));

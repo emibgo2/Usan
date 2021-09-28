@@ -20,8 +20,8 @@ spring:
       prefix: /WEB-INF/views/
       suffix: .jsp
 
-
-
+## Git Ignore Test
+  ## Git Ignore Test## Git Ignore Test## Git Ignore Test## Git Ignore Test## Git Ignore Test
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -32,7 +32,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false

@@ -4,51 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-
-    <script th:src="@{../js/umbrella.js}"></script>
-    <link rel="stylesheet"
-          th:href="@{../htmlTemplates/css/rent.css}"
-          href="assets/css/lent.css" />
+    <link th:href="@{../htmlTemplates/css/rent.css}" rel="stylesheet" href="../../../static/htmlTemplates/css/rent.css">
     <title>USAN</title>
 </head>
 <body>
-<div class="container_lent" id="main">
+<div class="container_lent">
     <div class="lent">
         <h1>대여하기</h1>
-        <h3>사용자 ID : <span sec:authentication="principal.user.username" ></span></h3>
+        <h3>사용자 ID : 두근두근</h3>
     </div>
-    <form class="lent_form"  >
+    <form class="lent_form">
         <div class="lent_choice">
             <div class="lent_location">
-                <label for="locations">보관소 위치 선택</label>
-<!--                <h5 th:if="${storage[0].umb_count ==0}"> 보유 우산이 없습니다.</h5>-->
-                 <select id="locations" >
-                    <option th:each="storage : ${storages}" th:value="${storage.location}" th:utext="${storage.location}">LOCATION</option>
+                <label for="location">보관소 위치 선택</label>
+                <select id="location">
+                    <option id="ptu" value="Pyeongtaek_uni" selected >평택대</option>
+                    <option id="psb" value="Pyeongtaek_station">평택역</option>
                 </select>
             </div>
-                <h5 th:each="storage : ${storages}" th:if="${storage.umb_count==0}" th:text="| 현재 ${storage.location}의 보유우산은 ${storage.umb_count}개 입니다 |" >현재우산현황</h5>
-<!--            <h5 th:if="${storage[1].umb_count ==0 }"> 보유 우산이 없습니다.</h5>-->
-            <div class="lent_date" >
+            <div id="lent_condition">
+
+            </div>
+            <div class="lent_date">
                 <label>대여기간 선택</label>
                 <input id="days" type="number" min="1" max="30" value="1">일
             </div>
+            <p id="lent_date_result"></p>
         </div>
         <div class="lent_btn">
-            <button type="button" id="btn-umb-rent" class="btn_submit" onclick="instance.test(days)" >대여하기</button>
+            <button type="submit" class="btn_submit">대여하기</button>
             <button type="reset" class="btn_reset">취소하기</button>
         </div>
     </form>
+
 </div>
-</body>
-<script>
+
+<script th:inline="javascript">
     let instance={
-         test:function(){
-             const days = document.getElementById('days').value
+        test:function(){
+            const days = document.getElementById('days').value
             const location = document.getElementById('locations').value
             if (confirm(location+"지점에서 "+days+"일 동안 대여하시겠습니까?")) {
                 index.rent(location,days)
@@ -57,60 +51,37 @@
             }
         }
     }
-    /*
-const rent_location = document.getElementById("location");
-const rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
-
-let result_rent_location = document.getElementById("lent_condition");
-result_rent_location.innerText = `현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`;
-  console.log(result_rent_location);
-  console.log(rent_location_select);
-  var price = document.getElementById('days').value * 700;
- // console.log(price);
-
-  let result_rent_price = document.getElementById("lent_date_result");
-  result_rent_price.innerText = `대여비용은 ${price}원입니다.`;
-
-
-//function increase() {
-  //const price = document.getElementById("days").value
-  //console.log(price)
-  //console.log()
-// }
-//increase()
-*/
-
+    let storage= [[${storages}]]
     let rent_location = document.getElementById("location");
     let rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
 
-    let result_rent_location = document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
+
+    // let result_rent_location =  document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
 
     const b = document.getElementById('location')
-    document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
-    b.addEventListener('change',changeLocation)
 
+
+        document.getElementById("lent_condition").innerHTML = `우산 갯수 ☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
+
+    b.addEventListener('change',changeLocation)
     function changeLocation() {
         rent_location = document.getElementById("location");
         rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
-        document.getElementById("lent_condition").innerHTML=`현재 ${rent_location_select}의 우산 잔여 갯수는 0개 입니다.`
+        alert(storage[rent_location.selectedIndex].umb_count)
+        if (storage[rent_location.selectedIndex].umb_count === 0) {
+            let a =document.getElementById("lent_condition").innerHTML = `우산 갯수 ☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
+            document.getElementById("lent_condition").style.color="#FF0000";
+        } else {
+            document.getElementById("lent_condition").innerHTML = `우산 갯수 ☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
+            document.getElementById("lent_condition").style.color="#000000";
+        }
+
+
         console.log( document.getElementById("location").options[document.getElementById("location").selectedIndex]);
     }
 
 
-    // 밑에는 금액변동부분
-    var price = document.getElementById('days').value * 700; //맨 처음 선언 해주는 700원의 값 설정
-
-
-    let a = document.getElementById('days')
-    document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //초기 값
-    a.addEventListener('input', rental)
-
-
-    function rental() {
-        console.log(document.getElementById('days').value * 700);
-        price = document.getElementById('days').value * 700
-        document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //변해주는값
-    }
-
 </script>
+
+</body>
 </html>

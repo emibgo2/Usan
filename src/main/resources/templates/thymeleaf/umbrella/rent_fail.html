@@ -1,4 +1,4 @@
-<html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
 <head>
     <title>USAN</title>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
     <link rel="stylesheet"
           th:href="@{../htmlTemplates/css/rent_fail.css}"
-          href="assets/css/rent_fail.css" />
+          href="../../../static/htmlTemplates/css/rent_fail.css" />
 
     <style>
         a{
@@ -50,9 +50,10 @@
 
 <div class="test"  >
     <img src="https://imgur.com/38uo44E.png" alt="" style="margin-top:auto"><br>
-    <p1><p style="font-weight: bold; color:black; font-size: 200%; margin-top: 10px; margin-bottom: 10px;">ERROR</p></p1>
-    <p2><p style="color: #000000; ">서비스 이용에 불편을 드려 죄송합니다.</p></p2>
-    <button type="button" style="background-color:#3498db;  border: 3px solid #3498db; margin:10px 15px 50px;">메인으로 이동</button>
+    <p1><p style="font-weight: bold; color:black; font-size: 200%; margin-top: 10px; margin-bottom: 10px;">대여에<br><span style="color: red; font-weight: bold ">실패<span style="color:black; font-weight: bold ">하였습니다.</span></span></p></p1>
+    <p2><p style="color: #3498db; ">일시적인 오류로 잠시 후 재결제 시도</p></p2>
+    <button type="button" onclick="alert('재결제')" style="background-color:#3498db;  border: 3px solid #3498db; margin:10px 15px 50px;">재결제하기</button>
+    <button type="button" onclick="alert('HOME')" style="background-color: #FAFAFA; border: 3px solid rgba(0, 0, 0, 0.1); color:black;">메인페이지가기</button>
 </div>
 </body>
 </html>
