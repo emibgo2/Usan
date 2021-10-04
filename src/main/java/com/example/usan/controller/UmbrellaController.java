@@ -147,12 +147,12 @@ public class UmbrellaController {
 
     @GetMapping("/chaerin/fail")
     public String rent_fail() {
-        return "thymeleaf/umbrella/rent_fail";
+        return "thymeleaf/chaerin/rent_fail";
     }
 
     @GetMapping("/chaerin/finish")
     public String rent_Finish() {
-        return "thymeleaf/umbrella/rent_finish";
+        return "thymeleaf/chaerin/rent_finish";
     }
 
 }
