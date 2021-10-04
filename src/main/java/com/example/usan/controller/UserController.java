@@ -46,5 +46,9 @@ public class UserController {
     @GetMapping("/auth/loginForm")
     public String loginForm() { return "thymeleaf/user/login"; }
 
+    @GetMapping("/user/agree")
+    public String agree() { return "thymeleaf/umbrella/agree";}
+
+
 
 }
