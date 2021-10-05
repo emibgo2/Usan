@@ -7,16 +7,14 @@
 <html  xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-		<title>USAN</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet"
-			  th:href="@{../htmlTemplates/css/main.css}"
-			  href="../../../static/htmlTempaltes/css/main.css" />
-	</head>
-	<body>
-
-
+	<title>USAN</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet"
+		  th:href="@{../htmlTemplates/css/main.css}"
+		  href="../../static/htmlTemplates/css/main.css" />
+</head>
+<body>
 
 		<!-- Header -->
 			<header id="header" class="alt">
@@ -59,53 +57,53 @@
 		<!-- Main -->
 			<div id="main">
 
-				<!-- Section -->
-				<section class="wrapper style2">
-					<div class="inner">
-						<div class="flex flex-2">
-							<div class="col col2">
-								<h3>대여하기</h3>
-									<div class="lent-text1">
-										<p>자꾸만 늘어나는 우산 소비는 이제 그만!</p>
-										<p>하루 1500원으로 내 우산처럼 편하게 사용하세요!</p>
-									</div>
-									<div class="lent-text2">
-										<p>* 대여시간으로부터 24시간 경과 후 추가요금 발생</p>
-										<p class="lent-text2-p">자세한 내용은 이용 안내 페이지 참고</p>
-									</div>
-								<a href="/umb/mappingForm" class="button">대여하기</a>
-							</div>
-							<div class="col col1 first">
-								<div class="image round fit">
-									<img th:src="@{../htmlTemplates/images/우산.jpg}" src="images/우산.jpg" alt="" />
-								</div>
-							</div>
-						</div>
+	<!-- Section -->
+	<section class="wrapper style2">
+		<div class="inner">
+			<div class="flex flex-2">
+				<div class="col col2">
+					<h3>대여하기</h3>
+					<div class="lent-text1">
+						<p>자꾸만 늘어나는 우산 소비는 이제 그만!</p>
+						<p>하루 1500원으로 내 우산처럼 편하게 사용하세요!</p>
 					</div>
-				</section>
+					<div class="lent-text2">
+						<p>* 대여시간으로부터 24시간 경과 후 추가요금 발생</p>
+						<p class="lent-text2-p">자세한 내용은 이용 안내 페이지 참고</p>
+					</div>
+					<a href="/umb/rent" class="button">대여하기</a>
+				</div>
+				<div class="col col1 first">
+					<div class="image round fit">
+						<img th:src="@{../htmlTemplates/images/우산.jpg}" src="../../static/htmlTemplates/images/우산.jpg" alt="" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-				<!-- Section -->
-					<section class="wrapper style1">
-						<div class="inner">
-							<!-- 2 Columns -->
-								<div class="flex flex-2">
-									<div class="col col1">
-										<div class="image round fit">
-											<img th:src="@{../htmlTemplates/images/pic01.jpg}" src="images/pic01.jpg" alt="" />
-										</div>
-									</div>
-									<div class="col col2">
-										<h3>대여 방법</h3>
-										<ol class="lent_way">
-											<li>보관함에 있는 QR코드를 인식하세요.</li>
-											<li>사이트에 접속하여 로그인 후 대여하기 버튼을 눌러주세요.</li>
-											<li>이후 안내에 따라 대여를 진행해주세요.</li>
-											<li>대여완료 후 우산을 레일 방향에 따라 꺼내주세요.</li>
-										</ol>
-									</div>
-								</div>
-						</div>
-					</section>
+	<!-- Section -->
+	<section class="wrapper style1">
+		<div class="inner">
+			<!-- 2 Columns -->
+			<div class="flex flex-2">
+				<div class="col col1">
+					<div class="image round fit">
+						<img th:src="@{../htmlTemplates/images/pic01.jpg}" src="../../static/htmlTemplates/images/pic01.jpg" alt="" />
+					</div>
+				</div>
+				<div class="col col2">
+					<h3>대여 방법</h3>
+					<ol class="lent_way">
+						<li>보관함에 있는 QR코드를 인식하세요.</li>
+						<li>사이트에 접속하여 로그인 후 대여하기 버튼을 눌러주세요.</li>
+						<li>이후 안내에 따라 대여를 진행해주세요.</li>
+						<li>대여완료 후 우산을 레일 방향에 따라 꺼내주세요.</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
 
 				<!-- Section -->
 					<section class="wrapper style2">
@@ -158,13 +156,13 @@
 				</div>
 			</footer>
 
-		<!-- Scripts -->
-			<script th:src="@{../htmlTemplates/js/jquery.min.js} "src="../../../static/htmlTempaltes../js/jquery.min.js"></script>
-			<script th:src="@{../htmlTemplates/js/jquery.scrolly.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrolly.min.js"></script>
-			<script th:src="@{../htmlTemplates/js/jquery.scrollex.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrollex.min.js"></script>
-			<script th:src="@{../htmlTemplates/js/skel.min.js} "src="../../../static/htmlTempaltes../js/skel.min.js"></script>
-			<script th:src="@{../htmlTemplates/js/util.js} "src="../../../static/htmlTempaltes../js/util.js"></script>
-			<script th:src="@{../htmlTemplates/js/main.js} "src="../../../static/htmlTempaltes../js/main.js"></script>
+<!-- Scripts -->
+<script th:src="@{../htmlTemplates/js/jquery.min.js}" src="../../static/htmlTemplates/js/jquery.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrolly.min.js}" src="../../static/htmlTemplates/js/jquery.scrolly.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrollex.min.js}" src="../../static/htmlTemplates/js/jquery.scrollex.min.js"></script>
+<script th:src="@{../htmlTemplates/js/skel.min.js}"src="../../static/htmlTemplates/js/skel.min.js"></script>
+<script th:src="@{../htmlTemplates/js/util.js}"src="../../static/htmlTemplates/js/util.js"></script>
+<script th:src="@{../htmlTemplates/js/main.js}"src="../../static/htmlTemplates/js/main.js"></script>
 
 	</body>
 </html>

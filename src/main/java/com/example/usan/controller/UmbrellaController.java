@@ -97,6 +97,7 @@ public class UmbrellaController {
     /**
      * d테스트용 메소드 위에 GetMapping과 변경할 예정
      */
+
     @GetMapping("/rent")
     public String viewTest(Model model) {
         System.out.println("??");
@@ -143,6 +144,16 @@ public class UmbrellaController {
         return "umbrella/umb_Fault_List";
     }
 
+
+    @GetMapping("/chaerin/fail")
+    public String rent_fail() {
+        return "thymeleaf/chaerin/rent_fail";
+    }
+
+    @GetMapping("/chaerin/finish")
+    public String rent_Finish() {
+        return "thymeleaf/chaerin/rent_finish";
+    }
 
 }
 
