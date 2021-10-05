@@ -25,6 +25,8 @@ public class UserController {
         return "thymeleaf/umbrella/agree";
     }
 
+
+
     @GetMapping("/rent/finish")
     public String rentFinishForm() {
         return "thymeleaf/umbrella/rent_finish";
