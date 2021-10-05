@@ -22,16 +22,19 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-
 ## Git Ignore Test
   ## Git Ignore Test## Git Ignore Test## Git Ignore Test## Git Ignore Test## Git Ignore Test
-
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+#    헤로쿠 업로드전에 주석 풀것
     url: jdbc:mysql://oixnlxcsen5ss4y9:auwesrf7bwx4451g@g84t6zfpijzwx08q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/rcwj9z70lqgs7i0v
     username: oixnlxcsen5ss4y9
     password: auwesrf7bwx4451g
-  #    url: jdbc:mysql://localhost:3306/usan?serverTimezone=Asia/Seoul
+
+#    # 테스트시 데이터베이스 설정
+#    url: jdbc:mysql://localhost:3306/usan?serverTimezone=Asia/Seoul
 #    username: usan
 #    password: dgdg1234
 

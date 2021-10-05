@@ -1,6 +1,5 @@
 package com.example.usan.config;
 
-import com.example.usan.config.auth.PrincipalDetail;
 import com.example.usan.config.auth.PrincipalDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -55,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
         http
                 .csrf().disable() // csrf 토큰 비활성화
                 .authorizeRequests()
-                    .antMatchers("/","/board/**","/htmlTemplates/**","/auth/**","/js/**","/css/**","/image/**")
+                    .antMatchers("/","/storage/arduino/**","/board/**","/htmlTemplates/**","/auth/**","/js/**","/css/**","/image/**")
                     .permitAll()
                     .mvcMatchers("**/admin").hasRole("ADMIN")
                     .anyRequest()

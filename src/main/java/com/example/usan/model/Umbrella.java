@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Builder
@@ -44,13 +43,10 @@ public class Umbrella {
     @ManyToOne
     @JoinColumn(name = "storageId")
     private Storage storage;
-
-//    추후 작업
-//    @Column
-//    private int 우산일련번호;
 //
-//    @Column
-//    private String 우산_RFID_코드_값;
+    @Column
+    @NotNull(message = "RFID 값은 필수 입니다.")
+    private String valueOfRFID;
 
     @Override
     public String toString() {

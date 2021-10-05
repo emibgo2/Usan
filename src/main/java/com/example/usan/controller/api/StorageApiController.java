@@ -1,11 +1,16 @@
 package com.example.usan.controller.api;
 
+import com.example.usan.controller.UmbrellaController;
 import com.example.usan.dto.ResponseDto;
-import com.example.usan.model.Board;
 import com.example.usan.model.Storage;
+import com.example.usan.model.Umbrella;
+import com.example.usan.model.User;
 import com.example.usan.repository.StorageRepository;
+import com.example.usan.repository.UmbrellaRepository;
+import com.example.usan.repository.UserRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
+import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,6 +20,7 @@ import javax.annotation.PostConstruct;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -23,9 +29,12 @@ import java.util.List;
 public class StorageApiController {
 
     private StorageService storageService;
+    private UserService userService;
     private UmbrellaService umbrellaService;
     private StorageRepository storageRepository;
-
+    private UserRepository userRepository;
+    private UmbrellaRepository umbrellaRepository;
+    private static User rentUser;
     @GetMapping(value = "/list")
     public List<Storage> joinUmbrella() {
         List<Storage> storages = storageService.sto_upload();
@@ -33,6 +42,57 @@ public class StorageApiController {
         // DB 내의 모든 Storage를 추합하여 전송
     }
 
+    @PostMapping("arduino/payNumber")
+    public ResponseDto findPayNumber(@RequestBody Map<String,Integer> requestNumber) {
+//        System.out.println("payNumber = " + requestNumber);
+//        String payNumber = requestNumber.replaceAll("[^0-9]", "");
+//        System.out.println("payNumber = " + payNumber.length());
+//        if (payNumber.length() != 4) {
+//
+//        }
+//        int findNumber = Integer.parseInt(payNumber);
+//        System.out.println(payNumber);
+//        문자열 버전
+//        인트 버전
+        Integer payNumber = requestNumber.get("payNumber");
+        if (String.valueOf(payNumber).length() != 4) {
+            return new ResponseDto(HttpStatus.BAD_REQUEST.value(), payNumber);
+        }
+        User user = userRepository.findByPayNumber(payNumber).orElseThrow(() -> {
+            return new IllegalArgumentException("해당 PayNumber를 갖고잇는 유저가 없습니다");
+        });
+        log.info("Rent request User ={}", user);
+        rentUser = user;
+
+        return new ResponseDto(HttpStatus.OK.value(), 1);
+    }
+    @PostMapping("arduino/rfid")
+    public ResponseDto findUmbrella(@RequestBody Map<String,String> requestNumber) {
+//        System.out.println("payNumber = " + requestNumber);
+//        String payNumber = requestNumber.replaceAll("[^0-9]", "");
+//        System.out.println("payNumber = " + payNumber.length());
+//        if (payNumber.length() != 4) {
+//            return new ResponseDto(HttpStatus.BAD_REQUEST.value(), payNumber);
+//        }
+//        int findNumber = Integer.parseInt(payNumber);
+//        System.out.println(payNumber);
+//        문자열 버전
+//        인트 버전
+        String valueOfRFID = requestNumber.get("RFID value");
+        if (valueOfRFID.length() != 8) {
+            return new ResponseDto(HttpStatus.BAD_REQUEST.value(), valueOfRFID);
+
+        }
+        Umbrella umbrella = umbrellaRepository.findByValueOfRFID(valueOfRFID).orElseThrow(() -> {
+            return new IllegalArgumentException("해당 RFID 값을 가진 우산을 찾을 수 없습니다.");
+        });
+        log.info("Rent Umbrella ={}", umbrella);
+        System.out.println(rentUser);
+        userService.mappingUmbrella(umbrella.getId(), rentUser, UmbrellaController.result);
+        System.out.println("payNumber = " + valueOfRFID);
+
+        return new ResponseDto(HttpStatus.OK.value(), 1);
+    }
     @PostMapping("/joinProc")
     public ResponseDto<Integer> storage_save(@RequestBody Storage storage) {
         storageService.storage_save(storage);

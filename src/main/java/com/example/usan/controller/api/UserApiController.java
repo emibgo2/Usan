@@ -7,16 +7,12 @@ import com.example.usan.repository.UserRepository;
 import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Optional;
 @Slf4j
 @RestController
 @AllArgsConstructor
@@ -25,6 +21,15 @@ public class UserApiController {
 
     private UserService userService;
     private UserRepository userRepository;
+
+    @GetMapping("/{userId}")
+    public ResponseDto getUser(@PathVariable Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> {
+            return new IllegalArgumentException("해당 유저는 없습니다.");
+        });
+        return new ResponseDto<User>(HttpStatus.OK.value(), user);
+
+    }
 
     @PostMapping("/id/check")
     public ResponseDto<Integer> idCheck(@RequestBody User user) {

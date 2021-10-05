@@ -2,8 +2,6 @@ package com.example.usan.repository;
 
 import com.example.usan.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
@@ -11,6 +9,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // SELECT * FROM user WHERE username = 1?;
     Optional<User> findByUsername(String username);
 
+    Optional<User> findByPayNumber(int payNumber);
     // SELECT * FROM user WHERE username = 1?;
     // findBy = SELECT * FROM user <- Optinal findBy/Username -> WHERE username
 //    Optional<User> findByUsername(String username);

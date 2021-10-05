@@ -1,7 +1,6 @@
 package com.example.usan.service;
 
 import com.example.usan.model.RoleType;
-import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
 import com.example.usan.repository.UmbrellaRepository;
@@ -13,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 
 @Service
 @Slf4j
@@ -100,14 +97,15 @@ public class UserService {
         User user= userRepository.findById(requestUser.getId()).orElseGet(() -> {
             return new User();
         });
-        if (user.getUmbrella_Id1() == 0) {
+        System.out.println("user = " + user);
+        if (user.getUmbrella_Id1() == null||user.getUmbrella_Id1() == 0  ) {
             user.setUmbrella_Id1(umbrella.getId());
             umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now())); // 빌린 당시의 날을 저장
             umbrella.setRent_end_date(Timestamp.valueOf(LocalDateTime.now().plusDays(rentPeriod)));
             // 반납 날짜 =빌린 당시의 날(Rent_date) + 사용자가 지정한 대여 일 수(rentPeriod)
             umbrella.setUser_id(requestUser.getId());
             umbrella.setUse_count(umbrella.getUse_count()+1);
-        } else if (user.getUmbrella_Id1() != 0 && user.getUmbrella_Id2() == 0) {
+        } else if ((user.getUmbrella_Id1() == null||user.getUmbrella_Id1() != 0)  && (user.getUmbrella_Id2() == null||user.getUmbrella_Id2() == 0 )) {
             user.setUmbrella_Id2(umbrella.getId());
             umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now()));
             umbrella.setRent_end_date(Timestamp.valueOf(LocalDateTime.now().plusDays(rentPeriod)));

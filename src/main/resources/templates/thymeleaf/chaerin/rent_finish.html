@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="ko", xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@
         <h1>대여가<br>완료되었습니다.</h1>
     </div>
     <div class="pw">
-        <h2>비밀번호 : 0000</h2>
+        <h2 th:text="|비밀번호: ${payNumber}|" >비밀번호 : 0000</h2>
         <p>비밀번호를 우산 보관소에 입력하여<br>우산을 가져가세요</p>
     </div>
     <button type="button" onClick="location.href='#'" class="btn">대여내역 보러가기</button>
