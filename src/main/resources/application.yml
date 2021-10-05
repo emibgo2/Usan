@@ -1,7 +1,5 @@
 server:
   port: ${PORT:5000}
-  profiles:
-    active: default
   servlet:
     context-path: /
     encoding:
