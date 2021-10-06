@@ -8,6 +8,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
@@ -23,6 +25,13 @@ public class UserController {
     @GetMapping("/agree")
     public String agreeForm() {
         return "thymeleaf/umbrella/agree";
+    }
+
+    @PostMapping("/test")
+    @ResponseBody
+    public String connectionTest(String a) {
+        System.out.println("requestValue = " + a);
+        return "ok";
     }
 
 
