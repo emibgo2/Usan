@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -31,7 +32,7 @@ public class UserController {
 
     @PostMapping("/test")
     @ResponseBody
-    public ResponseDto connectionTest(String a) {
+    public ResponseDto connectionTest(@RequestBody String a) {
         System.out.println("requestValue = " + a);
         return new ResponseDto<String>(HttpStatus.OK.value(), "ok");
 
