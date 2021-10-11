@@ -34,7 +34,7 @@ public class UserController {
     @ResponseBody
     public ResponseDto connectionTest(@RequestBody String a) {
         System.out.println("requestValue = " + a);
-        return new ResponseDto<String>(HttpStatus.OK.value(), "ok");
+        return new ResponseDto<String>(HttpStatus.OK.value(), a);
 
     }
 

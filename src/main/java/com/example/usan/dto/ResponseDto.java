@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ResponseDto <T>{
     int httpResponseCode ;
-    T data;
+    T response ;
 }
