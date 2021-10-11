@@ -66,19 +66,9 @@ public class StorageApiController {
 
         return new ResponseDto(HttpStatus.OK.value(), 1);
     }
-    @PostMapping("arduino/rfid")
-    public ResponseDto findUmbrella(@RequestBody Map<String,String> requestNumber) {
-//        System.out.println("payNumber = " + requestNumber);
-//        String payNumber = requestNumber.replaceAll("[^0-9]", "");
-//        System.out.println("payNumber = " + payNumber.length());
-//        if (payNumber.length() != 4) {
-//            return new ResponseDto(HttpStatus.BAD_REQUEST.value(), payNumber);
-//        }
-//        int findNumber = Integer.parseInt(payNumber);
-//        System.out.println(payNumber);
-//        문자열 버전
-//        인트 버전
-        String valueOfRFID = requestNumber.get("RFID value");
+    @PostMapping("/arduino/rfid")
+    public ResponseDto findUmbrella(@RequestBody String valueOfRFID) {
+
         if (valueOfRFID.length() != 8) {
             return new ResponseDto(HttpStatus.BAD_REQUEST.value(), valueOfRFID);
 
