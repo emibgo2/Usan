@@ -2,8 +2,10 @@ package com.example.usan.controller;
 
 
 import com.example.usan.config.auth.PrincipalDetail;
+import com.example.usan.dto.ResponseDto;
 import com.example.usan.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +31,10 @@ public class UserController {
 
     @PostMapping("/test")
     @ResponseBody
-    public String connectionTest(String a) {
+    public ResponseDto connectionTest(String a) {
         System.out.println("requestValue = " + a);
-        return "ok";
+        return new ResponseDto<String>(HttpStatus.OK.value(), "ok");
+
     }
 
 
