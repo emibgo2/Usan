@@ -33,10 +33,10 @@ spring:
     username: kgq16m6qy4ls0fsp
     password: xgl11yxnup6f3xr7
 
-    #    # 테스트시 데이터베이스 설정k
-   # url: jdbc:mysql://localhost:3306/usan?serverTimezone=Asia/Seoul
-   # username: usan
-   # password: dgdg1234
+        # 테스트시 데이터베이스 설정k
+#    url: jdbc:mysql://localhost:3306/usan?serverTimezone=Asia/Seoul
+#    username: usan
+#    password: dgdg1234
 
   jpa:
     open-in-view: true
