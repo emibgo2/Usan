@@ -1,17 +1,13 @@
 package com.example.usan.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
 
 
 @Data
@@ -67,6 +63,12 @@ public class User {
 
     @CreationTimestamp
     private Timestamp createDate;
+//
+//    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE) // mappedBy가 적혀잇으면 연관관계의 주인이 아니다( FK가 아니다) , DB에 컬럼을 만들지 마세요
+//    @JsonIgnoreProperties({"user"})
+//    @OrderBy("id asc")
+//    @Column(nullable = true)
+//    private List<Order> orderList;
 
 
     public User(String username, String nickName, String password, String email, String phoneNumber, RoleType role) {

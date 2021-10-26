@@ -83,6 +83,7 @@ public class StorageApiController {
 
         return new ResponseDto(HttpStatus.OK.value(), 1);
     }
+
     @PostMapping("/joinProc")
     public ResponseDto<Integer> storage_save(@RequestBody Storage storage) {
         storageService.storage_save(storage);

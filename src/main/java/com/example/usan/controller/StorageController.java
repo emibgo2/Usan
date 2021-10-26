@@ -29,7 +29,7 @@ public class StorageController {
 
         if (RoleType.ADMIN == principal.getUser().getRole()) {
             return "storage/storage_joinForm";
-        } else return "앙대요";
+        } else return "안댐";
     }
 
     @GetMapping("/mappingForm/admin")
