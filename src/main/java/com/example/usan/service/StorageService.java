@@ -27,7 +27,8 @@ public class StorageService {
     }
     @Transactional(readOnly = true)
     public Storage sto_detail(Long id){
-
+        System.out.println("StorageService.sto_detail");
+        System.out.println("id = " + id);
         return storageRepository.findById(id)
                 .orElseThrow(() -> {
                     return new IllegalArgumentException("보관소를 찾을 수 없습니다.");
