@@ -63,7 +63,7 @@ public class StorageApiController {
     }
 
     @PostMapping("arduino/payNumber")
-    public Integer findPayNumber(@RequestBody Map<String, Integer> requestNumber) {
+    public Integer findPayNumber(@RequestBody Integer payNumber) {
 //        System.out.println("payNumber = " + requestNumber);
 //        String payNumber = requestNumber.replaceAll("[^0-9]", "");
 //        System.out.println("payNumber = " + payNumber.length());
@@ -76,7 +76,6 @@ public class StorageApiController {
 //        인트 버전
 
         //
-        Integer payNumber = requestNumber.get("payNumber");
         if (String.valueOf(payNumber).length() != 4) {
             return HttpStatus.BAD_REQUEST.value();
         }
