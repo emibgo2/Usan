@@ -35,6 +35,7 @@ public class StorageApiController {
     private UserRepository userRepository;
     private UmbrellaRepository umbrellaRepository;
     private static User rentUser;
+    private static Umbrella rentUmbrella;
 
     @GetMapping(value = "/list")
     public List<Storage> joinUmbrella() {
@@ -43,8 +44,26 @@ public class StorageApiController {
         // DB 내의 모든 Storage를 추합하여 전송
     }
 
+    @PostMapping("/arduino/rfid")
+    public Integer findUmbrella(@RequestBody String valueOfRFID) {
+
+        if (valueOfRFID.length() != 8) {
+            return HttpStatus.BAD_REQUEST.value();
+        }
+
+        Umbrella umbrella = umbrellaRepository.findByValueOfRFID(valueOfRFID).orElseThrow(() -> {
+            return new IllegalArgumentException("해당 RFID 값을 가진 우산을 찾을 수 없습니다.");
+        });
+
+        log.info("Rent Umbrella ={}", umbrella);
+        rentUmbrella = umbrella;
+        System.out.println("payNumber = " + valueOfRFID);
+
+        return HttpStatus.OK.value();
+    }
+
     @PostMapping("arduino/payNumber")
-    public ResponseDto findPayNumber(@RequestBody Map<String, Integer> requestNumber) {
+    public Integer findPayNumber(@RequestBody Map<String, Integer> requestNumber) {
 //        System.out.println("payNumber = " + requestNumber);
 //        String payNumber = requestNumber.replaceAll("[^0-9]", "");
 //        System.out.println("payNumber = " + payNumber.length());
@@ -55,36 +74,22 @@ public class StorageApiController {
 //        System.out.println(payNumber);
 //        문자열 버전
 //        인트 버전
+
+        //
         Integer payNumber = requestNumber.get("payNumber");
         if (String.valueOf(payNumber).length() != 4) {
-            return new ResponseDto(HttpStatus.BAD_REQUEST.value(), payNumber);
+            return HttpStatus.BAD_REQUEST.value();
         }
         User user = userRepository.findByPayNumber(payNumber).orElseThrow(() -> {
             return new IllegalArgumentException("해당 PayNumber를 갖고잇는 유저가 없습니다");
         });
+        userService.mappingUmbrella(rentUmbrella.getId(), user, UmbrellaController.result);
+
         log.info("Rent request User ={}", user);
-        rentUser = user;
-
-        return new ResponseDto(HttpStatus.OK.value(), 1);
+        return HttpStatus.OK.value();
     }
 
-    @PostMapping("/arduino/rfid")
-    public ResponseDto findUmbrella(@RequestBody String valueOfRFID) {
 
-        if (valueOfRFID.length() != 8) {
-            return new ResponseDto(HttpStatus.BAD_REQUEST.value(), valueOfRFID);
-
-        }
-        Umbrella umbrella = umbrellaRepository.findByValueOfRFID(valueOfRFID).orElseThrow(() -> {
-            return new IllegalArgumentException("해당 RFID 값을 가진 우산을 찾을 수 없습니다.");
-        });
-        log.info("Rent Umbrella ={}", umbrella);
-        System.out.println(rentUser);
-        userService.mappingUmbrella(umbrella.getId(), rentUser, UmbrellaController.result);
-        System.out.println("payNumber = " + valueOfRFID);
-
-        return new ResponseDto(HttpStatus.OK.value(), 1);
-    }
 
     @PostMapping("/joinProc")
     public ResponseDto<Integer> storage_save(@RequestBody Storage storage) {

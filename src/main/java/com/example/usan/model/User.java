@@ -71,14 +71,9 @@ public class User {
 
     @CreationTimestamp
     private Timestamp createDate;
-//
-//    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE) // mappedBy가 적혀잇으면 연관관계의 주인이 아니다( FK가 아니다) , DB에 컬럼을 만들지 마세요
-//    @JsonIgnoreProperties({"user"})
-//    @OrderBy("id asc")
-//    @Column(nullable = true)
-//    private List<Order> orderList;
 
     // Order.class 관련
+
 //    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE) // mappedBy가 적혀잇으면 연관관계의 주인이 아니다( FK가 아니다) , DB에 컬럼을 만들지 마세요
 //    @JsonIgnoreProperties({"user"})
 //    @OrderBy("id desc ")
