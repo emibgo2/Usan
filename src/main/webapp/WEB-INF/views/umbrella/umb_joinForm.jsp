@@ -10,7 +10,7 @@ pageEncoding="UTF-8" %>
                 $.ajax({ type: "GET", url: "/umb/joinForm", success: (data) => { console.log(data); } });
             </script>
             <c:forEach var="storages" items="${storage}">
-                <button class="btn btn-success" type="button" onclick="location.href='http://localhost:8080/storage/${storages.id}'"> ${storages.id}번 보관소</button>
+                <button class="btn btn-success" type="button" onclick="location.href='http://localhost:5000/storage/${storages.id}'"> ${storages.id}번 보관소</button>
             </c:forEach>
             <br>
             <label for="umb_id">우산 일련번호</label>

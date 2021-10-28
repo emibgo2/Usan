@@ -1,33 +1,75 @@
 package com.example.usan.controller;
 
+import com.example.usan.config.auth.PrincipalDetail;
+import com.example.usan.controller.api.UmbrellaApiController;
+import com.example.usan.dto.ResponseDto;
 import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
 import com.example.usan.repository.UserRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
+import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+@Slf4j
 @Controller
 @RequestMapping("/umb")
 @AllArgsConstructor
 public class UmbrellaController {
 
     private UmbrellaService umbrellaService;
+    private UserService userService;
     private StorageService storageService;
     private UserRepository userRepository;
+    public static Integer result ;
 
-    @GetMapping
+
+    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
+    @ResponseBody
+    public ResponseDto<Integer> rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
+        System.out.println("UmbrellaController.rent");
+        System.out.println("location = " + location);
+        System.out.println("days = " + days);
+        Random random = new Random();
+        int i = random.nextInt(UmbrellaApiController.myUUID.size());
+        Integer remove = UmbrellaApiController.myUUID.remove(i);
+        log.info("Rent User = {}" ,userService.userPayNumber(principal.getUser().getId(), remove));
+        System.out.println("principal!?? "+principal.getUser());
+        result = days;
+        // DB안에 있는 Umbrella를 추합하여 전송
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
+    public void test( HttpServletRequest request) {
+
+        Random random = new Random();
+        int i = random.nextInt(UmbrellaApiController.myUUID.size());
+        Integer remove = UmbrellaApiController.myUUID.remove(i);
+
+        // 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
+        HttpSession session = request.getSession();
+        // 세션에 로그인 회원 정보 보관
+        session.setAttribute("payNumber", remove);
+        System.out.println(remove);
+
+    }
+
+    @GetMapping("/pay/complete")
     public String home() {
-        return "thymeleaf/umbrella/test";
+        return "thymeleaf/umbrella/payComplete";
     }
 
     @GetMapping(value = "/home")
@@ -59,6 +101,7 @@ public class UmbrellaController {
     /**
      * d테스트용 메소드 위에 GetMapping과 변경할 예정
      */
+
     @GetMapping("/rent")
     public String viewTest(Model model) {
         System.out.println("??");
@@ -68,27 +111,33 @@ public class UmbrellaController {
 
 
     @GetMapping("/returnForm/{userId}")
-    public String returnUmbrella(@PathVariable int userId, Model model) {
+    public String returnUmbrella(@PathVariable Long userId, Model model) {
+        System.out.println("userId = " + userId);
         List<Umbrella> umbrellas = getUserUmbrellas(userId);
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_returnForm";
     }
 
-    private List<Umbrella> getUserUmbrellas(int userId) {
+    private List<Umbrella> getUserUmbrellas(Long userId) {
         User user = userRepository.findById(userId).orElseGet(() -> {
             return new User();
         });
-        Umbrella umbrella1 = umbrellaService.getUmbrella(user.getUmbrella_Id1());
-        Umbrella umbrella2 = umbrellaService.getUmbrella(user.getUmbrella_Id2());
-
         List<Umbrella> umbrellas2 = new ArrayList<>();
-        umbrellas2.add(umbrella1);
-        umbrellas2.add(umbrella2);
-        return umbrellas2;
+
+
+        if (user.getUmbrella_Id1() != null) {
+            Umbrella umbrella1 = umbrellaService.getUmbrella(user.getUmbrella_Id1());
+            umbrellas2.add(umbrella1);
+            if (user.getUmbrella_Id2() != null) {
+                Umbrella umbrella2 = umbrellaService.getUmbrella(user.getUmbrella_Id2());
+                umbrellas2.add(umbrella2);
+            }
+
+        } return umbrellas2;
     }
 
     @GetMapping("/fault/report/{userId}")
-    public String fault_ReportUmbrella(@PathVariable int userId, Model model) {
+    public String fault_ReportUmbrella(@PathVariable Long userId, Model model) {
         List<Umbrella> umbrellas = getUserUmbrellas( userId);
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_Fault_Report";
@@ -99,14 +148,28 @@ public class UmbrellaController {
         List<Umbrella> umbrellas = umbrellaService.umb_upload();
         for (int i = 0; i < umbrellas.size(); i++) {
             umbrellas.get(i).setStorage(null);
-            umbrellas.get(i).setOver_date(umbrellaService.get_Late_Date(i + 1));
+            umbrellas.get(i).setOver_date(umbrellaService.get_Late_Date(i + 1L));
         }
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_Fault_List";
     }
 
 
-}
+    @GetMapping("/chaerin/fail")
+    public String rent_fail() {
+        return "thymeleaf/chaerin/rent_fail";
+    }
 
+    @GetMapping("/rent/success")
+    public String rent_Finish(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
+        System.out.println("principal = " + principal.getUser());
+        User user = userRepository.findById(principal.getUser().getId()).orElseGet(()->{
+            return new User();
+        });
+        model.addAttribute("payNumber", user.getPayNumber());
+        return "thymeleaf/chaerin/rent_finish";
+    }
+
+}
 
 

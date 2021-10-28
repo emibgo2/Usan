@@ -43,26 +43,26 @@ public class BoardApiController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseDto<Integer> deleteById(@PathVariable int id) {
+    public ResponseDto<Integer> deleteById(@PathVariable Long id) {
         boardService.boardDelete(id); // 해당 ID의 Board를 DB에서 삭제
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 
     }
 
     @PatchMapping("/{id}")
-    public ResponseDto<Integer> update(@PathVariable int id, @RequestBody Board board) {
+    public ResponseDto<Integer> update(@PathVariable Long id, @RequestBody Board board) {
         boardService.boardModify(id, board); // 해당 ID의 Board를 내용을 수정하여 다시 저장
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
     @PutMapping("/{boardId}/like")
-    public ResponseDto<Integer> likeUpdate(@PathVariable int boardId, @RequestBody Board board) {
+    public ResponseDto<Integer> likeUpdate(@PathVariable Long boardId, @RequestBody Board board) {
         boardService.likeHit(boardId, board); // 해당 ID의 Board의 좋아요 수를 증가
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
     @PostMapping("/{boardId}/like")
-    public ResponseDto<Integer> likeListUpdate(@PathVariable int boardId, @RequestBody LikeSaveRequestDto likeSaveRequestDto) {
+    public ResponseDto<Integer> likeListUpdate(@PathVariable Long boardId, @RequestBody LikeSaveRequestDto likeSaveRequestDto) {
         boardService.likeHit(boardId, likeSaveRequestDto);
         // 해당 ID의 Board의 좋아요 수를 증가와 동시에 Like Dto 생성
         log.info(likeSaveRequestDto.toString());
@@ -78,7 +78,7 @@ public class BoardApiController {
     }
 
     @DeleteMapping("/{boardId}/reply/{replyId}")
-    public ResponseDto<Integer> replyDelete(@PathVariable int replyId) {
+    public ResponseDto<Integer> replyDelete(@PathVariable Long replyId) {
         boardService.replyDelete(replyId);
         // 특정 ID에 해당하는 댓글을 삭제
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);

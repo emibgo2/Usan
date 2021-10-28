@@ -1,7 +1,7 @@
 package com.example.usan.config;
 
-import com.example.usan.config.auth.PrincipalDetail;
 import com.example.usan.config.auth.PrincipalDetailService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +17,11 @@ import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 
 @Configuration // 빈등록 (IoC관리)
-@EnableWebSecurity // 시큐리티 필터 추가 = 스프링 시큐리티가 활서오하가 되어 있는데 어떤 설정을 해당 파일에서 하겠다.
+@EnableWebSecurity // 시큐리티 필터 추가 = 스프링 시큐리티가 활성화가 되어 있는데 어떤 설정을 해당 파일에서 하겠다.
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소로 접근을 하면 권한 및 인증을 미리 체크하겠다는 뜻.
+@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 
-    @Autowired
     private PrincipalDetailService principalDetailService;
 
     @Bean
@@ -55,9 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
         http
                 .csrf().disable() // csrf 토큰 비활성화
                 .authorizeRequests()
-                    .antMatchers("/**","/board/**","/htmlTemplates/**","/auth/**","/js/**","/css/**","/image/**")
+                    .antMatchers("/**","/storage/arduino/**","/board/**","/htmlTemplates/**","/auth/**","/js/**","/css/**","/image/**")
                     .permitAll()
-                    .mvcMatchers("**/admin").hasRole("ADMIN") // 뒤에 admin이 안붇는
+                    .mvcMatchers("**/admin").hasRole("ADMIN")
                     .anyRequest()
                     .authenticated()
                 .and()

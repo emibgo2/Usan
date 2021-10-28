@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LikeSaveRequestDto {
-    private int userId;
-    private int boardId;
+    private Long userId;
+    private Long boardId;
 }
 

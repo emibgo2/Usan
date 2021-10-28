@@ -27,10 +27,9 @@ public class StorageController {
     @GetMapping("/joinForm/admin")
     public String joinUmbrella(@AuthenticationPrincipal PrincipalDetail principal) {
 
-        if (RoleType.ADMIN== principal.getUser().getRole()) {
+        if (RoleType.ADMIN == principal.getUser().getRole()) {
             return "storage/storage_joinForm";
-        }
-        else return "앙대요";
+        } else return "안댐";
     }
 
     @GetMapping("/mappingForm/admin")
@@ -45,17 +44,15 @@ public class StorageController {
     }
 
     @GetMapping("/{id}")
-    public String findById(@PathVariable int id, Model model) {
+    public String findById(@PathVariable Long id, Model model) {
         model.addAttribute("storage", storageService.sto_detail(id));
         model.addAttribute("umbrella", umbrellaService.umb_upload());
         return "storage/storage_detail";
     }
 
 
-
-
     @GetMapping("/admin/{id}")
-    public String findById_ADMIN(@PathVariable int id, Model model) {
+    public String findById_ADMIN(@PathVariable Long id, Model model) {
         model.addAttribute("storage", storageService.sto_detail(id));
         model.addAttribute("umbrella", umbrellaService.umb_upload());
         return "storage/storage_detail_ADMIN";

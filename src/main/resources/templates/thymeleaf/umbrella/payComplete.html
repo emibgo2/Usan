@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <link rel="stylesheet"
         th:href="@{../htmlTemplates/css/rent.css}"
@@ -24,6 +24,9 @@
 <div class="test"  >
   <img src="https://i.imgur.com/Wcpj8fI.png" alt="" style="margin-top: auto">
   <p style="font-size: 50px; font-weight: bold ">대여가 완료되었습니다.</p>
+  <p sec:authorize="isAuthenticated()">
+    <span  sec:authentication="principal.user.payNumber" style="font-size: 40px; font-weight: bold">대여 번호</span>
+  </p>
   <a style="font-size: 30px; " href="#" >대여내역 보러가기</a>
 </div>
 </body>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="rent_fe.css">
+    <link rel="stylesheet"
+          th:href="@{/../htmlTemplates/css/rent_fe.css}"
+          href="../../../static/htmlTemplates/css/lent.css" />
     <title>USAN</title>
 </head>
 <body>
@@ -14,7 +16,7 @@
         <h1>대여가<br>완료되었습니다.</h1>
     </div>
     <div class="pw">
-        <h2>비밀번호 : 0000</h2>
+        <h2 th:text="|비밀번호: ${payNumber}|" >비밀번호 : 0000</h2>
         <p>비밀번호를 우산 보관소에 입력하여<br>우산을 가져가세요</p>
     </div>
     <button type="button" onClick="location.href='#'" class="btn">대여내역 보러가기</button>

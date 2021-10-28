@@ -1,6 +1,5 @@
 package com.example.usan.service;
 
-import com.example.usan.controller.StorageController;
 import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.repository.StorageRepository;
@@ -27,10 +26,12 @@ public class StorageService {
         // DB내에 모든 Sotrage를 return
     }
     @Transactional(readOnly = true)
-    public Storage sto_detail(int id){
+    public Storage sto_detail(Long id){
+        System.out.println("StorageService.sto_detail");
+        System.out.println("id = " + id);
         return storageRepository.findById(id)
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
+                    return new IllegalArgumentException("보관소를 찾을 수 없습니다.");
                 });
         // 해당 id값에 해당하는 Storage를 Return
     }
@@ -41,7 +42,7 @@ public class StorageService {
     }
 
     @Transactional
-    public List<Umbrella> umb_List(int id) {
+    public List<Umbrella> umb_List(Long id) {
         Storage storage= storageRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("실패 : Id를 찾을 수 없습니다");
         });
@@ -51,7 +52,7 @@ public class StorageService {
     }
 
     @Transactional
-    public void umb_save(int id ,int umbrellaId) {
+    public void umb_save(Long id ,Long umbrellaId) {
         Storage storage= storageRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("실패 : Id를 찾을 수 없습니다");
         });

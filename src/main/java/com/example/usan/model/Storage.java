@@ -21,7 +21,7 @@ public class Storage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column
     private String location ; // 지점, 위치 ex) 평택대점
@@ -38,6 +38,8 @@ public class Storage {
     @OneToMany(mappedBy = "storage", fetch = FetchType.EAGER, cascade =CascadeType.REFRESH)
     @JsonIgnoreProperties({"storage"})
     private List<Umbrella> umbrellaList;
+
+
 
 //    보관소 위치 ( 추후 방식 회의 예정 )
 
