@@ -57,13 +57,13 @@ public class StorageApiController {
 
         log.info("Rent Umbrella ={}", umbrella);
         rentUmbrella = umbrella;
-        System.out.println("payNumber = " + valueOfRFID);
+        System.out.println("valueOf RFID = " + valueOfRFID);
 
         return HttpStatus.OK.value();
     }
 
     @PostMapping("arduino/payNumber")
-    public Integer findPayNumber(@RequestBody Integer payNumber) {
+    public Integer findPayNumber(@RequestBody String payNumber) {
 //        System.out.println("payNumber = " + requestNumber);
 //        String payNumber = requestNumber.replaceAll("[^0-9]", "");
 //        System.out.println("payNumber = " + payNumber.length());
@@ -76,10 +76,10 @@ public class StorageApiController {
 //        인트 버전
 
         //
-        if (String.valueOf(payNumber).length() != 4) {
+        if (payNumber.length() != 4) {
             return HttpStatus.BAD_REQUEST.value();
         }
-        User user = userRepository.findByPayNumber(payNumber).orElseThrow(() -> {
+        User user = userRepository.findByPayNumber(Integer.valueOf(payNumber) ).orElseThrow(() -> {
             return new IllegalArgumentException("해당 PayNumber를 갖고잇는 유저가 없습니다");
         });
         userService.mappingUmbrella(rentUmbrella.getId(), user, UmbrellaController.result);
