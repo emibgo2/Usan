@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 
     @Autowired
-    private  StorageService storageService;
+    private StorageService storageService;
 
     @GetMapping({"", "/"})
     public String index(@AuthenticationPrincipal PrincipalDetail principal) { // 컨트롤러에서 세션 접근
@@ -38,31 +38,36 @@ public class UserController {
     }
 
 
-
     @GetMapping("/rent/finish")
     public String rentFinishForm() {
         return "thymeleaf/umbrella/rent_finish";
     }
+
     @GetMapping("/joinForm")
     public String joinForm() {
         return "thymeleaf/umbrella/Join_Form";
     }
 
     @GetMapping("/chaerin")
-    public String test (Model model) {
+    public String test(Model model) {
         model.addAttribute("storages", storageService.sto_upload());
         return "thymeleaf/chaerin/rent";
     }
 
     @GetMapping("/auth/joinForm")
-    public String joinUser() { return "user/joinForm"; }
+    public String joinUser() {
+        return "user/joinForm";
+    }
 
     @GetMapping("/auth/loginForm")
-    public String loginForm() { return "thymeleaf/user/login"; }
+    public String loginForm() {
+        return "thymeleaf/user/login";
+    }
 
     @GetMapping("/user/agree")
-    public String agree() { return "thymeleaf/umbrella/agree";}
-
+    public String agree() {
+        return "thymeleaf/umbrella/agree";
+    }
 
 
 }

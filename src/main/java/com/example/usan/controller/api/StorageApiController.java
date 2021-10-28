@@ -35,6 +35,7 @@ public class StorageApiController {
     private UserRepository userRepository;
     private UmbrellaRepository umbrellaRepository;
     private static User rentUser;
+
     @GetMapping(value = "/list")
     public List<Storage> joinUmbrella() {
         List<Storage> storages = storageService.sto_upload();
@@ -43,7 +44,7 @@ public class StorageApiController {
     }
 
     @PostMapping("arduino/payNumber")
-    public ResponseDto findPayNumber(@RequestBody Map<String,Integer> requestNumber) {
+    public ResponseDto findPayNumber(@RequestBody Map<String, Integer> requestNumber) {
 //        System.out.println("payNumber = " + requestNumber);
 //        String payNumber = requestNumber.replaceAll("[^0-9]", "");
 //        System.out.println("payNumber = " + payNumber.length());
@@ -66,6 +67,7 @@ public class StorageApiController {
 
         return new ResponseDto(HttpStatus.OK.value(), 1);
     }
+
     @PostMapping("/arduino/rfid")
     public ResponseDto findUmbrella(@RequestBody String valueOfRFID) {
 
@@ -100,22 +102,21 @@ public class StorageApiController {
 
     @PostConstruct
     public void init() {
-        String[] location ={"평택대","평택역"};
-        for ( int i = 1; i<=2; i++) {
+        String[] location = {"평택대", "평택역"};
+        for (int i = 1; i <= 2; i++) {
             Long id = new Long(i);
             Storage storageCheck = storageRepository.findById(id).orElseGet(() -> {
                 return new Storage();
             });
             if (storageCheck.getCreate_date() == null) {
                 Storage storage = new Storage();
-                storage.setLocation(location[i-1]);
+                storage.setLocation(location[i - 1]);
                 storage.setCreate_date(Timestamp.valueOf(LocalDateTime.now()));
-                if (i==1) storage.setUmb_count(4);
+                if (i == 1) storage.setUmb_count(4);
                 storageService.storage_save(storage);
                 log.info(" 기본 보관소 생성 ");
-            }else log.info(" 이미 보관소가 존재합니다.");
+            } else log.info(" 이미 보관소가 존재합니다.");
         }
-
 
 
     }

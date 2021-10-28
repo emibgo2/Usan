@@ -83,7 +83,7 @@ public class UserService {
     public User boardUser(Long id){
         return userRepository.findById(id)
                 .orElseGet(() -> {
-                    return new User("admin", "관리자", "1", "emibgo@naver.com", "01029293999", RoleType.ADMIN, Timestamp.valueOf(LocalDateTime.now()));
+                    return new User("admin", "고지훈","관리자", "1", "emibgo@naver.com", "01029293999", RoleType.ADMIN, Timestamp.valueOf(LocalDateTime.now()));
                 });
         // 해당 id값에 해당하는 Storage를 Return
     }

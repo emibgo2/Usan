@@ -59,7 +59,7 @@ public class UserApiController {
             return new User();
         });
         if (adminCheck.getUsername() == null) {
-            User admin = new User("admin", "관리자", "1", "emibgo@naver.com", "01029293999", RoleType.ADMIN, Timestamp.valueOf(LocalDateTime.now()));
+            User admin = new User("admin", "고지훈","관리자", "1", "emibgo@naver.com", "01029293999", RoleType.ADMIN, Timestamp.valueOf(LocalDateTime.now()));
             admin.setCash(100000);
 
             userService.joinMember(admin, 2);
@@ -69,7 +69,7 @@ public class UserApiController {
             return new User();
         });
         if (userCheck.getUsername() == null) {
-            User user = new User("user", "사용자", "1", "emibgo@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
+            User user = new User("user", "강두한","사용자", "1", "emibgo@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
             user.setCash(100000);
             userService.joinMember(user, 1);
             log.info("사용자 아이디 생성");
