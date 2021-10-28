@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html th:replace="thymeleaf/layout/layout :: layout(~{::title},~{::#main})" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+<head >
+    <title>USAN-문의</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+
+          th:href="@{../htmlTemplates/css/main.css}"
+          href="../../../static/htmlTemplates/css/main.css" />
+</head>
+<body class="subpage" id="body">
+
+
+<!-- Header -->
+<header id="header" >
+    <div class="logo"><a href="index.html">USAN</a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="메인화면.html">Home</a></li>
+        <li><a href="이용안내.html">이용 안내</a></li>
+        <li><a href="문의하기.html">문의하기</a></li>
+        <li><a href="공지사항.html">공지사항</a></li>
+        <li><a href="Login_v8/index.html">로그인</a></li>
+        <li><a href="#">회원가입</a></li>
+    </ul>
+</nav>
+
+<!-- Main -->
+<div id="main">
+
+    <!-- Section -->
+    <section class="wrapper style1">
+        <div class="inner">
+            <header class="align-center">
+                <h2>문의하기</h2>
+            </header>
+
+            <!-- Form -->
+            <form method="post" action="#">
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        <input type="text" name="name" id="name" value="" placeholder="이름" />
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <input type="email" name="email" id="email" value="" placeholder="이메일" />
+                    </div>
+                    <!-- Break -->
+                    <div class="12u$">
+                        <div class="select-wrapper">
+                            <select name="category" id="category">
+                                <option value="">- 문의 목록 -</option>
+                                <option value="1">우산 고장</option>
+                                <option value="1">보관함 고장</option>
+                                <option value="1">결제 실패</option>
+                                <option value="1">기타</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Break -->
+                    <div class="6u 12u$(small)">
+                        <input type="checkbox" id="copy" name="copy">
+                        <label for="copy"><a href="개인정보.html">개인정보 수집에 동의합니다.</a></label>
+                    </div>
+                    <!-- Break -->
+                    <div class="12u$">
+                        <textarea name="message" id="message" placeholder="문의내용을 적어주세요." rows="6"></textarea>
+                    </div>
+                    <!-- Break -->
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><input type="submit" value="보내기" /></li>
+                            <li><input type="reset" value="지우기" class="alt" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" >
+    <div class="copyright">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+        </ul>
+        <p>&copy; Untitled. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script th:src="@{../htmlTemplates/js/jquery.min.js} "src="../../../static/htmlTempaltes../js/jquery.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrolly.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrolly.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrollex.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrollex.min.js"></script>
+<script th:src="@{../htmlTemplates/js/skel.min.js} "src="../../../static/htmlTempaltes../js/skel.min.js"></script>
+<script th:src="@{../htmlTemplates/js/util.js} "src="../../../static/htmlTempaltes../js/util.js"></script>
+<script th:src="@{../htmlTemplates/js/main.js} "src="../../../static/htmlTempaltes../js/main.js"></script>
+
+</body>
+</html>
