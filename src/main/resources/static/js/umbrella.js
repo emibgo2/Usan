@@ -37,9 +37,10 @@ let index={
 
     rent: function (locations,days) {
         let data={
-            locations:$("#locations").val(),
-            days:$("#days").val()
+            locations:locations,
+            days:days
         };
+
         $.ajax({
             type: "POST",
             url:`/umb/rent/${locations}/${days}`,
@@ -59,7 +60,7 @@ let index={
                 location.href="/umb/rent/success";
             }
         }).fail(function (error) {
-            alert(id+"<- ID / Error ->"+JSON.stringify(error));
+            alert(" Error ->"+JSON.stringify(error));
         });
     },
 

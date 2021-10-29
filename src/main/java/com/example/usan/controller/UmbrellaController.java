@@ -2,7 +2,7 @@ package com.example.usan.controller;
 
 import com.example.usan.config.auth.PrincipalDetail;
 import com.example.usan.controller.api.UmbrellaApiController;
-import com.example.usan.controller.api.UserApiController;
+import com.example.usan.dto.ResponseDto;
 import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
@@ -12,17 +12,17 @@ import com.example.usan.service.UmbrellaService;
 import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.DefaultSessionAttributeStore;
-import org.springframework.web.bind.support.SessionAttributeStore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @Controller
@@ -31,23 +31,27 @@ import java.util.*;
 public class UmbrellaController {
 
     private UmbrellaService umbrellaService;
+    private UserService userService;
     private StorageService storageService;
     private UserRepository userRepository;
+    public static Integer result ;
 
 
-//    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
-//    public String rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
-//        System.out.println("UmbrellaApiController.test");
-//        System.out.println("location = " + location);
-//        System.out.println("days = " + days);
-//        Random random = new Random();
-//        int i = random.nextInt(UmbrellaApiController.myUUID.size());
-//        Integer remove = UmbrellaApiController.myUUID.remove(i);
-//        log.info(userService.userPayNumber(principal.getUser().getId(), remove));
-//        System.out.println("principal!?? "+principal.getUser());
-//        // DB안에 있는 Umbrella를 추합하여 전송
-//        return "redirect:/umb/rent";
-//    }
+    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
+    @ResponseBody
+    public ResponseDto<Integer> rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
+        System.out.println("UmbrellaController.rent");
+        System.out.println("location = " + location);
+        System.out.println("days = " + days);
+        Random random = new Random();
+        int i = random.nextInt(UmbrellaApiController.myUUID.size());
+        Integer remove = UmbrellaApiController.myUUID.remove(i);
+        log.info("Rent User = {}" ,userService.userPayNumber(principal.getUser().getId(), remove));
+        System.out.println("principal!?? "+principal.getUser());
+        result = days;
+        // DB안에 있는 Umbrella를 추합하여 전송
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
 
     public void test( HttpServletRequest request) {
 
@@ -108,6 +112,7 @@ public class UmbrellaController {
 
     @GetMapping("/returnForm/{userId}")
     public String returnUmbrella(@PathVariable Long userId, Model model) {
+        System.out.println("userId = " + userId);
         List<Umbrella> umbrellas = getUserUmbrellas(userId);
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_returnForm";
@@ -117,13 +122,18 @@ public class UmbrellaController {
         User user = userRepository.findById(userId).orElseGet(() -> {
             return new User();
         });
-        Umbrella umbrella1 = umbrellaService.getUmbrella(user.getUmbrella_Id1());
-        Umbrella umbrella2 = umbrellaService.getUmbrella(user.getUmbrella_Id2());
-
         List<Umbrella> umbrellas2 = new ArrayList<>();
-        umbrellas2.add(umbrella1);
-        umbrellas2.add(umbrella2);
-        return umbrellas2;
+
+
+        if (user.getUmbrella_Id1() != null) {
+            Umbrella umbrella1 = umbrellaService.getUmbrella(user.getUmbrella_Id1());
+            umbrellas2.add(umbrella1);
+            if (user.getUmbrella_Id2() != null) {
+                Umbrella umbrella2 = umbrellaService.getUmbrella(user.getUmbrella_Id2());
+                umbrellas2.add(umbrella2);
+            }
+
+        } return umbrellas2;
     }
 
     @GetMapping("/fault/report/{userId}")
@@ -150,8 +160,13 @@ public class UmbrellaController {
         return "thymeleaf/chaerin/rent_fail";
     }
 
-    @GetMapping("/chaerin/finish")
-    public String rent_Finish() {
+    @GetMapping("/rent/success")
+    public String rent_Finish(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
+        System.out.println("principal = " + principal.getUser());
+        User user = userRepository.findById(principal.getUser().getId()).orElseGet(()->{
+            return new User();
+        });
+        model.addAttribute("payNumber", user.getPayNumber());
         return "thymeleaf/chaerin/rent_finish";
     }
 
