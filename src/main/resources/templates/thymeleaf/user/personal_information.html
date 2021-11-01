@@ -13,6 +13,7 @@
 
           th:href="@{../htmlTemplates/css/main.css}"
           href="../../../static/htmlTemplates/css/main.css" />
+    <link rel="stylesheet" href="../../../static/htmlTemplates/css/personal_information.css">
 </head>
 <body class="subpage" id="body">
 
@@ -42,48 +43,36 @@
     <section class="wrapper style1">
         <div class="inner">
             <header class="align-center">
-                <h2>문의하기</h2>
+                <h2>개인정보</h2>
             </header>
 
-            <!-- Form -->
-            <form method="post" action="#">
-                <div class="row uniform">
-                    <div class="6u 12u$(xsmall)">
-                        <input type="text" name="name" id="name" value="" placeholder="이름" />
-                    </div>
-                    <div class="6u$ 12u$(xsmall)">
-                        <input type="email" name="email" id="email" value="" placeholder="이메일" />
-                    </div>
-                    <!-- Break -->
-                    <div class="12u$">
-                        <div class="select-wrapper">
-                            <select name="category" id="category">
-                                <option value="">- 문의 목록 -</option>
-                                <option value="1">우산 고장</option>
-                                <option value="1">보관함 고장</option>
-                                <option value="1">결제 실패</option>
-                                <option value="1">기타</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Break -->
-                    <div class="6u 12u$(small)">
-                        <input type="checkbox" id="copy" name="copy">
-                        <label for="copy"><a href="개인정보.html">개인정보 수집에 동의합니다.</a></label>
-                    </div>
-                    <!-- Break -->
-                    <div class="12u$">
-                        <textarea name="message" id="message" placeholder="문의내용을 적어주세요." rows="6"></textarea>
-                    </div>
-                    <!-- Break -->
-                    <div class="12u$">
-                        <ul class="actions">
-                            <li><input type="submit" value="보내기" /></li>
-                            <li><input type="reset" value="지우기" class="alt" /></li>
-                        </ul>
-                    </div>
+
+            <hr>
+            <div class="personal_information">
+                <h3>개인정보</h3>
+                <div class="personal_info">
+                    <h4>아이디</h4>
+                    <h4>이름</h4>
+                    <h4>전화번호</h4>
+                    <h4>이메일</h4>
                 </div>
-            </form>
+            </div>
+            <hr>
+            <div class="personal_information">
+                <h3>카드정보</h3>
+                <div>
+                    <button>카드정보확인</button>
+                </div>
+            </div>
+            <hr>
+            <div class="personal_information">
+                <h3>이용기록</h3>
+                <div>
+                    <button>이용 기록</button>
+                </div>
+            </div>
+            <hr>
+            <button class="personal_revise">정보 수정하기</button>
 
         </div>
     </section>
