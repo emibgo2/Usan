@@ -1,0 +1,130 @@
+body{
+    background-color:white;
+    justify-content: center;
+    align-items: center;
+}
+
+div.test {
+    position: absolute;
+    text-align: center;
+    width: 500px;
+    height:auto;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+
+div.box1{
+    background-color: white;
+    color:black;
+    border: solid 3px #3498db;
+    border-radius: 15px;
+    padding : 15px;
+}
+
+div.blind {
+    position: absolute;
+    display:flex;
+    text-align:left;
+    color:#3498db;
+    font-size: 40px;
+    font-weight: bold;
+
+}
+
+h1.title{
+    text-align: left;
+    font-size : 25px;
+    margin-top : 60px;
+}
+
+div.box2{
+    background-color: white;
+    border:dashed 3px #3498db;
+    border-radius: 15px;
+}
+
+div.enter{
+    font-size:15px;
+    text-align:left;
+}
+
+input[type=text]{
+    background-color: #FAFAFA;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    height: 20px;
+}
+
+input[type=password]{
+    background-color: #FAFAFA;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    height: 20px;
+}
+
+.btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 2px solid white;
+    border-radius: 15px;
+    width:120px;
+}
+
+.btn_main {
+    background-color:#FAFAFA;
+    color: black;
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    margin-left: 5px;
+    width:120px;
+}
+
+
+/*크기변경*/
+@media screen and (max-width:420px) {
+
+    div.test {
+        height:0%;
+        width:90%;
+    }
+
+    div.box1{
+        border: solid 1px #3498db;
+        transform: translate(0%, -50%);
+    }
+
+    div.box2{
+        width: 100%;
+        padding : 1%;
+        transform: translate(-2%, 0%);
+    }
+
+    p {
+        margin: 5px !important;
+    }
+
+    input[type=text]{
+        height: 40%;
+        width: 12%;
+    }
+
+    input[type=password]{
+        height: 40%;
+        width: 12%;
+    }
+
+    .btn {
+        padding: 12px 10px;
+        font-size: 13px;
+        width:100px;
+        margin-top:8px;
+    }
+
+    .btn_main {
+        font-size: 13px;
+        width:100px;
+    }
+}
