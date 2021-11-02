@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>회원가입</title>
-</head>
-<body>
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <script>
+
+    //윈도우 오픈시 필요한 주소,재목,넓이,높이,표시위치,표시위치
+    function winOpen(url,title,width,height,top,left){
+      window.open(url,title,"width="+width+",height="+height+",top="+top+",left="+left);
+    }
+  </script>
 
 
   <title>회원가입</title>
@@ -28,13 +28,15 @@
 
     }
 
-
+    body {
+      background-image:#34495e;
+    }
 
     .joinForm {
       position:absolute;
       width:400px;
       height:500px;
-      padding: 30px 20px;
+      padding: 30px, 20px;
       background-color:#FFFFFF;
       text-align:center;
       top:40%;
@@ -151,7 +153,7 @@
     <input name="loginPwConfirm" type="password" class="pw" placeholder="비밀번호 확인">
   </div>
   <div class="textForm">
-    <input name="name" type="password" class="name" placeholder="이름">
+    <input name="name" type="text" class="name" placeholder="이름">
   </div>
   <div class="textForm">
     <input name="email" type="text" class="email" placeholder="이메일">
@@ -160,11 +162,9 @@
     <input name="nickname" type="text" class="nickname" placeholder="닉네임">
   </div>
   <div class="textForm">
-    <input name="cellphoneNo" type="number" class="cellphoneNo" placeholder="전화번호">
+    <input name="cellphoneNo" type="text" class="cellphoneNo" placeholder="전화번호 ( - 없이 입력 )">
   </div>
-  <input type="submit" class="btn" value="J O I N"/>
+  <input type="submit" class="btn" value="N   E   X   T" style="cursor:hand"onclick="winOpen('card.html','new','width=500,height=500,top=100,left=100'); "/>
 </form>
-</body>
-</html>
 </body>
 </html>
