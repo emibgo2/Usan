@@ -1,6 +1,5 @@
 package com.example.usan.controller.api;
 
-import com.example.usan.config.auth.PrincipalDetail;
 import com.example.usan.dto.ResponseDto;
 import com.example.usan.dto.StorageDto;
 import com.example.usan.model.Storage;
@@ -13,7 +12,6 @@ import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +19,6 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 @Slf4j
 @RestController
@@ -34,19 +31,18 @@ public class UmbrellaApiController {
     private UmbrellaService umbrellaService;
     private UmbrellaRepository umbrellaRepository;
     public static List<Integer> myUUID = Collections.synchronizedList(new ArrayList<>());
-
-    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
-    public ResponseDto<Integer> rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
-        System.out.println("UmbrellaApiController.test");
-        System.out.println("location = " + location);
-        System.out.println("days = " + days);
-        Random random = new Random();
-        int i = random.nextInt(UmbrellaApiController.myUUID.size());
-        Integer remove = UmbrellaApiController.myUUID.remove(i);
-        User user = userService.userPayNumber(principal.getUser().getId(), remove);
-        principal.getUser().setPayNumber(remove);
-        return new ResponseDto<Integer>(HttpStatus.OK.value(),user.getPayNumber());
-    }
+//    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
+//    public ResponseDto<Integer> rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
+//        System.out.println("UmbrellaApiController.test");
+//        System.out.println("location = " + location);
+//        System.out.println("days = " + days);
+//        Random random = new Random();
+//        int i = random.nextInt(UmbrellaApiController.myUUID.size());
+//        Integer remove = UmbrellaApiController.myUUID.remove(i);
+//        User user = userService.userPayNumber(principal.getUser().getId(), remove);
+//        principal.getUser().setPayNumber(remove);
+//        return new ResponseDto<Integer>(HttpStatus.OK.value(),user.getPayNumber());
+//    }
 
     @GetMapping("/list")
     public List<Umbrella> returnUmbrella() {
@@ -91,6 +87,8 @@ public class UmbrellaApiController {
         // Umbrella를 DB 내에 저장
     }
 
+
+
     @PutMapping("/{id}/fault")
     public ResponseDto<Integer> umb_faultReport(@PathVariable Long id) {
         umbrellaService.umbrella_Fault_Report(id);
@@ -127,6 +125,9 @@ public class UmbrellaApiController {
             if (umbrellaCheck.getCreate_date() == null) {
                 Umbrella createUmbrella = new Umbrella();
                 createUmbrella.setStorage(storageService.sto_detail(1L));
+                if (i == 1) {
+                    createUmbrella.setValueOfRFID("f3ba2797");
+                }else   createUmbrella.setValueOfRFID("acde013"+i);
                 System.out.println("createUmbrella = " + createUmbrella);
                 umbrellaService.umbrella_save(createUmbrella);
                 log.info("기본 우산 생성");

@@ -27,10 +27,9 @@ public class StorageController {
     @GetMapping("/joinForm/admin")
     public String joinUmbrella(@AuthenticationPrincipal PrincipalDetail principal) {
 
-        if (RoleType.ADMIN== principal.getUser().getRole()) {
+        if (RoleType.ADMIN == principal.getUser().getRole()) {
             return "storage/storage_joinForm";
-        }
-        else return "앙대요";
+        } else return "안댐";
     }
 
     @GetMapping("/mappingForm/admin")
@@ -50,8 +49,6 @@ public class StorageController {
         model.addAttribute("umbrella", umbrellaService.umb_upload());
         return "storage/storage_detail";
     }
-
-
 
 
     @GetMapping("/admin/{id}")

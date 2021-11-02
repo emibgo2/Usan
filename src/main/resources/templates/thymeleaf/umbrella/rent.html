@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <scrpit th:src="@{../static/js/umbrella.js}"></scrpit>
     <link th:href="@{../htmlTemplates/css/rent.css}" rel="stylesheet" href="../../../static/htmlTemplates/css/rent.css">
     <title>USAN</title>
+
 </head>
 <body>
 <div class="container_lent">
@@ -18,8 +23,8 @@
             <div class="lent_location">
                 <label for="location">보관소 위치 선택</label>
                 <select id="location">
-                    <option id="ptu" value="Pyeongtaek_uni" selected >평택대</option>
-                    <option id="psb" value="Pyeongtaek_station">평택역</option>
+                    <option id="ptu" value="평택대" selected >평택대</option>
+                    <option id="psb" value="평택역">평택역</option>
                 </select>
             </div>
             <div id="lent_condition">
@@ -32,25 +37,63 @@
             <p id="lent_date_result"></p>
         </div>
         <div class="lent_btn">
-            <button type="submit" class="btn_submit">대여하기</button>
+            <button type="button" class="btn_submit" onclick="instance.test()">대여하기</button>
             <button type="reset" class="btn_reset">취소하기</button>
         </div>
     </form>
 
 </div>
 
-<script th:inline="javascript">
+
+</body>
+
+<script>
     let instance={
         test:function(){
             const days = document.getElementById('days').value
-            const location = document.getElementById('locations').value
-            if (confirm(location+"지점에서 "+days+"일 동안 대여하시겠습니까?")) {
-                index.rent(location,days)
+            const locations = document.getElementById('location').value
+            if (confirm(locations+"지점에서 "+days+"일 동안 대여하시겠습니까?")) {
+                let data={
+                    locations:locations,
+                    days:days
+                };
+                alert(locations)
+                alert(days)
+                $.ajax({
+                    type: "POST",
+                    url:`/umb/rent/${locations}/${days}`,
+                    data: JSON.stringify(data), // http body 데이터
+                    contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
+                    async:false,
+                    dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데
+                    // 생긴게 json이라면 => javascript 오브젝트로 변경 해줌
+                }).done(function (resp) {
+                    if (resp.status === 500) {
+                        alert("우산 등록이 실패하였습니다 \n아이디가 중복되었습니다.");
+                    }else if (resp.data === 3) {
+                        alert("우산이 꽉 찼습니다 반납후 이용해주세요");
+                    } else  {
+                        alert("우산 등록이 완료되었습니다.");
+                        // console.log(resp)
+                        location.href="/umb/rent/success";
+                    }
+                }).fail(function (error) {
+                    alert(" Error ->"+JSON.stringify(error));
+                });
+
+                alert("????");
             } else {
+            }
+
 
             }
-        }
+
+
     }
+</script>
+
+<script th:inline="javascript">
+
     let storage= [[${storages}]]
     let rent_location = document.getElementById("location");
     let rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
@@ -61,7 +104,7 @@
     const b = document.getElementById('location')
 
 
-        document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
+    document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
 
     b.addEventListener('change',changeLocation)
     function changeLocation() {
@@ -93,9 +136,5 @@
         price = document.getElementById('days').value * 700
         document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //변해주는값
     }
-
-
 </script>
-
-</body>
 </html>
