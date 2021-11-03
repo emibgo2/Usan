@@ -36,7 +36,7 @@
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 375px) {
     .flex.flex-2, .flex.flex-3 {margin: 0 20px;}
 
     #banner h1 {font-size: 2.8em; margin-bottom: 40px;}
@@ -53,11 +53,18 @@
     .lent-text2 {margin-bottom: 30px;}
     .lent-text2 p {font-size: 1.115em; text-align: center;}
 
-    .lent_way {font-size: 1.23em;}
+    .lent_way {font-size: 1.3em;}
     .lent_way li {padding-bottom: 5px;}
 
-    .return_way {font-size: 1.23em;}
-    .return_way_p {font-size: 1.115em;}
+    .return_way {font-size: 1.3em;}
+    .return_way li {padding-bottom: 5px}
+    .return_way_p {font-size: 1.20em; text-align: center}
     .return_p {margin-bottom: 0;}
     .return_pp {margin-left: 12.5px;}
 }
+
+@media screen and (max-width: 360px) {
+    .lent_way {font-size: 1.23em;}
+
+    .return_way {font-size: 1.23em;}
+    .return_way_p {font-size: 1.115em;}
