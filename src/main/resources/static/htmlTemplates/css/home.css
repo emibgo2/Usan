@@ -47,7 +47,7 @@
     .p_mobile {display: block;}
 
     .map h2 {font-size: 2em;}
-    .map p {font-size: 1.3em}
+    .map p {font-size: 1.3em;}
 
     .rent h3 {font-size: 2.3em; text-align: center; margin-bottom: 30px;}
     .flex.flex-2 .col.col1, .flex.flex-2 .col.col2 {margin: 0;}
@@ -73,7 +73,7 @@
     #banner p {font-size: 1.465em;}
 
     .map h2 {font-size: 1.8em;}
-    .map p {font-size: 1.3em}
+    .map p {font-size: 1.3em;}
 
     .rent h3 {font-size: 2em;}
     .lent-text1 p {font-size: 1.35em;}
@@ -92,4 +92,25 @@
 
     .return_way {font-size: 1.23em;}
     .return_way_p {font-size: 1.115em;}
+}
+
+@media screen and (max-width: 320px) {
+    #banner h1 {font-size: 2.8em;}
+    #banner p {font-size: 1.48em;}
+
+    .map h2 {font-size: 1.8em;}
+    .map p {font-size: 1.3em;}
+
+    .rent h3 {font-size: 2em;}
+    .lent-text1 p {font-size: 1.28em;}
+
+    .lent-text2 {margin-bottom: 30px;}
+    .lent-text2 p {font-size: 1.07rem;}
+
+    .lent_way {font-size: 1.109em; padding-left: 9px;}
+
+    .return_way {font-size: 1.109em; padding-left: 9px;}
+    .return_way_p {font-size: 1.06em;}
+
+    .map p {font-size: 1.2em;}
 }
