@@ -29,7 +29,12 @@ public class Orders {
     @JoinColumn(name = "userId")
     private User user;
 
-    @Column
+    private int payment;
+
+    private int discount;
+
+    private Timestamp rentDay;
+
     private String location ;
 
     @CreationTimestamp  //시간이 자동으로 입력
