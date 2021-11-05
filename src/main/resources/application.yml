@@ -29,14 +29,14 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    헤로쿠 업로드전에 주석 풀것
-#    url: jdbc:mysql://kgq16m6qy4ls0fsp:xgl11yxnup6f3xr7@pk1l4ihepirw9fob.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/bu09qhdj5ekap1hq
-#    username: kgq16m6qy4ls0fsp
-#    password: xgl11yxnup6f3xr7
-
-        # 테스트시 데이터베이스 설정k
-    url: jdbc:mysql://localhost:3306/usan?serverTimezone=Asia/Seoul
-    username: usan
-    password: dgdg1234
+    url: jdbc:mysql://kgq16m6qy4ls0fsp:xgl11yxnup6f3xr7@pk1l4ihepirw9fob.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/bu09qhdj5ekap1hq
+    username: kgq16m6qy4ls0fsp
+    password: xgl11yxnup6f3xr7
+#
+##     테스트시 데이터베이스 설정k
+#    url: jdbc:mysql://localhost:3306/usan?serverTimezone=Asia/Seoul
+#    username: usan
+#    password: dgdg1234
 
   jpa:
     open-in-view: true
