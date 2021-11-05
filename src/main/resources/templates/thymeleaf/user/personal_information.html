@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html th:replace="thymeleaf/layout/layout :: layout(~{::title},~{::#main})" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+<head >
+    <title>USAN-문의</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+
+          th:href="@{../htmlTemplates/css/main.css}"
+          href="../../../static/htmlTemplates/css/main.css" />
+    <link rel="stylesheet" href="../../../static/htmlTemplates/css/personal_information.css">
+</head>
+<body class="subpage" id="body">
+
+
+<!-- Header -->
+<header id="header" >
+    <div class="logo"><a href="index.html">USAN</a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="메인화면.html">Home</a></li>
+        <li><a href="이용안내.html">이용 안내</a></li>
+        <li><a href="문의하기.html">문의하기</a></li>
+        <li><a href="공지사항.html">공지사항</a></li>
+        <li><a href="Login_v8/index.html">로그인</a></li>
+        <li><a href="#">회원가입</a></li>
+    </ul>
+</nav>
+
+<!-- Main -->
+<div id="main">
+
+    <!-- Section -->
+    <section class="wrapper style1">
+        <div class="inner">
+            <header class="align-center">
+                <h2>개인정보</h2>
+            </header>
+
+
+            <hr>
+            <div class="personal_information">
+                <h3>개인정보</h3>
+                <div class="personal_info">
+                    <h4>아이디</h4>
+                    <h4>이름</h4>
+                    <h4>전화번호</h4>
+                    <h4>이메일</h4>
+                </div>
+            </div>
+            <hr>
+            <div class="personal_information">
+                <h3>카드정보</h3>
+                <div>
+                    <button>카드정보확인</button>
+                </div>
+            </div>
+            <hr>
+            <div class="personal_information">
+                <h3>이용기록</h3>
+                <div>
+                    <button>이용 기록</button>
+                </div>
+            </div>
+            <hr>
+            <button class="personal_revise">정보 수정하기</button>
+
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" >
+    <div class="copyright">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+        </ul>
+        <p>&copy; Untitled. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script th:src="@{../htmlTemplates/js/jquery.min.js} "src="../../../static/htmlTempaltes../js/jquery.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrolly.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrolly.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrollex.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrollex.min.js"></script>
+<script th:src="@{../htmlTemplates/js/skel.min.js} "src="../../../static/htmlTempaltes../js/skel.min.js"></script>
+<script th:src="@{../htmlTemplates/js/util.js} "src="../../../static/htmlTempaltes../js/util.js"></script>
+<script th:src="@{../htmlTemplates/js/main.js} "src="../../../static/htmlTempaltes../js/main.js"></script>
+
+</body>
+</html>
