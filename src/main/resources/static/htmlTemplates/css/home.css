@@ -36,7 +36,7 @@
 
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 426px) {
     .flex.flex-2, .flex.flex-3 {margin: 0 20px;}
 
     #banner h1 {font-size: 3.2em; margin-bottom: 40px;}
@@ -68,7 +68,7 @@
     .button {font-size: 1.2em;}
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 376px) {
     #banner h1 {font-size: 2.8em;}
     #banner p {font-size: 1.465em;}
 
@@ -87,14 +87,14 @@
     .return_way_p {font-size: 1.20em;}
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 361px) {
     .lent_way {font-size: 1.23em;}
 
     .return_way {font-size: 1.23em;}
     .return_way_p {font-size: 1.115em;}
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 321px) {
     #banner h1 {font-size: 2.8em;}
     #banner p {font-size: 1.48em;}
 
