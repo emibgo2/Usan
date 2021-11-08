@@ -8,8 +8,11 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     // SELECT * FROM user WHERE username = 1?;
     Optional<User> findByUsername(String username);
+    Optional<User> findByFirstUmbrellaIdOrSecondUmbrellaId(Long umbrella_Id1,Long umbrella_Id2);
+    Optional<User> findByPayNumberContains(String payNumber);
 
-    Optional<User> findByPayNumber(int payNumber);
+
+//    Optional<User> findByPayNumber(String payNumber);
     // SELECT * FROM user WHERE username = 1?;
     // findBy = SELECT * FROM user <- Optinal findBy/Username -> WHERE username
 //    Optional<User> findByUsername(String username);

@@ -71,7 +71,8 @@
 						<p>* 대여시간으로부터 24시간 경과 후 추가요금 발생</p>
 						<p class="lent-text2-p">자세한 내용은 이용 안내 페이지 참고</p>
 					</div>
-					<a href="/umb/rent" class="button">대여하기</a>
+					<a  sec:authorize="isAuthenticated()" href="/umb/rent" class="button">대여하기</a>
+					<a  sec:authorize="!isAuthenticated()" href="/auth/loginForm" class="button">대여하기</a>
 				</div>
 				<div class="col col1 first">
 					<div class="image round fit">

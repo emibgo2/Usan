@@ -1,12 +1,15 @@
 package com.example.usan.service;
 
+import com.example.usan.controller.api.UmbrellaApiController;
 import com.example.usan.model.RoleType;
+import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
+import com.example.usan.repository.StorageRepository;
 import com.example.usan.repository.UmbrellaRepository;
 import com.example.usan.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,15 +19,12 @@ import java.time.LocalDateTime;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class UserService {
 
-
-    @Autowired
+    private StorageRepository storageRepository;
     private UserRepository userRepository;
-
-    @Autowired
     private UmbrellaRepository umbrellaRepository;
-    @Autowired
     private BCryptPasswordEncoder encoder;
 
     @Transactional(readOnly = true)
@@ -45,17 +45,18 @@ public class UserService {
     }
 
     @Transactional
-    public User userPayNumber(Long userId, int payNumber) {
+    public User userPayNumber(Long userId, int payNumber,int day) {
         try {
             User user = userRepository.findById(userId).orElseGet(() -> {
                 return new User();
             });
-            user.setPayNumber(payNumber);
+            user.setPayNumber(day,payNumber);
             log.info("Pay Number 배급이 성공하였습니다.");
             return user;
         } catch (Exception e) {
             log.info("Pay Number 배급이 실패하였습니다");
         }
+
         return new User();
     }
 
@@ -89,28 +90,29 @@ public class UserService {
     }
 
     @Transactional
-    public int mappingUmbrella( Long id ,  User requestUser, int rentPeriod) {
-        Umbrella umbrella = umbrellaRepository.findById(id).orElseGet(() -> {
+    public int mappingUmbrella(String valueOfRFID, User requestUser, int rentPeriod, Long pointNumber,Storage lendingStorage) {
+
+        Umbrella umbrella = umbrellaRepository.findByValueOfRFID(valueOfRFID).orElseGet(() -> {
             return new Umbrella();
         });
-        log.info("BeforeUser -> "+requestUser);
-        User user= userRepository.findById(requestUser.getId()).orElseGet(() -> {
+        log.info("BeforeUser -> " + requestUser);
+        User user = userRepository.findById(requestUser.getId()).orElseGet(() -> {
             return new User();
         });
         System.out.println("user = " + user);
-        if (user.getUmbrella_Id1() == null||user.getUmbrella_Id1() == 0  ) {
-            user.setUmbrella_Id1(umbrella.getId());
+        if (user.getFirstUmbrellaId() == null || user.getFirstUmbrellaId() == 0) {
+            user.setFirstUmbrellaId(umbrella.getId());
             umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now())); // 빌린 당시의 날을 저장
             umbrella.setRent_end_date(Timestamp.valueOf(LocalDateTime.now().plusDays(rentPeriod)));
             // 반납 날짜 =빌린 당시의 날(Rent_date) + 사용자가 지정한 대여 일 수(rentPeriod)
             umbrella.setUser_id(requestUser.getId());
-            umbrella.setUse_count(umbrella.getUse_count()+1);
-        } else if ((user.getUmbrella_Id1() == null||user.getUmbrella_Id1() != 0)  && (user.getUmbrella_Id2() == null||user.getUmbrella_Id2() == 0 )) {
-            user.setUmbrella_Id2(umbrella.getId());
+            umbrella.setUse_count(umbrella.getUse_count() + 1);
+        } else if ((user.getFirstUmbrellaId() == null || user.getFirstUmbrellaId() != 0) && (user.getSecondUmbrellaId() == null || user.getSecondUmbrellaId() == 0)) {
+            user.setSecondUmbrellaId(umbrella.getId());
             umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now()));
             umbrella.setRent_end_date(Timestamp.valueOf(LocalDateTime.now().plusDays(rentPeriod)));
             umbrella.setUser_id(requestUser.getId());
-            umbrella.setUse_count(umbrella.getUse_count()+1);
+            umbrella.setUse_count(umbrella.getUse_count() + 1);
         }
         // User의 Umbrella_Id 값이 0 이면 빌린 우산이 없다는 뜻
         // Umbrella_Id1값이 0이면 User의 Umbrella_Id1에 저장
@@ -119,9 +121,14 @@ public class UserService {
         else return 3;
         // 둘다 0이 아니라면 대여 최대 가능 댓수인 2를 넘어가기 때문에
         // 안내문을 출력하기위해서 1을 return
+        lendingStorage.setUmb_count(lendingStorage.getUmb_count()-1);
+        UmbrellaApiController.myUUID.add(user.getPayNumber());
 
-        log.info("umbrella Information : "+umbrella);
-        log.info("User     Information : "+user);
+        if (UmbrellaApiController.myUUID.indexOf(user.getPayNumber())!=-1) log.info("myUUID OK!");
+
+        user.setPayNumber(null);
+        log.info("umbrella Information : " + umbrella);
+        log.info("User     Information : " + user);
         return 1;
         // 대여가 가능하고 정삭적으로 진행되었다면 1을 return
     }
@@ -137,12 +144,12 @@ public class UserService {
         });
         log.info("Return User -> "+requestUser);
 
-        if (user.getUmbrella_Id1() == umbrella.getId().intValue()) {
-            user.setUmbrella_Id1(0L);
+        if (user.getFirstUmbrellaId() == umbrella.getId().intValue()) {
+            user.setFirstUmbrellaId(0L);
             umbrella.setUser_id(0L);
             umbrella.setReturn_date(Timestamp.valueOf(LocalDateTime.now()) );
-        } else if (user.getUmbrella_Id2() == umbrella.getId().intValue()) {
-            user.setUmbrella_Id2(0L);
+        } else if (user.getSecondUmbrellaId() == umbrella.getId().intValue()) {
+            user.setSecondUmbrellaId(0L);
             umbrella.setUser_id(0L);
             umbrella.setReturn_date(Timestamp.valueOf(LocalDateTime.now()) );
 

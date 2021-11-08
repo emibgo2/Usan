@@ -58,16 +58,16 @@ public class User {
     private int cash;
 
     @Column
-    private int payNumber;
+    private String payNumber;
 
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
     @Column(nullable = true)
-    private Long umbrella_Id1;
+    private Long firstUmbrellaId;
 
     @Column(nullable = true)
-    private Long umbrella_Id2;
+    private Long secondUmbrellaId;
 
     @CreationTimestamp
     private Timestamp createDate;
@@ -88,6 +88,20 @@ public class User {
         this.role = role;
     }
 
+
+    public void setPayNumber(int day, int payNumber) {
+        this.payNumber = day+"/"+payNumber;
+    }
+
+    public int getPayNumber() {
+        String[] split = payNumber.split("/");
+        return Integer.parseInt( split[1]);
+    }
+    public int getRentDay() {
+        String[] split = payNumber.split("/");
+        return Integer.parseInt( split[0]);
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -100,8 +114,8 @@ public class User {
                 ", cash=" + cash +
                 ", payNumber=" + payNumber +
                 ", role=" + role +
-                ", umbrella_Id1=" + umbrella_Id1 +
-                ", umbrella_Id2=" + umbrella_Id2 +
+                ", firstUmbrellaId=" + firstUmbrellaId +
+                ", secondUmbrellaId=" + secondUmbrellaId +
                 ", createDate=" + createDate +
                 '}';
     }

@@ -34,7 +34,6 @@ public class UmbrellaController {
     private UserService userService;
     private StorageService storageService;
     private UserRepository userRepository;
-    public static Integer result ;
 
 
     @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
@@ -46,9 +45,9 @@ public class UmbrellaController {
         Random random = new Random();
         int i = random.nextInt(UmbrellaApiController.myUUID.size());
         Integer remove = UmbrellaApiController.myUUID.remove(i);
-        log.info("Rent User = {}" ,userService.userPayNumber(principal.getUser().getId(), remove));
+        log.info("Rent User = {}" ,userService.userPayNumber(principal.getUser().getId(), remove,days));
         System.out.println("principal!?? "+principal.getUser());
-        result = days;
+//        result = days;
         // DB안에 있는 Umbrella를 추합하여 전송
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
@@ -125,11 +124,11 @@ public class UmbrellaController {
         List<Umbrella> umbrellas2 = new ArrayList<>();
 
 
-        if (user.getUmbrella_Id1() != null) {
-            Umbrella umbrella1 = umbrellaService.getUmbrella(user.getUmbrella_Id1());
+        if (user.getFirstUmbrellaId() != null) {
+            Umbrella umbrella1 = umbrellaService.getUmbrella(user.getFirstUmbrellaId());
             umbrellas2.add(umbrella1);
-            if (user.getUmbrella_Id2() != null) {
-                Umbrella umbrella2 = umbrellaService.getUmbrella(user.getUmbrella_Id2());
+            if (user.getSecondUmbrellaId() != null) {
+                Umbrella umbrella2 = umbrellaService.getUmbrella(user.getSecondUmbrellaId());
                 umbrellas2.add(umbrella2);
             }
 

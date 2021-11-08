@@ -58,6 +58,7 @@ public class Umbrella {
                 ", over_date=" + over_date +
                 ", return_date=" + return_date +
                 ", user=" + user_id +
+                ", valueOfRFID=" + valueOfRFID +
                 '}';
     }
 

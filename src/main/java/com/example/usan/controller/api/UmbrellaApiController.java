@@ -96,11 +96,11 @@ public class UmbrellaApiController {
         // 프론트에서 날아온 User와 umbrellaId (id), 대여 기간(rentPeriod)를 추합하여 DB에 저장
     }
 
-    @PutMapping("/mapping/{id}/{rentPeriod}")
-    public ResponseDto<Integer> umb_rent(@RequestBody User user, @PathVariable Long id, @PathVariable int rentPeriod) {
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id, user,rentPeriod));
-        // 프론트에서 날아온 User와 umbrellaId (id), 대여 기간(rentPeriod)를 추합하여 DB에 저장
-    }
+//    @PutMapping("/mapping/{id}/{rentPeriod}")
+//    public ResponseDto<Integer> umb_rent(@RequestBody User user, @PathVariable Long id, @PathVariable int rentPeriod) {
+//        return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id, user,rentPeriod));
+//        // 프론트에서 날아온 User와 umbrellaId (id), 대여 기간(rentPeriod)를 추합하여 DB에 저장
+//    }
 
     @PutMapping("/return/{id}")
     public ResponseDto<Integer> umb_return(@RequestBody User user, @PathVariable Long id) {
