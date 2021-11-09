@@ -70,15 +70,13 @@
 
     .lent-text1 p {font-size: 1.4em;}
 
-    .lent_way {font-size: 1.33em;}
-    .return_way {font-size: 1.33em;}
+    .lent_way {font-size: 1.34em;}
+    .return_way {font-size: 1.34em;}
 
     .map h2 {font-size: 1.9em;}
 }
 
 @media screen and (max-width: 386px){
-    #banner h1 {font-size: 3.0em;}
-    #banner p {font-size: 1.58em;}
 
     .lent_way {font-size: 1.33em;}
     .return_way {font-size: 1.33em;}
@@ -101,9 +99,9 @@
     .lent-text2 {margin-bottom: 30px;}
     .lent-text2 p {font-size: 1.115em;}
 
-    .lent_way {font-size: 1.3em;}
+    .lent_way {font-size: 1.28em;}
 
-    .return_way {font-size: 1.3em;}
+    .return_way {font-size: 1.28em;}
     .return_way_p {font-size: 1.20em;}
 }
 
