@@ -125,8 +125,11 @@ public class UmbrellaApiController {
             if (umbrellaCheck.getCreate_date() == null) {
                 Umbrella createUmbrella = new Umbrella();
                 createUmbrella.setStorage(storageService.sto_detail(1L));
+
                 if (i == 1) {
                     createUmbrella.setValueOfRFID("f3ba2797");
+                } if (i == 2) {
+                    createUmbrella.setValueOfRFID("f3506a97");
                 }else   createUmbrella.setValueOfRFID("acde013"+i);
                 System.out.println("createUmbrella = " + createUmbrella);
                 umbrellaService.umbrella_save(createUmbrella);
