@@ -5,31 +5,26 @@ body{
 }
 
 div.test {
-    position: absolute;
+    position: relative;
     text-align: left;
     width: 500px;
     height:auto;
     left: 50%;
-    top:40%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 }
 
 div.blind {
-    position: absolute;
-    display:flex;
     text-align:center;
     color:black;
     font-size: 40px;
     font-weight: bold;
-    left: 50%;
-
-    transform: translate(-50%, -150%);
+    margin-top:8%;
+    margin-bottom: 6%;
 }
 
 div.data{
     background-color: white;
     color:black;
-    /*border: solid 3px #3498db;*/
     padding : 5px;
 }
 span{
