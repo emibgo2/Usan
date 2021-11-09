@@ -1,0 +1,268 @@
+* {
+    font-family:sans-serif;
+}
+
+body {
+    position:relative;
+    background-color:#FFFFFF;
+}
+
+div.join{
+    position:absolute;
+    text-align: center;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.tl{
+    color: #3498db;
+    left:50%;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.textForm {
+    width:400px;
+    height:auto;
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+}
+.but {
+    margin-bottom: 35px;
+}
+
+.con {
+    width: 100%;
+    border:none !important;
+    color: #636e72;
+    font-size:16px;
+    background: none !important;
+}
+
+/*카드창*/
+.hidden{display: none;}
+
+#submit{
+    text-align: center;
+    width:423px;
+    height:40px;
+    background-color: #3498db;
+    color:white;
+    border:hidden;
+    font-size:16px;
+}
+#bg{
+    position: fixed;
+    float: left;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left:0%;
+    background-color: rgb(0,0,0,0.5);
+}
+#popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,30%);
+    background-color: white;
+    text-align: center;
+    width: 20%;
+    height: auto;
+
+}
+
+/*카드 내부*/
+div.test {
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,40%);
+}
+
+div.box1{
+    background-color: white;
+    color:black;
+    border-radius: 15px;
+    padding : 15px;
+    width: 500px;
+}
+
+div.blind {
+    position: absolute;
+    display:flex;
+    text-align:left;
+    color:#3498db;
+    font-size: 40px;
+    font-weight: bold;
+
+}
+
+h1.title{
+    text-align: left;
+    font-size : 25px;
+    margin-block-start: 0px;
+}
+
+div.box2{
+    background-color: white;
+    border:dashed 3px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+div.enter{
+    font-size:15px;
+    text-align:left;
+}
+p{
+    margin: 15px 30px;
+}
+
+input[type=text]{
+    background-color: #FAFAFA;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    height: 20px;
+}
+
+input[type=password]{
+    background-color: #FAFAFA;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    height: 20px;
+}
+
+input[name=cardnum1]{
+    margin-left:10px;
+}
+input[name=month]{
+    margin-left:10px;
+}
+input[name=back]{
+    margin-left:45px;
+}
+input[name=pw]{
+    margin-left:9px;
+}
+
+.btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 2px solid white;
+    border-radius: 15px;
+    width:120px;
+    margin-top: 10px;
+}
+
+.btn_main {
+    background-color:#FAFAFA;
+    color: black;
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    margin-left: 5px;
+    width:120px;
+    margin-top: 10px;
+}
+
+/*크기변경*/
+@media screen and (max-width:420px) {
+    body {
+        justify-content: center;
+        align-items: center;
+    }
+
+    div.join{
+        left:44%;
+        width: 90%;
+    }
+
+    .tl{
+        transform: translate(7%, 0%);
+    }
+
+    .textForm {
+        width: 90%;
+        margin: 12%;
+        padding: 0px;
+    }
+
+    .but {
+        transform: translate(6%, 0%);
+    }
+
+    .con {
+        width: 100% !important;
+    }
+
+    /*카드창*/
+    #submit{
+        width:80%;
+        height:40px;
+    }
+
+    div.test {
+        width: 105%;
+        transform: translate(-20%,20%);
+    }
+
+    div.box1{
+        width: 400%;
+        transform: translate(-45%, 30%);
+    }
+
+    h1.title{
+        margin-block-end:5px;
+    }
+
+    div.box2{
+        width: 100%;
+        padding : 1%;
+        transform: translate(-2%, 0%);
+    }
+
+    div.enter{
+        font-size:81%;
+    }
+
+    p{
+        margin:3% 2%;
+    }
+
+    input[type=text]{
+        height: 40%;
+        width: 12%;
+    }
+
+    input[type=password]{
+        height: 40%;
+        width: 12%;
+    }
+
+    input[name=cardnum1]{
+        margin-left:1%;
+    }
+    input[name=month]{
+        margin-left:1%;
+    }
+    input[name=back]{
+        margin-left:10.5%;
+    }
+    input[name=pw]{
+        margin-left:0.5%;
+    }
+
+    .btn {
+        padding: 2.5%;
+        font-size: 80%;
+        width:30%;
+    }
+
+    .btn_main {
+        padding: 2.5%;
+        font-size: 80%;
+        width:30%;
+    }
+}
