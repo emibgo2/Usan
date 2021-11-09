@@ -66,11 +66,12 @@
 
 @media screen and (max-width: 391px){
     #banner h1 {font-size: 2.9em;}
+    #banner p {font-size: 1.58em;}
 
     .lent-text1 p {font-size: 1.4em;}
 
-    .lent_way {font-size: 1.35em;}
-    .return_way {font-size: 1.35em;}
+    .lent_way {font-size: 1.33em;}
+    .return_way {font-size: 1.33em;}
 
     .map h2 {font-size: 1.9em;}
 }
