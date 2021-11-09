@@ -6,37 +6,9 @@
     display: none;
 }
 
-@media screen and (max-width: 1680px) {
 
 
-
-}
-
-@media screen and (max-width: 1280px) {
-
-    body, input, select, textarea {
-        font-size: 11pt;
-    }
-
-}
-
-@media screen and (max-width: 980px) {
-
-    body, input, select, textarea {
-        font-size: 12pt;
-    }
-
-}
-
-@media screen and (max-width: 736px) {
-
-    body, input, select, textarea {
-        font-size: 12pt;
-    }
-
-}
-
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 429px) {
     .flex.flex-2, .flex.flex-3 {margin: 0 20px;}
 
     #banner h1 {font-size: 3.2em; margin-bottom: 40px;}
@@ -49,9 +21,9 @@
     .map h2 {font-size: 2em;}
     .map p {font-size: 1.3em;}
 
-    .rent h3 {font-size: 2.3em; text-align: center; margin-bottom: 30px;}
+    .rent h3 {font-size: 2.2em; text-align: center; margin-bottom: 30px;}
     .flex.flex-2 .col.col1, .flex.flex-2 .col.col2 {margin: 0;}
-    .lent-text1 p {font-size: 1.6em; text-align: center;}
+    .lent-text1 p {font-size: 1.58em; text-align: center;}
 
     .lent-text2 {margin-bottom: 50px;}
     .lent-text2 p {font-size: 1.3em; text-align: center;}
@@ -67,6 +39,53 @@
 
     .button {font-size: 1.2em;}
 }
+
+@media screen and (max-width: 415px){
+    .lent-text1 p {font-size: 1.5em;}
+
+    .lent-text2 p {font-size: 1.25em;}
+    .return_way_p {font-size: 1.3em;}
+
+    .lent_way {font-size: 1.45em;}
+    .return_way {font-size: 1.45em;}
+}
+
+@media screen and (max-width: 395px){
+    #banner h1 {font-size: 3.1em;}
+    #banner p {font-size: 1.60em;}
+
+    .rent h3 {font-size: 2.2em;}
+
+    .lent-text1 p {font-size: 1.47em;}
+    .lent-text2 p {font-size: 1.2em;}
+
+    .lent_way {font-size: 1.37em;}
+    .return_way {font-size: 1.37em;}
+    .return_way_p {font-size: 1.2em;}
+}
+
+@media screen and (max-width: 391px){
+    #banner h1 {font-size: 2.9em;}
+
+    .lent-text1 p {font-size: 1.4em;}
+
+    .lent_way {font-size: 1.35em;}
+    .return_way {font-size: 1.35em;}
+
+    .map h2 {font-size: 1.9em;}
+}
+
+@media screen and (max-width: 386px){
+    #banner h1 {font-size: 3.0em;}
+    #banner p {font-size: 1.58em;}
+
+    .lent_way {font-size: 1.33em;}
+    .return_way {font-size: 1.33em;}
+
+    .map h2 {font-size: 1.8em;}
+    .map p {font-size: 1.28em;}
+}
+
 
 @media screen and (max-width: 376px) {
     #banner h1 {font-size: 2.8em;}
@@ -95,22 +114,53 @@
 }
 
 @media screen and (max-width: 321px) {
-    #banner h1 {font-size: 2.8em;}
-    #banner p {font-size: 1.48em;}
+    #banner h1 {
+        font-size: 2.8em;
+    }
 
-    .map h2 {font-size: 1.8em;}
-    .map p {font-size: 1.3em;}
+    #banner p {
+        font-size: 1.48em;
+    }
 
-    .rent h3 {font-size: 2em;}
-    .lent-text1 p {font-size: 1.28em;}
+    .map h2 {
+        font-size: 1.8em;
+    }
 
-    .lent-text2 {margin-bottom: 30px;}
-    .lent-text2 p {font-size: 1.07rem;}
+    .map p {
+        font-size: 1.3em;
+    }
 
-    .lent_way {font-size: 1.109em; padding-left: 9px;}
+    .rent h3 {
+        font-size: 2em;
+    }
 
-    .return_way {font-size: 1.109em; padding-left: 9px;}
-    .return_way_p {font-size: 1.06em;}
+    .lent-text1 p {
+        font-size: 1.28em;
+    }
 
-    .map p {font-size: 1.2em;}
+    .lent-text2 {
+        margin-bottom: 30px;
+    }
+
+    .lent-text2 p {
+        font-size: 1.07rem;
+    }
+
+    .lent_way {
+        font-size: 1.109em;
+        padding-left: 9px;
+    }
+
+    .return_way {
+        font-size: 1.109em;
+        padding-left: 9px;
+    }
+
+    .return_way_p {
+        font-size: 1.06em;
+    }
+
+    .map p {
+        font-size: 1.2em;
+    }
 }
