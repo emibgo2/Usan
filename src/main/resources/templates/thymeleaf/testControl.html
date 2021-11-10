@@ -1,0 +1,139 @@
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Umbrella
+<table border="5">
+
+    <thead>
+    <tr>
+        <th >id</th>
+        <th >valueOfRFID</th>
+        <th >user_id</th>
+    </tr>
+    </thead>
+    <span th:each="umbs:${umb}">
+<tbody>
+<tr>
+<td th:text="${umbs.id}"></td>
+<td th:text="${umbs.valueOfRFID}"></td>
+<td th:text="${umbs.user_id}"></td>
+</tr>
+</tbody>
+</span>
+    <button onclick="location.href='/test/control/edit'">RFID 수정하기</button>
+    <button onclick="index.drop()">DROP</button>
+</table>
+User
+<table border="5">
+
+    <thead>
+    <tr>
+        <th >id</th>
+        <th >Login ID</th>
+        <th >nickName</th>
+        <th >firstUmbrella</th>
+        <th >secondUmbrella</th>
+    </tr>
+    </thead>
+    <span th:each="users:${user}">
+<tbody>
+<tr>
+<td th:text="${users.id}"></td>
+<td th:text="${users.username}"></td>
+<td th:text="${users.nickName}"></td>
+<td th:text="${users.firstUmbrellaId}">GET</td>
+<td th:text="${users.secondUmbrellaId}">username을 통한 사용자 정보 조회</td>
+</tr>
+</tbody>
+</span>
+</table>
+Storage
+<table border="5">
+
+    <thead>
+    <tr>
+        <th >id</th>
+        <th >location</th>
+        <th >lendingUmbRFID</th>
+        <th >umbrellaList</th>
+
+    </tr>
+    </thead>
+    <span th:each="storages:${storage}">
+<tbody>
+<tr>
+<td th:text="${storages.id}"></td>
+<td th:text="${storages.location}"></td>
+<td th:text="${storages.lendingUmbRFID}"></td>
+<td >
+<span th:each="umbrel:${storages.umbrellaList}">
+<p th:text="${umbrel}"></p>
+</span>
+</td>
+</tr>
+</tbody>
+</span>
+</table>
+Umbrella <br>
+- valueOfRFID: 우산의 RFID 값
+<br>- user_id: 우산을 빌린 User의 id 값<br>
+-------------------------------<br>
+
+User<br>
+- Login ID: 로그인할때 쓰는 아이디<br>
+- nickName: 로그인 했을때 페이지에서 사용되는 네임<br>
+- firstUmbrellaId: 처음으로 빌린 우산의 id<br>
+- secondUmbrellaId: 두번째로 빌린 우산의 id<br>
+----------------------------------<br>
+
+Storage<br>
+- location: 지점<br>
+- lendingUmbRFID: 태깅된 우산의 RFID 값<br>
+- umbrellaList: 보관소가 갖고 있는 우산 목록들<br>
+
+</body>
+<script>
+let index={
+
+    drop: function () {
+
+        $.ajax({
+            type: "GET",
+            url: `/umb/delete/all`,
+            contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
+            dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데
+            // 생긴게 json이라면 => javascript 오브젝트로 변경 해줌
+        }).done(function (resp) {
+            if (resp.response == 3) {
+                alert("실패하였습니다.");
+            } else {
+                alert("완료되었습니다.");
+                // console.log(resp)
+                location.href = "/test/control";
+            }
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+}
+</script>
+<!--===============================================================================================-->
+<script th:src="@{../../htmlTemplates/vendor/jquery/jquery-3.2.1.min.js}" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script th:src="@{../../htmlTemplates/vendor/animsition/js/animsition.min.js}" src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script th:src="@{../../htmlTemplates/vendor/bootstrap/js/popper.js}" src="vendor/bootstrap/js/popper.js"></script>
+<script th:src="@{../../htmlTemplates/vendor/bootstrap/js/bootstrap.min.js}" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script th:src="@{../../htmlTemplates/vendor/select2/select2.min.js}"  src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script th:src="@{../../htmlTemplates/vendor/daterangepicker/moment.min.js}" src="vendor/daterangepicker/moment.min.js"></script>
+<script th:src="@{../../htmlTemplates/vendor/daterangepicker/daterangepicker.js}" src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script th:src="@{../../htmlTemplates/vendor/countdowntime/countdowntime.js}" src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script th:src="@{../../htmlTemplates/js/loginmain.js}" src="js/loginmain.js"></script>
+</html>

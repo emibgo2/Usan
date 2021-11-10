@@ -1,9 +1,7 @@
 package com.example.usan.service;
 
 import com.example.usan.model.Umbrella;
-import com.example.usan.model.User;
 import com.example.usan.repository.UmbrellaRepository;
-import com.example.usan.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +52,15 @@ public class UmbrellaService {
         return umbrellaRepository.findById(id).orElseGet(() -> {
                 return new Umbrella();
             });
+    }
+
+
+    @Transactional
+    public void editUmb(Long id, String valueOfRFID) {
+        Umbrella editUmb = umbrellaRepository.findById(id).orElseThrow(() -> {
+            return new IllegalArgumentException("우산을 찾을수 없습니다");
+        });
+        editUmb.setValueOfRFID(valueOfRFID);
     }
 
 }

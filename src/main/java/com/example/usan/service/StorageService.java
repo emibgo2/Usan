@@ -121,4 +121,12 @@ public class StorageService {
             return StorageApiController.Arduino_RETURN_RFID_SERVERERROR;
         }
     }
+
+    @Transactional
+    public void drop() {
+        List<Storage> all = storageRepository.findAll();
+        for (Storage storage : all) {
+            storage.setLendingUmbRFID(null);
+        }
+    }
 }
