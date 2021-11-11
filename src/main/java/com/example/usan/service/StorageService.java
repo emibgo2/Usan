@@ -116,6 +116,7 @@ public class StorageService {
             umbrella.setRent_end_date(null);
             umbrella.setReturn_date(Timestamp.valueOf(LocalDateTime.now()));
             umbrella.setOver_date(0);
+            umbrella.getStorage().setUmb_count(umbrella.getStorage().getUmb_count()+1);
             return HttpStatus.OK.value();
         } catch (Exception e) {
             return StorageApiController.Arduino_RETURN_RFID_SERVERERROR;

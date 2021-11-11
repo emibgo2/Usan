@@ -20,6 +20,7 @@
     </div>
     <form class="lent_form">
         <div class="lent_choice">
+
             <div class="lent_location">
                 <label for="location">보관소 위치 선택</label>
                 <select id="location">
@@ -27,8 +28,8 @@
                     <option id="psb" value="평택역">평택역</option>
                 </select>
             </div>
-            <div id="lent_condition">
 
+            <div id="lent_condition">
             </div>
             <div class="lent_date">
                 <label>대여기간 선택</label>
@@ -57,8 +58,6 @@
                     locations:locations,
                     days:days
                 };
-                alert(locations)
-                alert(days)
                 $.ajax({
                     type: "POST",
                     url:`/umb/rent/${locations}/${days}`,
@@ -75,13 +74,12 @@
                     } else  {
                         alert("우산 등록이 완료되었습니다.");
                         // console.log(resp)
-                        location.href="/umb/rent/success";
+                        location.href="/payment/edit";
                     }
                 }).fail(function (error) {
                     alert(" Error ->"+JSON.stringify(error));
                 });
 
-                alert("????");
             } else {
             }
 

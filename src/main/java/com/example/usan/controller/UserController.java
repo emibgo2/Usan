@@ -61,7 +61,16 @@ public class UserController {
 
         return "thymeleaf/testControlEdit";
     }
+    @GetMapping("/user/bill")
+    public String billForm() {
+        return "thymeleaf/umbrella/bill";
+    }
 
+
+    @GetMapping("/payment/edit")
+    public String paymentEdit() {
+        return "thymeleaf/umbrella/payment_edit";
+    }
 
     @GetMapping("/agree")
     public String agreeForm() {

@@ -45,7 +45,7 @@ public class UmbrellaController {
         Random random = new Random();
         int i = random.nextInt(UmbrellaApiController.myUUID.size());
         Integer remove = UmbrellaApiController.myUUID.remove(i);
-        log.info("Rent User = {}" ,userService.userPayNumber(principal.getUser().getId(), remove,days));
+        log.info("Rent User = {}" ,userService.userPayNumber(principal.getUser().getId(), remove,days,location));
         System.out.println("principal!?? "+principal.getUser());
 //        result = days;
         // DB안에 있는 Umbrella를 추합하여 전송
@@ -103,7 +103,7 @@ public class UmbrellaController {
 
     @GetMapping("/rent")
     public String viewTest(Model model) {
-        System.out.println("??");
+
         model.addAttribute("storages", storageService.sto_upload());
         return "thymeleaf/umbrella/rent";
     }
