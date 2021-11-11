@@ -180,7 +180,7 @@ body {
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 321px) {
     .lent h1 {
         font-size: 2.8em;
     }
