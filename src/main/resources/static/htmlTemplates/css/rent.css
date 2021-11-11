@@ -278,7 +278,10 @@ li{
     margin-right:10px;
 }
 .all_btn {
+    margin-top: 25px;
     margin-bottom: 35px;
+    display: flex;
+    justify-content: center;
 }
 
 .subject{
@@ -381,7 +384,6 @@ p {
         padding: 12px 10px;
         font-size: 13px;
         width:100px;
-        margin-top:8px;
 
     }
 
@@ -395,7 +397,6 @@ p {
         text-align:center;
         justify-content: center;
         align-items: center;
-        left: 50%;
     }
 
     iframe{
