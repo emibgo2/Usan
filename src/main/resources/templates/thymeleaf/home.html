@@ -13,6 +13,7 @@
 	<link rel="stylesheet"
 		  th:href="@{../htmlTemplates/css/main.css}"
 		  href="../../static/htmlTemplates/css/main.css" />
+	<link rel="stylesheet" th:href="@{../htmlTemplates/css/home.css}" href="../../static/htmlTemplates/css/home.css">
 </head>
 <body>
 
@@ -30,6 +31,7 @@
 					<li><a href="/inquiry">문의하기</a></li>
 					<li><a href="/board">공지사항</a></li>
 					<li><a href="umb/rent">대여하기</a></li>
+					<li><a href="umb/rent">개인정보</a></li>
 					<li  sec:authorize="isAuthenticated()" ><a href="/logout">로그아웃</a></li>
 					<li  sec:authorize="!isAuthenticated()" ><a href="/auth/loginForm">로그인</a></li>
 					<li  sec:authorize="!isAuthenticated()" ><a href="/auth/joinForm">회원가입</a></li>
@@ -41,95 +43,117 @@
 				<div class="inner">
 					<header>
 						<h1>우산대여</h1>
-						<p sec:authorize="isAuthenticated()">
+						<p sec:authorize="isAuthenticated()" class="p_margin">
 						<span  sec:authentication="principal.user.nickName"></span>님 안녕하세요
 						</p>
 
-						<p>우산을 쉽고 빠르게 대여하세요.</p>
-						<p>들고 다니기 귀찮았던 우산, 이제는 우산대여를 통해 손을 가볍게!</p>
+						<p class="p_margin">우산을 쉽고 빠르게 대여하세요.</p>
+						<p class="p_window p_margin">들고 다니기 귀찮았던 우산, 이제는 우산대여를 통해 손을 가볍게!</p>
+						<p class="p_mobile p_none">들고 다니기 귀찮았던 우산,</p><p class="p_mobile p_margin">이제는 우산대여를 통해 손을 가볍게!</p>
 					</header>
 					<a sec:authorize="!isAuthenticated()" href="/auth/loginForm" class="button big scrolly">로그인</a>
 					<a sec:authorize="isAuthenticated()" href="/logout" class="button big scrolly">로그아웃</a>
-
 				</div>
 			</section>
 
 		<!-- Main -->
 			<div id="main">
 
-	<!-- Section -->
-	<section class="wrapper style2">
-		<div class="inner">
-			<div class="flex flex-2">
-				<div class="col col2">
-					<h3>대여하기</h3>
-					<div class="lent-text1">
-						<p>자꾸만 늘어나는 우산 소비는 이제 그만!</p>
-						<p>하루 1500원으로 내 우산처럼 편하게 사용하세요!</p>
+		<!-- Section -->
+			<section class="wrapper style2 rent">
+				<div class="inner">
+					<div class="flex flex-2">
+						<div class="col col2">
+							<h3>대여하기</h3>
+							<div class="lent-text1 p_window">
+								<p>자꾸만 늘어나는 우산 소비는 이제 그만!</p>
+								<p>하루 700원으로 내 우산처럼 편하게 사용하세요!</p>
+							</div>
+							<div class="lent-text1 p_mobile">
+								<p>자꾸만 늘어나는 우산 소비는<br>이제 그만!</p>
+								<p>하루 700원으로 내 우산처럼<br>편하게 사용하세요!</p>
+							</div>
+							<div class="lent-text2">
+								<p class="p_window">* 대여시간으로부터 24시간 경과 후 추가요금 발생</p>
+								<p class="p_mobile">* 대여시간으로부터 24시간 경과 후<br>추가요금 발생</p>
+								<p class="lent-text2-p">자세한 내용은 이용 안내 페이지 참고</p>
+							</div>
+							<a href="/umb/rent" class="button">대여하기</a>
+						</div>
+						<div class="col col1 first">
+							<div class="image round fit">
+								<img th:src="@{../htmlTemplates/images/우산.jpg}" src="../../static/htmlTemplates/images/우산.jpg" alt="" />
+							</div>
+						</div>
 					</div>
-					<div class="lent-text2">
-						<p>* 대여시간으로부터 24시간 경과 후 추가요금 발생</p>
-						<p class="lent-text2-p">자세한 내용은 이용 안내 페이지 참고</p>
-					</div>
-					<a  sec:authorize="isAuthenticated()" href="/umb/rent" class="button">대여하기</a>
-					<a  sec:authorize="!isAuthenticated()" href="/auth/loginForm" class="button">대여하기</a>
 				</div>
-				<div class="col col1 first">
-					<div class="image round fit">
-						<img th:src="@{../htmlTemplates/images/우산.jpg}" src="../../static/htmlTemplates/images/우산.jpg" alt="" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+			</section>
 
-	<!-- Section -->
-	<section class="wrapper style1">
-		<div class="inner">
-			<!-- 2 Columns -->
-			<div class="flex flex-2">
-				<div class="col col1">
-					<div class="image round fit">
-						<img th:src="@{../htmlTemplates/images/pic01.jpg}" src="../../static/htmlTemplates/images/pic01.jpg" alt="" />
+		<!-- Section -->
+			<section class="wrapper style1 rent">
+				<div class="inner">
+					<!-- 2 Columns -->
+					<div class="flex flex-2">
+						<div class="col col1">
+							<div class="image round fit">
+								<img th:src="@{../htmlTemplates/images/pic01.jpg}" src="../../static/htmlTemplates/images/pic01.jpg" alt="" />
+							</div>
+						</div>
+						<div class="col col2">
+							<h3>대여 방법</h3>
+							<ol class="lent_way p_window">
+								<li>보관함 QR코드를 인식하세요.</li>
+								<li>사이트에 접속하여 로그인 후 대여하기 버튼을 눌러주세요.</li>
+								<li>우산을 인식존에 인식해주세요.</li>
+								<li>이후 안내에 따라 대여를 진행해주세요.</li>
+								<li>결제 후 레일을 따라 우산을 꺼내주세요.</li>
+							</ol>
+							<ol class="lent_way p_mobile">
+								<li>보관함 QR코드를 인식하세요.</li>
+								<li>사이트에 접속하여 로그인 후<br>대여하기 버튼을 눌러주세요.</li>
+								<li>우산을 인식존에 인식해주세요.</li>
+								<li>이후 안내에 따라 대여를 진행<br>해주세요.</li>
+								<li>결제 후 레일을 따라 우산을<br>꺼내주세요.</li>
+							</ol>
+						</div>
 					</div>
 				</div>
-				<div class="col col2">
-					<h3>대여 방법</h3>
-					<ol class="lent_way">
-						<li>보관함에 있는 QR코드를 인식하세요.</li>
-						<li>사이트에 접속하여 로그인 후 대여하기 버튼을 눌러주세요.</li>
-						<li>이후 안내에 따라 대여를 진행해주세요.</li>
-						<li>대여완료 후 우산을 레일 방향에 따라 꺼내주세요.</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</section>
+			</section>
 
-				<!-- Section -->
-					<section class="wrapper style2">
-						<div class="inner">
-							<div class="flex flex-2">
-								<div class="col col2">
-									<h3>반납 방법</h3>
-									<ol class="return_way">
-										<li>보관함에 반납할 우산을 넣어주세요.</li>
-										<li>삑소리가 난다면 레일 방향을 따라 넣어주세요.</li>
-										<li>우산 반납에 성공했다면 결제가 잘 됐는지 확인해주세요.</li>
-									</ol>
-									<p class="return_way_p">* 만약 "인식을 다시 해주세요" 라는 음성 안내가 나온다면 당황하지 마시고 천천히 다시 시도해주세요.</p>
-								</div>
-								<div class="col col1 first">
-									<div class="image round fit">
-										<img th:src="@{../htmlTemplates/images/pic02.jpg} "src="images/pic02.jpg" alt="" />
-									</div>
+
+			<!-- Section -->
+				<section class="wrapper style2 rent">
+					<div class="inner">
+						<div class="flex flex-2">
+							<div class="col col2">
+								<h3>반납 방법</h3>
+								<ol class="return_way p_window">
+									<li>보관함에 우산을 넣어주세요.</li>
+									<li>우산을 인식존에 인식해주세요.</li>
+									<li>띠리링 소리가 난다면 그대로 넣어주세요.</li>
+									<li>만약 추가요금이 있다면 결제가 잘 됐는지 확인해주세요.</li>
+								</ol>
+								<ol class="return_way p_mobile">
+									<li>보관함에 우산을 넣어주세요.</li>
+									<li>우산을 인식존에 인식해주세요.</li>
+									<li>띠리링 소리가 난다면 그대로<br>넣어주세요.</li>
+									<li>만약 추가요금이 있다면 결제가<br>잘 됐는지 확인해주세요.</li>
+								</ol>
+								<p class="return_way_p p_window">* 만약 "띡" 소리가 난다면 당황하지 마시고 천천히 다시 시도해주세요.</p>
+								<p class="return_way_p p_mobile return_p">* 만약 "띡" 소리가 난다면 당황하지</p>
+								<p class="return_way_p p_mobile return_pp">마시고 천천히 다시 시도해주세요.</p>
+							</div>
+							<div class="col col1 first">
+								<div class="image round fit">
+									<img th:src="@{../htmlTemplates/images/pic01.jpg}" src="../../static/htmlTemplates/images/pic01.jpg" alt="" />
 								</div>
 							</div>
 						</div>
-					</section>
+					</div>
+				</section>
 
-				<!-- Section -->
-				<section class="wrapper style1">
+			<!-- Section -->
+				<section class="wrapper style1 map">
 					<div class="inner">
 						<header class="align-center">
 							<h2>USAN존 위치</h2>

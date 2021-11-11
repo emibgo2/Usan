@@ -1711,7 +1711,7 @@
 		}
 
 	h3 {
-		font-size: 1.75em;
+		font-size: 2em;
 	}
 
 		@media screen and (max-width: 736px) {
@@ -1936,7 +1936,7 @@
 		button.big,
 		.button.big {
 			font-size: 1.35em;
-			margin-top: 100px;
+			margin-top: 90px;
 		}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
@@ -2551,17 +2551,17 @@
 
 	.lent_way {
 		color: #000;
-		font-size: 1.1em;
+		font-size: 1.2em;
 	}
 
 	.return_way {
 		color: white;
-		font-size: 1.1em;
+		font-size: 1.2em;
 	}
 
 	.return_way_p {
 		color: #aed6f1;
-		font-size: 1em;
+		font-size: 1.1em;
 	}
 
 	ol {
@@ -2968,7 +2968,7 @@
 
 		.lent-text1>p {
 			margin-bottom: 10px;
-			font-size: 1.2em;
+			font-size: 1.35em;
 		}
 
 	.lent-text2 {

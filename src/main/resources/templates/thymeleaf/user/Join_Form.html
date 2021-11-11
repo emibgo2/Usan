@@ -1,170 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script>
-
-    //윈도우 오픈시 필요한 주소,재목,넓이,높이,표시위치,표시위치
-    function winOpen(url,title,width,height,top,left){
-      window.open(url,title,"width="+width+",height="+height+",top="+top+",left="+left);
-    }
-  </script>
-
+  <link rel="stylesheet"
+        th:href="@{../htmlTemplates/css/join_form.css}"
+        href="../../../static/htmlTemplates/css/join_form.css"/>
 
   <title>회원가입</title>
 </head>
+
 <body>
-<form action="doJoin" method="POST" class="joinForm" onsubmit="DoJoinForm__submit(this); return false;">
-
-  <style>
-    * {
-      margin: 0px;
-      padding: 0px;
-      text-decoration: none;
-      font-family:sans-serif;
-
-    }
-
-    body {
-      background-image:#34495e;
-    }
-
-    .joinForm {
-      position:absolute;
-      width:400px;
-      height:500px;
-      padding: 30px, 20px;
-      background-color:#FFFFFF;
-      text-align:center;
-      top:40%;
-      left:50%;
-      transform: translate(-50%,-50%);
-      border-radius: 15px;
-    }
-
-    .joinForm h2 {
-      text-align: center;
-      margin: 30px;
-    }
-
-    .textForm {
-      border-bottom: 2px solid #adadad;
-      margin: 30px;
-      padding: 10px 10px;
-    }
-
-
-    .id {
-      width: 100%;
-      border:none;
-      outline:none;
-      color: #636e72;
-      font-size:16px;
-      height:25px;
-      background: none;
-    }
-
-    .pw {
-      width: 100%;
-      border:none;
-      outline:none;
-      color: #636e72;
-      font-size:16px;
-      height:25px;
-      background: none;
-    }
-
-    .name {
-      width: 100%;
-      border:none;
-      outline:none;
-      color: #636e72;
-      font-size:16px;
-      height:25px;
-      background: none;
-    }
-
-    .email {
-      width: 100%;
-      border:none;
-      outline:none;
-      color: #636e72;
-      font-size:16px;
-      height:25px;
-      background: none;
-    }
-
-    .nickname {
-      width: 100%;
-      border:none;
-      outline:none;
-      color: #636e72;
-      font-size:16px;
-      height:25px;
-      background: none;
-    }
-
-    .cellphoneNo {
-      width: 100%;
-      border:none;
-      outline:none;
-      color: #636e72;
-      font-size:16px;
-      height:25px;
-      background: none;
-    }
-
-    .btn {
-      position:relative;
-      left:40%;
-      transform: translateX(-50%);
-      margin-bottom: 40px;
-      width:80%;
-      height:40px;
-      background-color: #2A78AC;
-      background-position: left;
-      background-size: 200%;
-      color:white;
-      font-weight: bold;
-      border:none;
-      cursor:pointer;
-      transition: 0.4s;
-      display:inline;
-    }
-
-    .btn:hover {
-      background-position: right;
-    }
-  </style>
-
-
-  <h2>회원가입</h2>
+<div class="join">
+  <div class="tl">USAN</div>
   <div class="textForm">
-    <input name="loginId" type="text" class="id" placeholder="아이디">
+    <input name="loginId" type="text" class="con" placeholder="아이디">
     </input>
   </div>
   <div class="textForm">
-    <input name="loginPw" type="password" class="pw" placeholder="비밀번호">
+    <input name="loginPw" type="password" class="con" placeholder="비밀번호">
   </div>
   <div class="textForm">
-    <input name="loginPwConfirm" type="password" class="pw" placeholder="비밀번호 확인">
+    <input name="loginPwConfirm" type="password" class="con" placeholder="비밀번호 확인">
   </div>
   <div class="textForm">
-    <input name="name" type="text" class="name" placeholder="이름">
+    <input name="name" type="text" class="con" placeholder="이름">
   </div>
   <div class="textForm">
-    <input name="email" type="text" class="email" placeholder="이메일">
+    <input name="nickname" type="text" class="con" placeholder="닉네임">
   </div>
   <div class="textForm">
-    <input name="nickname" type="text" class="nickname" placeholder="닉네임">
+    <input name="email" type="text" class="con" placeholder="이메일">
   </div>
   <div class="textForm">
-    <input name="cellphoneNo" type="text" class="cellphoneNo" placeholder="전화번호 ( - 없이 입력 )">
+    <input name="birth" type="text" class="con" placeholder="생년월일 (6자리)">
   </div>
-  <input type="submit" class="btn" value="N   E   X   T" style="cursor:hand"onclick="winOpen('card.html','new','width=500,height=500,top=100,left=100'); "/>
-</form>
+  <div class="textForm">
+    <input name="cellphoneNo" type="text" class="con" placeholder="전화번호 ( - 없이 입력 )">
+  </div>
+  <div class="but">
+    <button id ="submit" class="button">결제 카드 등록</button>
+  </div>
+</div>
+
+<!--팝업창-->
+<div id="bg" class="hidden"></div>
+<div id = "popup" class="hidden">
+  <div class="test">
+    <div class="box1">
+
+      <h1 class="title">결제 카드</h1>
+
+      <div class="box2">
+        <div class="enter">
+          <p style ="font-weight: bold;">카드번호 &nbsp;<input type="text" name="cardnum1" size="4" > - <input type="text" name="cardnum2" size="4"> -
+            <input type="text" name="cardnum3" size="4"> - <input type="text" name="cardnum4" size="4"></p>
+          <hr size="1px" width=100% color="white" noshade ></hr>
+          <p style = "font-weight: bold;">유효기간 &nbsp;<input type="text" name="month" size="2" placeholder="MM"  > / <input type="text" name="year" size="2" placeholder="YY"></p>
+          <hr size="1px" width=100% color="white" noshade="noshade"></hr>
+          <p style = "font-weight: bold;">&nbsp;CVC<input type="password" name="back" size="3" left="50%" ><span style = "color:gray; font-size: 12px;"> 카드 뒷면 끝 3자리</span></p>
+          <hr size="1px" width=100% color="white" noshade="noshade"></hr>
+          <p style = "font-weight: bold;">비밀번호 &nbsp;</span><input type="password" name="pw" size="2" >** <span style = "color:gray; font-size: 12px;">카드비밀번호 앞 2자리</span></p>
+        </div>
+      </div>
+
+
+      <div class="all_btn">
+        <button type="button" onClick="location.href='#'" class="btn">등록하기</button>
+        <button id ="back" class="btn_main">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
+<script>
+  const submit = document.querySelector("#submit");
+  const bg = document.querySelector("#bg");
+  const popup = document.querySelector("#popup");
+  const back = document.querySelector("#back");
+
+  submit.addEventListener("click",function(){
+    bg.classList.remove("hidden");
+    popup.classList.remove("hidden");
+  });
+  back.addEventListener("click",function(){
+    bg.classList.add("hidden");
+    popup.classList.add("hidden");
+  });
+
+</script>
 </html>

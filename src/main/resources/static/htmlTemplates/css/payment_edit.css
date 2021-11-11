@@ -5,24 +5,26 @@ body{
 }
 
 div.test {
-    position: absolute;
+    position: relative;
     text-align: left;
     width: 500px;
     height:auto;
     left: 50%;
-    top:50%;
-    transform: translate(-50%, -50%);
+    /*top:50%;*/
+    transform: translateX(-50%);
 }
 
 div.blind {
-    position: absolute;
-    display:flex;
+    /*position: absolute;
+    display:flex;*/
     text-align:center;
     color:black;
     font-size: 40px;
     font-weight: bold;
-    left: 50%;
-    transform: translate(-50%, -150%);
+    margin-top:10%;
+    margin-bottom: 8%;
+    /*left: 50%;
+    transform: translate(-50%, -150%);*/
 }
 
 div.data{
@@ -67,6 +69,9 @@ li{
     width:500px;
 
     transform: translate(0%, 40%);
+}
+.all_btn {
+    margin-bottom: 35px;
 }
 
 .subject{
