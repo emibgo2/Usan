@@ -152,7 +152,7 @@ body {
     text-align: center;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 429px) {
     .container_lent {
         width: 100%;
         min-height: 100vh;
@@ -177,5 +177,19 @@ body {
         display: flex;
         justify-content: center;
         /* margin: 70px 0 40px; */
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .lent h1 {
+        font-size: 2.8em;
+    }
+
+    .lent h3 {
+        font-size: 1.8em;
+    }
+
+    .lent_choice {
+        font-size: 1.14rem;
     }
 }
