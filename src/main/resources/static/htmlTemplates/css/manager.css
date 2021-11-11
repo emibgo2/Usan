@@ -1,0 +1,40 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.manage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 600px;
+}
+
+.manage h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.manage_table {
+    border-collapse: collapse;
+    text-align: center;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    margin : 20px 10px;
+}
+
+.manage_table th {
+    width: 157px;
+    padding: 10px;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.manage_table td {
+    width: 400px;
+    padding: 10px;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
