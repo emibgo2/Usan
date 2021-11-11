@@ -37,11 +37,62 @@
             <p id="lent_date_result"></p>
         </div>
         <div class="lent_btn">
-            <button type="button" class="btn_submit" onclick="instance.test()">대여하기</button>
+            <button type="button" id="submit" class="btn_submit" onclick="instance.test()">대여하기</button>
             <button type="reset" class="btn_reset">취소하기</button>
         </div>
     </form>
 
+</div>
+
+<div id="bg" class="hidden"></div>
+<div id = "popup" class="hidden">
+    <div class="test">
+        <div class="blind">결제 확인</div>
+
+        <div class="data">
+            <p style = "margin: 0px 0px 0px 60px;">등록된 카드</p>
+            <p style = "margin: 0px 0px 0px 140px; font-weight: bold;">NH 0000-****-****-0*0*</p>
+            <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
+            <p style = "margin: 0px 0px 0px 60px; ">총 결제 금액<span style = "margin: 0px 0px 0px 140px; font-weight: bold; color:red">1,000원</span></p>
+            <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
+
+            <button type="button" class="con"><ins>이용 정보 보기</ins></button>
+            <div class="box">
+                <span style="float:right; margin-right:10px;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3186.5893007269624!2d127.13122496515058!3d36.995735379908695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b309bc8f7fb29%3A0xc0ddf62819c56a8e!2z7Y-J7YOd64yA7ZWZ6rWQ!5e0!3m2!1sko!2skr!4v1633404600471!5m2!1sko!2skr" width="200" height="100" style="border:0;" allowfullscreen="" ></iframe></span>
+                <p></p>
+                <span class = "subject">보관소 위치 :</span>
+                <span class = "content">평택대학교</span>
+
+                <p></p>
+                <span class="subject">대여기간 :</span>
+                <span class="content">1일</span>
+
+                <p></p>
+                <span class="subject">대여 날짜 :</span>
+                <span class="content">2021</span>
+            </div>
+        </div>
+        <hr size="1px" width=100% color= white noshade="noshade"></hr>
+
+
+        <div class="agree">
+            <ul style="list-style: none; text-indent: 0%; padding-inline-start: 0px; margin-block-start: 0px;">
+                <li><input type="checkbox" name="agree1" value="all" class="check-all">전체 동의</li>
+                <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
+                <li><input type="checkbox" name="agree2" value="check1" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</li>
+                <p></p>
+                <li><input type="checkbox" name="agree3" value="check2" class="agree1">추가요금 자동결제, 환불규정에 동의합니다.</li>
+            </ul>
+        </div>
+
+        <div id ="er" class="er" style="color:red; margin-top: 5px; text-align: center;">추가요금 자동결제, 환불규정에 동의해주세요.</div>
+
+        <div class="all_btn">
+            <button type="button" id="back" onClick="location.href='#'" class="btn_main">뒤로가기</button>
+            <button type="button" id="ok" onClick="location.href='#'" class="btn" >결제하기</button>
+        </div>
+
+    </div>
 </div>
 
 
@@ -86,10 +137,58 @@
             }
 
 
-            }
+        }
 
 
     }
+
+    $('.con').on('click',function(){
+        $('div.box').toggleClass('on');
+    });
+
+    $(document).ready(function(){
+        $('.check-all').click(function (){
+            $('.agree1').prop('checked', this.checked);
+        });
+    });
+
+    $(document).ready(function(){
+        $('.check-all').click(function (){
+            $('.agree1').prop('checked', this.checked);
+        });
+        $('.agree1').click(function (){
+            if($("input[name='agree2']:checked").length + $("input[name='agree3']:checked").length == 2 ){
+                $('.check-all').prop("checked", true);
+            }else{
+                $('.check-all').prop("checked", false);
+            }
+        });
+
+        const ok = document.querySelector("#ok");
+        const er = document.querySelector("#er");
+
+        ok.addEventListener("click",function(){
+            if($("input[name='agree3']:checked").length != $("input[name='agree3']").length) {
+                er.classList.remove("er");
+            }
+        });
+    });
+
+    const submit = document.querySelector("#submit");
+    const bg = document.querySelector("#bg");
+    const popup = document.querySelector("#popup");
+    const back = document.querySelector("#back");
+
+    submit.addEventListener("click",function(){
+        bg.classList.remove("hidden");
+        popup.classList.remove("hidden");
+    });
+    back.addEventListener("click",function(){
+        bg.classList.add("hidden");
+        popup.classList.add("hidden");
+    });
+
+
 </script>
 
 <script th:inline="javascript">
