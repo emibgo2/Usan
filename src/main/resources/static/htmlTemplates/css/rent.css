@@ -263,7 +263,6 @@ li{
     font-size: 15px;
     border: 2px solid  #3498db;
     width:120px;
-    transform: translate(100%, 40%);
     border-radius: 15px;
     margin-left:10px;
 }
@@ -274,7 +273,6 @@ li{
     font-size: 15px;
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-    transform: translate(100%, 40%);
     /*margin-left: 5px;*/
     width:120px;
     margin-right:10px;
@@ -398,7 +396,6 @@ p {
         justify-content: center;
         align-items: center;
         left: 50%;
-        transform: translateX(-50%);
     }
 
     iframe{
