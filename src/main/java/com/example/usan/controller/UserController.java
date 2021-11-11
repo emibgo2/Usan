@@ -117,5 +117,8 @@ public class UserController {
         return "thymeleaf/umbrella/agree";
     }
 
-
+    @GetMapping("/personal/information")
+    public String personalInformationForm() {
+        return  "thymeleaf/umbrella/personal_information";
+    }
 }

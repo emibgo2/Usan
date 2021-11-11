@@ -45,14 +45,14 @@ public class UmbrellaController {
         Random random = new Random();
         int i = random.nextInt(UmbrellaApiController.myUUID.size());
         Integer remove = UmbrellaApiController.myUUID.remove(i);
-        log.info("Rent User = {}" ,userService.userPayNumber(principal.getUser().getId(), remove,days,location));
-        System.out.println("principal!?? "+principal.getUser());
+        log.info("Rent User = {}", userService.userPayNumber(principal.getUser().getId(), remove, days, location));
+        System.out.println("principal!?? " + principal.getUser());
 //        result = days;
         // DB안에 있는 Umbrella를 추합하여 전송
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    public void test( HttpServletRequest request) {
+    public void test(HttpServletRequest request) {
 
         Random random = new Random();
         int i = random.nextInt(UmbrellaApiController.myUUID.size());
@@ -132,12 +132,13 @@ public class UmbrellaController {
                 umbrellas2.add(umbrella2);
             }
 
-        } return umbrellas2;
+        }
+        return umbrellas2;
     }
 
     @GetMapping("/fault/report/{userId}")
     public String fault_ReportUmbrella(@PathVariable Long userId, Model model) {
-        List<Umbrella> umbrellas = getUserUmbrellas( userId);
+        List<Umbrella> umbrellas = getUserUmbrellas(userId);
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_Fault_Report";
     }
@@ -162,11 +163,25 @@ public class UmbrellaController {
     @GetMapping("/rent/success")
     public String rent_Finish(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
         System.out.println("principal = " + principal.getUser());
-        User user = userRepository.findById(principal.getUser().getId()).orElseGet(()->{
+        User user = userRepository.findById(principal.getUser().getId()).orElseGet(() -> {
             return new User();
         });
         model.addAttribute("payNumber", user.getPayNumber());
         return "thymeleaf/chaerin/rent_finish";
+    }
+
+    @GetMapping("/card")
+    public String cardForm() {
+        return  "thymeleaf/umbrella/card";
+    }
+
+    @GetMapping("/docu")
+    public String docuForm() {
+        return  "thymeleaf/umbrella/docu";
+    }
+    @GetMapping("/information")
+    public String informationForm() {
+        return  "thymeleaf/umbrella/information";
     }
 
 }
