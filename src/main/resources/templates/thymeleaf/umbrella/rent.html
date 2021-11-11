@@ -79,15 +79,17 @@
             <ul style="list-style: none; text-indent: 0%; padding-inline-start: 0px; margin-block-start: 0px;">
                 <li><input type="checkbox" name="agree1" value="all" class="check-all">전체 동의</li>
                 <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
-                <li><input type="checkbox" name="agree1" value="check1" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</li>
+                <li><input type="checkbox" name="agree2" value="check1" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</li>
                 <p></p>
-                <li><input type="checkbox" name="agree1" value="check2" class="agree1">추가요금 자동결제, 환불규정에 동의합니다.</li>
+                <li><input type="checkbox" name="agree3" value="check2" class="agree1">추가요금 자동결제, 환불규정에 동의합니다.</li>
             </ul>
         </div>
 
+        <div id ="er" class="er" style="color:red; margin-top: 5px; text-align: center;">추가요금 자동결제, 환불규정에 동의해주세요.</div>
+
         <div class="all_btn">
             <button type="button" id="back" onClick="location.href='#'" class="btn_main">뒤로가기</button>
-            <button type="button" onClick="location.href='#'" class="btn" >결제하기</button>
+            <button type="button" id="ok" onClick="location.href='#'" class="btn" >결제하기</button>
         </div>
 
     </div>
@@ -155,10 +157,19 @@
             $('.agree1').prop('checked', this.checked);
         });
         $('.agree1').click(function (){
-            if($("input[name='agree1']:checked").length == 2 ){
+            if($("input[name='agree2']:checked").length + $("input[name='agree3']:checked").length == 2 ){
                 $('.check-all').prop("checked", true);
             }else{
                 $('.check-all').prop("checked", false);
+            }
+        });
+
+        const ok = document.querySelector("#ok");
+        const er = document.querySelector("#er");
+
+        ok.addEventListener("click",function(){
+            if($("input[name='agree3']:checked").length != $("input[name='agree3']").length) {
+                er.classList.remove("er");
             }
         });
     });
