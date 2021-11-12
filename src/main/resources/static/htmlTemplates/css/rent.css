@@ -77,7 +77,7 @@ body {
     display: flex;
     justify-content: center;
     position: relative;
-    margin: 35px 0 0 0;
+    margin: 20px 0;
 }
 
 .lent_location label {
@@ -94,7 +94,7 @@ body {
     display: flex;
     justify-content: center;
     position: relative;
-    margin: 20px 0 0 0;
+    margin: 20px 0;
 }
 
 .lent_date label {
@@ -125,6 +125,8 @@ body {
     border-radius: 20px;
 }
 
+
+
 .btn_reset {
     margin-left: 10px;
     width: 90px;
@@ -152,7 +154,154 @@ body {
     text-align: center;
 }
 
-@media screen and (max-width: 429px) {
+
+/*결제창*/
+.hidden{display: none;}
+
+/*#submit{
+    text-align: center;
+    width:423px;
+    height:40px;
+    background-color: #3498db;
+    color:white;
+    border:hidden;
+    font-size:16px;
+}*/
+#bg{
+    position: fixed;
+    float: left;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left:0%;
+    background-color: rgb(0,0,0,0.5);
+}
+#popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,30%);
+    /*background-color: white;*/
+    text-align: center;
+    width: 20%;
+    height: auto;
+
+}
+
+
+
+/*결제 내부*/
+/*body{
+    background-color:white;
+    justify-content: center;
+    align-items: center;
+}*/
+
+div.test {
+    background-color: white;
+    position: relative;
+    text-align: left;
+    width: 500px;
+    height:auto;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-80%);
+    padding : 10px;
+    border: solid 3px #3498db;
+}
+
+div.blind {
+    /*position: absolute;
+    display:flex;*/
+    text-align:center;
+    color:black;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top:10%;
+    margin-bottom: 8%;
+    /*left: 50%;
+    transform: translate(-50%, -150%);*/
+}
+
+div.data{
+    background-color: white;
+    color:black;
+    border: solid 3px #3498db;
+    padding : 15px;
+}
+
+div.box{
+    font-size:15px;
+    color:black;
+    height:auto;
+    display:none;
+}
+div.box.on{
+    display:block;
+}
+
+.con{
+
+    background-color: white;
+    border-style: none;
+}
+
+div.agree{
+    background-color: #FAFAFA;
+    padding:15px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+li{
+    color:black;
+}
+
+.btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 2px solid  #3498db;
+    width:120px;
+    border-radius: 15px;
+    margin-left:10px;
+}
+.btn_main {
+    background-color:#FAFAFA;
+    color: black;
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    /*margin-left: 5px;*/
+    width:120px;
+    margin-right:10px;
+}
+.all_btn {
+    margin-top: 25px;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.subject{
+    margin-left:20px;
+}
+p {
+    font-size:20px;
+}
+.er{
+    display :none;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 500px) {
     .container_lent {
         width: 100%;
         min-height: 100vh;
@@ -176,8 +325,96 @@ body {
     .lent_btn {
         display: flex;
         justify-content: center;
-        /* margin: 70px 0 40px; */
+        margin: 70px 0 40px;
     }
+
+    .btn_submit {
+        margin-right: 10px;
+        width: 90px;
+        height: 35px;
+        background: white;
+        color: #3498db;
+        font-weight: 900;
+        font-family: 'Gowun Dodum', sans-serif;
+        font-size: 0.9rem;
+        border-radius: 20px;
+    }
+
+    .btn_reset {
+        margin-left: 10px;
+        width: 90px;
+        height: 35px;
+        background: white;
+        color: #3498db;
+        font-weight: 900;
+        font-family: 'Gowun Dodum', sans-serif;
+        font-size: 0.9rem;
+        border-radius: 20px;
+    }
+
+
+
+
+    /*결제 내부*/
+
+    #popup{
+        font-size:70%;
+
+    }
+    div.test {
+        /*position:absolute;*/
+        /*font-size:10%;*/
+        /*transform: translate(-50%,-80%);*/
+        width:430%;
+        justify-content: center;
+        align-items: center;
+        height:100%;
+    }
+
+
+
+    div.blind {
+        font-size: 180%;
+    }
+
+    p {
+        margin: 2px !important;
+    }
+
+
+
+    .btn {
+        padding: 12px 10px;
+        font-size: 13px;
+        width:100px;
+
+    }
+
+
+    .btn_main {
+        font-size: 13px;
+        width:100px;
+    }
+
+    .all_btn {
+        text-align:center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    iframe{
+        width:110px;
+
+        height:70px;
+    }
+    .subject{
+        font-size: 85%;
+        margin-left:5%;
+    }
+    .content{
+        font-size: 85%;
+    }
+
 }
 
 @media screen and (max-width: 321px) {

@@ -376,6 +376,9 @@
 .p-t-168 {padding-top: 168px;}
 .p-t-169 {padding-top: 169px;}
 .p-t-170 {padding-top: 170px;}
+@media screen and (min-height:568px) and (max-height:640px) {
+    .p-t-170 {padding-top: 85px;}
+}
 .p-t-171 {padding-top: 171px;}
 .p-t-172 {padding-top: 172px;}
 .p-t-173 {padding-top: 173px;}
