@@ -89,7 +89,7 @@
 
         <div class="all_btn">
             <button type="button" id="back" onClick="location.href='#'" class="btn_main">뒤로가기</button>
-            <button type="button" id="ok" onClick="location.href='/umb/rent/success'" class="btn" >결제하기</button>
+            <button type="button" id="ok" onClick="location.href='/umb/rent/success'" class="btn" <!--disabled="" -->>결제하기</button>
         </div>
 
     </div>
@@ -108,8 +108,6 @@
                     locations:locations,
                     days:days
                 };
-                alert(locations)
-                alert(days)
                 $.ajax({
                     type: "POST",
                     url:`/umb/rent/${locations}/${days}`,
@@ -130,15 +128,9 @@
                 }).fail(function (error) {
                     alert(" Error ->"+JSON.stringify(error));
                 });
-
-                alert("????");
             } else {
             }
-
-
         }
-
-
     }
 
     $('.con').on('click',function(){
@@ -165,10 +157,14 @@
 
         const ok = document.querySelector("#ok");
         const er = document.querySelector("#er");
+        //const okBtn = document.getElementById('ok')
 
         ok.addEventListener("click",function(){
             if($("input[name='agree3']:checked").length != $("input[name='agree3']").length) {
                 er.classList.remove("er");
+                //okBtn.disabled = true;
+            } else {
+                //okBtn.disabled = false;
             }
         });
     });
