@@ -89,7 +89,8 @@
 
         <div class="all_btn">
             <button type="button" id="back" onClick="location.href='#'" class="btn_main">뒤로가기</button>
-            <button type="button" id="ok" onClick="location.href='/umb/rent/success'" class="btn" <!--disabled="" -->>결제하기</button>
+            <button type="button" id="ok" class="btn"> <!--disabled="" -->결제하기</button>
+
         </div>
 
     </div>
@@ -160,10 +161,14 @@
         //const okBtn = document.getElementById('ok')
 
         ok.addEventListener("click",function(){
+
             if($("input[name='agree3']:checked").length != $("input[name='agree3']").length) {
                 er.classList.remove("er");
+
                 //okBtn.disabled = true;
             } else {
+                const button = document.getElementById('ok');
+                button.innerHTML = "<a href='/umb/rent/success'>결제하기</a>";
                 //okBtn.disabled = false;
             }
         });
