@@ -58,31 +58,26 @@ public class User {
     private int cash;
 
     @Column
-    private int payNumber;
+    private String payNumber;
 
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
     @Column(nullable = true)
-    private Long umbrella_Id1;
+    private Long firstUmbrellaId;
 
     @Column(nullable = true)
-    private Long umbrella_Id2;
+    private Long secondUmbrellaId;
 
     @CreationTimestamp
     private Timestamp createDate;
-//
-//    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE) // mappedBy가 적혀잇으면 연관관계의 주인이 아니다( FK가 아니다) , DB에 컬럼을 만들지 마세요
-//    @JsonIgnoreProperties({"user"})
-//    @OrderBy("id asc")
-//    @Column(nullable = true)
-//    private List<Order> orderList;
 
-    // Order.class 관련
-//    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE) // mappedBy가 적혀잇으면 연관관계의 주인이 아니다( FK가 아니다) , DB에 컬럼을 만들지 마세요
-//    @JsonIgnoreProperties({"user"})
-//    @OrderBy("id desc ")
-//    private List<Order> orderList ;
+//     Order.class 관련
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE) // mappedBy가 적혀잇으면 연관관계의 주인이 아니다( FK가 아니다) , DB에 컬럼을 만들지 마세요
+    @JsonIgnoreProperties({"user"})
+    @OrderBy("id desc ")
+    private List<Orders> orderList ;
 
     public User(String username, String nickName, String password, String email, String phoneNumber, RoleType role) {
         this.username = username;
@@ -91,6 +86,20 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.role = role;
+    }
+
+
+    public void setPayNumber(int day, int payNumber) {
+        this.payNumber = day+"/"+payNumber;
+    }
+
+    public int getPayNumber() {
+        String[] split = payNumber.split("/");
+        return Integer.parseInt( split[1]);
+    }
+    public int getRentDay() {
+        String[] split = payNumber.split("/");
+        return Integer.parseInt( split[0]);
     }
 
     @Override
@@ -105,8 +114,8 @@ public class User {
                 ", cash=" + cash +
                 ", payNumber=" + payNumber +
                 ", role=" + role +
-                ", umbrella_Id1=" + umbrella_Id1 +
-                ", umbrella_Id2=" + umbrella_Id2 +
+                ", firstUmbrellaId=" + firstUmbrellaId +
+                ", secondUmbrellaId=" + secondUmbrellaId +
                 ", createDate=" + createDate +
                 '}';
     }

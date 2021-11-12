@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -46,6 +47,7 @@ public class Umbrella {
 //
     @Column
     @NotNull(message = "RFID 값은 필수 입니다.")
+    @Length(min = 8,max = 8,message = "RFID 값은 무조건 8자리")
     private String valueOfRFID;
 
     @Override
@@ -58,6 +60,7 @@ public class Umbrella {
                 ", over_date=" + over_date +
                 ", return_date=" + return_date +
                 ", user=" + user_id +
+                ", valueOfRFID=" + valueOfRFID +
                 '}';
     }
 

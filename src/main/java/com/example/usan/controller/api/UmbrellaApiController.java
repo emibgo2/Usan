@@ -5,7 +5,9 @@ import com.example.usan.dto.StorageDto;
 import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
+import com.example.usan.repository.StorageRepository;
 import com.example.usan.repository.UmbrellaRepository;
+import com.example.usan.repository.UserRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
 import com.example.usan.service.UserService;
@@ -25,13 +27,17 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/umb")
 public class UmbrellaApiController {
-
+    private StorageRepository storageRepository;
+    private StorageApiController storageApiController;
     private StorageService storageService;
     private UserService userService;
+    private UserApiController userApiController;
+    private UserRepository userRepository;
     private UmbrellaService umbrellaService;
     private UmbrellaRepository umbrellaRepository;
     public static List<Integer> myUUID = Collections.synchronizedList(new ArrayList<>());
-//    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
+
+    //    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
 //    public ResponseDto<Integer> rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
 //        System.out.println("UmbrellaApiController.test");
 //        System.out.println("location = " + location);
@@ -43,6 +49,16 @@ public class UmbrellaApiController {
 //        principal.getUser().setPayNumber(remove);
 //        return new ResponseDto<Integer>(HttpStatus.OK.value(),user.getPayNumber());
 //    }
+    @GetMapping("delete/all")
+    public ResponseDto<Integer> deleteAllUmb() throws InterruptedException {
+        umbrellaRepository.deleteAll();
+        reUpload();
+        userRepository.deleteAll();
+        userApiController.init();
+        storageService.drop();
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+
+    }
 
     @GetMapping("/list")
     public List<Umbrella> returnUmbrella() {
@@ -87,7 +103,14 @@ public class UmbrellaApiController {
         // Umbrella를 DB 내에 저장
     }
 
-
+    @PutMapping("/{id}/{rfid}/edit")
+    public ResponseDto umbEdit(@PathVariable Long id, @PathVariable String rfid) {
+        System.out.println("rfid = " + rfid);
+        System.out.println("rfid.length() = " + rfid.length());
+        if (rfid.length() != 8) return new ResponseDto<Integer>(HttpStatus.BAD_REQUEST.value(), 3);
+        umbrellaService.editUmb(id, rfid);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
 
     @PutMapping("/{id}/fault")
     public ResponseDto<Integer> umb_faultReport(@PathVariable Long id) {
@@ -96,11 +119,11 @@ public class UmbrellaApiController {
         // 프론트에서 날아온 User와 umbrellaId (id), 대여 기간(rentPeriod)를 추합하여 DB에 저장
     }
 
-    @PutMapping("/mapping/{id}/{rentPeriod}")
-    public ResponseDto<Integer> umb_rent(@RequestBody User user, @PathVariable Long id, @PathVariable int rentPeriod) {
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id, user,rentPeriod));
-        // 프론트에서 날아온 User와 umbrellaId (id), 대여 기간(rentPeriod)를 추합하여 DB에 저장
-    }
+//    @PutMapping("/mapping/{id}/{rentPeriod}")
+//    public ResponseDto<Integer> umb_rent(@RequestBody User user, @PathVariable Long id, @PathVariable int rentPeriod) {
+//        return new ResponseDto<Integer>(HttpStatus.OK.value(), userService.mappingUmbrella(id, user,rentPeriod));
+//        // 프론트에서 날아온 User와 umbrellaId (id), 대여 기간(rentPeriod)를 추합하여 DB에 저장
+//    }
 
     @PutMapping("/return/{id}")
     public ResponseDto<Integer> umb_return(@RequestBody User user, @PathVariable Long id) {
@@ -108,14 +131,7 @@ public class UmbrellaApiController {
         // 프론트에서 날아온 User와 id를 갖고 반납처리하는 메소드
     }
 
-
-
-
-    @PostConstruct
-    public void init() throws InterruptedException {
-        for (int i = 1000; i < 10000; i++) {
-            myUUID.add(i);
-        }
+    public void reUpload() {
         // 우산이 없을시 기본 우산 4개 생성
         for (int i = 1; i <= 4; i++) {
             Long l = new Long(i);
@@ -125,8 +141,11 @@ public class UmbrellaApiController {
             if (umbrellaCheck.getCreate_date() == null) {
                 Umbrella createUmbrella = new Umbrella();
                 createUmbrella.setStorage(storageService.sto_detail(1L));
-                if (i == 1) {
-                    createUmbrella.setValueOfRFID("acde0139");
+
+                if (i == 2) {
+                    createUmbrella.setValueOfRFID("f3ba2797");
+                } if (i == 3) {
+                    createUmbrella.setValueOfRFID("f3506a97");
                 }else   createUmbrella.setValueOfRFID("acde013"+i);
                 System.out.println("createUmbrella = " + createUmbrella);
                 umbrellaService.umbrella_save(createUmbrella);
@@ -137,4 +156,36 @@ public class UmbrellaApiController {
 
     }
 
+
+
+    @PostConstruct
+    public void init() throws InterruptedException {
+        for (int i = 1000; i < 10000; i++) {
+            myUUID.add(i);
+        }
+        long count = umbrellaRepository.count();
+        // 우산이 없을시 기본 우산 4개 생성
+        for (int i = 0; i <= 3; i++) {
+            Long l = new Long(i);
+
+            if (count ==0) {
+                Umbrella createUmbrella = new Umbrella();
+                createUmbrella.setStorage(storageService.sto_detail(1L));
+                System.out.println("i = " + i);
+                if (i == 3) {
+                    createUmbrella.setValueOfRFID("f3ba2797");
+                }
+                if (i == 3) {
+                    createUmbrella.setValueOfRFID("f3506a97");
+                }else createUmbrella.setValueOfRFID("f3ba279" + (7-i));
+                System.out.println("createUmbrella = " + createUmbrella);
+                umbrellaService.umbrella_save(createUmbrella);
+                log.info("기본 우산 생성");
+            } else log.info(" 이미 {}번 우산이 있습니다.",i);
+
+        }
+
+    }
+
 }
+

@@ -39,7 +39,8 @@ public class Storage {
     @JsonIgnoreProperties({"storage"})
     private List<Umbrella> umbrellaList;
 
-
+    @Column
+    private String lendingUmbRFID;
 
 //    보관소 위치 ( 추후 방식 회의 예정 )
 

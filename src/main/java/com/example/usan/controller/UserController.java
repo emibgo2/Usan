@@ -2,7 +2,12 @@ package com.example.usan.controller;
 
 
 import com.example.usan.config.auth.PrincipalDetail;
+import com.example.usan.model.Umbrella;
+import com.example.usan.repository.UserRepository;
 import com.example.usan.service.StorageService;
+import com.example.usan.service.UmbrellaService;
+import com.example.usan.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,15 +18,58 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
+@AllArgsConstructor
 public class UserController {
+
+
 
     @Autowired
     private StorageService storageService;
+    private UserService userService;
+    private UserRepository userRepository;
+    private UmbrellaService umbrellaService;
 
     @GetMapping({"", "/"})
     public String index(@AuthenticationPrincipal PrincipalDetail principal) { // 컨트롤러에서 세션 접근
         return "thymeleaf/home";
+    }
+
+    @GetMapping("/test/control")
+    public String testControl(Model model) {
+        List<Umbrella> umbrellas = umbrellaService.umb_upload();
+        for (int i = 0; i < umbrellas.size(); i++) {
+            umbrellas.get(i).setStorage(null);
+        }
+        model.addAttribute("umb", umbrellas);
+        model.addAttribute("user", userRepository.findAll());
+        model.addAttribute("storage", storageService.sto_upload());
+
+        return "thymeleaf/testControl";
+    }
+    @GetMapping("/test/control/edit")
+    public String testControlEdit(Model model) {
+        List<Umbrella> umbrellas = umbrellaService.umb_upload();
+        for (int i = 0; i < umbrellas.size(); i++) {
+            umbrellas.get(i).setStorage(null);
+        }
+        model.addAttribute("umb", umbrellas);
+        model.addAttribute("user", userRepository.findAll());
+        model.addAttribute("storage", storageService.sto_upload());
+
+        return "thymeleaf/testControlEdit";
+    }
+    @GetMapping("/user/bill")
+    public String billForm() {
+        return "thymeleaf/umbrella/bill";
+    }
+
+
+    @GetMapping("/payment/edit")
+    public String paymentEdit() {
+        return "thymeleaf/umbrella/payment_edit";
     }
 
     @GetMapping("/agree")
@@ -33,7 +81,7 @@ public class UserController {
     @ResponseBody
     public int connectionTest(@RequestBody String a) {
         System.out.println("requestValue = " + a);
-        return  HttpStatus.OK.value();
+        return HttpStatus.OK.value();
 
     }
 
@@ -69,5 +117,8 @@ public class UserController {
         return "thymeleaf/umbrella/agree";
     }
 
-
+    @GetMapping("/personal/information")
+    public String personalInformationForm() {
+        return  "thymeleaf/umbrella/personal_information";
+    }
 }

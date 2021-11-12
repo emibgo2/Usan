@@ -52,7 +52,7 @@ let index={
         }).done(function (resp) {
             if (resp.status === 500) {
                 alert("우산 등록이 실패하였습니다 \n아이디가 중복되었습니다.");
-            }else if (resp.data === 3) {
+            }else if (resp.response === 3) {
                 alert("우산이 꽉 찼습니다 반납후 이용해주세요");
             } else  {
                 alert("우산 등록이 완료되었습니다.");
@@ -80,9 +80,9 @@ let index={
     //     }).done(function (resp) {
     //         if (resp.status === 500) {
     //             alert("우산 등록이 실패하였습니다 \n아이디가 중복되었습니다.");
-    //         }else if (resp.data === 3) {
+    //         }else if (resp.response === 3) {
     //             alert("우산이 꽉 찼습니다 반납후 이용해주세요");
-    //         } else if (resp.data === 1){
+    //         } else if (resp.response === 1){
     //             alert("우산 등록이 완료되었습니다.");
     //             // console.log(resp)
     //             location.href = "/";
@@ -109,7 +109,7 @@ let index={
         }).done(function (resp) {
             if (resp.status === 500) {
                 alert("우산 등록이 실패하였습니다 \n아이디가 중복되었습니다.");
-            }else if (resp.data === 3) {
+            }else if (resp.response === 3) {
                 alert("오류가 발생했습니다.");
             } else  {
                 alert("우산 반납이 완료되었습니다.");

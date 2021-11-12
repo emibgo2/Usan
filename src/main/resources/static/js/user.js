@@ -26,7 +26,7 @@ let index={
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데
             // 생긴게 json이라면 => javascript 오브젝트로 변경 해줌
         }).done(function (resp) {
-            if (resp.data == 3) {
+            if (resp.response == 3) {
                 alert("회원가입이 실패하였습니다 \n아이디가 중복되었습니다.");
             } else {
                 alert("회원가입이 완료되었습니다.");
@@ -53,7 +53,7 @@ let index={
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데
             // 생긴게 json이라면 => javascript 오브젝트로 변경 해줌
         }).done(function (resp) {
-            if (resp.data === 3) {
+            if (resp.response === 3) {
                 alert("회원가입이 실패하였습니다 \n아이디가 중복되었습니다.");
             } else {
                 alert("회원가입이 완료되었습니다.");
@@ -78,7 +78,7 @@ let index={
             dataType: "json" // 요청을 서버로해서 응답이 왔을때 기본적으로 모든것이 문자열로오는데
             // 생긴게 json이라면 => javascript 오브젝트로 변경 해줌
         }).done(function (resp) {
-            if (resp.data == 2) {
+            if (resp.response == 2) {
                 alert("이미 존재하는 아이디 입니다.")
             } else {
                 alert("사용가능한 아이디입니다.");
