@@ -10,6 +10,7 @@
 	<title>USAN</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 	<link rel="stylesheet"
 		  th:href="@{../htmlTemplates/css/main.css}"
 		  href="../../static/htmlTemplates/css/main.css" />
@@ -82,7 +83,7 @@
 						</div>
 						<div class="col col1 first">
 							<div class="image round fit">
-								<img th:src="@{../htmlTemplates/images/우산.jpg}" src="../../static/htmlTemplates/images/우산.jpg" alt="" />
+								<img th:src="@{https://i.imgur.com/6sAYt40.jpg}" src="https://i.imgur.com/6sAYt40.jpg" alt="" />
 							</div>
 						</div>
 					</div>
@@ -96,7 +97,7 @@
 					<div class="flex flex-2">
 						<div class="col col1">
 							<div class="image round fit">
-								<img th:src="@{../htmlTemplates/images/pic01.jpg}" src="../../static/htmlTemplates/images/pic01.jpg" alt="" />
+								<img th:src="@{https://i.imgur.com/vNAWL4g.jpg}" src="https://i.imgur.com/vNAWL4g.jpg" alt="" />
 							</div>
 						</div>
 						<div class="col col2">
@@ -145,7 +146,7 @@
 							</div>
 							<div class="col col1 first">
 								<div class="image round fit">
-									<img th:src="@{../htmlTemplates/images/pic01.jpg}" src="../../static/htmlTemplates/images/pic01.jpg" alt="" />
+									<img th:src="@{https://i.imgur.com/OQPDOyC.jpg}" src="https://i.imgur.com/OQPDOyC.jpg" alt="" />
 								</div>
 							</div>
 						</div>
@@ -159,9 +160,18 @@
 							<h2>USAN존 위치</h2>
 							<p>USAN이 배치된 위치를 알려줍니다.</p>
 						</header>
-						<div class="usanzone">
+						<div class="stateBtns">
+							<button class="stateBtn" id="state1_btn">평택대점</button>
+							<button class="stateBtn" id="state2_btn">평택역점</button>
+						</div>
+						<div class="usanzone state1" id="state1">
 							<div class="usanzone_map">
 								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3186.618901788072!2d127.13116461563685!3d36.99502896440735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b309bc8f7fb29%3A0xc0ddf62819c56a8e!2z7Y-J7YOd64yA7ZWZ6rWQ!5e0!3m2!1sko!2skr!4v1629118117939!5m2!1sko!2skr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+							</div>
+						</div>
+						<div class="usanzone state2" id="state2">
+							<div class="usanzone_map">
+								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3186.817383976373!2d127.08386610289219!3d36.99029198099644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b3afd24d4879f%3A0x99fc55e3f9603677!2z7Y-J7YOd7Jet!5e0!3m2!1sko!2skr!4v1636736390398!5m2!1sko!2skr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 							</div>
 						</div>
 					</div>
@@ -182,6 +192,22 @@
 			</footer>
 
 <!-- Scripts -->
+<script>
+	document.getElementById("state1_btn").onclick = function() {state1_click()};
+	document.getElementById("state2_btn").onclick = function() {state2_click()};
+
+	function state1_click() {
+		$("#state1").show();
+		$("#state2").hide();
+	}
+
+	function state2_click() {
+		$("#state1").hide();
+		$("#state2").show();
+	}
+
+
+</script>
 <script th:src="@{../htmlTemplates/js/jquery.min.js}" src="../../static/htmlTemplates/js/jquery.min.js"></script>
 <script th:src="@{../htmlTemplates/js/jquery.scrolly.min.js}" src="../../static/htmlTemplates/js/jquery.scrolly.min.js"></script>
 <script th:src="@{../htmlTemplates/js/jquery.scrollex.min.js}" src="../../static/htmlTemplates/js/jquery.scrollex.min.js"></script>

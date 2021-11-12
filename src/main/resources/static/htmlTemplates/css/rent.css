@@ -254,7 +254,20 @@ div.agree{
 
 li{
     color:black;
+    font-size: 17px;
 }
+
+.agree input {
+    margin-right: 6px;
+}
+
+/*
+.agree_center {
+    display: flex;
+    align-items: center;
+}
+
+ */
 
 .btn {
     background-color: #3498db;
@@ -415,6 +428,17 @@ p {
         font-size: 85%;
     }
 
+    li {
+        font-size: 16px;
+    }
+
+}
+
+@media screen and (max-width: 410px) {
+    li {
+        font-size: 15px;
+    }
+
 }
 
 @media screen and (max-width: 321px) {
@@ -429,4 +453,6 @@ p {
     .lent_choice {
         font-size: 1.14rem;
     }
+
+
 }
