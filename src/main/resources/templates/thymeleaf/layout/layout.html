@@ -34,7 +34,7 @@ r
                 <li><a href="/board">공지사항</a></li>
                 <li  sec:authorize="isAuthenticated()" ><a href="/logout">로그아웃</a></li>
                 <li  sec:authorize="!isAuthenticated()" ><a href="/auth/loginForm">로그인</a></li>
-                <li  sec:authorize="!isAuthenticated()" ><a href="/auth/joinForm">회원가입</a></li>
+                <li  sec:authorize="!isAuthenticated()" ><a href="/user/agree">회원가입</a></li>
             </ul>
         </nav>
 

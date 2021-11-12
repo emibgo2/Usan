@@ -54,17 +54,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
         http
                 .csrf().disable() // csrf 토큰 비활성화
                 .authorizeRequests()
-                    .antMatchers("/storage/arduino/**","/board/**","/htmlTemplates/**","/auth/**","/js/**","/css/**","/image/**")
-                    .permitAll()
-                    .mvcMatchers("**/admin").hasRole("ADMIN")
-                    .anyRequest()
-                    .authenticated()
+                .antMatchers("/","/user/agree","/joinForm","/storage/arduino/**","/board/**","/htmlTemplates/**","/auth/**","/js/**","/css/**","/image/**")
+                .permitAll()
+                .mvcMatchers("**/admin").hasRole("ADMIN")
+                .anyRequest()
+                .authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/auth/loginForm")
-                    .loginProcessingUrl("/auth/loginProc") // 스프링 시큐리티가 해당 주소로 요청오는 로그인을 가로채서 대신 로그인
-                    .defaultSuccessUrl("/")
-                    .failureUrl("/gg")
-            ;
+                .formLogin()
+                .loginPage("/auth/loginForm")
+                .loginProcessingUrl("/auth/loginProc") // 스프링 시큐리티가 해당 주소로 요청오는 로그인을 가로채서 대신 로그인
+                .defaultSuccessUrl("/")
+                .failureUrl("/gg")
+        ;
     }
 }
