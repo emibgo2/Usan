@@ -155,9 +155,9 @@ public class UmbrellaController {
     }
 
 
-    @GetMapping("/chaerin/fail")
+    @GetMapping("/rent/fail")
     public String rent_fail() {
-        return "thymeleaf/chaerin/rent_fail";
+        return "thymeleaf/umbrella/rent_fail";
     }
 
     @GetMapping("/rent/success")
@@ -167,7 +167,7 @@ public class UmbrellaController {
             return new User();
         });
         model.addAttribute("payNumber", user.getPayNumber());
-        return "thymeleaf/chaerin/rent_finish";
+        return "thymeleaf/umbrella/rent_finish";
     }
 
     @GetMapping("/card")

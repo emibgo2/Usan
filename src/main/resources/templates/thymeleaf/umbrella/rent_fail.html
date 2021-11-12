@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../static/htmlTemplates/css/rent_fe.css">
+    <link rel="stylesheet" th:href="@{/../htmlTemplates/css/rent_fe.css}" href="../../../static/htmlTemplates/css/rent_fe.css">
     <title>USAN</title>
 </head>
 <body>
@@ -17,8 +17,8 @@
         <p>일시적인 오류로 잠시 후 재결제 시도요망</p>
     </div>
     <div class="all_btn">
-        <button type="button" onClick="location.href='#'" class="btn">재결제 시도</button>
-        <button type="button" onClick="location.href='#'" class="btn_main">메인화면으로 이동</button>
+        <button type="button" onClick="location.href='/umb/rent'" class="btn">재결제 시도</button>
+        <button type="button" onClick="location.href='/'" class="btn_main">메인화면으로 이동</button>
     </div>
 </div>
 </body>

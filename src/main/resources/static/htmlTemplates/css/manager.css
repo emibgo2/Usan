@@ -4,12 +4,9 @@ body {
 }
 
 .manage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
     text-align: center;
-    width: 600px;
+    width: 70%;
 }
 
 .manage h1 {
@@ -26,14 +23,12 @@ body {
 }
 
 .manage_table th {
-    width: 157px;
     padding: 10px;
     border-right: 1px solid #000000;
     border-bottom: 1px solid #000000;
 }
 
 .manage_table td {
-    width: 400px;
     padding: 10px;
     border-right: 1px solid #000000;
     border-bottom: 1px solid #000000;
