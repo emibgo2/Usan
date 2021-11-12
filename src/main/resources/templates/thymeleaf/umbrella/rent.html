@@ -89,7 +89,7 @@
 
         <div class="all_btn">
             <button type="button" id="back" onClick="location.href='#'" class="btn_main">뒤로가기</button>
-            <button type="button" id="ok" onClick="location.href='#'" class="btn" >결제하기</button>
+            <button type="button" id="ok" onClick="location.href='/umb/rent/success'" class="btn" >결제하기</button>
         </div>
 
     </div>
@@ -126,7 +126,6 @@
                     } else  {
                         alert("우산 등록이 완료되었습니다.");
                         // console.log(resp)
-                        location.href="/umb/rent/success";
                     }
                 }).fail(function (error) {
                     alert(" Error ->"+JSON.stringify(error));
