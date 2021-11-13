@@ -443,7 +443,7 @@ iframe {
   .wrap-login100 {
     width: 500px;
     background: #fff;
-    border-radius: 0px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
