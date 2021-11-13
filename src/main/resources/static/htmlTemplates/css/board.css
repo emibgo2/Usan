@@ -16,12 +16,18 @@
     width: 80px;
 }
 
+.pagination {
+    justify-content: center;
+}
+
 @media screen and (max-width:430px) {
     .input_group input {
         width: 170px;
+        height: 30px;
     }
 
     .input_group button {
         width: 60px;
+        height: 30px;
     }
 }

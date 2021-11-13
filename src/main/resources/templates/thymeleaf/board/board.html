@@ -38,31 +38,31 @@
             <div class="table-wrapper">
               <table class="board">
                 <colgroup>
-                  <col style="width:10%;">
-                  <col style="width:74%;">
+                  <col style="width:11%;">
+                  <col style="width:73%;">
                   <col style="width:16%;">
                 </colgroup>
                 <thead>
-                  <tr>
-                    <th class="board_num">번호</th>
-                    <th class="board_title">제목</th>
-                    <th class="board_writer">작성일</th>
-                  </tr>
+                <tr>
+                  <th class="board_num">번호</th>
+                  <th class="board_title">제목</th>
+                  <th class="board_writer">작성일</th>
+                </tr>
                 </thead>
                 <tbody >
-                  <tr th:each="board:${list}">
-                    <td class="board_num" th:text="${board.id}">글번호</td>
-                    <td class="board_title"> <a href="#" th:href="@{|/board/${board.id}|}" th:text="${board.title}">글 제목</a></td>
-                    <td class="board_writer"  th:text="${#temporals.format(board.createDate.toLocalDateTime(), 'yyyy.MM.dd')}">작성일</td>
-                  </tr>
+                <tr th:each="board:${list}">
+                  <td class="board_num" th:text="${board.id}">글번호</td>
+                  <td class="board_title"> <a href="#" th:href="@{|/board/${board.id}|}" th:text="${board.title}">글 제목</a></td>
+                  <td class="board_writer"  th:text="${#temporals.format(board.createDate.toLocalDateTime(), 'yyyy.MM.dd')}">작성일</td>
+                </tr>
                 </tbody>
               </table>
 
               <div class="board_page" aria-label="Page navigation example" style="text-align: center;">
                 <!--표에 사용될 변수값 초기화 -->
                 <ul class="pagination"
-                    th:with="start=${T(Math).floor(list.number/10)*10 + 1},
-                    last=(${start + 9 < list.totalPages ? start + 9 : list.totalPages})">
+                    th:with="start=${T(Math).floor(list.number/5)*5 + 1},
+                    last=(${start + 4 < list.totalPages ? start + 4 : list.totalPages})">
                   <th:block th:with="
                 firstAddr=@{/board(page=1)},
                 prevAddr=@{/board(page=${list.number})},
@@ -107,10 +107,10 @@
 
             </div>
           </div>
+                </div>
+            </section>
         </div>
-			</section>
-    </div>
 
 
-	</body>
+    </body>
 </html>
