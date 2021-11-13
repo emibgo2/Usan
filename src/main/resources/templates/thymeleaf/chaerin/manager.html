@@ -89,7 +89,7 @@
     <h1>보관소 관리 페이지 </h1>
     <hr>
     <div class="manage_table">
-        <table>
+        <table id="showOrHide">
             <thead>
             <tr>
                 <th>id</th>
@@ -194,6 +194,9 @@
                 </span>
 
         </table>
+        <input type="button" value="더보기" onclick="show()"/>
+        <input type="button" value="닫기" onclick="hide()"/>
+
     </div>
 
 
@@ -201,4 +204,17 @@
 
 
 </body>
+
+<script>
+    const table = document.getElementById('showOrHide');
+
+    function show() {
+        table.style.display = '';
+    }
+
+    function hide() {
+        table.style.display = none;
+    }
+
+</script>
 </html>
