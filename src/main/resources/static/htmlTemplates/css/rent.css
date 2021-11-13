@@ -306,7 +306,11 @@ p {
 .er{
     display :none;
 }
-
+#price{
+    /*float: left;
+    text-align:left;*/
+    margin: 0px 0px 0px 140px;
+}
 
 
 
@@ -427,6 +431,11 @@ p {
     .content{
         font-size: 85%;
     }
+    #price{
+        /*margin: 0% 0% 0% 50%;*/
+        float: right;
+    }
+
 
     li {
         font-size: 16px;
