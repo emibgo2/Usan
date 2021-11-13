@@ -42,7 +42,7 @@ public class User {
     @Column(nullable = false,length = 10)
     private String name;
 
-    @Column(nullable = false, length = 30, unique = true)
+    @Column(nullable = false, length = 30)
     private String nickName;
 
     @Column(nullable = false, length = 100)
@@ -59,6 +59,9 @@ public class User {
 
     @Column
     private String payNumber;
+
+    @Column
+    private String birth;
 
     @Enumerated(EnumType.STRING)
     private RoleType role;
@@ -94,12 +97,14 @@ public class User {
     }
 
     public int getPayNumber() {
-        String[] split = payNumber.split("/");
-        return Integer.parseInt( split[1]);
+        if (payNumber !=null){ String[] split = payNumber.split("/");
+            return Integer.parseInt(split[1]);
+        } else return 0;
     }
     public int getRentDay() {
-        String[] split = payNumber.split("/");
-        return Integer.parseInt( split[0]);
+        if (payNumber !=null){ String[] split = payNumber.split("/");
+            return Integer.parseInt(split[0]);
+        } else return 0;
     }
 
     @Override

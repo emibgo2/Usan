@@ -10,13 +10,16 @@ let index={
             this.check();
         })
     },
-    save: function () {
+    userSave: function () {
         let data={
             username:$("#username").val(),
             nickName: $("#nickName").val(),
             password: $("#password").val(),
             phoneNumber: $("#phoneNumber").val(),
             email: $("#email").val(),
+            name: $("#name").val(),
+            birth: $("#birth").val(),
+
         }
         $.ajax({
             type: "POST",
@@ -28,7 +31,8 @@ let index={
         }).done(function (resp) {
             if (resp.response == 3) {
                 alert("회원가입이 실패하였습니다 \n아이디가 중복되었습니다.");
-            } else {
+            } if (resp.response ==2 ) alert(" 중복된 아이디 입니다.");
+            else {
                 alert("회원가입이 완료되었습니다.");
                 // console.log(resp)
                 location.href = "/";
