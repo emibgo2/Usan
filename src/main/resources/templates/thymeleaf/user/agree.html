@@ -680,7 +680,8 @@
         ok.addEventListener("click",function(){
             if($("input[name='chk_part']:checked").length != $("input[name='chk_part']").length) {
                 con.classList.remove("con");
-            }
+            }else  location.href="/auth/joinForm";
+
         });
     });
 </script>

@@ -39,18 +39,25 @@ public class UmbrellaController {
     @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
     @ResponseBody
     public ResponseDto<Integer> rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
-        System.out.println("UmbrellaController.rent");
-        System.out.println("location = " + location);
-        System.out.println("days = " + days);
+        log.info("Lending location ={}", location);
+
         Random random = new Random();
         int i = random.nextInt(UmbrellaApiController.myUUID.size());
         Integer remove = UmbrellaApiController.myUUID.remove(i);
-        log.info("Rent User = {}", userService.userPayNumber(principal.getUser().getId(), remove, days, location));
-        System.out.println("principal!?? " + principal.getUser());
-//        result = days;
+        if (principal.getUser().getPayNumber() == 0) {
+            User user = userService.userPayNumber(principal.getUser().getId(), remove, days, location);
+            if (user.getUsername() == null) {
+                return new ResponseDto<Integer>(HttpStatus.OK.value(), 2);
+            }
+            log.info("Rent User = {}, Rent days={}", user,days);
+        }
+        //        result = days;
         // DB안에 있는 Umbrella를 추합하여 전송
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+
     }
+
+
 
     public void test(HttpServletRequest request) {
 

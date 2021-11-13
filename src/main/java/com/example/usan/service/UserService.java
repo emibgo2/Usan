@@ -54,6 +54,7 @@ public class UserService {
             User user = userRepository.findById(userId).orElseGet(() -> {
                 return new User();
             });
+            if (user.getPayNumber() != 0) throw new IllegalStateException("이미 대여중인 유저입니다");
             user.setCash(user.getCash()- (day * SystemConfig.UMBRELLA_RENT_PAYMENT));
             user.setPayNumber(day, payNumber);
             storage.setUmb_count(storage.getUmb_count() -1);
@@ -61,9 +62,9 @@ public class UserService {
             return user;
         } catch (Exception e) {
             log.info("Pay Number 배급이 실패하였습니다");
+            return new User();
         }
 
-        return new User();
     }
 
     @Transactional
@@ -77,6 +78,7 @@ public class UserService {
             else if (roleType == 2) user.setRole(RoleType.ADMIN);
             try {
                 userRepository.save(user);
+                log.info("Create User={}",user);
             }catch (Exception e){
                 return 3;
             }

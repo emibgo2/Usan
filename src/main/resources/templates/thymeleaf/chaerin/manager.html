@@ -86,44 +86,6 @@
         </table>
     </div>
 
-    <h1>사용자 관리 페이지 </h1>
-    <hr>
-    <div class="manage_table">
-        <table>
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>Login ID</th>
-                <th>성함</th>
-                <th>닉네임</th>
-                <th>이메일</th>
-                <th>전화 번호</th>
-                <th>첫번째 우산의 id 값</th>
-                <th>두번째 우산의 id 값</th>
-                <th>계정 생성 날짜</th>
-                <th>결제 비밀번호</th>
-            </tr>
-            </thead>
-            <span th:each="user: ${users}">
-                <tbody>
-                <tr >
-                    <td th:text="${user.id}">2</td>
-                    <td th:text="${user.username}" >내용</td>
-                    <td th:text="${user.name }" >내용</td>
-                    <td th:text="${user.nickName }" >내용</td>
-                    <td th:text="${user.email }" >내용</td>
-                    <td th:text="${user.phoneNumber}" >내용</td>
-                    <td th:text="${user.firstUmbrellaId}" >내용</td>
-                    <td th:text="${user.secondUmbrellaId}" >내용</td>
-                    <td th:text="${#dates.format(user.createDate,'yyyy-MM-dd') }" >내용</td>
-                    <td th:text="${user.payNumber}" >내용</td>
-                </tr>
-                </tbody>
-                </span>
-
-        </table>
-    </div>
-
     <h1>보관소 관리 페이지 </h1>
     <hr>
     <div class="manage_table">
@@ -182,7 +144,51 @@
 
                     </td>
 
+                    </td>
 
+
+                </tr>
+                </tbody>
+                </span>
+
+            </tr>
+            </tbody>
+            </span>
+
+        </table>
+    </div>
+
+    <h1>사용자 관리 페이지 </h1>
+    <hr>
+    <div class="manage_table">
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Login ID</th>
+                <th>성함</th>
+                <th>닉네임</th>
+                <th>이메일</th>
+                <th>전화 번호</th>
+                <th>첫번째 우산의 id 값</th>
+                <th>두번째 우산의 id 값</th>
+                <th>계정 생성 날짜</th>
+                <th>결제 비밀번호</th>
+            </tr>
+            </thead>
+            <span th:each="user: ${users}">
+                <tbody>
+                <tr >
+                    <td th:text="${user.id}">2</td>
+                    <td th:text="${user.username}" >내용</td>
+                    <td th:text="${user.name }" >내용</td>
+                    <td th:text="${user.nickName }" >내용</td>
+                    <td th:text="${user.email }" >내용</td>
+                    <td th:text="${user.phoneNumber}" >내용</td>
+                    <td th:text="${user.firstUmbrellaId}" >내용</td>
+                    <td th:text="${user.secondUmbrellaId}" >내용</td>
+                    <td th:text="${#dates.format(user.createDate,'yyyy-MM-dd') }" >내용</td>
+                    <td th:text="${user.payNumber}" >내용</td>
                 </tr>
                 </tbody>
                 </span>
@@ -192,6 +198,8 @@
         <input type="button" value="닫기" onclick="hide()"/>
 
     </div>
+
+
 </div>
 
 
