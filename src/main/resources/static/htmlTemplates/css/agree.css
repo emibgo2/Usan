@@ -19,9 +19,18 @@ body{
 
 .con{display: none;}
 
+.test {
+    margin-top: 80px;
+}
+
+.chk {
+    text-indent: -22px;
+    padding-left: 22px;
+}
+
 
 /*크기변경*/
-@media screen and (max-width:420px) {
+@media screen and (max-width:430px) {
     body {
         background-color:#FAFAFA;
         justify-content: center;
@@ -44,7 +53,10 @@ body{
         height:auto;
         left: 50%;
         transform: translate(-50%, 0%);
+    }
 
+    .test {
+        margin-top: 0;
     }
 
     div.test.blind {

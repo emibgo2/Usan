@@ -2560,7 +2560,7 @@
 	}
 
 	.return_way_p {
-		color: #aed6f1;
+		color: #999999;
 		font-size: 1.1em;
 	}
 
@@ -4042,3 +4042,10 @@
 			}
 
 		}
+@media screen and (max-width: 430px) {
+
+	.c1{
+		text-align: center;
+	}
+
+}

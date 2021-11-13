@@ -1,3 +1,4 @@
+
 body{
     background-color:white;
     justify-content: center;
@@ -8,9 +9,20 @@ div.test {
     position: relative;
     text-align: left;
     width: 500px;
-    height:auto;
+    height: 600px;
     left: 50%;
-    transform: translateX(-50%);
+    top:50%;
+    transform: translate(-50%,5%);
+    border: solid 15px #3498db;
+    background-color:white;
+    /*padding-bottom: 50%;*/
+    margin-bottom: 8px;
+}
+#price{
+    margin: 0px 30px 0px 0px;
+    font-weight: bold;
+    color:black;
+    float:right
 }
 
 div.blind {
@@ -37,10 +49,17 @@ p {
 
 
 /*크기변경*/
-@media screen and (max-width:420px) {
+@media screen and (max-width:530px) {
+    body{
+        background-color:#3498db;
+    }
 
     div.test {
-        width:90%;
+        width: 95%;
+        height: 97%;
+        top: -3.5%;
+        position: absolute;
+        border:0px;
     }
 
     div.blind {

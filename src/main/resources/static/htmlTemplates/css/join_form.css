@@ -167,8 +167,12 @@ input[name=pw]{
     margin-top: 10px;
 }
 
+.join {
+    margin-top: 80px;
+}
+
 /*크기변경*/
-@media screen and (max-width:420px) {
+@media screen and (max-width:430px) {
     body {
         justify-content: center;
         align-items: center;
@@ -177,6 +181,10 @@ input[name=pw]{
     div.join{
         left:44%;
         width: 90%;
+    }
+
+    .join {
+        margin-top: 10px;
     }
 
     .tl{
@@ -264,5 +272,11 @@ input[name=pw]{
         padding: 2.5%;
         font-size: 80%;
         width:30%;
+    }
+}
+
+@media screen and (max-width:330px) {
+    div.box1 {
+        width: 420%;
     }
 }
