@@ -1,0 +1,23 @@
+.buttons {
+    display: block;
+    margin: auto;
+}
+
+.buttons input{
+    width: 130px;
+}
+
+.alt {
+    margin-left: 5px;
+}
+
+@media screen and (max-width:430px) {
+    .buttons input{
+        width: 80px;
+    }
+
+    .align-center h2 {
+        font-size: 2rem;
+    }
+
+}

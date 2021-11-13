@@ -5,9 +5,18 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html th:replace="thymeleaf/layout/layout :: layout(~{::title},~{::#main})" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+<head >
+  <title>USAN-공지사항</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet"
 
-
-    <title>USAN-공지사항</title>
+        th:href="@{../htmlTemplates/css/main.css}"
+        href="../../../static/htmlTemplates/css/main.css" />
+  <link rel="stylesheet"
+        th:href="@{../htmlTemplates/css/board.css}"
+        href="../../../static/htmlTemplates/css/board.css" />
+</head>
 
 
 
@@ -24,7 +33,7 @@
           <div class="section">
             <div class="input_group">
               <input type="text" name="query" id="query" value="" placeholder="검색어를 입력하세요.">
-                <button type="board_submit">검색</button>
+              <button type="board_submit">검색</button>
             </div>
             <div class="table-wrapper">
               <table class="board">

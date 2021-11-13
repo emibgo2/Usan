@@ -1,0 +1,27 @@
+.input_group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input_group input {
+    width: 250px;
+}
+
+.input_group button {
+    margin-left: 5px;
+    height: 36px;
+    border-radius: 4px;
+    width: 80px;
+}
+
+@media screen and (max-width:430px) {
+    .input_group input {
+        width: 170px;
+    }
+
+    .input_group button {
+        width: 60px;
+    }
+}

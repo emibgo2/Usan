@@ -241,7 +241,6 @@ div.box.on{
 }
 
 .con{
-
     background-color: white;
     border-style: none;
 }
@@ -255,6 +254,8 @@ div.agree{
 li{
     color:black;
     font-size: 17px;
+    text-indent: -22px;
+    padding-left: 22px;
 }
 
 .agree input {
@@ -262,12 +263,6 @@ li{
 }
 
 
-/*
-.agree_center {
-    display: flex;
-    align-items: center;
-}
-*/
 
 
 .btn {
