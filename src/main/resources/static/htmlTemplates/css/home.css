@@ -6,38 +6,123 @@
     display: none;
 }
 
+.stateBtns {
+    display: flex;
+    justify-content: center;
+}
+
+.stateBtn {
+    margin: 20px;
+}
+
+.state1 {
+    display: block;
+}
+
+.state2 {
+    display: none;
+}
+
 
 
 @media screen and (max-width: 429px) {
-    .flex.flex-2, .flex.flex-3 {margin: 0 20px;}
+    .flex.flex-2, .flex.flex-3 {
+        margin: 0 20px;
+    }
 
-    #banner h1 {font-size: 3.2em; margin-bottom: 40px;}
-    #banner p {font-size: 1.71em;}
-    .p_margin {margin-bottom: 16px;}
-    .p_none{margin: 0;}
-    .p_window {display: none;}
-    .p_mobile {display: block;}
+    #banner h1 {
+        font-size: 3.2em;
+        margin-bottom: 40px;
+    }
 
-    .map h2 {font-size: 2em;}
-    .map p {font-size: 1.3em;}
+    #banner p {
+        font-size: 1.71em;
+    }
 
-    .rent h3 {font-size: 2.2em; text-align: center; margin-bottom: 30px;}
-    .flex.flex-2 .col.col1, .flex.flex-2 .col.col2 {margin: 0;}
-    .lent-text1 p {font-size: 1.58em; text-align: center;}
+    .p_margin {
+        margin-bottom: 16px;
+    }
 
-    .lent-text2 {margin-bottom: 50px;}
-    .lent-text2 p {font-size: 1.3em; text-align: center;}
+    .p_none {
+        margin: 0;
+    }
 
-    .lent_way {font-size: 1.5em;}
-    .lent_way li {padding-bottom: 5px;}
+    .p_window {
+        display: none;
+    }
 
-    .return_way {font-size: 1.5em;}
-    .return_way li {padding-bottom: 5px}
-    .return_way_p {font-size: 1.4em; text-align: center}
-    .return_p {margin-bottom: 0;}
-    .return_pp {margin-left: 12.5px;}
+    .p_mobile {
+        display: block;
+    }
 
-    .button {font-size: 1.2em;}
+    .map h2 {
+        font-size: 2em;
+    }
+
+    .map p {
+        font-size: 1.3em;
+    }
+
+    .rent h3 {
+        font-size: 2.2em;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .flex.flex-2 .col.col1, .flex.flex-2 .col.col2 {
+        margin: 0;
+    }
+
+    .lent-text1 p {
+        font-size: 1.58em;
+        text-align: center;
+    }
+
+    .lent-text2 {
+        margin-bottom: 50px;
+    }
+
+    .lent-text2 p {
+        font-size: 1.3em;
+        text-align: center;
+    }
+
+    .lent_way {
+        font-size: 1.5em;
+    }
+
+    .lent_way li {
+        padding-bottom: 5px;
+    }
+
+    .return_way {
+        font-size: 1.5em;
+    }
+
+    .return_way li {
+        padding-bottom: 5px
+    }
+
+    .return_way_p {
+        font-size: 1.4em;
+        text-align: center
+    }
+
+    .return_p {
+        margin-bottom: 0;
+    }
+
+    .return_pp {
+        margin-left: 12.5px;
+    }
+
+    .button {
+        font-size: 1.2em;
+    }
+
+    .stateBtn {
+        margin: 0 10px 20px 10px;
+    }
 }
 
 @media screen and (max-width: 415px){

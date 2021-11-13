@@ -53,7 +53,7 @@
             <p style = "margin: 0px 0px 0px 60px;">등록된 카드</p>
             <p style = "margin: 0px 0px 0px 140px; font-weight: bold;">NH 0000-****-****-0*0*</p>
             <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
-            <p style = "margin: 0px 0px 0px 60px; ">총 결제 금액<span style = "margin: 0px 0px 0px 140px; font-weight: bold; color:red">1,000원</span></p>
+            <p style = "margin: 0px 0px 0px 60px; ">총 결제 금액<span style = "font-weight: bold; color:red" id="price">1,000원</span></p>
             <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
 
             <button type="button" class="con"><ins>이용 정보 보기</ins></button>
@@ -79,9 +79,9 @@
             <ul style="list-style: none; text-indent: 0%; padding-inline-start: 0px; margin-block-start: 0px;">
                 <li><input type="checkbox" name="agree1" value="all" class="check-all">전체 동의</li>
                 <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
-                <li><input type="checkbox" name="agree2" value="check1" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</li>
+                <li><div class="agree_center"><input type="checkbox" name="agree2" value="check1" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</div></li>
                 <p></p>
-                <li><input type="checkbox" name="agree3" value="check2" class="agree1">추가요금 자동결제, 환불규정에 동의합니다.</li>
+                <li><div class="agree_center"><input type="checkbox" name="agree3" value="check2" class="agree1">추가요금 자동결제, 환불규정에 동의합니다.</div></li>
             </ul>
         </div>
 
@@ -89,7 +89,8 @@
 
         <div class="all_btn">
             <button type="button" id="back" onClick="location.href='#'" class="btn_main">뒤로가기</button>
-            <button type="button" id="ok" onClick="location.href='/umb/rent/success'" class="btn" <!--disabled="" -->>결제하기</button>
+            <button type="button" id="ok" class="btn"> <!--disabled="" -->결제하기</button>
+
         </div>
 
     </div>
@@ -160,10 +161,20 @@
         //const okBtn = document.getElementById('ok')
 
         ok.addEventListener("click",function(){
+
             if($("input[name='agree3']:checked").length != $("input[name='agree3']").length) {
                 er.classList.remove("er");
+
                 //okBtn.disabled = true;
             } else {
+                location.href='/umb/rent/success'
+                /*function select(){
+                    const button = document.getElementById('ok');
+
+                    //button.textContent = "<a href='/umb/rent/success'>결제하기</a>";
+                }*/
+
+
                 //okBtn.disabled = false;
             }
         });

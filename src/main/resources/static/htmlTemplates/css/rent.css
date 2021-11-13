@@ -254,7 +254,20 @@ div.agree{
 
 li{
     color:black;
+    font-size: 17px;
 }
+
+.agree input {
+    margin-right: 6px;
+}
+
+/*
+.agree_center {
+    display: flex;
+    align-items: center;
+}
+
+ */
 
 .btn {
     background-color: #3498db;
@@ -293,7 +306,11 @@ p {
 .er{
     display :none;
 }
-
+#price{
+    /*float: left;
+    text-align:left;*/
+    margin: 0px 0px 0px 140px;
+}
 
 
 
@@ -414,6 +431,22 @@ p {
     .content{
         font-size: 85%;
     }
+    #price{
+        /*margin: 0% 0% 0% 50%;*/
+        float: right;
+    }
+
+
+    li {
+        font-size: 16px;
+    }
+
+}
+
+@media screen and (max-width: 410px) {
+    li {
+        font-size: 15px;
+    }
 
 }
 
@@ -429,4 +462,6 @@ p {
     .lent_choice {
         font-size: 1.14rem;
     }
+
+
 }
