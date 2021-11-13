@@ -3,12 +3,13 @@ package com.example.usan.controller;
 
 import com.example.usan.config.auth.PrincipalDetail;
 import com.example.usan.model.Umbrella;
+import com.example.usan.repository.StorageRepository;
+import com.example.usan.repository.UmbrellaRepository;
 import com.example.usan.repository.UserRepository;
 import com.example.usan.service.StorageService;
 import com.example.usan.service.UmbrellaService;
 import com.example.usan.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -26,9 +27,10 @@ public class UserController {
 
 
 
-    @Autowired
+    private StorageRepository storageRepository;
     private StorageService storageService;
     private UserService userService;
+    private UmbrellaRepository umbrellaRepository;
     private UserRepository userRepository;
     private UmbrellaService umbrellaService;
 
@@ -61,7 +63,16 @@ public class UserController {
 
         return "thymeleaf/testControlEdit";
     }
+    @GetMapping("/user/bill")
+    public String billForm() {
+        return "thymeleaf/umbrella/bill";
+    }
 
+
+    @GetMapping("/payment/edit")
+    public String paymentEdit() {
+        return "thymeleaf/umbrella/payment_edit";
+    }
 
     @GetMapping("/agree")
     public String agreeForm() {
@@ -95,7 +106,7 @@ public class UserController {
 
     @GetMapping("/auth/joinForm")
     public String joinUser() {
-        return "user/joinForm";
+        return "thymeleaf/user/Join_Form";
     }
 
     @GetMapping("/auth/loginForm")
@@ -105,8 +116,19 @@ public class UserController {
 
     @GetMapping("/user/agree")
     public String agree() {
-        return "thymeleaf/umbrella/agree";
+        return "thymeleaf/user/agree";
     }
 
-
+    @GetMapping("/personal/information")
+    public String personalInformationForm() {
+        return  "thymeleaf/umbrella/personal_information";
+    }
+    //------------------- admin page
+    @GetMapping("/admin")
+    public String adminPage(Model model) {
+        model.addAttribute("umb",umbrellaService.umb_upload());
+        model.addAttribute("storages",storageService.sto_upload());
+        model.addAttribute("users",userRepository.findAll());
+        return  "thymeleaf/chaerin/manager";
+    }
 }

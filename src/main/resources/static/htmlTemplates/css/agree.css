@@ -1,5 +1,5 @@
 body{
-    background-color:#FAFAFA;
+    background-color:white;
     justify-content: center;
     align-items: center;
 }
@@ -16,6 +16,9 @@ body{
     overflow-y: scroll;
     text-align: left;
 }
+
+.con{display: none;}
+
 
 /*크기변경*/
 @media screen and (max-width:420px) {

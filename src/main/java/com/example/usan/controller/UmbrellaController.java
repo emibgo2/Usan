@@ -39,20 +39,27 @@ public class UmbrellaController {
     @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
     @ResponseBody
     public ResponseDto<Integer> rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
-        System.out.println("UmbrellaController.rent");
-        System.out.println("location = " + location);
-        System.out.println("days = " + days);
+        log.info("Lending location ={}", location);
+
         Random random = new Random();
         int i = random.nextInt(UmbrellaApiController.myUUID.size());
         Integer remove = UmbrellaApiController.myUUID.remove(i);
-        log.info("Rent User = {}" ,userService.userPayNumber(principal.getUser().getId(), remove,days));
-        System.out.println("principal!?? "+principal.getUser());
-//        result = days;
+        if (principal.getUser().getPayNumber() == 0) {
+            User user = userService.userPayNumber(principal.getUser().getId(), remove, days, location);
+            if (user.getUsername() == null) {
+                return new ResponseDto<Integer>(HttpStatus.OK.value(), 2);
+            }
+            log.info("Rent User = {}, Rent days={}", user,days);
+        }
+        //        result = days;
         // DB안에 있는 Umbrella를 추합하여 전송
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+
     }
 
-    public void test( HttpServletRequest request) {
+
+
+    public void test(HttpServletRequest request) {
 
         Random random = new Random();
         int i = random.nextInt(UmbrellaApiController.myUUID.size());
@@ -103,7 +110,7 @@ public class UmbrellaController {
 
     @GetMapping("/rent")
     public String viewTest(Model model) {
-        System.out.println("??");
+
         model.addAttribute("storages", storageService.sto_upload());
         return "thymeleaf/umbrella/rent";
     }
@@ -132,12 +139,13 @@ public class UmbrellaController {
                 umbrellas2.add(umbrella2);
             }
 
-        } return umbrellas2;
+        }
+        return umbrellas2;
     }
 
     @GetMapping("/fault/report/{userId}")
     public String fault_ReportUmbrella(@PathVariable Long userId, Model model) {
-        List<Umbrella> umbrellas = getUserUmbrellas( userId);
+        List<Umbrella> umbrellas = getUserUmbrellas(userId);
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_Fault_Report";
     }
@@ -154,19 +162,33 @@ public class UmbrellaController {
     }
 
 
-    @GetMapping("/chaerin/fail")
+    @GetMapping("/rent/fail")
     public String rent_fail() {
-        return "thymeleaf/chaerin/rent_fail";
+        return "thymeleaf/umbrella/rent_fail";
     }
 
     @GetMapping("/rent/success")
     public String rent_Finish(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
         System.out.println("principal = " + principal.getUser());
-        User user = userRepository.findById(principal.getUser().getId()).orElseGet(()->{
+        User user = userRepository.findById(principal.getUser().getId()).orElseGet(() -> {
             return new User();
         });
         model.addAttribute("payNumber", user.getPayNumber());
-        return "thymeleaf/chaerin/rent_finish";
+        return "thymeleaf/umbrella/rent_finish";
+    }
+
+    @GetMapping("/card")
+    public String cardForm() {
+        return  "thymeleaf/umbrella/card";
+    }
+
+    @GetMapping("/docu")
+    public String docuForm() {
+        return  "thymeleaf/umbrella/docu";
+    }
+    @GetMapping("/information")
+    public String informationForm() {
+        return  "thymeleaf/umbrella/information";
     }
 
 }

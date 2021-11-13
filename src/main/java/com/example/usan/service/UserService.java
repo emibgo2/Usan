@@ -1,5 +1,6 @@
 package com.example.usan.service;
 
+import com.example.usan.config.SystemConfig;
 import com.example.usan.controller.api.UmbrellaApiController;
 import com.example.usan.model.RoleType;
 import com.example.usan.model.Storage;
@@ -45,19 +46,25 @@ public class UserService {
     }
 
     @Transactional
-    public User userPayNumber(Long userId, int payNumber,int day) {
+    public User userPayNumber(Long userId, int payNumber,int day, String location) {
         try {
+            Storage storage = storageRepository.findByLocation(location).orElseGet(() -> {
+                return new Storage();
+            });
             User user = userRepository.findById(userId).orElseGet(() -> {
                 return new User();
             });
-            user.setPayNumber(day,payNumber);
+            if (user.getPayNumber() != 0) throw new IllegalStateException("이미 대여중인 유저입니다");
+            user.setCash(user.getCash()- (day * SystemConfig.UMBRELLA_RENT_PAYMENT));
+            user.setPayNumber(day, payNumber);
+            storage.setUmb_count(storage.getUmb_count() -1);
             log.info("Pay Number 배급이 성공하였습니다.");
             return user;
         } catch (Exception e) {
             log.info("Pay Number 배급이 실패하였습니다");
+            return new User();
         }
 
-        return new User();
     }
 
     @Transactional
@@ -71,6 +78,7 @@ public class UserService {
             else if (roleType == 2) user.setRole(RoleType.ADMIN);
             try {
                 userRepository.save(user);
+                log.info("Create User={}",user);
             }catch (Exception e){
                 return 3;
             }
@@ -113,20 +121,19 @@ public class UserService {
             umbrella.setRent_end_date(Timestamp.valueOf(LocalDateTime.now().plusDays(rentPeriod)));
             umbrella.setUser_id(requestUser.getId());
             umbrella.setUse_count(umbrella.getUse_count() + 1);
-        }
-        // User의 Umbrella_Id 값이 0 이면 빌린 우산이 없다는 뜻
+        }// User의 Umbrella_Id 값이 0 이면 빌린 우산이 없다는 뜻
         // Umbrella_Id1값이 0이면 User의 Umbrella_Id1에 저장
         // Umbrella_Id1값이 0이고 Umbrella_Id2값이 0이면 User의 Umbrella_Id2에 저장
 
         else return 3;
         // 둘다 0이 아니라면 대여 최대 가능 댓수인 2를 넘어가기 때문에
         // 안내문을 출력하기위해서 1을 return
-        lendingStorage.setUmb_count(lendingStorage.getUmb_count()-1);
         UmbrellaApiController.myUUID.add(user.getPayNumber());
 
         if (UmbrellaApiController.myUUID.indexOf(user.getPayNumber())!=-1) log.info("myUUID OK!");
 
         user.setPayNumber(null);
+        log.info("Storage Umbrella count : {}", lendingStorage.getUmb_count());
         log.info("umbrella Information : " + umbrella);
         log.info("User     Information : " + user);
         return 1;

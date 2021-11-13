@@ -16,7 +16,8 @@
 <div class="container_lent">
     <div class="lent">
         <h1>대여하기</h1>
-        <h3>사용자 ID : 두근두근</h3>
+
+        <h3>사용자 ID : <span  sec:authentication="principal.user.name"></span></h3>
     </div>
     <form class="lent_form">
         <div class="lent_choice">
@@ -37,11 +38,62 @@
             <p id="lent_date_result"></p>
         </div>
         <div class="lent_btn">
-            <button type="button" class="btn_submit" onclick="instance.test()">대여하기</button>
+            <button type="button" id="submit" class="btn_submit" >대여하기</button>
             <button type="reset" class="btn_reset">취소하기</button>
         </div>
     </form>
 
+</div>
+
+<div id="bg" class="hidden"></div>
+<div id = "popup" class="hidden">
+    <div class="test">
+        <div class="blind">결제 확인</div>
+
+        <div class="data">
+            <p style = "margin: 0px 0px 0px 60px;">등록된 카드</p>
+            <p style = "margin: 0px 0px 0px 140px; font-weight: bold;">NH 0000-****-****-0*0*</p>
+            <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
+            <p  style = "margin: 0px 0px 0px 60px; ">총 결제 금액<span  id="payment" style = "margin: 0px 0px 0px 140px; font-weight: bold; color:red">700원</span></p>
+            <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
+
+            <button type="button" class="con"><ins>이용 정보 보기</ins></button>
+            <div class="box">
+                <span style="float:right; margin-right:10px;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3186.5893007269624!2d127.13122496515058!3d36.995735379908695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b309bc8f7fb29%3A0xc0ddf62819c56a8e!2z7Y-J7YOd64yA7ZWZ6rWQ!5e0!3m2!1sko!2skr!4v1633404600471!5m2!1sko!2skr" width="200" height="100" style="border:0;" allowfullscreen="" ></iframe></span>
+                <p></p>
+                <span class = "subject">보관소 위치 :</span>
+                <span class = "content">평택대학교</span>
+
+                <p></p>
+                <span class="subject">대여기간 :</span>
+                <span id="subdays" class="content">1일</span>
+
+                <p></p>
+                <span class="subject">대여 날짜 :</span>
+                <span th:text="${#dates.format(#dates.createNow(),'yyyy-MM-dd HH:mm')}" class="content">2021</span>
+            </div>
+        </div>
+        <hr size="1px" width=100% color= white noshade="noshade"></hr>
+
+
+        <div class="agree">
+            <ul style="list-style: none; text-indent: 0%; padding-inline-start: 0px; margin-block-start: 0px;">
+                <li><input type="checkbox" name="agree1" value="all" class="check-all">전체 동의</li>
+                <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
+                <li><input type="checkbox" name="agree2" value="check1" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</li>
+                <p></p>
+                <li><input type="checkbox" name="agree3" value="check2" class="agree1">추가요금 자동결제, 환불규정에 동의합니다.</li>
+            </ul>
+        </div>
+
+        <div id ="er" class="er" style="color:red; margin-top: 5px; text-align: center;">추가요금 자동결제, 환불규정에 동의해주세요.</div>
+
+        <div class="all_btn">
+            <button type="button" id="back" onClick="location.href='#'" class="btn_main">뒤로가기</button>
+            <button type="button" id="ok" onclick="instance.test()" class="btn" ><!--disabled="" -->결제하기</button>
+        </div>
+
+    </div>
 </div>
 
 
@@ -52,13 +104,10 @@
         test:function(){
             const days = document.getElementById('days').value
             const locations = document.getElementById('location').value
-            if (confirm(locations+"지점에서 "+days+"일 동안 대여하시겠습니까?")) {
                 let data={
                     locations:locations,
                     days:days
                 };
-                alert(locations)
-                alert(days)
                 $.ajax({
                     type: "POST",
                     url:`/umb/rent/${locations}/${days}`,
@@ -70,26 +119,93 @@
                 }).done(function (resp) {
                     if (resp.status === 500) {
                         alert("우산 등록이 실패하였습니다 \n아이디가 중복되었습니다.");
-                    }else if (resp.response === 3) {
+                    }
+                    else if (resp.response === 2) {
+                        alert("이미 대여가 완료되었습니다\n 보관소에서 비밀번호를 입력하세요 ");
+                    }
+                    else if (resp.response === 3) {
                         alert("우산이 꽉 찼습니다 반납후 이용해주세요");
                     } else  {
                         alert("우산 등록이 완료되었습니다.");
+                        location.href='/umb/rent/success'
                         // console.log(resp)
-                        location.href="/umb/rent/success";
                     }
                 }).fail(function (error) {
                     alert(" Error ->"+JSON.stringify(error));
                 });
 
-                alert("????");
-            } else {
-            }
-
-
-            }
-
-
+        }
     }
+
+    $('.con').on('click',function(){
+        $('div.box').toggleClass('on');
+    });
+
+    $(document).ready(function(){
+        $('.check-all').click(function (){
+            $('.agree1').prop('checked', this.checked);
+        });
+    });
+
+    $(document).ready(function(){
+        $('.check-all').click(function (){
+            $('.agree1').prop('checked', this.checked);
+        });
+        $('.agree1').click(function (){
+            if($("input[name='agree2']:checked").length + $("input[name='agree3']:checked").length == 2 ){
+                $('.check-all').prop("checked", true);
+            }else{
+                $('.check-all').prop("checked", false);
+            }
+        });
+
+        const ok = document.querySelector("#ok");
+        const er = document.querySelector("#er");
+        //const okBtn = document.getElementById('ok')
+
+        ok.addEventListener("click",function(){
+            if($("input[name='agree3']:checked").length != $("input[name='agree3']").length) {
+                er.classList.remove("er");
+                //okBtn.disabled = true;
+            } else {
+                //okBtn.disabled = false;
+            }
+        });
+    });
+
+    const submit = document.querySelector("#submit");
+    const bg = document.querySelector("#bg");
+    const popup = document.querySelector("#popup");
+    const back = document.querySelector("#back");
+    const payment = document.querySelector("#payment");
+    const day = document.getElementById("days").value;
+
+    submit.addEventListener("click",function(){
+        const days = document.getElementById('days').value
+        const locations = document.getElementById('location').value
+        if (storage[rent_location.selectedIndex].umb_count === 0) {
+
+            alert(storage[rent_location.selectedIndex].location + " 지점은 보유 우산이 없습니다.");
+        } else{
+            if (days > 0 && days <= 7) {
+                if (confirm(locations+"지점에서 "+days+"일 동안 대여하시겠습니까?")) {
+                    bg.classList.remove("hidden");
+                    popup.classList.remove("hidden");
+                }
+            }else alert(" 선택 가능한 대여기간은 1일 부터 7일 까지 입니다.")
+
+        }
+
+
+
+
+    });
+    back.addEventListener("click",function(){
+        bg.classList.add("hidden");
+        popup.classList.add("hidden");
+    });
+
+
 </script>
 
 <script th:inline="javascript">
@@ -104,19 +220,24 @@
     const b = document.getElementById('location')
 
 
-    document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
 
     b.addEventListener('change',changeLocation)
     function changeLocation() {
         rent_location = document.getElementById("location");
         rent_location_select = rent_location.options[rent_location.selectedIndex].innerText;
-        alert(storage[rent_location.selectedIndex].umb_count)
+
         if (storage[rent_location.selectedIndex].umb_count === 0) {
             let a =document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
             document.getElementById("lent_condition").style.color="#FF0000";
+            document.getElementById("lent_date_result").style.color="#FF0000";
+            document.getElementById("lent_date_result").innerHTML = storage[rent_location.selectedIndex].location + " 지점은 보유 우산이 없습니다.";
+            document.getElementById("days").attributes="disabled";
+            alert(storage[rent_location.selectedIndex].location+" 지점은 보유 우산이 없습니다.")
         } else {
             document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
             document.getElementById("lent_condition").style.color="#000000";
+            document.getElementById("lent_date_result").style.color="#000000";
+            document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //초기 값
         }
 
 
@@ -130,11 +251,31 @@
     document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //초기 값
     a.addEventListener('input', rental)
 
+    if (storage[rent_location.selectedIndex].umb_count === 0) {
+        let a = document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`;
+        document.getElementById("lent_condition").style.color = "#FF0000";
+        document.getElementById("lent_date_result").style.color = "#FF0000";
+        document.getElementById("lent_date_result").innerHTML = " 평택대 지점은 보유 우산이 없습니다.";
+        document.getElementById("days").attributes = "disabled";
+        alert(storage[rent_location.selectedIndex].location + " 지점은 보유 우산이 없습니다.");
+    } else {
+        console.log("ㅠㅠ")
+        document.getElementById("lent_condition").innerHTML = `☂️: ${storage[rent_location.selectedIndex].umb_count}개`
+    };
 
+    // function rental() {
+    //     console.log(document.getElementById('days').value * 700);
+    //     price = document.getElementById('days').value * 700
+    //     document.getElementById("payment").innerHTML=` ${price}` //변해주는값
+    // }
     function rental() {
-        console.log(document.getElementById('days').value * 700);
-        price = document.getElementById('days').value * 700
-        document.getElementById("lent_date_result").innerHTML=`대여비용은 ${price}원입니다.` //변해주는값
+        if (storage[rent_location.selectedIndex].umb_count != 0) {
+            console.log(document.getElementById('days').value * 700);
+            price = document.getElementById('days').value * 700
+            document.getElementById("lent_date_result").innerHTML = `대여비용은 ` + price.toLocaleString('ko-KR') + `원입니다.` //변해주는값
+            document.getElementById("payment").innerHTML = price.toLocaleString('ko-KR');//변해주는값
+            document.getElementById("subdays").innerHTML = document.getElementById('days').value
+        }
     }
 </script>
 </html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+<head>
+    <meta charset="UTF-8">
+    <title>USAN</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .manage {
+            display: block;
+            margin: auto;
+            text-align: center;
+            width: 70%;
+            margin-top: 100px;
+        }
+
+        .manage h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .manage_table {
+            border-collapse: collapse;
+            text-align: center;
+            border-top: 1px solid #000000;
+            border-left: 1px solid #000000;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+        }
+
+        .manage_table th {
+            padding: 10px;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        .manage_table td {
+            padding: 10px;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        .manage_table_s {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="manage">
+    <h1>우산 관리 페이지</h1>
+    <hr>
+    <div class="manage_table">
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>생성 날짜</th>
+                <th>대여 날짜</th>
+                <th>대여 종료 날짜</th>
+                <th>반납 날짜</th>
+                <th>대여한 User id값</th>
+                <th>사용 횟수</th>
+                <th>RFID 값</th>
+            </tr>
+            </thead>
+            <span th:each="umbrella: ${umb}">
+                <tbody>
+                <tr >
+                    <td th:text="${umbrella.id}">2</td>
+                    <td th:text="${#dates.format(umbrella.create_date,'yyyy-MM-dd') }" >내용</td>
+                    <td th:text="${#dates.format(umbrella.rent_date,'yyyy-MM-dd HH:mm') }" >내용</td>
+                    <td th:text="${#dates.format(umbrella.rent_end_date,'yyyy-MM-dd HH:mm') }" >내용</td>
+                    <td th:text="${#dates.format(umbrella.return_date,'yyyy-MM-dd HH:mm') }" >내용</td>
+                    <td th:text="${umbrella.user_id}" >내용</td>
+                    <td th:text="${umbrella.use_count}" >내용</td>
+                    <td th:text="${umbrella.valueOfRFID}" >내용</td>
+                </tr>
+                </tbody>
+                </span>
+
+        </table>
+    </div>
+
+    <h1>보관소 관리 페이지 </h1>
+    <hr>
+    <div class="manage_table">
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>생성 날짜</th>
+                <th>지점</th>
+                <th>사용 가능 우산</th>
+                <th>대여 예정 우산의 RFID 값</th>
+                <th>관리 우산 리스트</th>
+
+            </tr>
+            </thead>
+            <span th:each="storage: ${storages}">
+                <tbody>
+                <tr >
+
+                    <td th:text="${storage.id}">2</td>
+                    <td th:text="${#dates.format(storage.create_date,'yyyy-MM-dd') }" >내용</td>
+                    <td th:text="${storage.location}" >내용</td>
+                    <td th:text="${storage.umb_count}" >내용</td>
+                    <td th:text="${storage.lendingUmbRFID }" >내용</td>
+                    <td  >
+
+                    <table class="manage_table_s">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>생성 날짜</th>
+                            <th>대여 날짜</th>
+                            <th>대여 종료 날짜</th>
+                            <th>반납 날짜</th>
+                            <th>대여한 User id값</th>
+                            <th>사용 횟수</th>
+                            <th>RFID 값</th>
+                        </tr>
+                        </thead>
+                        <span th:each="umbrella: ${storage.umbrellaList}">
+                        <tbody>
+                        <tr >
+                            <td th:text="${umbrella.id}">2</td>
+                            <td th:text="${#dates.format(umbrella.create_date,'yyyy-MM-dd') }" >내용</td>
+                            <td th:text="${#dates.format(umbrella.rent_date,'yyyy-MM-dd HH:mm') }" >내용</td>
+                            <td th:text="${#dates.format(umbrella.rent_end_date,'yyyy-MM-dd HH:mm') }" >내용</td>
+                            <td th:text="${#dates.format(umbrella.return_date,'yyyy-MM-dd HH:mm') }" >내용</td>
+                            <td th:text="${umbrella.user_id}" >내용</td>
+                            <td th:text="${umbrella.use_count}" >내용</td>
+                            <td th:text="${umbrella.valueOfRFID}" >내용</td>
+                        </tr>
+                        </tbody>
+                        </span>
+
+                    </table>
+
+                    </td>
+
+                    </td>
+
+
+                </tr>
+                </tbody>
+                </span>
+
+            </tr>
+            </tbody>
+            </span>
+
+        </table>
+    </div>
+
+    <h1>사용자 관리 페이지 </h1>
+    <hr>
+    <div class="manage_table">
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Login ID</th>
+                <th>성함</th>
+                <th>닉네임</th>
+                <th>이메일</th>
+                <th>전화 번호</th>
+                <th>첫번째 우산의 id 값</th>
+                <th>두번째 우산의 id 값</th>
+                <th>계정 생성 날짜</th>
+                <th>결제 비밀번호</th>
+            </tr>
+            </thead>
+            <span th:each="user: ${users}">
+                <tbody>
+                <tr >
+                    <td th:text="${user.id}">2</td>
+                    <td th:text="${user.username}" >내용</td>
+                    <td th:text="${user.name }" >내용</td>
+                    <td th:text="${user.nickName }" >내용</td>
+                    <td th:text="${user.email }" >내용</td>
+                    <td th:text="${user.phoneNumber}" >내용</td>
+                    <td th:text="${user.firstUmbrellaId}" >내용</td>
+                    <td th:text="${user.secondUmbrellaId}" >내용</td>
+                    <td th:text="${#dates.format(user.createDate,'yyyy-MM-dd') }" >내용</td>
+                    <td th:text="${user.payNumber}" >내용</td>
+                </tr>
+                </tbody>
+                </span>
+
+        </table>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

@@ -163,21 +163,21 @@ public class UmbrellaApiController {
         for (int i = 1000; i < 10000; i++) {
             myUUID.add(i);
         }
+        long count = umbrellaRepository.count();
         // 우산이 없을시 기본 우산 4개 생성
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 0; i <= 3; i++) {
             Long l = new Long(i);
-            Umbrella umbrellaCheck = umbrellaRepository.findById(l).orElseGet(() -> {
-                return new Umbrella();
-            });
-            if (umbrellaCheck.getCreate_date() == null) {
+
+            if (count ==0) {
                 Umbrella createUmbrella = new Umbrella();
                 createUmbrella.setStorage(storageService.sto_detail(1L));
-
-                if (i == 2) {
+                System.out.println("i = " + i);
+                if (i == 3) {
                     createUmbrella.setValueOfRFID("f3ba2797");
-                } if (i == 3) {
+                }
+                if (i == 3) {
                     createUmbrella.setValueOfRFID("f3506a97");
-                }else   createUmbrella.setValueOfRFID("acde013"+i);
+                }else createUmbrella.setValueOfRFID("f3ba279" + (7-i));
                 System.out.println("createUmbrella = " + createUmbrella);
                 umbrellaService.umbrella_save(createUmbrella);
                 log.info("기본 우산 생성");

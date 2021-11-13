@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
 <head>
-    <title>USAN</title>
+    <title>결제</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,16 +50,16 @@
 
     <div class="agree">
         <ul style="list-style: none; text-indent: 0%; padding-inline-start: 0px; margin-block-start: 0px;">
-            <li><input type="checkbox" name="agree1" value="all">전체 동의</li>
+            <li><input type="checkbox" name="agree1" value="all" class="check-all">전체 동의</li>
             <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
-            <li><input type="checkbox" name="agree1" value="all" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</li>
+            <li><input type="checkbox" name="agree1" value="check1" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</li>
             <p></p>
-            <li><input type="checkbox" name="agree2" value="all" class="agree2">추가요금 자동결제, 환불규정에 동의합니다.</li>
+            <li><input type="checkbox" name="agree1" value="check2" class="agree1">추가요금 자동결제, 환불규정에 동의합니다.</li>
         </ul>
     </div>
 
     <div class="all_btn">
-        <button type="button" onClick="location.href='#'" class="btn">결제하기</button>
+        <button type="button" onClick="location.href='/umb/rent/success'" class="btn">결제하기</button>
     </div>
 </div>
 </body>
@@ -67,6 +67,25 @@
 <script>
     $('.con').on('click',function(){
         $('div.box').toggleClass('on');
+    });
+
+    $(document).ready(function(){
+        $('.check-all').click(function (){
+            $('.agree1').prop('checked', this.checked);
+        });
+    });
+
+    $(document).ready(function(){
+        $('.check-all').click(function (){
+            $('.agree1').prop('checked', this.checked);
+        });
+        $('.agree1').click(function (){
+            if($("input[name='agree1']:checked").length == 2 ){
+                $('.check-all').prop("checked", true);
+            }else{
+                $('.check-all').prop("checked", false);
+            }
+        });
     });
 </script>
 

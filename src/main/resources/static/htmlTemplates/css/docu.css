@@ -5,25 +5,28 @@ body{
 }
 
 div.test {
-    position: absolute;
+    position: relative;
     text-align: left;
     width: 500px;
     height:auto;
     left: 50%;
-    top:20%;
-    transform: translate(-50%, -50%);
+    /*top:20%;*/
+    transform: translateX(-50%);
 }
 
 div.blind {
-    position: absolute;
-    display:flex;
+    /*position: absolute;
+    display:flex;*/
     text-align:center;
     color:black;
     font-size: 40px;
     font-weight: bold;
-    left: 50%;
+    margin-top:8%;
+    margin-bottom: 6%;
+    /*left: 50%;
 
-    transform: translate(-50%, -150%);
+
+    transform: translate(-50%, -150%);*/
 }
 
 div.data{

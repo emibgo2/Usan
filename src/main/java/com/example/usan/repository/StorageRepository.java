@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface StorageRepository extends JpaRepository<Storage,Long> {
     Optional<Storage> findByUmbrellaList(Umbrella umbrella);
 
+    Optional<Storage> findByLocation(String location);
 
 }
