@@ -121,7 +121,7 @@ public class UserController {
 
     @GetMapping("/personal/information")
     public String personalInformationForm() {
-        return  "thymeleaf/umbrella/personal_information";
+        return  "thymeleaf/user/personal_information";
     }
     //------------------- admin page
     @GetMapping("/admin")
