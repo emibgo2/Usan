@@ -54,8 +54,8 @@
                         <h4>계정</h4>
                         <div class="personal_info_">
                             <div class="personal_div">
-                                <h5>아이디</h5>
-                                <h6>chaerin</h6>
+                                <h5 >아이디</h5>
+                                <h6 th:text="${user.username}">chaerin</h6>
                             </div>
                             <div class="personal_div">
                                 <h5>비밀번호</h5>
@@ -69,13 +69,13 @@
                         <div class="personal_info_">
                             <div class="personal_div">
                                 <h5>이름</h5>
-                                <h6>이채린</h6>
+                                <h6 th:text="${user.user.name}">이채린</h6>
                             </div>
                             <div class="personal_div">
                                 <h5>닉네임</h5>
                                 <div class="personal_call">
                                     <div class="personal_call_">
-                                        <h6>채린짱</h6>
+                                        <h6 th:text="${user.user.nickName}">채린짱</h6>
                                         <button>변경</button>
                                     </div>
                                 </div>
@@ -84,11 +84,11 @@
                                 <h5>연락처</h5>
                                 <div class="personal_call">
                                     <div class="personal_call_">
-                                        <h6>010-1111-1111</h6>
+                                        <h6 th:text="${user.user.phoneNumber}">010-1111-1111</h6>
                                         <button>변경</button>
                                     </div>
                                     <div class="personal_call_">
-                                        <h6>12345678@naver.com</h6>
+                                        <h6 th:text="${user.user.email}">12345678@naver.com</h6>
                                         <button>변경</button>
                                     </div>
                                 </div>
