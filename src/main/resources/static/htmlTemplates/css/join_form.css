@@ -52,6 +52,16 @@ div.join{
     border:hidden;
     font-size:16px;
 }
+#submitNoCard{
+    text-align: center;
+    width:423px;
+    height:40px;
+    background-color: white;
+    border-radius: 2px;
+    color:#3498db;
+    border:#1b1e21 2px;
+    font-size:16px;
+}
 #bg{
     position: fixed;
     float: left;

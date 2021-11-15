@@ -9,7 +9,7 @@ div.test {
     position: relative;
     text-align: left;
     width: 500px;
-    height: 600px;
+    height: auto;
     left: 50%;
     top:50%;
     transform: translate(-50%,5%);

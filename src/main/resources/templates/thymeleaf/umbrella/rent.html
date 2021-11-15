@@ -38,8 +38,8 @@
             <p id="lent_date_result"></p>
         </div>
         <div class="lent_btn">
-            <button type="button" id="submit" class="btn_submit" onclick="instance.test()">대여하기</button>
-            <button type="reset" class="btn_reset" >취소하기</button>
+            <button type="button" id="submit" class="btn_submit" >대여하기</button>
+            <button type="reset" class="btn_reset">취소하기</button>
         </div>
     </form>
 
@@ -145,10 +145,6 @@
         $('.check-all').click(function (){
             $('.agree1').prop('checked', this.checked);
         });
-    });
-
-    $('.btn_reset').on('click',function(){
-        location.href="/";
     });
 
     $(document).ready(function(){

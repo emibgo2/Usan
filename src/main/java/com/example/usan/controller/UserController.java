@@ -120,8 +120,9 @@ public class UserController {
     }
 
     @GetMapping("/personal/information")
-    public String personalInformationForm() {
-        return  "thymeleaf/user/personal_information";
+    public String personalInformationForm(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
+        model.addAttribute("user", principal);
+        return "thymeleaf/user/personal_information";
     }
     //------------------- admin page
     @GetMapping("/admin")
