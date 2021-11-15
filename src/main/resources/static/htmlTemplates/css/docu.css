@@ -12,6 +12,7 @@ div.test {
     left: 50%;
     /*top:20%;*/
     transform: translateX(-50%);
+    border: solid 2px #3498db;
 }
 
 div.blind {
@@ -42,10 +43,11 @@ p {
 
 
 /*크기변경*/
-@media screen and (max-width:420px) {
+@media screen and (max-width:430px) {
 
     div.test {
         width:90%;
+        border: 0;
     }
 
     div.blind {

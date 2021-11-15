@@ -43,6 +43,12 @@ div.join{
 /*카드창*/
 .hidden{display: none;}
 
+.joinBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #submit{
     text-align: center;
     width:423px;
@@ -51,7 +57,9 @@ div.join{
     color:white;
     border:hidden;
     font-size:16px;
+    margin-bottom: 20px;
 }
+
 #submitNoCard{
     text-align: center;
     width:423px;
@@ -59,9 +67,10 @@ div.join{
     background-color: white;
     border-radius: 2px;
     color:#3498db;
-    border:#1b1e21 2px;
+    border: 1px solid #3498db;;
     font-size:16px;
 }
+
 #bg{
     position: fixed;
     float: left;
@@ -221,6 +230,10 @@ input[name=pw]{
         height:40px;
     }
 
+    #submitNoCard{
+        width:80%;
+    }
+
     div.test {
         width: 105%;
         transform: translate(-20%,20%);
@@ -282,6 +295,12 @@ input[name=pw]{
         padding: 2.5%;
         font-size: 80%;
         width:30%;
+    }
+}
+
+@media screen and (max-width: 386px) {
+    #submit {
+        margin-bottom: 15px;
     }
 }
 

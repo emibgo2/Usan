@@ -5,10 +5,12 @@
 
 .personal_info h4 {
     font-size: 1.7em;
+    margin-bottom: 25px;
 }
 
 .personal_div {
     display: flex;
+    margin: 10px 0;
 }
 
 .personal_div h5 {
@@ -33,6 +35,10 @@
     font-size: 1.3em;
 }
 
+.call_bottom {
+    margin-bottom: 10px;
+}
+
 .personal_information {
     display: flex;
     justify-content: space-between;
@@ -40,6 +46,11 @@
 
 .personal_information h3 {
     font-size: 1.7em;
+}
+
+.changeBtn {
+    border-radius: 5px;
+    height: 30px;
 }
 
 @media screen and (max-width:1100px) {
@@ -107,7 +118,7 @@
     }
 
     .align-center h2 {
-        font-size: 1.6em;
+        font-size: 2em;
      }
 }
 
@@ -166,15 +177,15 @@
     }
 
     .personal_div h5 {
-        font-size: 1em;
+        font-size: 1.1em;
     }
 
     .personal_div h6 {
-        font-size: 1em;
+        font-size: 1.1em;
     }
 
     .personal_call_ h6 {
-        font-size: 1em;
+        font-size: 1.1em;
     }
 
     button {

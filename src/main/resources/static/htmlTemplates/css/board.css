@@ -30,4 +30,24 @@
         width: 60px;
         height: 30px;
     }
+
+    .input_group {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width:376px) {
+    .input_group {
+        margin-top: 40px;
+    }
+
+    .align-center h1 {
+        font-size: 2.3em;
+    }
+}
+
+@media screen and (max-width:361px) {
+    .input_group {
+        margin-top: 0;
+    }
 }

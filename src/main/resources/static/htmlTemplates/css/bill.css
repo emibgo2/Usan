@@ -13,7 +13,7 @@ div.test {
     left: 50%;
     top:50%;
     transform: translate(-50%,5%);
-    border: solid 15px #3498db;
+    border: solid 5px #3498db;
     background-color:white;
     /*padding-bottom: 50%;*/
     margin-bottom: 8px;
@@ -55,8 +55,8 @@ p {
     }
 
     div.test {
-        width: 95%;
-        height: 97%;
+        width: 96%;
+        height: 98%;
         top: -3.5%;
         position: absolute;
         border:0px;

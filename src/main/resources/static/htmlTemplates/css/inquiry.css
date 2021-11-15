@@ -13,11 +13,16 @@
 
 @media screen and (max-width:430px) {
     .buttons input{
-        width: 80px;
+        width: 100px;
     }
 
     .align-center h2 {
         font-size: 2rem;
     }
+}
 
+@media screen and (max-width:376px) {
+    .buttons input{
+        width: 80px;
+    }
 }

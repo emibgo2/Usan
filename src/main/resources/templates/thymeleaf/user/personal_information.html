@@ -59,7 +59,7 @@
                             </div>
                             <div class="personal_div">
                                 <h5>비밀번호</h5>
-                                <button>비밀번호 변경</button>
+                                <button class="changeBtn">비밀번호 변경</button>
                             </div>
                         </div>
                     </div>
@@ -76,20 +76,20 @@
                                 <div class="personal_call">
                                     <div class="personal_call_">
                                         <h6 th:text="${user.user.nickName}">채린짱</h6>
-                                        <button>변경</button>
+                                        <button class="changeBtn">변경</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="personal_div">
                                 <h5>연락처</h5>
                                 <div class="personal_call">
-                                    <div class="personal_call_">
+                                    <div class="personal_call_ call_bottom">
                                         <h6 th:text="${user.user.phoneNumber}">010-1111-1111</h6>
-                                        <button>변경</button>
+                                        <button class="changeBtn">변경</button>
                                     </div>
-                                    <div class="personal_call_">
+                                    <div class="personal_call_ call_bottom">
                                         <h6 th:text="${user.user.email}">12345678@naver.com</h6>
-                                        <button>변경</button>
+                                        <button class="changeBtn">변경</button>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                 <div class="personal_information">
                     <h3>카드정보</h3>
                     <div>
-                        <button>카드정보확인</button>
+                        <button class="changeBtn">카드정보확인</button>
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
                 <div class="personal_information">
                     <h3>이용기록</h3>
                     <div>
-                        <button>이용 기록</button>
+                        <button class="changeBtn" onClick="location.href='/umb/docu'">이용 기록</button>
                     </div>
                 </div>
                 <hr>
