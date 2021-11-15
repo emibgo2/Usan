@@ -302,9 +302,11 @@ p {
 .er{
     display :none;
 }
-#price{
+#payment{
     /*float: left;
     text-align:left;*/
+    font-weight: bold;
+    color: red;
     margin: 0px 0px 0px 140px;
 }
 
@@ -427,7 +429,7 @@ p {
     .content{
         font-size: 85%;
     }
-    #price{
+    #payment{
         /*margin: 0% 0% 0% 50%;*/
         float: right;
     }

@@ -1,58 +1,185 @@
-.personal_information h3 {
-    font-size: 1.7em;
-}
-
-.personal_info h2 {
-    font-size: 1.7em;
-    width: 40%;
-}
-
-.personal_informations h4 {
-    font-size: 1.4em;
-    width: 40%;
-}
-
-.personal_informations h5 {
-    font-size: 1.4em;
-    width: 30%;
-}
-
-.personal_call {
-    width: 60%;
-}
-
-.personal_call_ h5 {
+.personal {
     width: 50%;
+    margin: auto;
 }
 
-
-
-.personal_info_ {
-    display: flex;
-    margin-bottom: 30px;
+.personal_info h4 {
+    font-size: 1.7em;
 }
 
 .personal_div {
     display: flex;
 }
 
-.personal_info__ {
-    display: flex;
-    flex-direction: column;
+.personal_div h5 {
+    width: 40%;
+    font-size: 1.3em;
+}
+
+.personal_div h6 {
+    font-size: 1.3em;
+}
+
+.personal_call {
     width: 60%;
 }
 
 .personal_call_ {
     display: flex;
+    justify-content: space-between;
 }
 
-.personal_name {
-    display: flex;
-    width: 60%;
+.personal_call_ h6 {
+    font-size: 1.3em;
 }
-
 
 .personal_information {
     display: flex;
     justify-content: space-between;
 }
+
+.personal_information h3 {
+    font-size: 1.7em;
+}
+
+@media screen and (max-width:1100px) {
+    .personal {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .personal {
+        width: 80%;
+    }
+
+    .personal_div h5 {
+        width: 30%;
+    }
+
+    .personal_call {
+        width: 70%;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+    .personal {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .personal {
+        width: 90%;
+    }
+
+    .personal_info h4 {
+        font-size: 1.5em;
+    }
+
+    .personal_information h3 {
+        font-size: 1.5em;
+    }
+
+    .personal_div h5 {
+        width: 30%;
+        font-size: 1.2em;
+    }
+
+    .personal_call {
+        width: 70%;
+    }
+
+    .personal_div h6 {
+        font-size: 1.2em;
+    }
+
+    .personal_call_ h6 {
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (max-width:480px) {
+    button {
+        width: auto;
+        padding: 0 15px;
+    }
+
+    .align-center h2 {
+        font-size: 1.6em;
+     }
+}
+
+@media screen and (max-width:440px) {
+    .personal {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width:413px) {
+    .personal_div h5 {
+        width: 25%;
+    }
+
+    .personal_call {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width:376px) {
+    .personal {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width:363px) {
+    .personal_info h4 {
+        font-size: 1.4em;
+    }
+
+    .personal_information h3 {
+        font-size: 1.4em;
+    }
+
+    .personal_div h5 {
+        font-size: 1.1em;
+    }
+
+    .personal_div h6 {
+        font-size: 1.1em;
+    }
+
+    .personal_call_ h6 {
+        font-size: 1.1em;
+    }
+}
+
+@media screen and (max-width:340px) {
+    .personal_info h4 {
+        font-size: 1.4em;
+    }
+
+    .personal_information h3 {
+        font-size: 1.4em;
+    }
+
+    .personal_div h5 {
+        font-size: 1em;
+    }
+
+    .personal_div h6 {
+        font-size: 1em;
+    }
+
+    .personal_call_ h6 {
+        font-size: 1em;
+    }
+
+    button {
+        padding: 0 10px;
+    }
+}
+
+
