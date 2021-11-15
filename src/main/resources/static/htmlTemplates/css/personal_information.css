@@ -1,14 +1,58 @@
+.personal_information h3 {
+    font-size: 1.7em;
+}
+
+.personal_info h2 {
+    font-size: 1.7em;
+    width: 40%;
+}
+
+.personal_informations h4 {
+    font-size: 1.4em;
+    width: 40%;
+}
+
+.personal_informations h5 {
+    font-size: 1.4em;
+    width: 30%;
+}
+
+.personal_call {
+    width: 60%;
+}
+
+.personal_call_ h5 {
+    width: 50%;
+}
+
+
+
+.personal_info_ {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.personal_div {
+    display: flex;
+}
+
+.personal_info__ {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.personal_call_ {
+    display: flex;
+}
+
+.personal_name {
+    display: flex;
+    width: 60%;
+}
+
+
 .personal_information {
     display: flex;
     justify-content: space-between;
-}
-
-.personal_info {
-    display: flex;
-    flex-direction: column;
-    margin-right: 400px;
-}
-
-.personal_revise {
-    float: right;
 }

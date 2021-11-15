@@ -6,7 +6,7 @@
 -->
 <html th:replace="thymeleaf/layout/layout :: layout(~{::title},~{::#main})" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
 <head >
-    <title>USAN-문의</title>
+    <title>USAN-개인정보</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet"
@@ -48,13 +48,51 @@
 
 
             <hr>
-            <div class="personal_information">
-                <h3>개인정보</h3>
+            <div class="personal_informations">
                 <div class="personal_info">
-                    <h4>아이디</h4>
-                    <h4>이름</h4>
-                    <h4>전화번호</h4>
-                    <h4>이메일</h4>
+                    <div class="personal_info_">
+                        <h2>아이디/비밀번호</h2>
+                        <div class="personal_info__">
+                            <div class="personal_div">
+                                <h4>아이디</h4>
+                                <h5>chaerin</h5>
+                            </div>
+                            <div class="personal_div">
+                                <h4>비밀번호</h4>
+                                <button>비밀번호 변경</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="personal_info_">
+                        <h2>닉네임/연락처</h2>
+                        <div class="personal_info__">
+                            <div class="personal_div">
+                                <h4>닉네임</h4>
+                                <h5>채린짱</h5>
+                                <button>변경</button>
+                            </div>
+                            <div class="personal_div">
+                                <h4>연락처</h4>
+                                <div class="personal_call">
+                                    <div class="personal_call_">
+                                        <h5>010-1111-1111</h5>
+                                        <button>변경</button>
+                                    </div>
+                                    <div class="personal_call_">
+                                        <h5>123@naver.com</h5>
+                                        <button>변경</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="personal_info_">
+                        <h2>이름</h2>
+                        <div class="personal_name">
+                            <h4>이름</h4>
+                            <h5>이채린</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -72,7 +110,6 @@
                 </div>
             </div>
             <hr>
-            <button class="personal_revise">정보 수정하기</button>
 
         </div>
     </section>
