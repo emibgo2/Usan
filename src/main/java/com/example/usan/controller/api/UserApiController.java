@@ -82,20 +82,20 @@ public class UserApiController {
             user.setCash(100000);
 
             userService.joinMember(user, 1);
-            System.out.println("---------------------- Student Data Upload --------------------------");
-            for (int i = 2021; i > 2013; i--) {
-                for (int j = 1; j < 60; j++) {
-                    User stu = new User(i+"1420"+String.format("%02d", j), i+"1420"+String.format("%02d", j),i+"1420"+String.format("%02d", j), "1", i+"1420"+String.format("%02d", j)+"@ptu.ac.kr", "01012345678", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
-                    stu.setCash(100000);
-                    String rawPassword = stu.getPassword(); // 원문
-                    String encPassword = encoder.encode(rawPassword);
-                    stu.setPassword(encPassword);
-                    studentList.add(stu);
-                }
-            }
-            System.out.println("---------------------- Student Data Upload complete --------------------------");
-
-            userRepository.saveAll(studentList);
+//            System.out.println("---------------------- Student Data Upload --------------------------");
+//            for (int i = 2021; i > 2013; i--) {
+//                for (int j = 1; j < 60; j++) {
+//                    User stu = new User(i+"1420"+String.format("%02d", j), i+"1420"+String.format("%02d", j),i+"1420"+String.format("%02d", j), "1", i+"1420"+String.format("%02d", j)+"@ptu.ac.kr", "01012345678", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
+//                    stu.setCash(100000);
+//                    String rawPassword = stu.getPassword(); // 원문
+//                    String encPassword = encoder.encode(rawPassword);
+//                    stu.setPassword(encPassword);
+//                    studentList.add(stu);
+//                }
+//            }
+//            System.out.println("---------------------- Student Data Upload complete --------------------------");
+//
+//            userRepository.saveAll(studentList);
 
             log.info("사용자 아이디 생성");
 
