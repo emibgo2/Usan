@@ -3,6 +3,7 @@ package com.example.usan.controller;
 
 import com.example.usan.config.auth.PrincipalDetail;
 import com.example.usan.model.Umbrella;
+import com.example.usan.model.User;
 import com.example.usan.repository.StorageRepository;
 import com.example.usan.repository.UmbrellaRepository;
 import com.example.usan.repository.UserRepository;
@@ -63,8 +64,13 @@ public class UserController {
 
         return "thymeleaf/testControlEdit";
     }
+
     @GetMapping("/user/bill")
-    public String billForm() {
+    public String billForm(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+        User user = userRepository.findById(principalDetail.getUser().getId()).orElseGet(() -> {
+            return new User();
+        });
+        model.addAttribute("user",user);
         return "thymeleaf/umbrella/bill";
     }
 
