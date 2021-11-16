@@ -1,0 +1,121 @@
+td {
+    background: white;
+    color: black;
+    font-size: 18px;
+}
+
+table td {
+    padding: 8px;
+}
+
+tr {
+    border: solid 1px;
+    border-bottom: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+}
+
+.notice {
+    border-top: 2px solid #000;
+    width: 90%;
+    margin: auto;
+}
+
+.notice_date {
+    border-bottom: 1px solid #000;
+}
+
+.title {
+    font-weight: 600;
+    background-color: rgb(238, 238, 238);
+    text-align: center;
+}
+
+.text {
+    padding-left: 20px;
+}
+
+button {
+    border-radius: 10px;
+    height: 40px;
+}
+
+button:hover {
+    background: #026B8A;
+    color: white;
+    border-radius: 10px;
+    padding: 4px 8px;
+}
+
+.page_btn {
+    padding: 0;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.notice_btn {
+    margin: 0 10px;
+}
+
+.notice_text {
+    width: 80%;
+    margin: 0 auto;
+    color: black;
+    margin-top: 70px;
+    margin-bottom: 100px;
+}
+
+.notice_text p {
+    text-indent: 17px;
+    font-size: 20px;
+    letter-spacing: 1.3px;
+    line-height: 28px;
+}
+
+.page_btn {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width:430px) {
+    h2 {
+        font-size: 2em;
+    }
+
+    .title {
+        width: 25%;
+    }
+
+    .text {
+        padding-left: 10px;
+    }
+
+    button {
+        width: 80px;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .title {
+        width: 28%;
+    }
+
+    .text {
+        padding-left: 10px;
+    }
+}
+
+@media screen and (max-width:340px) {
+    .title {
+        width: 32%;
+    }
+
+    td {
+        font-size: 16px;
+    }
+
+    .notice_text {
+        margin-top: 50px;
+    }
+}

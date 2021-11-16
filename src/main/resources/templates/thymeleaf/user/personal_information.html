@@ -4,9 +4,10 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<html th:replace="thymeleaf/layout/layout :: layout(~{::title},~{::#main})" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+<html th:replace="thymeleaf/layout/layout :: layout(~{::title},~{::#main})" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head >
-    <title>USAN-문의</title>
+    <title>USAN-개인정보</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet"
@@ -45,34 +46,76 @@
             <header class="align-center">
                 <h2>개인정보</h2>
             </header>
+            <div class="personal">
+                <hr>
 
+                <div class="personal_informations">
+                    <div class="personal_info">
+                        <h4>계정</h4>
+                        <div class="personal_info_">
+                            <div class="personal_div">
+                                <h5 >아이디</h5>
+                                <h6 th:text="${user.username}">chaerin</h6>
+                            </div>
+                            <div class="personal_div">
+                                <h5>비밀번호</h5>
+                                <button class="changeBtn">비밀번호 변경</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="personal_info">
+                        <h4>개인정보</h4>
+                        <div class="personal_info_">
+                            <div class="personal_div">
+                                <h5>이름</h5>
+                                <h6 th:text="${user.user.name}">이채린</h6>
+                            </div>
+                            <div class="personal_div">
+                                <h5>닉네임</h5>
+                                <div class="personal_call">
+                                    <div class="personal_call_">
+                                        <h6 th:text="${user.user.nickName}">채린짱</h6>
+                                        <button class="changeBtn">변경</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="personal_div">
+                                <h5>연락처</h5>
+                                <div class="personal_call">
+                                    <div class="personal_call_ call_bottom">
+                                        <h6 th:text="${user.user.phoneNumber}">010-1111-1111</h6>
+                                        <button class="changeBtn">변경</button>
+                                    </div>
+                                    <div class="personal_call_ call_bottom">
+                                        <h6 th:text="${user.user.email}">12345678@naver.com</h6>
+                                        <button class="changeBtn">변경</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <hr>
-            <div class="personal_information">
-                <h3>개인정보</h3>
-                <div class="personal_info">
-                    <h4>아이디</h4>
-                    <h4>이름</h4>
-                    <h4>전화번호</h4>
-                    <h4>이메일</h4>
+                <hr>
+
+                <div class="personal_information">
+                    <h3>카드정보</h3>
+                    <div>
+                        <button class="changeBtn">카드정보확인</button>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="personal_information">
-                <h3>카드정보</h3>
-                <div>
-                    <button>카드정보확인</button>
+
+                <hr>
+
+                <div class="personal_information">
+                    <h3>이용기록</h3>
+                    <div>
+                        <button class="changeBtn" onClick="location.href='/umb/docu'">이용 기록</button>
+                    </div>
                 </div>
+                <hr>
             </div>
-            <hr>
-            <div class="personal_information">
-                <h3>이용기록</h3>
-                <div>
-                    <button>이용 기록</button>
-                </div>
-            </div>
-            <hr>
-            <button class="personal_revise">정보 수정하기</button>
 
         </div>
     </section>

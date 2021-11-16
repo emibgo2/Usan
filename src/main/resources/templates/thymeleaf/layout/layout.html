@@ -7,6 +7,16 @@
         <link rel="stylesheet"
               th:href="@{../htmlTemplates/css/main.css}"
               href="../../../static/htmlTempaltes/css/main.css" />
+        <link rel="stylesheet"
+              th:href="@{../htmlTemplates/css/inquiry.css}"
+              href="../../../static/htmlTemplates/css/inquiry.css" />
+        <link rel="stylesheet"
+              th:href="@{../htmlTemplates/css/board.css}"
+              href="../../../static/htmlTemplates/css/board.css" />
+        <link rel="stylesheet"
+              th:href="@{../htmlTemplates/css/personal_information.css}"
+              href="../../../static/htmlTemplates/css/personal_information.css" />
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <!-- HTML 혹은 JSP는 인터프린터로 읽기 때문에 script를 마지막에 넣는게 좋음-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,14 +35,15 @@
                 <div class="logo"><a href="/" >USAN</a></div>
                 <a href="#menu">Menu</a>
             </header>
-r
         <!-- Nav -->
         <nav id="menu">
             <ul class="links">
                 <li><a href="/">Home</a></li>
-                <li><a href="이용안내주소">이용 안내</a></li>
+                <li><a href="/umb/information">이용 안내</a></li>
                 <li><a href="/inquiry">문의하기</a></li>
                 <li><a href="/board">공지사항</a></li>
+                <li><a href="/umb/rent">대여하기</a></li>
+                <li><a href="/personal/information">개인정보</a></li>
                 <li  sec:authorize="isAuthenticated()" ><a href="/logout">로그아웃</a></li>
                 <li  sec:authorize="!isAuthenticated()" ><a href="/auth/loginForm">로그인</a></li>
                 <li  sec:authorize="!isAuthenticated()" ><a href="/user/agree">회원가입</a></li>

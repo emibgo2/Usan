@@ -23,6 +23,9 @@
     display: none;
 }
 
+.return_way_p {
+    color: #aed6f1;
+}
 
 
 @media screen and (max-width: 429px) {

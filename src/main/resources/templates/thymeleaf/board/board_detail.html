@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html th:replace="thymeleaf/layout/layout :: layout(~{::title},~{::#main})" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+<head >
+    <title>USAN-공지사항</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+
+          th:href="@{../htmlTemplates/css/main.css}"
+          href="../../../static/htmlTemplates/css/main.css" />
+    <link rel="stylesheet"
+          th:href="@{../htmlTemplates/css/board_derail.css}"
+          href="../../../static/htmlTemplates/css/board_detail.css" />
+</head>
+<body class="subpage" id="body">
+
+
+<!-- Header -->
+<header id="header" >
+    <div class="logo"><a href="index.html">USAN</a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="메인화면.html">Home</a></li>
+        <li><a href="이용안내.html">이용 안내</a></li>
+        <li><a href="문의하기.html">문의하기</a></li>
+        <li><a href="공지사항.html">공지사항</a></li>
+        <li><a href="Login_v8/index.html">로그인</a></li>
+        <li><a href="#">회원가입</a></li>
+    </ul>
+</nav>
+
+<!-- Main -->
+<div id="main">
+
+    <!-- Section -->
+    <section class="wrapper style1">
+        <div class="inner">
+            <header class="align-center">
+                <h2>공지사항</h2>
+            </header>
+            <table class="notice">
+                <colgroup>
+                    <col style="width:12%;">
+                    <col style="width:88%;">
+                </colgroup>
+                <tr class="notice_title">
+                    <td class="title">제목</td>
+                    <td class="text">이것은 제목</td>
+                </tr>
+                <tr class="notice_date">
+                    <td class="title">작성일자</td>
+                    <td class="text">2021-09-21</td>
+                </tr>
+            </table>
+
+            <div class="notice_text">
+                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
+                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
+                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
+                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
+                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
+                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
+                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
+            </div>
+
+            <div class="page_btn">
+                <button type="button" class="prev_btn">이전 글</button>
+                <button type="button" onclick="location.href='/notice/pages'" class="notice_btn">목록으로</button>
+                <button type="button" class="next_btn">다음 글</button>
+            </div>
+
+
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" >
+    <div class="copyright">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+        </ul>
+        <p>&copy; Untitled. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script th:src="@{../htmlTemplates/js/jquery.min.js} "src="../../../static/htmlTempaltes../js/jquery.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrolly.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrolly.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrollex.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrollex.min.js"></script>
+<script th:src="@{../htmlTemplates/js/skel.min.js} "src="../../../static/htmlTempaltes../js/skel.min.js"></script>
+<script th:src="@{../htmlTemplates/js/util.js} "src="../../../static/htmlTempaltes../js/util.js"></script>
+<script th:src="@{../htmlTemplates/js/main.js} "src="../../../static/htmlTempaltes../js/main.js"></script>
+
+</body>
+</html>

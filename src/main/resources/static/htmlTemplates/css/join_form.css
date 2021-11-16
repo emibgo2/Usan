@@ -43,6 +43,12 @@ div.join{
 /*카드창*/
 .hidden{display: none;}
 
+.joinBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #submit{
     text-align: center;
     width:423px;
@@ -51,7 +57,20 @@ div.join{
     color:white;
     border:hidden;
     font-size:16px;
+    margin-bottom: 20px;
 }
+
+#submitNoCard{
+    text-align: center;
+    width:423px;
+    height:40px;
+    background-color: white;
+    border-radius: 2px;
+    color:#3498db;
+    border: 1px solid #3498db;;
+    font-size:16px;
+}
+
 #bg{
     position: fixed;
     float: left;
@@ -167,8 +186,12 @@ input[name=pw]{
     margin-top: 10px;
 }
 
+.join {
+    margin-top: 80px;
+}
+
 /*크기변경*/
-@media screen and (max-width:420px) {
+@media screen and (max-width:430px) {
     body {
         justify-content: center;
         align-items: center;
@@ -177,6 +200,10 @@ input[name=pw]{
     div.join{
         left:44%;
         width: 90%;
+    }
+
+    .join {
+        margin-top: 10px;
     }
 
     .tl{
@@ -201,6 +228,10 @@ input[name=pw]{
     #submit{
         width:80%;
         height:40px;
+    }
+
+    #submitNoCard{
+        width:80%;
     }
 
     div.test {
@@ -264,5 +295,17 @@ input[name=pw]{
         padding: 2.5%;
         font-size: 80%;
         width:30%;
+    }
+}
+
+@media screen and (max-width: 386px) {
+    #submit {
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width:330px) {
+    div.box1 {
+        width: 420%;
     }
 }

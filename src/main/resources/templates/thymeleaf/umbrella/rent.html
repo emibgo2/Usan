@@ -54,7 +54,7 @@
             <p style = "margin: 0px 0px 0px 60px;">등록된 카드</p>
             <p style = "margin: 0px 0px 0px 140px; font-weight: bold;">NH 0000-****-****-0*0*</p>
             <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
-            <p  style = "margin: 0px 0px 0px 60px; ">총 결제 금액<span  id="payment" style = "margin: 0px 0px 0px 140px; font-weight: bold; color:red">700원</span></p>
+            <p  style = "margin: 0px 0px 0px 60px; ">총 결제 금액<span  id="payment">700원</span></p>
             <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
 
             <button type="button" class="con"><ins>이용 정보 보기</ins></button>
@@ -80,7 +80,7 @@
             <ul style="list-style: none; text-indent: 0%; padding-inline-start: 0px; margin-block-start: 0px;">
                 <li><input type="checkbox" name="agree1" value="all" class="check-all">전체 동의</li>
                 <hr size="1px" width=100% color= #E2E2E2 noshade="noshade"></hr>
-                <li><input type="checkbox" name="agree2" value="check1" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</li>
+                <li><input type="checkbox" name="agree3" value="check1" class="agree1">현재 선택한 결제수단은 등록결제수단(이용권 초과요금)으로 자동등록 됩니다.</li>
                 <p></p>
                 <li><input type="checkbox" name="agree3" value="check2" class="agree1">추가요금 자동결제, 환불규정에 동의합니다.</li>
             </ul>
@@ -90,7 +90,7 @@
 
         <div class="all_btn">
             <button type="button" id="back" onClick="location.href='#'" class="btn_main">뒤로가기</button>
-            <button type="button" id="ok" onclick="instance.test()" class="btn" ><!--disabled="" -->결제하기</button>
+            <button type="button" id="ok"  class="btn" ><!--disabled="" -->결제하기</button>
         </div>
 
     </div>
@@ -164,10 +164,11 @@
         //const okBtn = document.getElementById('ok')
 
         ok.addEventListener("click",function(){
-            if($("input[name='agree3']:checked").length != $("input[name='agree3']").length) {
+            if($("input[name='agree3']:checked").length != 2) {
                 er.classList.remove("er");
                 //okBtn.disabled = true;
             } else {
+                instance.test();
                 //okBtn.disabled = false;
             }
         });
@@ -203,6 +204,10 @@
     back.addEventListener("click",function(){
         bg.classList.add("hidden");
         popup.classList.add("hidden");
+    });
+
+    $('.btn_reset').on('click',function(){
+        location.href="/";
     });
 
 
