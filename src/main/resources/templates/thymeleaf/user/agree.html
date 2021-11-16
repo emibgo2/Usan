@@ -88,7 +88,7 @@
 
     <p></p>
     <div class="chk" style="text-align: left;  color : #666666;" >
-        <input type="checkbox" id="chk_part" name="chk_part" value="part" class="chk_part">
+        <input type="checkbox" name="chk_part" value="part" class="chk_part">
         <span class="chk_part_txt" >USAN 이용약관 동의<span class="terms_necessary">(필수)</span></span>
     </div>
 
@@ -354,7 +354,7 @@
 
     <p></p>
     <div class="chk" style="text-align: left;  color : #666666;">
-        <input type="checkbox" id="chk_part" name="chk_part" value="part" class="chk_part">
+        <input type="checkbox" name="chk_part" value="part" class="chk_part">
         <span class="chk_part_txt">개인정보 수집 및 이용 동의<span class="terms_necessary">(필수)</span></span>
     </div>
 
@@ -504,7 +504,7 @@
 
     <p></p>
     <div class="chk" style="text-align: left;  color : #666666;">
-        <input type="checkbox" id="chk_part" name="chk_part" value="part" class="chk_part">
+        <input type="checkbox" name="chk_part" value="part" class="chk_part">
         <span class="chk_part_txt">위치정보 이용약관 동의<span class="terms_necessary">(필수)</span>
     </div>
 
@@ -656,7 +656,7 @@
     <a name='agreeBottom'></a>
     <div class="button" >
         <button type="button" id="cancel" class="cancel" onClick="location.href='/'" style="background-color: #FAFAFA; border: 3px solid rgba(0, 0, 0, 0.1); color:black; margin:10px 8px 10px;">취소</button>
-        <button type="button" id="ok" class="ok" onClick="location.href='/auth/joinForm'" style="background-color: #3498db; border:hidden;">확인</button>
+        <button type="button" id="ok" class="ok" style="background-color: #3498db; border:hidden;">확인</button>
     </div>
 
 </div>
@@ -678,9 +678,10 @@
         const con = document.querySelector("#con");
 
         ok.addEventListener("click",function(){
-            if($("input[name='chk_part']:checked").length != $("input[name='chk_part']").length) {
+            if($("input[name='chk_part']:checked").length != 3) {
                 con.classList.remove("con");
-            }else  location.href="/auth/joinForm";
+            }else if ($("input[name='chk_part']:checked").length == 3)
+                location.href="/auth/joinForm";
 
         });
     });
