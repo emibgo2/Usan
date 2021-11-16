@@ -4,16 +4,22 @@
    templated.co @templatedco
    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+<html >
 <head>
+
+
     <title>USAN</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link  rel="stylesheet" href="../../../static/htmlTemplates/css/main.css" />
     <link rel="stylesheet"
-          th:href="@{../htmlTemplates/css/main.css}"
-          href="../../../static/htmlTempaltes/css/main.css" />
-
+          href="../static/htmlTempaltes/css/main.css" />
+    <script href="../../../static/htmlTempaltes/js/jquery.min.js"></script>
+    <script href="../../../static/htmlTempaltes/js/jquery.scrolly.min.js"></script>
+    <script href="../../../static/htmlTempaltes/js/jquery.scrollex.min.js"></script>
+    <script href="../../../static/htmlTempaltes/js/skel.min.js"></script>
+    <script href="../../../static/htmlTempaltes/js/util.js"></script>
+    <script href="../../../static/htmlTempaltes/js/main.js"></script>
 </head>
 <body class="subpage">
 
@@ -31,9 +37,6 @@
         <li><a href="/board">공지사항</a></li>
         <li><a href="/umb/rent">대여하기</a></li>
         <li><a href="/personal/information">개인정보</a></li>
-        <li  sec:authorize="isAuthenticated()" ><a href="/logout">로그아웃</a></li>
-        <li  sec:authorize="!isAuthenticated()" ><a href="/auth/loginForm">로그인</a></li>
-        <li  sec:authorize="!isAuthenticated()" ><a href="/user/agree">회원가입</a></li>
     </ul>
 </nav>
 
@@ -94,7 +97,7 @@
                 </div>
                 <div class="col col1 first">
                     <div class="image round fit">
-                        <img th:src="@{https://i.imgur.com/6sAYt40.jpg}" src="https://i.imgur.com/6sAYt40.jpg" alt="" />
+                        <img  src="https://i.imgur.com/6sAYt40.jpg" alt="" />
                     </div>
                 </div>
             </div>
@@ -119,12 +122,7 @@
     </div>
 </footer>
 
-<script th:src="@{../htmlTemplates/js/jquery.min.js} "src="../../../static/htmlTempaltes../js/jquery.min.js"></script>
-<script th:src="@{../htmlTemplates/js/jquery.scrolly.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrolly.min.js"></script>
-<script th:src="@{../htmlTemplates/js/jquery.scrollex.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrollex.min.js"></script>
-<script th:src="@{../htmlTemplates/js/skel.min.js} "src="../../../static/htmlTempaltes../js/skel.min.js"></script>
-<script th:src="@{../htmlTemplates/js/util.js} "src="../../../static/htmlTempaltes../js/util.js"></script>
-<script th:src="@{../htmlTemplates/js/main.js} "src="../../../static/htmlTempaltes../js/main.js"></script>
+
 
 
 </body>
