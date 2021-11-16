@@ -104,6 +104,11 @@ public class UserController {
         return "thymeleaf/chaerin/rent";
     }
 
+    @GetMapping("/guide")
+    public String informationForm() {
+        return  "thymeleaf/umbrella/information";
+    }
+
     @GetMapping("/auth/joinForm")
     public String joinUser() {
         return "thymeleaf/user/Join_Form";
