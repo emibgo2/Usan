@@ -90,7 +90,7 @@
 
         <div class="all_btn">
             <button type="button" id="back" onClick="location.href='#'" class="btn_main">뒤로가기</button>
-            <button type="button" id="ok" onclick="instance.test()" class="btn" ><!--disabled="" -->결제하기</button>
+            <button type="button" id="ok"  class="btn" ><!--disabled="" -->결제하기</button>
         </div>
 
     </div>
@@ -164,10 +164,11 @@
         //const okBtn = document.getElementById('ok')
 
         ok.addEventListener("click",function(){
-            if($("input[name='agree3']:checked").length != $("input[name='agree3']").length) {
+            if($("input[name='agree2']:checked").length != 1) {
                 er.classList.remove("er");
                 //okBtn.disabled = true;
             } else {
+                instance.test();
                 //okBtn.disabled = false;
             }
         });
