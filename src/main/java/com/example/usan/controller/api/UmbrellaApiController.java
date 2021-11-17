@@ -95,7 +95,6 @@ public class UmbrellaApiController {
     }
 
 
-
     @PostMapping("/joinProc")
     public ResponseDto<Integer> umb_save(@RequestBody Umbrella umbrella) {
         umbrellaService.umbrella_save(umbrella);

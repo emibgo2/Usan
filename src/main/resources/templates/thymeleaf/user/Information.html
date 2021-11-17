@@ -4,34 +4,39 @@
    templated.co @templatedco
    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<html th:replace="thymeleaf/layout/layout :: layout(~{::title},~{::#main})" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"  >
 <head>
     <title>USAN</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link  rel="stylesheet" href="../../../static/htmlTemplates/css/main.css" />
-    <link th:href="@{/../../static/htmlTemplates/css/main.css}" rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet"
+          th:href="@{../htmlTemplates/css/main.css}"
+          href="../../../static/htmlTempaltes/css/main.css" />
 
 </head>
 <body class="subpage">
 
 <!-- Header -->
-<header id="header">
-    <div class="logo"><a href="index.html">USAN</a></div>
+<header id="header"  >
+    <div class="logo"><a href="/" >USAN</a></div>
     <a href="#menu">Menu</a>
 </header>
-
 <!-- Nav -->
 <nav id="menu">
     <ul class="links">
-        <li><a href="메인화면.html">Home</a></li>
-        <li><a href="이용안내.html">이용 안내</a></li>
-        <li><a href="문의하기.html">문의하기</a></li>
-        <li><a href="공지사항.html">공지사항</a></li>
-        <li><a href="Login_v8/index.html">로그인</a></li>
-        <li><a href="#">회원가입</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/umb/guide">이용 안내</a></li>
+        <li><a href="/inquiry">문의하기</a></li>
+        <li><a href="/board">공지사항</a></li>
+        <li><a href="/umb/rent">대여하기</a></li>
+        <li><a href="/personal/information">개인정보</a></li>
+        <li  sec:authorize="isAuthenticated()" ><a href="/logout">로그아웃</a></li>
+        <li  sec:authorize="!isAuthenticated()" ><a href="/auth/loginForm">로그인</a></li>
+        <li  sec:authorize="!isAuthenticated()" ><a href="/user/agree">회원가입</a></li>
     </ul>
 </nav>
+
 
 <!-- Main -->
 <div id="main">
@@ -114,13 +119,13 @@
     </div>
 </footer>
 
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.min.js} "src="../../../static/htmlTempaltes../js/jquery.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrolly.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrolly.min.js"></script>
+<script th:src="@{../htmlTemplates/js/jquery.scrollex.min.js} "src="../../../static/htmlTempaltes../js/jquery.scrollex.min.js"></script>
+<script th:src="@{../htmlTemplates/js/skel.min.js} "src="../../../static/htmlTempaltes../js/skel.min.js"></script>
+<script th:src="@{../htmlTemplates/js/util.js} "src="../../../static/htmlTempaltes../js/util.js"></script>
+<script th:src="@{../htmlTemplates/js/main.js} "src="../../../static/htmlTempaltes../js/main.js"></script>
+
 
 </body>
 </html>

@@ -3,7 +3,6 @@ package com.example.usan.controller;
 import com.example.usan.config.auth.PrincipalDetail;
 import com.example.usan.controller.api.UmbrellaApiController;
 import com.example.usan.dto.ResponseDto;
-import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
 import com.example.usan.repository.UserRepository;
@@ -78,23 +77,17 @@ public class UmbrellaController {
         return "thymeleaf/umbrella/payComplete";
     }
 
-    @GetMapping(value = "/home")
-    public static String getUmbList(Model model) {
-        return "umbrella/index2";
-    }
-
-
     // Test를 위해 String Boot 내에서 View 까지 담당하는 코드 API 코드 따로 있음
-    @GetMapping("/joinForm/admin")
-    public String joinUmbrella(Model model) {
-        List<Storage> storages = storageService.sto_upload();
-        for (int i = 0; i < storages.size(); i++) {
-            storages.get(i).setUmbrellaList(null);
-        }
-        model.addAttribute("storage", storages);
-
-        return "umbrella/umb_joinForm";
-    }
+//    @GetMapping("/joinForm/admin")
+//    public String joinUmbrella(Model model) {
+//        List<Storage> storages = storageService.sto_upload();
+//        for (int i = 0; i < storages.size(); i++) {
+//            storages.get(i).setUmbrellaList(null);
+//        }
+//        model.addAttribute("storage", storages);
+//
+//        return "umbrella/umb_joinForm";
+//    }
 
 //     이전 버전 rent View
 //    @GetMapping("/mappingForm")
@@ -161,6 +154,10 @@ public class UmbrellaController {
         return "umbrella/umb_Fault_List";
     }
 
+    @GetMapping("/guide")
+    public String informationForm() {
+        return  "thymeleaf/user/information";
+    }
 
     @GetMapping("/rent/fail")
     public String rent_fail() {
@@ -186,10 +183,7 @@ public class UmbrellaController {
     public String docuForm() {
         return  "thymeleaf/umbrella/docu";
     }
-    @GetMapping("/information")
-    public String informationForm() {
-        return  "thymeleaf/umbrella/information";
-    }
+
 
 }
 

@@ -2,10 +2,8 @@ package com.example.usan.service;
 
 import com.example.usan.config.SystemConfig;
 import com.example.usan.controller.api.UmbrellaApiController;
-import com.example.usan.model.RoleType;
-import com.example.usan.model.Storage;
-import com.example.usan.model.Umbrella;
-import com.example.usan.model.User;
+import com.example.usan.model.*;
+import com.example.usan.repository.OrdersRepository;
 import com.example.usan.repository.StorageRepository;
 import com.example.usan.repository.UmbrellaRepository;
 import com.example.usan.repository.UserRepository;
@@ -27,6 +25,7 @@ public class UserService {
     private UserRepository userRepository;
     private UmbrellaRepository umbrellaRepository;
     private BCryptPasswordEncoder encoder;
+    private OrdersRepository ordersRepository;
 
     @Transactional(readOnly = true)
     public int checkMemberId(User requestUser) {
@@ -58,6 +57,7 @@ public class UserService {
             user.setCash(user.getCash()- (day * SystemConfig.UMBRELLA_RENT_PAYMENT));
             user.setPayNumber(day, payNumber);
             storage.setUmb_count(storage.getUmb_count() -1);
+            ordersRepository.save(new Orders(user, day * SystemConfig.UMBRELLA_RENT_PAYMENT, 0,day, location));
             log.info("Pay Number 배급이 성공하였습니다.");
             return user;
         } catch (Exception e) {

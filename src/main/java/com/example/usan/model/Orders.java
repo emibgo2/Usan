@@ -16,8 +16,11 @@ import java.sql.Timestamp;
 @Data
 @Entity
 public class Orders {
-    public Orders(User user, String location) {
+    public Orders(User user, int payment, int discount, int day, String location) {
         this.user = user;
+        this.payment = payment;
+        this.discount = discount;
+        this.day = day;
         this.location = location;
     }
 
@@ -32,11 +35,14 @@ public class Orders {
     private int payment;
 
     private int discount;
+    private int day;
 
     private Timestamp rentDay;
 
     private String location ;
 
+
     @CreationTimestamp  //시간이 자동으로 입력
     private Timestamp rentDate;
 }
+
