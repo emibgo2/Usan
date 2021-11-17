@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -130,9 +131,23 @@ public class UserService {
         // 안내문을 출력하기위해서 1을 return
         UmbrellaApiController.myUUID.add(user.getPayNumber());
 
+
         if (UmbrellaApiController.myUUID.indexOf(user.getPayNumber())!=-1) log.info("myUUID OK!");
 
         user.setPayNumber(null);
+
+        List<Orders> orderList = user.getOrderList();
+
+        for (Orders orders : orderList) {
+            System.out.println("orders.getUser().getPayNumber() = " + orders.getUser().getPayNumber());
+            if (orders.getUser().getPayNumber() == 0) {
+                System.out.println("찾았디!");
+                orders.setRentUmbId(umbrella.getId());
+                orders.setRenting(true);
+                break;
+            }
+        }
+
         log.info("Storage Umbrella count : {}", lendingStorage.getUmb_count());
         log.info("umbrella Information : " + umbrella);
         log.info("User     Information : " + user);
@@ -163,6 +178,8 @@ public class UserService {
         }else return 3;
         log.info("Return umbrella Information : "+umbrella);
         log.info("Return User     Information : "+user);
+
+
         // 반납 또한 대여와 동일한 방식으로 진행
         return 1;
     }

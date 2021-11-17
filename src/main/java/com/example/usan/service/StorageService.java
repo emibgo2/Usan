@@ -1,6 +1,7 @@
 package com.example.usan.service;
 
 import com.example.usan.controller.api.StorageApiController;
+import com.example.usan.model.Orders;
 import com.example.usan.model.Storage;
 import com.example.usan.model.Umbrella;
 import com.example.usan.model.User;
@@ -117,6 +118,16 @@ public class StorageService {
             umbrella.setReturn_date(Timestamp.valueOf(LocalDateTime.now()));
             umbrella.setOver_date(0);
             umbrella.getStorage().setUmb_count(umbrella.getStorage().getUmb_count()+1);
+
+            List<Orders> orderList = returnUser.getOrderList();
+
+            for (Orders orders : orderList) {
+                System.out.println("orders.getUser().getPayNumber() = " + orders.getUser().getPayNumber());
+                if (orders.getRentUmbId() == umbrella.getId() && orders.getRenting()) {
+                    orders.setReturnDay(Timestamp.valueOf(LocalDateTime.now()));
+                }
+            }
+
             return HttpStatus.OK.value();
         } catch (Exception e) {
             return StorageApiController.Arduino_RETURN_RFID_SERVERERROR;

@@ -37,10 +37,13 @@ public class Orders {
     private int discount;
     private int day;
 
-    private Timestamp rentDay;
+    private Boolean renting;
 
     private String location ;
 
+    private Long rentUmbId;
+
+    private Timestamp returnDay;
 
     @CreationTimestamp  //시간이 자동으로 입력
     private Timestamp rentDate;
