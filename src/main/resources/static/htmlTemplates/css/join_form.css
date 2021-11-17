@@ -190,6 +190,22 @@ input[name=pw]{
     margin-top: 80px;
 }
 
+.id_btn {
+    display: flex;
+    align-items: center;
+}
+
+.idBtn {
+    text-align: center;
+    width: 90px;
+    height: 25px;
+    background-color: white;
+    border-radius: 2px;
+    color: #3498db;
+    border: 1px solid #3498db;
+    font-size: 12px;
+}
+
 /*크기변경*/
 @media screen and (max-width:430px) {
     body {
@@ -296,6 +312,10 @@ input[name=pw]{
         font-size: 80%;
         width:30%;
     }
+
+
+
+
 }
 
 @media screen and (max-width: 386px) {

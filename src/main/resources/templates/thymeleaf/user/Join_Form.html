@@ -51,7 +51,7 @@
   </div>
   <div class="but joinBtn">
     <button id ="submit" class="button">결제 카드 등록</button>
-    <button id="submitNoCard" onclick="index.userSave()" class="button" >회원 가입</button>
+    <button id="submitNoCard" onclick="confirm()" class="button" >회원 가입</button>
   </div>
 </div>
 
@@ -110,5 +110,28 @@
 
 </script>
 <script th:src="@{../js/user.js}"></script>
-
+<script>
+function confirm(){
+  if(document.getElementById("username").value != "" &&
+    document.getElementById("password").value != "" &&
+    document.getElementById("loginPwConfirm").value != "" &&
+    document.getElementById("name").value != "" &&
+    document.getElementById("nickName").value != "" &&
+    document.getElementById("email").value != "" &&
+    document.getElementById("birth").value != "" &&
+    document.getElementById("phoneNumber").value != ""){
+      if(document.getElementById("password").value ==
+        document.getElementById("loginPwConfirm").value) {
+          alert("회원가입 완료");
+          location.href = "../../";
+      }
+      else{
+        alert("비밀번호가 서로 다릅니다.")
+      }
+  }
+  else{
+    alert("빈칸을 입력해주세요.")
+  }
+}
+</script>
 </html>
