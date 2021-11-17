@@ -189,7 +189,9 @@ input[name=pw]{
 .join {
     margin-top: 80px;
 }
-
+.idfix{
+    margin-bottom: 10px;
+}
 /*크기변경*/
 @media screen and (max-width:430px) {
     body {

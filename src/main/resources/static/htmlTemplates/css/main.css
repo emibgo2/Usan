@@ -1600,7 +1600,7 @@
 	}
 
 	body, input, select, textarea {
-		
+
 		font-size: 13pt;
 		font-weight: 300;
 		line-height: 1.65;
@@ -2087,7 +2087,7 @@
 				align-items: center;
 			}
 
-			
+
 
 		.flex.flex-2 .col {
 			width: 48%;
@@ -2903,7 +2903,7 @@
 			table.alt tfoot {
 				border-top: 0;
 			}
-	
+
 	table tbody tr {
 		border-color: rgba(0, 0, 0, 0.1);
 	}
@@ -2974,7 +2974,7 @@
 	.lent-text2 {
 		margin-bottom: 40px;
 	}
-		
+
 		.lent-text2>p {
 			margin-bottom: 0;
 		}
@@ -3231,7 +3231,7 @@
 			.wrapper.style1 table.alt tbody tr td {
 				border-color: rgba(0, 0, 0, 0.15);
 			}
-	
+
 		.wrapper.style2 {
 			background-color: #3498db;
 			color: #aed6f1;

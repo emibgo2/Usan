@@ -22,33 +22,33 @@
 <div class="join">
   <div class="tl">USAN</div>
   <div class="textForm">
-    <input id="username" type="text" class="con" placeholder="아이디">
+    <input id="username" type="text" class="con" placeholder="아이디" value="">
     </input>
   </div>
   <div class="textForm">
-    <input id="password" type="password" class="con" placeholder="비밀번호">
+    <input id="password" type="password" class="con" placeholder="비밀번호" value="">
   </div>
   <div class="textForm">
-    <input id="loginPwConfirm" type="password" class="con" placeholder="비밀번호 확인">
+    <input id="loginPwConfirm" type="password" class="con" placeholder="비밀번호 확인" value="">
   </div>
   <div class="textForm">
-    <input id="name" type="text" class="con" placeholder="이름">
+    <input id="name" type="text" class="con" placeholder="이름" value="">
   </div>
   <div class="textForm">
-    <input id="nickName" type="text" class="con" placeholder="닉네임">
+    <input id="nickName" type="text" class="con" placeholder="닉네임" value="">
   </div>
   <div class="textForm">
-    <input id="email" type="text" class="con" placeholder="이메일">
+    <input id="email" type="text" class="con" placeholder="이메일" value="">
   </div>
   <div class="textForm">
-    <input id="birth" type="text" class="con" placeholder="생년월일 (6자리)">
+    <input id="birth" type="text" class="con" placeholder="생년월일 (6자리)" value="">
   </div>
   <div class="textForm">
-    <input id="phoneNumber" type="text" class="con" placeholder="전화번호 ( - 없이 입력 )">
+    <input id="phoneNumber" type="text" class="con" placeholder="전화번호 ( - 없이 입력 )" value="">
   </div>
   <div class="but joinBtn">
     <button id ="submit" class="button">결제 카드 등록</button>
-    <button id="submitNoCard" onclick="index.userSave()" class="button" >회원 가입</button>
+    <button id="submitNoCard" onclick="confirm()" class="button" >회원 가입</button>
   </div>
 </div>
 
@@ -107,5 +107,32 @@
 
 </script>
 <script th:src="@{../js/user.js}"></script>
+<script>
 
+
+  function confirm(){
+    if(document.getElementById("username").value != "" &&
+            document.getElementById("password").value != "" &&
+            document.getElementById("loginPwConfirm").value != "" &&
+            document.getElementById("name").value != "" &&
+            document.getElementById("nickName").value != "" &&
+            document.getElementById("email").value != "" &&
+            document.getElementById("birth").value != "" &&
+            document.getElementById("phoneNumber").value != ""){
+      if(document.getElementById("password").value ==
+              document.getElementById("loginPwConfirm").value) {
+        alert("회원가입 완료");
+        location.href = "../../";
+      }
+      else{
+        alert("비밀번호가 서로 다릅니다.")
+
+      }
+    }
+
+    else{
+      alert("빈칸을 입력해주세요.")
+    }
+  }
+</script>
 </html>
