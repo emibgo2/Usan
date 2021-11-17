@@ -278,7 +278,7 @@
             console.log(document.getElementById('days').value * 700);
             price = document.getElementById('days').value * 700
             document.getElementById("lent_date_result").innerHTML = `대여비용은 ` + price.toLocaleString('ko-KR') + `원입니다.` //변해주는값
-            document.getElementById("payment").innerHTML = price.toLocaleString('ko-KR');//변해주는값
+            document.getElementById("payment").innerHTML = price.toLocaleString('ko-KR') + '원';//변해주는값
             document.getElementById("subdays").innerHTML = document.getElementById('days').value
         }
     }

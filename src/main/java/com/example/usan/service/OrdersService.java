@@ -1,6 +1,5 @@
 package com.example.usan.service;
 
-import com.example.usan.model.Orders;
 import com.example.usan.model.User;
 import com.example.usan.repository.OrdersRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +15,6 @@ public class OrdersService {
 
     @Transactional
     public void ordersSave(User user, String location) {
-        orderRepository.save(new Orders(user, location));
+
     }
 }

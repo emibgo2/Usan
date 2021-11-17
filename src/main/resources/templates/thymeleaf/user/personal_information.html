@@ -11,7 +11,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet"
-
           th:href="@{../htmlTemplates/css/main.css}"
           href="../../../static/htmlTemplates/css/main.css" />
     <link rel="stylesheet" href="../../../static/htmlTemplates/css/personal_information.css">
@@ -51,22 +50,13 @@
 
                 <div class="personal_informations">
                     <div class="personal_info">
-                        <h4>계정</h4>
+                        <h4>개인정보</h4>
                         <div class="personal_info_">
                             <div class="personal_div">
                                 <h5 >아이디</h5>
                                 <h6 th:text="${user.username}">chaerin</h6>
+
                             </div>
-                            <div class="personal_div">
-                                <h5>비밀번호</h5>
-                                <button class="changeBtn">비밀번호 변경</button>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="personal_info">
-                        <h4>개인정보</h4>
-                        <div class="personal_info_">
                             <div class="personal_div">
                                 <h5>이름</h5>
                                 <h6 th:text="${user.user.name}">이채린</h6>
@@ -76,7 +66,6 @@
                                 <div class="personal_call">
                                     <div class="personal_call_">
                                         <h6 th:text="${user.user.nickName}">채린짱</h6>
-                                        <button class="changeBtn">변경</button>
                                     </div>
                                 </div>
                             </div>
@@ -85,11 +74,9 @@
                                 <div class="personal_call">
                                     <div class="personal_call_ call_bottom">
                                         <h6 th:text="${user.user.phoneNumber}">010-1111-1111</h6>
-                                        <button class="changeBtn">변경</button>
                                     </div>
                                     <div class="personal_call_ call_bottom">
                                         <h6 th:text="${user.user.email}">12345678@naver.com</h6>
-                                        <button class="changeBtn">변경</button>
                                     </div>
                                 </div>
                             </div>
@@ -100,9 +87,9 @@
                 <hr>
 
                 <div class="personal_information">
-                    <h3>카드정보</h3>
+                    <h3>카드 등록</h3>
                     <div>
-                        <button class="changeBtn">카드정보확인</button>
+                        <button class="changeBtn" onClick="location.href='/umb/card'">카드 등록</button>
                     </div>
                 </div>
 
@@ -111,7 +98,7 @@
                 <div class="personal_information">
                     <h3>이용기록</h3>
                     <div>
-                        <button class="changeBtn" onClick="location.href='/umb/docu'">이용 기록</button>
+                        <button class="changeBtn" onClick="location.href='/user/bill'">이용 기록</button>
                     </div>
                 </div>
                 <hr>
