@@ -84,7 +84,7 @@ input[type=password]{
 
 
 /*크기변경*/
-@media screen and (max-width:420px) {
+@media screen and (max-width:430px) {
 
     div.test {
         height:0%;
@@ -126,5 +126,11 @@ input[type=password]{
     .btn_main {
         font-size: 13px;
         width:100px;
+    }
+}
+
+@media screen and (max-width:359px) {
+    .last_blank {
+        margin-left: 70px;
     }
 }
