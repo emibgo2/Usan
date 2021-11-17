@@ -106,8 +106,7 @@ public class UserController {
 
     @GetMapping("/chaerin")
     public String test(Model model) {
-        model.addAttribute("storages", storageService.sto_upload());
-        return "thymeleaf/chaerin/rent";
+        return  "thymeleaf/user/information";
     }
 
 

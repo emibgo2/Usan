@@ -156,7 +156,7 @@ public class UmbrellaController {
 
     @GetMapping("/guide")
     public String informationForm() {
-        return  "thymeleaf/user/information";
+        return  "thymeleaf/user/guide";
     }
 
     @GetMapping("/rent/fail")
