@@ -156,7 +156,7 @@ public class UmbrellaController {
 
     @GetMapping("/guide")
     public String informationForm() {
-        return  "thymeleaf/user/guide";
+        return  "thymeleaf/user/information";
     }
 
     @GetMapping("/rent/fail")
@@ -180,12 +180,8 @@ public class UmbrellaController {
     }
 
     @GetMapping("/docu")
-    public String docuForm(Model model,@AuthenticationPrincipal PrincipalDetail principal) {
-        User user = userRepository.findById(principal.getUser().getId()).orElseGet(() -> {
-            return new User();
-        });
-        model.addAttribute("user",user);
-        return "thymeleaf/umbrella/docu";
+    public String docuForm() {
+        return  "thymeleaf/umbrella/docu";
     }
 
 
