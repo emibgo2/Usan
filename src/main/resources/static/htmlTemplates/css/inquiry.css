@@ -1,6 +1,6 @@
 .buttons {
-    display: block;
     margin: auto;
+    display: flex;
 }
 
 .buttons input{
