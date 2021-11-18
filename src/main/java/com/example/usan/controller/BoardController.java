@@ -102,7 +102,7 @@ public class BoardController {
         model.addAttribute("board", boardService.boardDetail(id));
         boardService.viewCount(id);
 
-        return "board/detail";
+        return "thymeleaf/board/board_detail";
     }
 
     @GetMapping("/{id}/updateForm")

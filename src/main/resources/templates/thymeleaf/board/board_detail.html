@@ -54,28 +54,22 @@
                 </colgroup>
                 <tr class="notice_title">
                     <td class="title">제목</td>
-                    <td class="text">이것은 제목</td>
+                    <td class="text" th:text="${board.title}">이것은 제목</td>
                 </tr>
                 <tr class="notice_date">
                     <td class="title">작성일자</td>
-                    <td class="text">2021-09-21</td>
+                    <td class="text" th:text="${#dates.format(board.createDate,'yyyy-MM-dd') }">2021-09-21</td>
                 </tr>
             </table>
 
             <div class="notice_text">
-                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
-                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
-                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
-                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
-                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
-                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
-                <p> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
+                <p th:text="${board.content}"> 안녕하세요. 저는 이채린입니다. 이렇게 페이지를 만들고 있죠. 저는 꽤 유능한 인재일지도?ㅋ 이런 제가 아직 못한게 있어요. 그것은 바로 밥먹기. 왜냐고요? 저는 잤거든요! 아주 꿀잠을 잤지요. 하하하. 이렇게 열심히 썼는데 아직 3줄이라니,, 힘들군요.</p>
             </div>
 
             <div class="page_btn">
-                <button type="button" class="prev_btn">이전 글</button>
+                <button type="button" class="prev_btn" th:onclick="|location.href='@{/board/{id}(id=${board.id -1 })}'|" th:if="${board.id !=1}">이전 글</button>
                 <button type="button" onclick="location.href='/notice/pages'" class="notice_btn">목록으로</button>
-                <button type="button" class="next_btn">다음 글</button>
+                <button type="button" class="next_btn" th:onclick="|location.href='@{/board/{id}(id=${board.id +1})}'|" th:if="${board.id != 100 }">다음 글</button>
             </div>
 
 

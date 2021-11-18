@@ -123,6 +123,7 @@ function confirm(){
     document.getElementById("phoneNumber").value != ""){
       if(document.getElementById("password").value ==
         document.getElementById("loginPwConfirm").value) {
+          index.userSave()
           alert("회원가입 완료");
           location.href = "../../";
       }

@@ -125,6 +125,11 @@ public class UserController {
         return "thymeleaf/user/agree";
     }
 
+    @GetMapping("/error/test")
+    public String agreez() {
+        throw new RuntimeException("예외 발1생");
+    }
+
     @GetMapping("/personal/information")
     public String personalInformationForm(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
         model.addAttribute("user", principal);

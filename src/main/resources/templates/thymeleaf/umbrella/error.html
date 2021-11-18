@@ -1,11 +1,147 @@
 <!DOCTYPE html>
-<html  lang="ko", xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html  lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../static/htmlTemplates/css/rent_fe.css">
+    <link rel="stylesheet" href="/../static/htmlTemplates/css/rent_fe.css">
     <title>USAN</title>
+    <style>
+        .p_mobile {
+            display: none;
+        }
+
+        .all {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 800px;
+        }
+
+        .logo {
+            width: 225px;
+        }
+
+        .all h1 {
+            font-size: 3rem;
+        }
+
+        .pw h2 {
+            font-size: 2rem;
+            color: #7198b9
+        }
+
+        .pw p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 150%
+        }
+
+        .fail {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            line-height: 145%;
+        }
+
+        .error {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 50px;
+        }
+
+        .err {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            background-color: #2A78AC;
+            color: white;
+            padding: 12px 15px;
+            font-size: 15px;
+            border: 2px solid white;
+            border-radius: 15px;
+        }
+
+        .btn_main {
+            background-color:#FAFAFA;
+            color: black;
+            padding: 12px 15px;
+            font-size: 15px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            margin-left: 5px;
+        }
+
+        @media screen and (max-width: 500px){
+            .p_window {
+                display: none;
+            }
+
+            .p_mobile {
+                display: block;
+            }
+
+            .all {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                width: 300px;
+            }
+
+            #all_fail {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                width: 255px;
+            }
+
+            .logo {
+                width: 150px;
+            }
+
+            .all h1 {
+                font-size: 2rem;
+            }
+
+            .pw h2 {
+                font-size: 1.5rem;
+                color: #7198b9
+            }
+
+            .pw p {
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin-bottom: 30px;
+            }
+
+            .fail {
+                font-size: 1.3rem;
+                font-weight: 600;
+                margin-bottom: 30px;
+            }
+
+            .btn_main {
+                background-color:#FAFAFA;
+                color: black;
+                padding: 12px 15px;
+                font-size: 15px;
+                border: 2px solid rgba(0, 0, 0, 0.1);
+                border-radius: 15px;
+                margin-top: 10px;
+            }
+
+
+
+        }
+    </style>
 </head>
 <body>
 <div class="all">
