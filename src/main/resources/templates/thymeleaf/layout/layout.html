@@ -5,6 +5,9 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet"
+              th:href="@{../htmlTemplates/css/board_detail.css}"
+              href="../../../static/htmlTemplates/css/board_detail.css" />
+        <link rel="stylesheet"
               th:href="@{../htmlTemplates/css/main.css}"
               href="../../../static/htmlTempaltes/css/main.css" />
         <link rel="stylesheet"
@@ -50,7 +53,7 @@
                 <li><a href="/inquiry">문의하기</a></li>
                 <li><a href="/board">공지사항</a></li>
                 <li><a href="/umb/rent">대여하기</a></li>
-                <li><a href="/personal/information">개인정보</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/personal/information">개인정보</a></li>
                 <li  sec:authorize="isAuthenticated()" ><a href="/logout">로그아웃</a></li>
                 <li  sec:authorize="!isAuthenticated()" ><a href="/auth/loginForm">로그인</a></li>
                 <li  sec:authorize="!isAuthenticated()" ><a href="/user/agree">회원가입</a></li>
