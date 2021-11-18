@@ -32,7 +32,7 @@
 					<li><a href="/inquiry">문의하기</a></li>
 					<li><a href="/board">공지사항</a></li>
 					<li><a href="/umb/rent">대여하기</a></li>
-					<li><a href="/personal/information">개인정보</a></li>
+					<li sec:authorize="isAuthenticated()"><a href="/personal/information">개인정보</a></li>
 					<li  sec:authorize="isAuthenticated()" ><a href="/logout">로그아웃</a></li>
 					<li  sec:authorize="!isAuthenticated()" ><a href="/auth/loginForm">로그인</a></li>
 					<li  sec:authorize="!isAuthenticated()" ><a href="/user/agree">회원가입</a></li>
