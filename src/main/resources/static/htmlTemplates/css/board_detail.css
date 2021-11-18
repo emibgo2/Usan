@@ -1,10 +1,29 @@
-td {
-    background: white;
+.notice_title td {
     color: black;
     font-size: 18px;
 }
 
-table td {
+.notice_date td {
+    color: black;
+    font-size: 18px;
+}
+
+.notice_title tr {
+    border: solid 1px;
+    border-bottom: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+}
+
+.notice_date tr {
+    border: solid 1px;
+    border-bottom: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+}
+
+
+.notice td {
     padding: 8px;
 }
 
@@ -33,11 +52,116 @@ tr {
 
 .text {
     padding-left: 20px;
+    background-color: white;
 }
 
-button {
-    border-radius: 10px;
+.page_btn {
+    padding: 0;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.notice_btn {
+    margin: 0 10px;
+}
+
+.notice_text {
+    width: 80%;
+    margin: 0 auto;
+    color: black;
+    margin-top: 70px;
+    margin-bottom: 100px;
+}
+
+.notice_text p {
+    text-indent: 17px;
+    font-size: 20px;
+    letter-spacing: 1.3px;
+    line-height: 28px;
+}
+
+.page_btn {
+    display: flex;
+    justify-content: center;
+}
+
+.page_btn button {
+    border-radius: 15px;
     height: 40px;
+}
+
+@media screen and (max-width:430px) {
+    h2 {
+        font-size: 2em;
+    }
+
+    .title {
+        width: 25%;
+    }
+
+    .text {
+        padding-left: 10px;
+    }
+
+    .page_btn button {
+        width: 80px;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .title {
+        width: 28%;
+    }
+
+    .text {
+        padding-left: 10px;
+    }
+}
+
+@media screen and (max-width:340px) {
+    .title {
+        width: 32%;
+    }
+
+    .notice_title td {
+        font-size: 16px;
+    }
+
+    .notice_date td {
+        font-size: 16px;
+    }
+
+    .notice_text {
+        margin-top: 50px;
+    }
+}
+
+/*
+
+
+
+
+
+
+.notice {
+    border-top: 2px solid #000;
+    width: 90%;
+    margin: auto;
+}
+
+.notice_date {
+    border-bottom: 1px solid #000;
+}
+
+.title {
+    font-weight: 600;
+    background-color: rgb(238, 238, 238);
+    text-align: center;
+}
+
+.text {
+    padding-left: 20px;
 }
 
 button:hover {
@@ -78,6 +202,8 @@ button:hover {
     justify-content: center;
 }
 
+
+
 @media screen and (max-width:430px) {
     h2 {
         font-size: 2em;
@@ -91,7 +217,7 @@ button:hover {
         padding-left: 10px;
     }
 
-    button {
+    .page_btn button {
         width: 80px;
     }
 }
