@@ -2,6 +2,11 @@
     font-family:sans-serif;
 }
 
+.logo_a {
+    text-decoration: none;
+    color: #3498db;
+}
+
 body {
     position:relative;
     background-color:#FFFFFF;
