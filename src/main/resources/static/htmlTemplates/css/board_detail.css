@@ -105,7 +105,7 @@ tr {
     }
 
     .page_btn button {
-        width: 80px;
+        width: 100px;
     }
 }
 
@@ -134,6 +134,10 @@ tr {
 
     .notice_text {
         margin-top: 50px;
+    }
+
+    .page_btn button {
+        width: 80px;
     }
 }
 
