@@ -80,8 +80,24 @@ public class UserApiController {
 
             User user = new User("user", "강두한","사용자", "1", "emibgo@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
             user.setCash(100000);
+            User professor1 = new User("정선호", "정선호","정선호 교수님", "1", "???@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
+            professor1.setCash(100000);
+            User professor2 = new User("문원식", "문원식","문원식 교수님", "1", "emibgo@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
+            professor2.setCash(100000);
+            User professor3 = new User("장희선", "장희선","장희선 교수님", "1", "emibgo@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
+            professor3.setCash(100000);
+
+            User professor4 = new User("양단희", "양단희","양단희 교수님", "1", "emibgo@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
+            professor4.setCash(100000);
+            User professor5 = new User("김동철", "김동철","김동철 교수님", "1", "emibgo@naver.com", "01029293999", RoleType.USER, Timestamp.valueOf(LocalDateTime.now()));
+            professor5.setCash(100000);
 
             userService.joinMember(user, 1);
+            userService.joinMember(professor1, 1);
+            userService.joinMember(professor2, 1);
+            userService.joinMember(professor3, 1);
+            userService.joinMember(professor4, 1);
+            userService.joinMember(professor5, 1);
             System.out.println("---------------------- Student Data Upload --------------------------");
             for (int i = 2021; i > 2013; i--) {
                 for (int j = 1; j < 60; j++) {
