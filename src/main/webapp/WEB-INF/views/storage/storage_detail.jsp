@@ -38,9 +38,9 @@ pageEncoding="UTF-8" %>
 <script>
     let inse={
         test:function(umbrellasId){
-            const a = document.getElementById('rental_period').value
-            if (confirm(umbrellasId+"우산을 "+a+"일 동안 대여하시겠습니까?")) {
-                index.rent(umbrellasId,a)
+            const rentalPeriod = document.getElementById('rental_period').value
+            if (confirm(umbrellasId+"우산을 "+rentalPeriod+"일 동안 대여하시겠습니까?")) {
+                index.rent(umbrellasId,rentalPeriod)
             } else {
 
             }

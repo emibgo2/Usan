@@ -40,9 +40,9 @@ public class UmbrellaService {
     @Transactional(readOnly = true)
     public int get_Late_Date(Long id ){
         Umbrella umbrella = getUmbrella(id);
-        LocalDate a = umbrella.getRent_date().toLocalDateTime().toLocalDate();
-        LocalDate b = umbrella.getRent_end_date().toLocalDateTime().toLocalDate();
-        Period period = Period.between(b,a);
+        LocalDate rentDate = umbrella.getRent_date().toLocalDateTime().toLocalDate();
+        LocalDate endDate = umbrella.getRent_end_date().toLocalDateTime().toLocalDate();
+        Period period = Period.between(endDate,rentDate);
         return period.getDays();
         // id 값에 해당하는 Umbrella의 대여한 날짜 ( Rent Date ) 와 반납 예정 날짜( Rent End Date )를
         // 비교, 계산하여 남은 일 수를 return ( 양수면 이미 지남 )
