@@ -56,50 +56,10 @@ public class UmbrellaController {
 
     }
 
-
-
-    public void test(HttpServletRequest request) {
-
-        Random random = new Random();
-        int i = random.nextInt(UmbrellaApiController.myUUID.size());
-        Integer remove = UmbrellaApiController.myUUID.remove(i);
-
-        // 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
-        HttpSession session = request.getSession();
-        // 세션에 로그인 회원 정보 보관
-        session.setAttribute("payNumber", remove);
-        System.out.println(remove);
-
-    }
-
     @GetMapping("/pay/complete")
     public String home() {
         return "thymeleaf/umbrella/payComplete";
     }
-
-    // Test를 위해 String Boot 내에서 View 까지 담당하는 코드 API 코드 따로 있음
-//    @GetMapping("/joinForm/admin")
-//    public String joinUmbrella(Model model) {
-//        List<Storage> storages = storageService.sto_upload();
-//        for (int i = 0; i < storages.size(); i++) {
-//            storages.get(i).setUmbrellaList(null);
-//        }
-//        model.addAttribute("storage", storages);
-//
-//        return "umbrella/umb_joinForm";
-//    }
-
-//     이전 버전 rent View
-//    @GetMapping("/mappingForm")
-//    public String mappingUmbrella(Model model) {
-//        model.addAttribute("umbrella", umbrellaService.umb_upload());
-//        model.addAttribute("storage", storageService.sto_upload());
-//        return "umbrella/umb_mappingForm";
-//    }
-
-    /**
-     * d테스트용 메소드 위에 GetMapping과 변경할 예정
-     */
 
     @GetMapping("/rent")
     public String viewTest(Model model) {
@@ -108,10 +68,8 @@ public class UmbrellaController {
         return "thymeleaf/umbrella/rent";
     }
 
-
     @GetMapping("/returnForm/{userId}")
     public String returnUmbrella(@PathVariable Long userId, Model model) {
-        System.out.println("userId = " + userId);
         List<Umbrella> umbrellas = getUserUmbrellas(userId);
         model.addAttribute("umbrella", umbrellas);
         return "umbrella/umb_returnForm";

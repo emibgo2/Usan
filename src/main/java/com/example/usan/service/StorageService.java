@@ -35,8 +35,6 @@ public class StorageService {
     }
     @Transactional(readOnly = true)
     public Storage sto_detail(Long id){
-        System.out.println("StorageService.sto_detail");
-        System.out.println("id = " + id);
         return storageRepository.findById(id)
                 .orElseThrow(() -> {
                     return new IllegalArgumentException("보관소를 찾을 수 없습니다.");
@@ -88,7 +86,6 @@ public class StorageService {
 //        storage.setLendingUmbRFID(umbrella.getValueOfRFID());
         log.info("Rent Umbrella ={}", umbrella);
 
-        System.out.println("valueOf RFID = " + valueOfRFID);
     }
 
     @Transactional
@@ -122,7 +119,6 @@ public class StorageService {
             List<Orders> orderList = returnUser.getOrderList();
 
             for (Orders orders : orderList) {
-                System.out.println("orders.getUser().getPayNumber() = " + orders.getUser().getPayNumber());
                 if (orders.getRentUmbId() == umbrella.getId() && orders.getRenting()) {
                     orders.setReturnDay(Timestamp.valueOf(LocalDateTime.now()));
                 }

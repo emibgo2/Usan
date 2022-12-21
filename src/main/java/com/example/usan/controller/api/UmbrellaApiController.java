@@ -37,18 +37,7 @@ public class UmbrellaApiController {
     private UmbrellaRepository umbrellaRepository;
     public static List<Integer> myUUID = Collections.synchronizedList(new ArrayList<>());
 
-    //    @PostMapping("/rent/{location}/{days}") // 지금 대여하는 사람이 누구여야하는지를 알아야하는데 QR코드 배급후 대여시 QR코드 인식하는걸로 생각중
-//    public ResponseDto<Integer> rent(@PathVariable String location, @PathVariable int days, @AuthenticationPrincipal PrincipalDetail principal) {
-//        System.out.println("UmbrellaApiController.test");
-//        System.out.println("location = " + location);
-//        System.out.println("days = " + days);
-//        Random random = new Random();
-//        int i = random.nextInt(UmbrellaApiController.myUUID.size());
-//        Integer remove = UmbrellaApiController.myUUID.remove(i);
-//        User user = userService.userPayNumber(principal.getUser().getId(), remove);
-//        principal.getUser().setPayNumber(remove);
-//        return new ResponseDto<Integer>(HttpStatus.OK.value(),user.getPayNumber());
-//    }
+
     @GetMapping("delete/all")
     public ResponseDto<Integer> deleteAllUmb() throws InterruptedException {
         umbrellaRepository.deleteAll();
@@ -79,9 +68,6 @@ public class UmbrellaApiController {
     public StorageDto<Integer, List<Umbrella>, List<Storage>> mappingUmbrella(Model model) {
         List<Umbrella> umbrellas = umbrellaService.umb_upload();
         List<Storage> storages = storageService.sto_upload();
-        for (int i = 0; i < umbrellas.size(); i++) {
-            umbrellas.get(i).setStorage(null);
-        }
         return new StorageDto<>(HttpStatus.OK.value(), 1, umbrellas, storages);
         // DB내의 Storage와 Umbrella를 모두 추합하여 전송
         // Umbrella는 이미 보내졌기 때문에 Storages내의 모든 Umbrella 정보는 제거하여 전송 ( 속도 상향을 위해 )
@@ -104,8 +90,6 @@ public class UmbrellaApiController {
 
     @PutMapping("/{id}/{rfid}/edit")
     public ResponseDto umbEdit(@PathVariable Long id, @PathVariable String rfid) {
-        System.out.println("rfid = " + rfid);
-        System.out.println("rfid.length() = " + rfid.length());
         if (rfid.length() != 8) return new ResponseDto<Integer>(HttpStatus.BAD_REQUEST.value(), 3);
         umbrellaService.editUmb(id, rfid);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
@@ -177,7 +161,6 @@ public class UmbrellaApiController {
                 if (i == 3) {
                     createUmbrella.setValueOfRFID("f3506a97");
                 }else createUmbrella.setValueOfRFID("f3ba279" + (7-i));
-                System.out.println("createUmbrella = " + createUmbrella);
                 umbrellaService.umbrella_save(createUmbrella);
                 log.info("기본 우산 생성");
             } else log.info(" 이미 {}번 우산이 있습니다.",i);

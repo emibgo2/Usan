@@ -43,9 +43,7 @@ public class UserController {
     @GetMapping("/test/control")
     public String testControl(Model model) {
         List<Umbrella> umbrellas = umbrellaService.umb_upload();
-        for (int i = 0; i < umbrellas.size(); i++) {
-            umbrellas.get(i).setStorage(null);
-        }
+
         model.addAttribute("umb", umbrellas);
         model.addAttribute("user", userRepository.findAll());
         model.addAttribute("storage", storageService.sto_upload());
@@ -55,9 +53,7 @@ public class UserController {
     @GetMapping("/test/control/edit")
     public String testControlEdit(Model model) {
         List<Umbrella> umbrellas = umbrellaService.umb_upload();
-        for (int i = 0; i < umbrellas.size(); i++) {
-            umbrellas.get(i).setStorage(null);
-        }
+
         model.addAttribute("umb", umbrellas);
         model.addAttribute("user", userRepository.findAll());
         model.addAttribute("storage", storageService.sto_upload());
@@ -85,13 +81,6 @@ public class UserController {
         return "thymeleaf/umbrella/agree";
     }
 
-    @PostMapping("/test")
-    @ResponseBody
-    public int connectionTest(@RequestBody String a) {
-        System.out.println("requestValue = " + a);
-        return HttpStatus.OK.value();
-
-    }
 
 
     @GetMapping("/rent/finish")
@@ -104,10 +93,6 @@ public class UserController {
         return "thymeleaf/umbrella/Join_Form";
     }
 
-    @GetMapping("/chaerin")
-    public String test(Model model) {
-        return  "thymeleaf/user/information";
-    }
 
 
     @GetMapping("/auth/joinForm")
@@ -123,11 +108,6 @@ public class UserController {
     @GetMapping("/user/agree")
     public String agree() {
         return "thymeleaf/user/agree";
-    }
-
-    @GetMapping("/error/test")
-    public String agreez() {
-        throw new RuntimeException("예외 발1생");
     }
 
     @GetMapping("/personal/information")

@@ -33,25 +33,6 @@ public class BoardController {
     @GetMapping
     public String index(Model model, @PageableDefault(size = 10, sort = "id") Pageable pageable, HttpServletResponse response) {
         // /WEB-INF/views/joinForm.jsp
-        for (int i = 1; i <= 100; i++) {
-            Long id = new Long(i);
-            Board boardCheck = boardRepository.findById(id).orElseGet(() -> {
-                return new Board();
-            });
-            if (boardCheck.getCreateDate() == null) {
-                String count = String.valueOf(id);
-                Board createBoard = new Board();
-                createBoard.setUser(userService.boardUser(1L));
-                createBoard.setTitle(count + "번째 글입니다.");
-                createBoard.setContent(count + "번째 글의 내용입니다.");
-                boardRepository.save(createBoard);
-                log.info("기본 공지글 생성");
-            } else {
-                log.info(" 이미 공지글이 있습니다.");
-                break;
-            }
-
-        }
 
         model.addAttribute("list", boardService.boardList(pageable));
 
@@ -61,33 +42,6 @@ public class BoardController {
 
     }
 
-    // 컨트롤러에서 세션을 어떻게 찾는지?
-    @GetMapping("test")
-    public String indext(Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable, HttpServletResponse response) {
-        // /WEB-INF/views/joinForm.jsp
-        for (int i = 1; i <= 20; i++) {
-            Long id = new Long(i);
-            Board boardCheck = boardRepository.findById(id).orElseGet(() -> {
-                return new Board();
-            });
-            if (boardCheck.getCreateDate() == null) {
-                String count = String.valueOf(i);
-                Board createBoard = new Board();
-                createBoard.setUser(userService.boardUser(1L));
-                createBoard.setTitle(count + "번째 글입니다.");
-                createBoard.setContent(count + "번째 글의 내용입니다.");
-                boardRepository.save(createBoard);
-                log.info("기본 공지글 생성");
-            } else log.info(" 이미 {}번 공지글이 있습니다.",i);
-
-        }
-
-        model.addAttribute("list", boardService.boardList(pageable));
-        return "board/boardList";
-        // BoardController는 REST Controller가 아닌 그냥 Controller이기 때문에
-        // 리턴할때 viewResolver가 작동 위에 boards를 라는 이름으로 글목록()을 들고갑니다.
-
-    }
 
 
     @GetMapping("/home")

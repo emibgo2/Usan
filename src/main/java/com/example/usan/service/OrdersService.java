@@ -15,6 +15,6 @@ public class OrdersService {
 
     @Transactional
     public void ordersSave(User user, String location) {
-
+        // 미완성
     }
 }

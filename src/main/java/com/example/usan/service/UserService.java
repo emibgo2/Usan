@@ -33,9 +33,7 @@ public class UserService {
         User user= userRepository.findByUsername(requestUser.getUsername()).orElseGet(() -> {
             return new User();
         });
-        System.out.println(user);
         if (user.getPassword() == null) {
-            System.out.println("result: "+ 1);
             return 1;
             // 해당 아이디 사용가능
         }
@@ -108,7 +106,6 @@ public class UserService {
         User user = userRepository.findById(requestUser.getId()).orElseGet(() -> {
             return new User();
         });
-        System.out.println("user = " + user);
         if (user.getFirstUmbrellaId() == null || user.getFirstUmbrellaId() == 0) {
             user.setFirstUmbrellaId(umbrella.getId());
             umbrella.setRent_date(Timestamp.valueOf(LocalDateTime.now())); // 빌린 당시의 날을 저장
@@ -139,9 +136,7 @@ public class UserService {
         List<Orders> orderList = user.getOrderList();
 
         for (Orders orders : orderList) {
-            System.out.println("orders.getUser().getPayNumber() = " + orders.getUser().getPayNumber());
             if (orders.getUser().getPayNumber() == 0) {
-                System.out.println("찾았디!");
                 orders.setRentUmbId(umbrella.getId());
                 orders.setRenting(true);
                 break;

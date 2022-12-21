@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 5000
   profiles:
     active: default
   servlet:
@@ -36,9 +36,9 @@ spring:
 #    password: xgl11yxnup6f3xr7
 
 #    테스트시 데이터베이스 설정k
-    url: jdbc:mysql://localhost:3306/usan?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://usan.cvp9gzbh38vp.ap-northeast-2.rds.amazonaws.com:3306/usan?autoReconnect=true
     username: usan
-    password: dgdg1234
+    password: wlgns6582
 
   jpa:
     open-in-view: true

@@ -63,17 +63,6 @@ public class StorageApiController {
     @PostMapping("arduino/payNumber/{pointNumber}")
     public Integer rent(@PathVariable Long pointNumber, @RequestBody String payNumber) {
 
-//        System.out.println("payNumber = " + requestNumber);
-//        String payNumber = requestNumber.replaceAll("[^0-9]", "");
-//        System.out.println("payNumber = " + payNumber.length());
-//        if (payNumber.length() != 4) {
-//
-//        }
-//        int findNumber = Integer.parseInt(payNumber);
-//        System.out.println(payNumber);
-//        문자열 버전
-//        인트 버전
-
         if (payNumber.indexOf("/")!= -1){ log.info("payNumber in \"/\""); return Arduino_RENT_KEYPAD_BADREQUEST;}
         if (payNumber.length() != 4) { log.info("payNumber length != 4");return Arduino_RENT_KEYPAD_BADREQUEST; }
 

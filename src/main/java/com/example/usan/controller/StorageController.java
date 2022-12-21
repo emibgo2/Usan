@@ -20,7 +20,6 @@ import java.util.List;
 @AllArgsConstructor
 public class StorageController {
 
-
     private StorageService storageService;
     private UmbrellaService umbrellaService;
 
@@ -35,9 +34,7 @@ public class StorageController {
     @GetMapping("/mappingForm/admin")
     public String selectStorage(Model model) {
         List<Storage> storages = storageService.sto_upload();
-        for (int i = 0; i < storages.size(); i++) {
-            storages.get(i).setUmbrellaList(null);
-        }
+
 
         model.addAttribute("storage", storages);
         return "storage/storage_mappingForm";
